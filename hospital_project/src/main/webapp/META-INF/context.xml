@@ -1,0 +1,17 @@
+<Context> 
+  <Resource
+   name="jdbc/MySQLDB" 
+   auth="Container"
+   type="javax.sql.DataSource" 
+   
+   url="jdbc:mysql://localhost:3306/testDB"
+   username="java" 
+   password="java"
+   driverClassName="com.mysql.cj.jdbc.Driver"
+   
+   factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+   
+   maxTotal="500" 
+   maxWaitMillis="1000"
+   maxIdle="100"/>  
+</Context>
