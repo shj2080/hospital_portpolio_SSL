@@ -65,7 +65,7 @@ public class JdbcUtil {
 			con.rollback();
 			System.out.println("rollback success");
 		} catch (Exception e) {
-			System.out.println("");
+			System.out.println("[JdbcUtil]DB rollback 중 예외 : " + e);
 		}
 	}
 }
