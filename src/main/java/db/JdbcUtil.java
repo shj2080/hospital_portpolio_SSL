@@ -21,7 +21,7 @@ public class JdbcUtil {
 			con = ds.getConnection();
 			con.setAutoCommit(false);
 		} catch(Exception e) {
-			System.out.println("[JdbcUtil]DB 커넥션 풀 생성 중 예외 : " + e);
+			System.out.println("[JdbcUtil]DB Connection 풀 생성 중 예외 : " + e);
 		}
 		
 		return con;
@@ -31,7 +31,7 @@ public class JdbcUtil {
 		try {
 			con.close();
 		} catch (Exception e) {
-			System.out.println("[JdbcUtil]DB 커넥션 풀 닫는 중 예외 : " + e);
+			System.out.println("[JdbcUtil]DB Connection 풀 닫는 중 예외 : " + e);
 		}
 	}
 
