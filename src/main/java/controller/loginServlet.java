@@ -32,6 +32,9 @@ public class loginServlet extends HttpServlet {
 		//인코딩 방식 설정
 		request.setCharacterEncoding("UTF-8");
 		
+		//response 컨텐츠 타입 정의 및 인코딩 설정
+		response.setContentType("text/html;charset=UTF-8");
+		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		
@@ -39,7 +42,7 @@ public class loginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		//login DAO 처리
-		//if(login.dao(id, password)) {
+		//if(hospital.dao(id, password)) {
 		if(id.equals("java") && password.equals("test")) {
 			session.setAttribute("userID", id);
 			response.sendRedirect("loginOK.jsp");
@@ -48,8 +51,7 @@ public class loginServlet extends HttpServlet {
 		}
 		
 		
-		//response 컨텐츠 타입 정의 및 인코딩 설정
-		response.setContentType("text/html;charset=UTF-8");
+		
 	}
 
 }

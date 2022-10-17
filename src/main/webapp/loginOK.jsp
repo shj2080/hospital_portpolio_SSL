@@ -7,6 +7,6 @@
 <title>세션 테스트 임시 문서</title>
 </head>
 <body>
-	<%=session.getAttribute("userID") %> 님 환영합니다.
+	${userID} 님 환영합니다.
 </body>
 </html>
