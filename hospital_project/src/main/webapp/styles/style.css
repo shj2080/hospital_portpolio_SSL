@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+/* 기본 전체스타일 지정 */
+* {
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+}
+
+/* rem 단위 사용 이전에 html 폰트 사이즈 재정의(1rem = 10px) */
+html {
+	font-size:62.5%;
+}
+
+body {
+	font-size:1.6rem;
+}
+
+.FormTable {
+	margin: 0 auto;
+}
+
