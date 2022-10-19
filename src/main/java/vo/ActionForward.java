@@ -25,6 +25,7 @@ public class ActionForward {
 		this.path = path;
 	}
 	
+	//현재 포워딩 방식 반환 (false : 디스패치(기존요청) -  true : 리다이렉트(새요청)
 	public boolean isRedirect() {
 		return redirect;
 	}
