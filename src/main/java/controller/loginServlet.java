@@ -1,3 +1,4 @@
+//주의 : 이 서블릿은 재처리 필요함!!
 package controller;
 
 import java.io.IOException;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class loginServlet
  */
-@WebServlet("/loginProcess")
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,7 +42,7 @@ public class loginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		//login DAO 처리
-		//if(hospital.dao(id, password)) {
+		//if(HospitalDAO.login(id, password)) {
 		if(id.equals("java") && password.equals("test")) {
 			session.setAttribute("userID", id);
 			response.sendRedirect("loginOK.jsp");

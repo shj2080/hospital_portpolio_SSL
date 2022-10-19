@@ -29,7 +29,7 @@ function loginVaildCheck() {
 </script>
 </head>
 <body>
-	<form action ="loginProcess" name = "loginForm" method="post">
+	<form action ="loginProcess.do" name = "loginForm" method="post">
 		<table class="FormTable">
 			<tr>
 				<th colspan="2"><h2>시스템 로그인</h2></th>
