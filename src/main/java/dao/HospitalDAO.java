@@ -38,12 +38,32 @@ public class HospitalDAO {
 		this.con = con;
 	}
 	
-	public ArrayList<Member> selectLoginCheck() {
-		ArrayList<Member> memberList = null;
+	public boolean loginCheck(String id, String password) {
+		boolean loginChk = false;
 		
-		//미구현 상태(작업중...)
+		//쿼리문
+		String sql = "select id from membertbl where id = ? AND password = ? ";
 		
-		return memberList;
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				loginChk = true;
+			} 
+			
+		} catch(Exception e) {
+			
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+			close(rs);
+		}
+		
+		return loginChk;
 	}
 	
 }

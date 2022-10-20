@@ -13,7 +13,9 @@ public class LoginService {
 	//기본생성자
 	
 	//메서드
-	public boolean getLoginResult() {
+	public boolean getLoginResult(String id, String password) {
+		boolean loginResult = false;
+		
 		//커넥션 풀에서 커넥션 객체 얻어오기
 		Connection con = getConnection();
 		
@@ -24,11 +26,11 @@ public class LoginService {
 		hospitalDAO.setConnection(con);
 		
 		//해당 메서드를 호출하여 처리
-		//--처리 필요--
+		loginResult = hospitalDAO.loginCheck(id, password);
 		
 		//DB 연결 해제
 		close(con);
 		
-		return false;
+		return loginResult;
 	}
 }

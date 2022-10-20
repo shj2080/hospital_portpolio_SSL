@@ -22,7 +22,7 @@ public class JdbcUtil { //모든 메서드가 static : 객체 생성없이
 			con = ds.getConnection();
 			con.setAutoCommit(false);
 		} catch(Exception e) {
-			System.out.println("[JdbcUtil]DB Connection 풀 생성 중 예외 : " + e);
+			System.out.println("[JdbcUtil]DB Connection Pool 생성 중 예외 : " + e);
 		}
 		
 		return con;
@@ -33,7 +33,7 @@ public class JdbcUtil { //모든 메서드가 static : 객체 생성없이
 		try {
 			con.close();
 		} catch (Exception e) {
-			System.out.println("[JdbcUtil]DB Connection 풀 닫는 중 예외 : " + e);
+			System.out.println("[JdbcUtil]DB Connection Pool 닫는 중 예외 : " + e);
 		}
 	}
 

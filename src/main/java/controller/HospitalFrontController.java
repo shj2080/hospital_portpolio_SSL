@@ -29,14 +29,16 @@ public class HospitalFrontController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//모든 요청을 제어하는 메서드를 호출함
+		doProcess(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//모든 요청을 제어하는 메서드를 호출함
+		doProcess(request, response);
 	}
 
 	//모든 요청을 제어하는 메서드
@@ -55,10 +57,14 @@ public class HospitalFrontController extends HttpServlet {
 		Action action = null; //Action 인터페이스
 		ActionForward forward = null;
 		
-		//2. 비즈니스 로직 구분
+		//2. 비즈니스 로직 구분------------------------------------------------
 		
-		//로그은 프로세스
-		if(command.equals("/loginProcess.do")) {
+		//로그인 이동
+		if(command.equals("/login.do")) {
+			forward = new ActionForward("login.jsp", false);
+		}
+		//로그인 프로세스
+		else if(command.equals("/loginProcess.do")) {
 			action = new LoginAction();
 			
 			try {
@@ -67,6 +73,8 @@ public class HospitalFrontController extends HttpServlet {
 				System.out.println("login ActionForward 예외 : " + e);
 			}
 		}
+		
+		//---------------------------------------------------------------
 		
 		/****************************************************************************
 		 * 포워딩
