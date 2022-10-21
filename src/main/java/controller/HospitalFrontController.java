@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.LoginAction;
+import action.LogoutAction;
 import vo.ActionForward;
 
 /**
@@ -66,6 +67,16 @@ public class HospitalFrontController extends HttpServlet {
 		//로그인 프로세스
 		else if(command.equals("/loginProcess.do")) {
 			action = new LoginAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("login ActionForward 예외 : " + e);
+			}
+		}
+		//로그아웃 요청
+		else if(command.equals("/logout.do")) {
+			action = new LogoutAction();
 			
 			try {
 				forward = action.execute(request, response);

@@ -14,9 +14,9 @@
 	<c:if test="${userID  == null}">
 		<a href="login.do">로그인</a>
 	</c:if>
-	<!-- 주의 : 로그아웃 미구현 상태 -->
-	<c:if test="${userID  != null}">
-		${userID }님 환영합니다. <a href="logout.do">로그아웃</a>
+	
+	<c:if test="${userName  != null}">
+		${userName }님 환영합니다. <a href="logout.do">로그아웃</a>
 	</c:if>
 </body>
 </html>

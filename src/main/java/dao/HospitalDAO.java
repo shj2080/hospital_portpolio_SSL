@@ -38,8 +38,9 @@ public class HospitalDAO {
 		this.con = con;
 	}
 	
-	public boolean loginCheck(String id, String password) {
-		boolean loginChk = false;
+	//입력한 정보가 DB에 있는 id, password와 일치하는 지 쿼리
+	public boolean selectLoginInfo(Member member) {
+		boolean checkLoginResult = false;
 		
 		//쿼리문
 		String sql = "select id from membertbl where id = ? AND password = ? ";
@@ -47,13 +48,14 @@ public class HospitalDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, id);
-			pstmt.setString(2, password);
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getPassword());
 			
 			rs = pstmt.executeQuery();
 			
+			//일치하면 db에서 id 값이 출력됨
 			if(rs.next()) {
-				loginChk = true;
+				checkLoginResult = true;
 			} 
 			
 		} catch(Exception e) {
@@ -63,7 +65,36 @@ public class HospitalDAO {
 			close(rs);
 		}
 		
-		return loginChk;
+		return checkLoginResult;
 	}
 	
+	//해당 id의 회원 정보를 가져오는 메서드
+	public Member selectUserInfo(String id) {
+		Member userInfo = null;
+		
+		//쿼리문
+		String sql = "select * from membertbl where id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				userInfo = new Member();
+				
+				//session 영역에 저장할 데이터만 가져와 채움
+				userInfo.setId(rs.getString("id"));
+				userInfo.setName(rs.getString("name"));
+			} 
+			
+		} catch(Exception e) {
+			
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+			close(rs);
+		}
+				
+		return userInfo;
+	}
 }
