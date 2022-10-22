@@ -64,8 +64,8 @@ public class LoginAction implements Action {
 			PrintWriter out = response.getWriter();
 			
 			out.println("<script>");
-			out.println("alert('아이디나 비밀번호가 일치하지 않습니다.')");
-			out.println("location.href = 'login.do'");
+			out.println("alert('아이디나 비밀번호가 일치하지 않습니다.');");
+			out.println("location.href = 'login.do';");
 			out.println("</script>");
 		}
 		

@@ -8,6 +8,9 @@ create table membertbl(
    phone varchar(14)       /* 전화번호 */
 );
 
+/* 회원정보 테스트 데이터 */
+insert into membertbl values('홍길동', '960101-1234567', 'test001', 'test', '대구 달서구', '010-0000-000');
+
 /* 테이블 문제 발생 시 삭제 */
 drop table membertbl;
 

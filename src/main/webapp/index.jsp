@@ -1,22 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%-- JSTL 사용을 위한 선언 부분 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인 페이지</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${userID  == null}">
-		<a href="login.do">로그인</a>
-	</c:if>
-	
-	<c:if test="${userName  != null}">
-		${userName }님 환영합니다. <a href="logout.do">로그아웃</a>
-	</c:if>
+	<div id = "warpper">
+	<jsp:include page="header.jsp" />
+		<section>
+			<div>
+				<img src="images/병원배경1.jpg" width="100%" style="height:40rem;">
+			</div>
+		</section>
+	<jsp:include page="footer.jsp" />
+	</div>
 </body>
 </html>
