@@ -7,23 +7,22 @@
 }
 
 #loginForm .FormBox {
-    /*border-collapse: collapse;*/
     margin: 1rem auto;
-    max-width: 60%;
+    max-width: 60rem;
     display: flex;
     flex-wrap: wrap;
     border: 0.1rem solid lightblue;
     padding: 1rem;
     justify-content: center;
 }
-#loginForm .FormBox .loginItem:nth-child(odd) {
-    width: 30%;
-    text-align: center;
-    font-size: 2rem;
+
+#loginForm .FormBox .loginItem {
+    flex: 1 1 40%;
 }
 
-#loginForm .FormBox .loginItem:nth-child(even) {
-    width: 70%;
+#loginForm .FormBox .loginItem:nth-child(odd) {
+    text-align: center;
+    font-size: 2rem;
 }
 
 #loginForm .FormBox .loginItem input {
@@ -31,7 +30,4 @@
     height: inherit;
 }
 
-#loginForm .FormBox .loginButton {
-
-}
 /* ------form 박스 스타일 끝---- */

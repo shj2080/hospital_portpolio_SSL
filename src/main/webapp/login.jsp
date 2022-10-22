@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>시스템 로그인</title>
+<title>it's 병원 - 로그인</title>
 <link rel="stylesheet" type="text/css" href="./styles/loginForm.css">
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script> -->
 <script type="text/javascript">

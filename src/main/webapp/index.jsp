@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>it's 병원</title>
 </head>
 <body>
 	<div id = "warpper">
 	<jsp:include page="header.jsp" />
 		<section>
 			<div>
-				<img src="images/병원배경1.jpg" width="100%" style="height:40rem;">
+				<img src="images/병원배경1.jpg">
 			</div>
 		</section>
 	<jsp:include page="footer.jsp" />
