@@ -19,7 +19,7 @@ public class LogoutAction implements Action {
 			session.invalidate();
 		}
 
-		forward = new ActionForward(request.getRequestURI(), true);
+		forward = new ActionForward("index.jsp", true);
 
 		return forward;
 	}
