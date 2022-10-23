@@ -7,7 +7,7 @@ import java.util.Date;
 //--단방향 암호화(SHA 256)로 암호화하면 복호화가 불가능(양방향 암호화(RSA) : 암호화->복호화)
 public class SHA256 {
 	//'Salt + 해싱'을 이용하여 비밀번호를 암호화(단, 비밀번호 찾기를 하면 신규로 8자리 랜덤비번을 보여줌)
-	private static String salt = "대구광역시"; //임시 소금
+	private static final String salt = "대구광역시"; //임시 소금
 	
 	public static String encodeSHA256(String password) { //password : 암호화되기 전 비번
 		
@@ -88,8 +88,8 @@ public class SHA256 {
 		sr.setSeed(new Date().getTime());
 		
 		int len = charSet.length;
-		int idx = 0;
-		for (int i = 0; i < size; i++) {
+		//int idx = 0;
+		for (int idx = 0; idx < size; idx++) {
 			idx = sr.nextInt(len); //강력한 난수를 발생시키기 위해 SecureRandom 사용
 			sb.append(charSet[idx]);
 		}

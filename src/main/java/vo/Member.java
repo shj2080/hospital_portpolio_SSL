@@ -1,5 +1,7 @@
 package vo;
 
+import util.SHA256;
+
 public class Member {
 	private String name;
 	private String id_num;
@@ -7,12 +9,16 @@ public class Member {
 	private String password;
 	private String address;
 	private String phone;
-	
+
+	//기본 생성자
+	public Member() {}
+
 	//로그인 시 사용하는 정보
 	public Member(String id, String password) {
 		super();
 		this.id = id;
-		this.password = password;
+		//생성자에서 비밀번호 암호화
+		this.password = SHA256.encodeSHA256(password);
 	}
 
 	//모든 회원정보
@@ -21,13 +27,10 @@ public class Member {
 		this.name = name;
 		this.id_num = id_num;
 		this.id = id;
-		this.password = password;
+		this.password = SHA256.encodeSHA256(password);
 		this.address = address;
 		this.phone = phone;
 	}
-	
-	//기본 생성자
-	public Member() {}
 
 	public String getName() {
 		return name;

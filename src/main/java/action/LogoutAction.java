@@ -19,7 +19,11 @@ public class LogoutAction implements Action {
 			session.invalidate();
 		}
 
-		forward = new ActionForward(request.getRequestURI(), true);
+		//header에서 이전 페이지 정보를 가져옴
+		String referer = request.getHeader("Referer");
+		System.out.println("[DEBUG]logoutAction Referer 헤더 정보 : " + referer);
+
+		forward = new ActionForward(referer, true);
 
 		return forward;
 	}

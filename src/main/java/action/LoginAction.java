@@ -32,6 +32,7 @@ public class LoginAction implements Action {
 		//---------------------------------------
 		
 		//로그인 처리 결과를 리턴 (id와 password로 체크)
+		//비밀번호를 Member 생성자에서 암호화함.
 		Member userLoginInfo = new Member(id, password);
 		boolean loginResult = loginService.getLoginResult(userLoginInfo);
 		
