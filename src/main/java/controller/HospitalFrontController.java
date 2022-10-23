@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.LoginAction;
 import action.LogoutAction;
+import action.MypageAction;
 import vo.ActionForward;
 
 /**
@@ -82,6 +83,15 @@ public class HospitalFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
 				System.out.println("login ActionForward 예외 : " + e);
+			}
+		}
+		else if(command.equals("/mypage.do")) {
+			action = new MypageAction();
+
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("Mypage ActionForward 예외 : " + e);
 			}
 		}
 		
