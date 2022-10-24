@@ -68,7 +68,7 @@ public class HospitalDAO {
 		return checkLoginResult;
 	}
 	
-	//해당 id의 회원 정보를 가져오는 메서드
+	//해당 id의 id와 이름을 가져오는 메서드
 	public Member selectUserInfo(String id) {
 		Member userInfo = null;
 		
@@ -89,12 +89,44 @@ public class HospitalDAO {
 			} 
 			
 		} catch(Exception e) {
-			
+			System.out.println("[HospitalDAO] selectUserInfo 에러:"+ e);
 		} finally { //사용 후 커넥션 해제
 			close(pstmt);
 			close(rs);
 		}
 				
 		return userInfo;
+	}
+	
+	//입력받은 정보를 membertbl테이블에 insert하는 메서드
+	//회원가입 - membertbl
+	public boolean join(Member member) {
+		int joinCount = 0;
+		boolean joinSuccess = false;
+		
+		String sql="insert into membertbl(name,id_num,id,password,address,phone) ";
+			sql += " values(?,?,?,?,?,?)";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getName());				
+			pstmt.setString(2, member.getId_num());				
+			pstmt.setString(3, member.getId());				
+			pstmt.setString(4, member.getPassword());				
+			pstmt.setString(5, member.getAddress());				
+			pstmt.setString(6, member.getPhone());				
+			
+			joinCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음	
+			
+			if(joinCount > 0) {
+				joinSuccess = true;
+			}
+			
+		} catch (Exception e) {			
+			System.out.println("[HospitalDAO] join 에러:"+ e);
+		} finally {
+			close(pstmt);
+		}	
+		return joinSuccess;
 	}
 }

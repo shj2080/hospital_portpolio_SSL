@@ -59,6 +59,7 @@ function loginVaildCheck() {
 	
 	loginForm.submit();
 }
+
 </script>
 </head>
 <body>
@@ -83,6 +84,7 @@ function loginVaildCheck() {
 					<div class="loginButton">
 						<input type="checkbox" name="remember" />아이디 저장
 						<button type="button" onclick="loginVaildCheck()">로그인</button>
+						<button type = "button" onclick="location.href='join.jsp'">회원가입</button>
 					</div>
 				</div>
 			</form>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.JoinAction;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MypageAction;
@@ -93,6 +94,16 @@ public class HospitalFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
 				System.out.println("Mypage ActionForward 예외 : " + e);
+			}
+		}
+		//회원가입 요청
+		else if(command.equals("/join.do")) {
+			action = new JoinAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("JoinAction ActionForward 예외 : " + e);
 			}
 		}
 		
