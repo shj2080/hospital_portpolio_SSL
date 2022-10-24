@@ -85,6 +85,7 @@ public class HospitalFrontController extends HttpServlet {
 				System.out.println("login ActionForward 예외 : " + e);
 			}
 		}
+		//마이페이지 요청
 		else if(command.equals("/mypage.do")) {
 			action = new MypageAction();
 
