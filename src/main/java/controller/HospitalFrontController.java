@@ -87,10 +87,10 @@ public class HospitalFrontController extends HttpServlet {
 				System.out.println("login ActionForward 예외 : " + e);
 			}
 		}
-		//마이페이지 요청 - 기본적으로 회원정보 수정 페이지 출력 되도록 세팅됨
+		//마이페이지 요청
 		else if(command.equals("/mypage.do")) {
-			//request.setAttribute("showPage", "memberInfoModify.jsp");
-			forward = new ActionForward("/memberInfoModifyForm.do", false);
+			request.setAttribute("showPage", "mypageMain.jsp");
+			forward = new ActionForward("mypage/mypageTemplate.jsp", false);
 		}
 		//회원정보 수정 폼 보기 요청 - 로그인한 회원의 정보로 세팅됨(비밀번호 제외)
 		else if(command.equals("/memberInfoModifyForm.do")) {

@@ -1,8 +1,8 @@
 @charset "UTF-8";
+
 aside {
     background-color: #00B4DB;
     padding: 2rem;
-    float: left;
     margin-right: 5rem;
 }
 
@@ -28,12 +28,28 @@ seciton {
 
 section table {
     margin: 0 auto;
+    border-collapse: collapse;
 }
 
 section table tr,td,th {
     border: 0.1rem solid lightblue;
 }
 
+#mypageMainView img{
+    width: 30rem;
+    height: 20rem;
+}
+
+@media screen and (min-width: 720px) {
+    aside {
+        float: left;
+    }
+
+    #mypageMainView img{
+        width: 50%;
+        height: 50rem;
+    }
+}
 
 footer {
     clear: both;
