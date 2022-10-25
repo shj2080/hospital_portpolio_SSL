@@ -146,7 +146,7 @@
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input type="text" name="phone" size = "20" maxlength="14"></td>
+				<td><input type="text" name="phone" size = "20" value = "${memberInfo.phone}" maxlength="14"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

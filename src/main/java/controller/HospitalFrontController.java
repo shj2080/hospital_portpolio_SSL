@@ -106,7 +106,7 @@ public class HospitalFrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				System.out.println("memberInfoModifyAction(회원정보수정 폼 보기) ActionForward 예외 : " + e);
+				System.out.println("memberInfoModifyAction(회원정보수정 보기) ActionForward 예외 : " + e);
 			}
 		}
 			 

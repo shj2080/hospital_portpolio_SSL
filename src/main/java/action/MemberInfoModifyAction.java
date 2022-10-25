@@ -7,6 +7,8 @@ import svc.MemberInfoModifyService;
 import vo.ActionForward;
 import vo.Member;
 
+import java.io.PrintWriter;
+
 public class MemberInfoModifyAction implements Action {
 
 	@Override
@@ -29,14 +31,27 @@ public class MemberInfoModifyAction implements Action {
 		
 		//앞자리 주민번호와 뒷자리 주민번호 조합
 		String id_num = front_id_num + "-" + back_id_num;
-		
-		System.out.println("[DEBUG]address1");
+
 		
 		Member member = new Member(name, id_num, id, password, address1, address2, address3, postcode, phone);
 		
 		MemberInfoModifyService memberInfoModifyService = new MemberInfoModifyService();
-		
-		return null;
+
+		boolean isMemberModify = memberInfoModifyService.updateMemberInfo(member);
+
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		if(isMemberModify) {
+			forward = new ActionForward("index.jsp", true);
+		}else {
+			out.println("<script>");
+			out.println("alert('회원 수정을 실패했습니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+		}
+
+		return forward;
 	}
 
 }

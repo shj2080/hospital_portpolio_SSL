@@ -1,0 +1,40 @@
+@charset "UTF-8";
+aside {
+    background-color: #00B4DB;
+    padding: 2rem;
+    float: left;
+    margin-right: 5rem;
+}
+
+aside ul {
+    list-style: none;
+    line-height: 5rem;
+}
+
+aside a {
+    color: white;
+    text-decoration: none;
+    padding: 2rem;
+}
+
+aside a:hover {
+    background-color: #00D8FF;
+}
+
+seciton {
+    float: right;
+    padding-top: 5rem;
+}
+
+section table {
+    margin: 0 auto;
+}
+
+section table tr,td,th {
+    border: 0.1rem solid lightblue;
+}
+
+
+footer {
+    clear: both;
+}

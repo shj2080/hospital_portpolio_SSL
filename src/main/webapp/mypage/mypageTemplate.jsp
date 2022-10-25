@@ -7,38 +7,7 @@
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원 - 마이페이지</title>
-<style>
-	aside {
-		background-color: #00B4DB;
-		padding: 2rem;
-		float: left;
-		margin-right: 5rem;
-	}
-	
-	aside ul {
-		list-style: none;
-		line-height: 5rem;
-	}
-	
-	aside a {
-		color: white;
-		text-decoration: none;
-		padding: 2rem;
-	}
-	
-	aside a:hover {
-		background-color: #00D8FF;
-	}
-	
-	seciton {
-		float: right;
-		padding-top: 5rem;
-	}
-	
-	footer {
-		clear: both;
-	}
-</style>
+<link rel = "stylesheet" type="text/css" href="../styles/mypageTemplateStyle.css">
 </head>
 <body>
     <div id = "warpper">

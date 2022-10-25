@@ -168,4 +168,44 @@ public class HospitalDAO {
 		
 		return userInfo;
 	}
+
+    public int updateMemberInfo(Member member) {
+		int result = 0;
+
+		String sql = "update membertbl set name = ?,";
+		sql += " address1 = ?, address2 = ?, address3 = ?, postcode = ?, phone = ?";
+
+		//쿼리문 분기(비밀번호 아무것도 입력안한 경우)
+		if(member.getPassword() != null) {
+			sql += ",password = ?";
+		}
+		sql += " where id = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getName());
+			pstmt.setString(2, member.getAddress1());
+			pstmt.setString(3, member.getAddress2());
+			pstmt.setString(4, member.getAddress3());
+			pstmt.setString(5, member.getPostcode());
+			pstmt.setString(6, member.getPhone());
+
+			//비밀번호 입력 안한 경우 수정하지 않음
+			if(member.getPassword() != null) {
+				pstmt.setString(7, member.getPassword());
+				pstmt.setString(8, member.getId());
+			} else {
+				pstmt.setString(7, member.getId());
+			}
+
+			result = pstmt.executeUpdate();
+
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] updateMemberInfo 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+		}
+
+		return result;
+    }
 }
