@@ -26,7 +26,6 @@ drop table membertbl;
 /*memberTBL 테이블 생성 확인*/
 select * from membertbl;
 
-
 /*진료과 테이블 생성*/
 /*진료과 코드, 진료과 이름*/
 create table speciality(

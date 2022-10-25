@@ -11,7 +11,7 @@ import action.Action;
 import action.JoinAction;
 import action.LoginAction;
 import action.LogoutAction;
-import action.MypageAction;
+import action.MemberInfoModifyAction;
 import vo.ActionForward;
 
 /**
@@ -86,16 +86,20 @@ public class HospitalFrontController extends HttpServlet {
 				System.out.println("login ActionForward 예외 : " + e);
 			}
 		}
-		//마이페이지 요청
+		//마이페이지 요청 - 기본적으로 회원정보 수정 페이지 출력 되도록 세팅됨
 		else if(command.equals("/mypage.do")) {
-			action = new MypageAction();
-
+			System.out.println("[DEBUG]mypage 호출된 경로 : " + request.getRequestURI());
+			request.setAttribute("showPage", "memberInfoModify.jsp");
+			forward = new ActionForward("mypage/mypageTemplate.jsp", false);
+		}/*else if(command.equals("/memberInfoModify.do")) {
+			action = new  MemberInfoModifyAction();
 			try {
 				forward = action.execute(request, response);
-			}catch (Exception e) {
-				System.out.println("Mypage ActionForward 예외 : " + e);
+			} catch (Exception e) {
+			  System.out.println("memberInfoModify(회원정보수정) ActionForward 예외 : " + e);
 			}
-		}
+		}*/
+			 
 		//회원가입 요청
 		else if(command.equals("/join.do")) {
 			action = new JoinAction();

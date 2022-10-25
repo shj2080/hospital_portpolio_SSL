@@ -59,7 +59,7 @@ public class HospitalDAO {
 			} 
 			
 		} catch(Exception e) {
-			
+			System.out.println("[HospitalDAO] selectLoginInfo 에러:"+ e);
 		} finally { //사용 후 커넥션 해제
 			close(pstmt);
 			close(rs);

@@ -24,7 +24,7 @@
 					</li>
 					</c:if>
 					<c:if test="${userID != null}">
-						<a href="#">마이페이지</a>
+						<a href="mypage.do">마이페이지</a>
 					</li>
 					<li>
 						<a href="logout.do">로그아웃</a>
