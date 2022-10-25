@@ -4,7 +4,9 @@ create table membertbl(
    id_num varchar(20) unique,  /* 주민등록번호 */
    id varchar(15) primary key,      /* 아이디(기본키) */
    password varchar(64) not null,   /* 비밀번호 (SHA256 방식으로 암호화된 비밀번호를 저장하기 위해 컬럼크기 64지정)*/
-   address varchar(50) not null,    /* 주소 */
+   address1 varchar(50) not null,    /* 주소 */
+   address2 varchar(50) not null,    /* 주소 */
+   address3 varchar(50) not null,    /* 주소 */
    phone varchar(14)       /* 전화번호 */
 );
 
@@ -33,6 +35,9 @@ create table speciality(
    speciality_name varchar(20)
 );
 
+/* 진료과 샘플데이터 */
+insert into speciality(speciality_code, speciality_name)
+
 /*테이블 문제 발생 시 삭제*/
 drop table speciality;
 
@@ -46,6 +51,9 @@ create table doctor(
    doctor_name varchar(20) not null, 	/* 의사 이름 */
    speciality_code int REFERENCES speciality(speciality_code) /* 진료과 코드 */
 );
+
+/* 의료진 샘플 데이터 */
+insert into doctor(doctor_name, speciality_code) values('', 1);
 
 /*테이블 문제 발생 시 삭제*/
 drop table doctor;

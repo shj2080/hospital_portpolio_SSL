@@ -7,7 +7,10 @@ public class Member {
 	private String id_num;
 	private String id;
 	private String password;
-	private String address;
+	private String address1;
+	private String address2;
+	private String address3;
+	private String postcode;
 	private String phone;
 
 	//기본 생성자
@@ -22,13 +25,18 @@ public class Member {
 	}
 
 	//모든 회원정보
-	public Member(String name, String id_num, String id, String password, String address, String phone) {
+	public Member(String name, String id_num, String id, String password, String address1, String address2,
+			String address3, String postcode, String phone) {
 		super();
 		this.name = name;
 		this.id_num = id_num;
 		this.id = id;
+		//생성자에서 비밀번호 암호화
 		this.password = SHA256.encodeSHA256(password);
-		this.address = address;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.address3 = address3;
+		this.postcode = postcode;
 		this.phone = phone;
 	}
 
@@ -58,12 +66,39 @@ public class Member {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getAddress() {
-		return address;
+
+	public String getAddress1() {
+		return address1;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
 	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public String getAddress3() {
+		return address3;
+	}
+
+	public void setAddress3(String address3) {
+		this.address3 = address3;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
 	public String getPhone() {
 		return phone;
 	}

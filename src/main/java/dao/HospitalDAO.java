@@ -100,33 +100,72 @@ public class HospitalDAO {
 	
 	//입력받은 정보를 membertbl테이블에 insert하는 메서드
 	//회원가입 - membertbl
-	public boolean join(Member member) {
-		int joinCount = 0;
-		boolean joinSuccess = false;
+		public boolean join(Member member) {
+			int joinCount = 0;
+			boolean joinSuccess = false;
+			
+			String sql="insert into membertbl(name,id_num,id,password,address1,address2,address3,postcode,phone) ";
+				sql += " values(?,?,?,?,?,?,?,?,?)";
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, member.getName());				
+				pstmt.setString(2, member.getId_num());				
+				pstmt.setString(3, member.getId());				
+				pstmt.setString(4, member.getPassword());				
+				pstmt.setString(5, member.getAddress1());				
+				pstmt.setString(6, member.getAddress2());				
+				pstmt.setString(7, member.getAddress3());				
+				pstmt.setString(8, member.getPostcode());				
+				pstmt.setString(9, member.getPhone());				
+				
+				joinCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음	
+				
+				if(joinCount > 0) {
+					joinSuccess = true;
+				}
+				
+			} catch (Exception e) {			
+				System.out.println("[HospitalDAO] join 에러:"+ e);
+			} finally {
+				//close(rs);
+				close(pstmt);
+			}	
+			return joinSuccess;
+		}
+	
+	public Member selectMemberInfo(String id) {
+		Member userInfo = null;
 		
-		String sql="insert into membertbl(name,id_num,id,password,address,phone) ";
-			sql += " values(?,?,?,?,?,?)";
+		//쿼리문
+		String sql = "select * from membertbl where id = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, member.getName());				
-			pstmt.setString(2, member.getId_num());				
-			pstmt.setString(3, member.getId());				
-			pstmt.setString(4, member.getPassword());				
-			pstmt.setString(5, member.getAddress());				
-			pstmt.setString(6, member.getPhone());				
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
 			
-			joinCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음	
+			if(rs.next()) {
+				userInfo = new Member();
+				
+				userInfo.setName(rs.getString("name"));
+				userInfo.setId_num(rs.getString("id_num"));
+				userInfo.setId(rs.getString("id"));
+				//userInfo.setPassword(rs.getString("password"));
+				userInfo.setAddress1(rs.getString("address1"));
+				userInfo.setAddress2(rs.getString("address2"));
+				userInfo.setAddress3(rs.getString("address3"));
+				userInfo.setPostcode(rs.getString("postcode"));
+				userInfo.setPhone(rs.getString("phone"));
+			} 
 			
-			if(joinCount > 0) {
-				joinSuccess = true;
-			}
-			
-		} catch (Exception e) {			
-			System.out.println("[HospitalDAO] join 에러:"+ e);
-		} finally {
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] selectMemberInfo 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
 			close(pstmt);
-		}	
-		return joinSuccess;
+			close(rs);
+		}
+		
+		return userInfo;
 	}
 }

@@ -12,6 +12,7 @@ import action.JoinAction;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MemberInfoModifyAction;
+import action.MemberInfoModifyFormAction;
 import vo.ActionForward;
 
 /**
@@ -88,17 +89,26 @@ public class HospitalFrontController extends HttpServlet {
 		}
 		//마이페이지 요청 - 기본적으로 회원정보 수정 페이지 출력 되도록 세팅됨
 		else if(command.equals("/mypage.do")) {
-			System.out.println("[DEBUG]mypage 호출된 경로 : " + request.getRequestURI());
-			request.setAttribute("showPage", "memberInfoModify.jsp");
-			forward = new ActionForward("mypage/mypageTemplate.jsp", false);
-		}/*else if(command.equals("/memberInfoModify.do")) {
+			//request.setAttribute("showPage", "memberInfoModify.jsp");
+			forward = new ActionForward("/memberInfoModifyForm.do", false);
+		}
+		//회원정보 수정 폼 보기 요청 - 로그인한 회원의 정보로 세팅됨(비밀번호 제외)
+		else if(command.equals("/memberInfoModifyForm.do")) {
+			action = new  MemberInfoModifyFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+			  System.out.println("memberInfoModifyForm(회원정보수정 폼 보기) ActionForward 예외 : " + e);
+			}
+		}
+		else if(command.equals("/memberInfoModifyAction.do")) {
 			action = new  MemberInfoModifyAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-			  System.out.println("memberInfoModify(회원정보수정) ActionForward 예외 : " + e);
+				System.out.println("memberInfoModifyAction(회원정보수정 폼 보기) ActionForward 예외 : " + e);
 			}
-		}*/
+		}
 			 
 		//회원가입 요청
 		else if(command.equals("/join.do")) {

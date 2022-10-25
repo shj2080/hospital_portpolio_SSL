@@ -11,6 +11,8 @@
 	aside {
 		background-color: #00B4DB;
 		padding: 2rem;
+		float: left;
+		margin-right: 5rem;
 	}
 	
 	aside ul {
@@ -28,8 +30,9 @@
 		background-color: #00D8FF;
 	}
 	
-	seciton div {
-		
+	seciton {
+		float: right;
+		padding-top: 5rem;
 	}
 	
 	footer {
@@ -41,13 +44,13 @@
     <div id = "warpper">
         <jsp:include page="../header.jsp" />
         
-        <%-- 좌측 메뉴 영역 시작 --%>
+        <%-- 우측 메뉴 영역 시작 --%>
         <aside>
         	<div>
         		<jsp:include page="mypageSideBar.jsp" />
         	</div>
         </aside>
-        <%-- 좌측 메뉴 영역 끝 --%>
+        <%-- 우측 메뉴 영역 끝 --%>
         
         <%-- 컨텐츠 표시 영역 시작 --%>
         <section>
@@ -55,6 +58,7 @@
                 <jsp:include page="${showPage}" />
             </div>
         </section>
+        
         <%-- 컨텐츠 표시 영역 끝 --%>
         <jsp:include page="../footer.jsp" />
     </div>
