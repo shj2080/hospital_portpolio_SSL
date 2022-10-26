@@ -14,9 +14,8 @@ public class TreatmentListSearchService {
 	//멤버변수
 		//생성자
 		//메서드
-	
-		
-		//회원가입
+
+		//특정 진료과 조회 메서드
 		public ArrayList<TreatmentList> getSearchTreatmentList(String speciality){
 			
 			//1.커넥션 풀에서 Connection객체 얻어와
