@@ -1,4 +1,4 @@
-package action.treatment;
+package action.reservation;
 
 import java.io.PrintWriter;
 
@@ -9,12 +9,13 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import vo.ActionForward;
 
-public class ReservationFormAction implements Action {
+public class ReservationSelectViewAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		
+		//로그인 상태 체크를 위해 세션의 아이디를 가져옴
 		HttpSession session = request.getSession();
 	    String viewId = (String)session.getAttribute("userID");
 	        
@@ -28,7 +29,7 @@ public class ReservationFormAction implements Action {
   			out.println("</script>");
   		//로그인 상태라면
 	  	}else {
-	  		forward = new ActionForward("reservationForm.jsp", false);
+	  		forward = new ActionForward("reservationView.jsp", false);
 	  	}
 		
 		return forward;

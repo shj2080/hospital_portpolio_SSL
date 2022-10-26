@@ -13,7 +13,7 @@ import action.LoginAction;
 import action.LogoutAction;
 import action.MemberInfoModifyAction;
 import action.MemberInfoModifyFormAction;
-import action.treatment.ReservationFormAction;
+import action.reservation.ReservationSelectViewAction;
 import vo.ActionForward;
 
 /**

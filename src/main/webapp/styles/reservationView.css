@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+#treatmentListConteinerBox {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 3rem;
+	justify-content: center;
+}
+
+section div > h2{
+	margin-top: 3rem;
+	text-align: center;
+}
+
+#treatmentListConteinerBox > div {
+	border: 0.1rem bolid black;
+	margin: 1rem;
+}
+
+#treatmentListConteinerBox div img {
+	width: 8.3rem;
+	height: 8.3rem;
+}
+
+ul {
+	list-style: none;
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+}
+
+.treatment_names_Style {
+	font-weight: bold;
+}

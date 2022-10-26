@@ -1,1 +1,19 @@
 @charset "UTF-8";
+
+section {
+	margin-top: 1rem;
+}
+
+section div > h2 {
+	text-align: center;
+}
+
+section table {
+	margin: 1rem auto;
+	border-collapse: collapse;
+}
+
+section table tr,th,td {
+	border: 0.1rem solid lightblue;
+	padding: 0.5rem;
+}

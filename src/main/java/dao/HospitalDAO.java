@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import vo.Member;
+import vo.Speciality;
 
 public class HospitalDAO {
 	private Connection con = null;
@@ -208,4 +209,34 @@ public class HospitalDAO {
 
 		return result;
     }
+    
+    //진료과명을 얻어오는 메서드
+	public Speciality selectSpeciality(int speciality_code) {
+		Speciality speciality = null;
+
+		String sql = "select * from speciality where speciality_code = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, speciality_code);
+
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				speciality = new Speciality();
+				
+				speciality.setSpeciality_code(rs.getInt("speciality_code"));
+				speciality.setSpeciality_name(rs.getString("speciality_name"));
+			}
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] selectSpeciality_name 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+			close(rs);
+		}
+		
+		return speciality;
+	}
+	
+	
 }

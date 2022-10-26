@@ -8,20 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.treatment.ReservationFormAction;
+import action.reservation.ReservationFormAction;
+import action.reservation.ReservationSelectViewAction;
 import vo.ActionForward;
 
 /**
  * Servlet implementation class TreatmentFrontController
  */
 @WebServlet("*.treat")
-public class TreatmentFrontController extends HttpServlet {
+public class ReservationTreatmentFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TreatmentFrontController() {
+    public ReservationTreatmentFrontController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,8 +59,18 @@ public class TreatmentFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 		//2. 비즈니스 로직 구분------------------------------------------------
-		//진료예약 요청
-		if(command.equals("/reservationForm.treat")) {
+		//진료예약 시 진료과 선택 페이지 요청
+		if(command.equals("/reservationSelectView.treat")) {
+			action = new ReservationSelectViewAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("ReservationSelectViewAction ActionForward 예외 : " + e);
+			}
+		}
+		//선택한 진료과로 기본적인 값 세팅
+		else if(command.equals("/reservationForm.treat")) {
 			action = new ReservationFormAction();
 			
 			try {

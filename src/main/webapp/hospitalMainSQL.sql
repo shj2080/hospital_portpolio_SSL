@@ -37,10 +37,19 @@ create table speciality(
 );
 
 /* 진료과 샘플데이터 */
-insert into speciality(speciality_code, speciality_name)
+insert into speciality(speciality_name) values('내과');
+insert into speciality(speciality_name) values('외과');
+insert into speciality(speciality_name) values('신경과');
+insert into speciality(speciality_name) values('산부인과');
+insert into speciality(speciality_name) values('영상의학과');
+insert into speciality(speciality_name) values('마취통증의학과');
 
 /*테이블 문제 발생 시 삭제*/
 drop table speciality;
+delete from speciality;
+
+/* auto_increment 초기화 */
+alter table speciality auto_increment = 1;
 
 /*speciality 테이블 생성 확인*/
 select * from speciality;
