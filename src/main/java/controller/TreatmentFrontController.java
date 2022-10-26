@@ -8,26 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.JoinAction;
-import action.LoginAction;
-import action.LogoutAction;
-import action.MemberInfoModifyAction;
-import action.MemberInfoModifyFormAction;
 import action.treatment.ReservationFormAction;
 import vo.ActionForward;
 
 /**
- * Servlet implementation class HospitalFrontController
+ * Servlet implementation class TreatmentFrontController
  */
-@WebServlet("*.do")
-public class HospitalFrontController extends HttpServlet {
+@WebServlet("*.treat")
+public class TreatmentFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HospitalFrontController() {
+    public TreatmentFrontController() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -46,7 +42,6 @@ public class HospitalFrontController extends HttpServlet {
 		doProcess(request, response);
 	}
 
-	//모든 요청을 제어하는 메서드
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); //POST 인코딩 설정
 		
@@ -63,62 +58,14 @@ public class HospitalFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 		//2. 비즈니스 로직 구분------------------------------------------------
-		
-		//로그인 이동
-		if(command.equals("/login.do")) {
-			forward = new ActionForward("login.jsp", false);
-		}
-		//로그인 프로세스
-		else if(command.equals("/loginProcess.do")) {
-			action = new LoginAction();
+		//진료예약 요청
+		if(command.equals("/reservationForm.treat")) {
+			action = new ReservationFormAction();
 			
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
-				System.out.println("login ActionForward 예외 : " + e);
-			}
-		}
-		//로그아웃 요청
-		else if(command.equals("/logout.do")) {
-			action = new LogoutAction();
-			
-			try {
-				forward = action.execute(request, response);
-			}catch (Exception e) {
-				System.out.println("login ActionForward 예외 : " + e);
-			}
-		}
-		//마이페이지 요청
-		else if(command.equals("/mypage.do")) {
-			request.setAttribute("showPage", "mypageMain.jsp");
-			forward = new ActionForward("mypage/mypageTemplate.jsp", false);
-		}
-		//회원정보 수정 폼 보기 요청 - 로그인한 회원의 정보로 세팅됨(비밀번호 제외)
-		else if(command.equals("/memberInfoModifyForm.do")) {
-			action = new  MemberInfoModifyFormAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-			  System.out.println("memberInfoModifyForm(회원정보수정 폼 보기) ActionForward 예외 : " + e);
-			}
-		}
-		else if(command.equals("/memberInfoModifyAction.do")) {
-			action = new  MemberInfoModifyAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				System.out.println("memberInfoModifyAction(회원정보수정 보기) ActionForward 예외 : " + e);
-			}
-		}
-			 
-		//회원가입 요청
-		else if(command.equals("/join.do")) {
-			action = new JoinAction();
-			
-			try {
-				forward = action.execute(request, response);
-			}catch (Exception e) {
-				System.out.println("JoinAction ActionForward 예외 : " + e);
+				System.out.println("ReservationFormAction ActionForward 예외 : " + e);
 			}
 		}
 		
