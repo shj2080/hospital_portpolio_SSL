@@ -15,6 +15,10 @@
 	    <section>
 	        <div>
 	            <h2>진료 예약</h2>
+	            <form action = "" name = "" method="post">
+	            	<table>
+	            	</table>
+	            </form>
 	        </div>
 	    </section>
 	    <%-- 컨텐츠 표시 영역 끝 --%>

@@ -13,6 +13,7 @@ import action.LoginAction;
 import action.LogoutAction;
 import action.MemberInfoModifyAction;
 import action.MemberInfoModifyFormAction;
+import action.ReservationFormAction;
 import vo.ActionForward;
 
 /**
@@ -118,6 +119,16 @@ public class HospitalFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
 				System.out.println("JoinAction ActionForward 예외 : " + e);
+			}
+		}
+		//진료예약 요청
+		else if(command.equals("/reservationForm.do")) {
+			action = new ReservationFormAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("ReservationFormAction ActionForward 예외 : " + e);
 			}
 		}
 		

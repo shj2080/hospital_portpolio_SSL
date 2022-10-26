@@ -9,10 +9,8 @@
 </head>
 <body>
 	<ul>
-		<li><a href="#">-</a></li>
 		<li><a href="memberInfoModifyForm.do">회원 정보 수정</a></li>
 		<li><a href="#">진료내역</a></li>
-		<li><a href="#">TEST메뉴</a></li>
 	</ul>
 </body>
 </html>

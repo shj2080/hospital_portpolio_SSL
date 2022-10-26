@@ -43,7 +43,12 @@ public class MemberInfoModifyAction implements Action {
 		PrintWriter out = response.getWriter();
 
 		if(isMemberModify) {
-			forward = new ActionForward("index.jsp", true);
+			out.println("<script>");
+			out.println("alert('회원 수정을 완료했습니다.');");
+			out.println("location.href='mypage.do';");
+			out.println("</script>");
+			//자바스크립트로 메세지창 띄우려면 아래 코드 주석
+			//forward = new ActionForward("index.jsp", true);
 		}else {
 			out.println("<script>");
 			out.println("alert('회원 수정을 실패했습니다.');");

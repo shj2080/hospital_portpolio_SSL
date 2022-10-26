@@ -35,7 +35,7 @@
 				<li><a href = "#" >의료진소개</a></li>
 				<li><a href = "#" >병원소개</a></li>
 				<li><a href = "#" >대기자 현황</a></li>
-				<li><a href = "#" >접수/예약</a></li>
+				<li><a href = "reservationForm.do" >접수/예약</a></li>
 				<li class = "logo"><a href = "index.jsp" ><img src="images/로고.jpg"></a></li>
 			</ul>
 		</nav>
