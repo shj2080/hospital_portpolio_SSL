@@ -13,6 +13,8 @@ import action.LoginAction;
 import action.LogoutAction;
 import action.MemberInfoModifyAction;
 import action.MemberInfoModifyFormAction;
+import action.TreatmentListAction;
+import action.TreatmentListSearchAction;
 import action.reservation.ReservationSelectViewAction;
 import vo.ActionForward;
 
@@ -119,6 +121,26 @@ public class HospitalFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
 				System.out.println("JoinAction ActionForward 예외 : " + e);
+			}
+		}
+		//목록을 불러오는 요청
+		else if(command.equals("/treatmentList.do")) {
+			action = new TreatmentListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("TreatmentListAction ActionForward 예외 : " + e);
+			}
+		}
+		
+		else if(command.equals("/treatmentListSearch.do")) {
+			action = new TreatmentListSearchAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("treatmentListSearch ActionForward 예외 : " + e);
 			}
 		}
 		

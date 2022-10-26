@@ -112,11 +112,11 @@
                     document.getElementById("address2").value = extraAddr;
                 
                 } else {
-                    document.getElementById("address2").value = '';
+                    document.getElementById("address1").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("postcode").value = data.zonecode;
                 document.getElementById("address1").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("address3").focus();
@@ -158,11 +158,11 @@
 				<tr>
 					<td>주소</td>
 					<td>
-						<input type="text" name = "postcode" id="postcode" placeholder="우편번호" readonly>
+						<input type="text" id="postcode" name = "postcode" placeholder="우편번호">
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" name = "address1" id="address1" placeholder="주소" readonly><br>
-						<input type="text" name = "address2" id="address2" placeholder="건물이름" readonly>
-						<input type="text" name = "address3" id="address3" placeholder="상세주소">
+						<input type="text" id="address1" name = "address1" placeholder="주소" readonly="readonly"><br>
+						<input type="text" id="address2" name = "address2" placeholder="건물이름" readonly="readonly">
+						<input type="text" id="address3" name = "address3" placeholder="상세주소">
 					</td>
 				</tr>
 				<tr>

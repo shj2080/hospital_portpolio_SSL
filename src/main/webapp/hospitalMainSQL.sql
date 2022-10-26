@@ -5,8 +5,8 @@ create table membertbl(
    id varchar(15) primary key,      /* 아이디(기본키) */
    password varchar(64) not null,   /* 비밀번호 (SHA256 방식으로 암호화된 비밀번호를 저장하기 위해 컬럼크기 64지정)*/
    address1 Nvarchar(60) not null,    /* 주소 */
-   address2 Nvarchar(60) not null,    /* 주소 */
-   address3 Nvarchar(60) not null,    /* 주소 */
+   address2 Nvarchar(60),    /* 주소 */
+   address3 Nvarchar(60),    /* 주소 */
    postcode int not null,
    phone varchar(14)       /* 전화번호 */
 );
@@ -18,6 +18,17 @@ insert into membertbl values('홍길동', '960101-1234567', 'test001', 'eb508df1
 /* 암호화 비밀번호 저장을 위해 컬럼크기 변경 */
 alter table membertbl
 modify password varchar(64) not null;
+
+/* 주소 컬럼 데이터형식 변경(한글60자까지 허용) */
+alter table membertbl
+modify address1 Nvarchar(60) not null;
+alter table membertbl
+modify address1 Nvarchar(60);
+alter table membertbl
+modify address1 Nvarchar(60);
+
+/* Mysql 제약조건 확인(membertbl 테이블) */
+select * from information_schema.table_constraints where table_name in ('membertbl');
 
 /* 테스트데이터 업데이트 */
 update membertbl set password = 'eb508df11dd58cf4bb4e8ed2c5629c2d6fcb6455913c1e0e3ce2cd11a9cd7e20' where id = 'test001';
@@ -62,8 +73,27 @@ create table doctor(
    speciality_code int REFERENCES speciality(speciality_code) /* 진료과 코드 */
 );
 
-/* 의료진 샘플 데이터 */
-insert into doctor(doctor_name, speciality_code) values('', 1);
+/* 테스트를 위한 의료진 테이블 정보 입력 */
+insert into doctor(doctor_name,speciality_code)
+values('김이박',1);
+insert into doctor(doctor_name,speciality_code)
+values('박이김',1);
+insert into doctor(doctor_name,speciality_code)
+values('이김박',2);
+insert into doctor(doctor_name,speciality_code)
+values('박김이',2);
+insert into doctor(doctor_name,speciality_code)
+values('이박김',3);
+insert into doctor(doctor_name,speciality_code)
+values('최전오',3);
+insert into doctor(doctor_name,speciality_code)
+values('오전최',4);
+insert into doctor(doctor_name,speciality_code)
+values('전최오',4);
+insert into doctor(doctor_name,speciality_code)
+values('전오최',5);
+insert into doctor(doctor_name,speciality_code)
+values('오최전',5);
 
 /*테이블 문제 발생 시 삭제*/
 drop table doctor;
@@ -92,3 +122,26 @@ drop table treatment;
 
 /*treatment 테이블 생성 확인*/
 select * from treatment;
+
+/* 테스트를 위한 진료 테이블 정보 입력 */
+insert into treatment(speciality_code, doctor_code, id, treatment_date, phone)
+values(1,1,'wjsdudsgns','2022-10-25','010-2455-5707');
+insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
+values(1,2,'dleogus','2022/10/25','010-2455-5707');
+insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
+values(2,3,'dleogus','2022/10/25','010-2455-5707');
+insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
+values(2,3,'wjsdudsgns','2022/10/25','010-2455-5707');
+insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
+values(3,5,'rladlqkr','2022/10/25','010-2455-5707');
+
+/*
+select treatment_date, name, doctor_name, speciality_name  from
+membertbl natural join doctor natural join treatment natural join speciality
+where speciality_name = '외과';
+*/
+
+/* 특정 진료과 조회 SQL */
+select treatment_date, name, doctor_name, speciality_name  from
+doctor natural join speciality natural join treatment join membertbl USING(id)
+where speciality_name = '외과';

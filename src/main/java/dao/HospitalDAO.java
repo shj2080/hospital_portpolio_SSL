@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import vo.Member;
 import vo.Speciality;
+import vo.TreatmentList;
 
 public class HospitalDAO {
 	private Connection con = null;
@@ -238,5 +239,83 @@ public class HospitalDAO {
 		return speciality;
 	}
 	
+	//회원들의 진료/예약정보를 불러올 메서드
+	public ArrayList<TreatmentList> selectTreatmentList() {
+		ArrayList<TreatmentList> selectTreatmentList = null;
+		
+		 String sql = "select treatment_date, name, doctor_name, speciality_name from" +
+		  " doctor natural join speciality natural join treatment join membertbl USING(id)";
 	
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+					
+			if(rs.next()){
+				selectTreatmentList = new ArrayList<TreatmentList>();
+						
+						do {
+							TreatmentList treatment = new TreatmentList(
+															rs.getString("treatment_date"),
+															rs.getString("name"),
+															rs.getString("doctor_name"),
+															rs.getString("speciality_name")
+									);
+							selectTreatmentList.add(treatment);
+						} while (rs.next());
+						
+					}
+					
+				} catch (Exception e) {
+					System.out.println("slectTreatmentList() 메서드 예외 발생 : " + e); //예외종류 + 예외메세지
+				} finally {
+					close(rs);
+					close(pstmt);
+				}
+			return selectTreatmentList;
+	}
+	
+	//원하는 진료과 대기자 명단불러오기 메서드
+	public ArrayList<TreatmentList> treatmentListSearch(String speciality_name) {
+		ArrayList<TreatmentList> treatmentListSearch = null;
+		
+		/*
+		String sql = "select treatment_date, name, doctor_name, speciality_name  from"
+				+ " membertbl natural join doctor natural join treatment natural join speciality"
+				+ " where speciality_name =?";
+		*/
+		
+		String sql = "select treatment_date, name, doctor_name, speciality_name from";
+		sql += " doctor natural join speciality natural join treatment";
+		sql += " join membertbl USING(id) where speciality_name = ?";
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, speciality_name);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				treatmentListSearch = new ArrayList<TreatmentList>();
+				
+				do {
+					TreatmentList treatmentList = new TreatmentList(
+										rs.getString("treatment_date"),
+										rs.getString("name"),
+										rs.getString("doctor_name"),
+										rs.getString("speciality_name")
+									);
+					treatmentListSearch.add(treatmentList);
+				} while (rs.next());
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("treatmentListSearch() 메서드 예외 발생 : " + e); //예외종류 + 예외메세지
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return treatmentListSearch;
+	}
 }

@@ -46,7 +46,8 @@ public class ReservationFormService {
 		
 		/*----DAO의 해당 메서드를 호출하여 처리-------------------*/		
 		
-		doctor = hospitalDAO.selectDoctor();
+		//구현작업중... -주의 (미구현)★★
+		//doctor = hospitalDAO.selectDoctor();
 		
 		/*-(update,delete,insert)성공하면 commit 실패하면 rollback
 		 * (select제외)----*/

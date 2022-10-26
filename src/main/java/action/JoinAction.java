@@ -31,8 +31,6 @@ public class JoinAction implements Action {
 		//앞자리 주민번호와 뒷자리 주민번호 조합
 		String id_num = front_id_num + "-" + back_id_num;
 		
-		System.out.println("[DEBUG]address1");
-		
 		Member member = new Member(name, id_num, id, password, address1, address2, address3, postcode, phone);
 		
 		JoinService joinService = new JoinService();
@@ -47,7 +45,7 @@ public class JoinAction implements Action {
 			out.println("</script>");
 		}else {
 			PrintWriter out = response.getWriter();
-			forward = new ActionForward("index.jsp", true);//"로그인 폼 보기" 요청(리다이렉트 방식)
+			forward = new ActionForward("joinsucess.jsp", true);//"로그인 폼 보기" 요청(리다이렉트 방식)
 			out.println("<script>");
 			out.println("alert('회원가입 성공');");
 			out.println("</script>");
