@@ -7,6 +7,13 @@ public class Doctor {
 	
 	public Doctor() {}
 	
+	public Doctor(int doctor_code, String doctor_name, int speciality_code) {
+		super();
+		this.doctor_code = doctor_code;
+		this.doctor_name = doctor_name;
+		this.speciality_code = speciality_code;
+	}
+
 	//get~set 메서드
 	public int getDoctor_code() {
 		return doctor_code;

@@ -50,7 +50,7 @@ create table speciality(
 /* 진료과 샘플데이터 */
 insert into speciality(speciality_name) values('내과');
 insert into speciality(speciality_name) values('외과');
-insert into speciality(speciality_name) values('신경과');
+/*insert into speciality(speciality_name) values('신경과');*/
 insert into speciality(speciality_name) values('산부인과');
 insert into speciality(speciality_name) values('영상의학과');
 insert into speciality(speciality_name) values('마취통증의학과');
@@ -97,6 +97,10 @@ values('오최전',5);
 
 /*테이블 문제 발생 시 삭제*/
 drop table doctor;
+delete from doctor;
+
+/* auto_increment 초기화 */
+alter table doctor auto_increment = 1;
 
 /*doctor 테이블 생성 확인*/
 select * from doctor;
@@ -108,7 +112,7 @@ create table treatment(
     speciality_code int not null,  /* 진료과 코드 */
     doctor_code int,        /* 의사코드 */
     id varchar(15) not null,     /* 아이디 */
-    treatment_date date not null,    /* 진료 날짜 및 시간 */
+    treatment_date timestamp not null,    /* 진료 날짜 및 시간 */
     phone varchar(14),   /* 전화번호 */
 
     primary key(treatment_code),
@@ -119,9 +123,18 @@ create table treatment(
 
 /*테이블 문제 발생 시 삭제*/
 drop table treatment;
+delete from treatment;
+
+/* auto_increment 초기화 */
+alter table doctor auto_increment = 1;
 
 /*treatment 테이블 생성 확인*/
 select * from treatment;
+
+/* treatment_date 컬럼 타입 변경 : timestamp */
+alter table treatment
+modify treatment_date timestamp not null;
+
 
 /* 테스트를 위한 진료 테이블 정보 입력 */
 insert into treatment(speciality_code, doctor_code, id, treatment_date, phone)

@@ -36,7 +36,7 @@
 	            		</ul>
 	            		</a>
 	            	</div>
-	            	<div>
+	            	<%-- <div>
 	            		<a href="reservationForm.treat?specialityCode=3">
 	            		<ul>
 	            			<li>
@@ -45,9 +45,9 @@
 	            			<li><span class = "treatment_names_Style">신경과</span></li>
 	            		</ul>
 	            		</a>
-	            	</div>
+	            	</div> --%>
 	            	<div>
-	            		<a href="reservationForm.treat?specialityCode=4">
+	            		<a href="reservationForm.treat?specialityCode=3">
 	            		<ul>
 	            			<li>
 				            	<img src = "${pageContext.request.contextPath}/images/treatment/treatment6.png">
@@ -57,7 +57,7 @@
 	            		</a>
 	            	</div>
 	            	<div>
-	            		<a href="reservationForm.treat?specialityCode=5">
+	            		<a href="reservationForm.treat?specialityCode=4">
 	            		<ul>
 	            			<li>
 				            	<img src = "${pageContext.request.contextPath}/images/treatment/treatment7.png">
@@ -67,7 +67,7 @@
 	            		</a>
 	            	</div>
 	            	<div>
-	            		<a href="reservationForm.treat?specialityCode=6">
+	            		<a href="reservationForm.treat?specialityCode=5">
 	            		<ul>
 	            			<li>
 				            	<img src = "${pageContext.request.contextPath}/images/treatment/treatment8.png">

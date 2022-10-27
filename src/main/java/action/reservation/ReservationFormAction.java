@@ -1,6 +1,8 @@
 package action.reservation;
 
 import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,7 @@ public class ReservationFormAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		
-		//진료과 코드 (진료과 이름 얻기 위해 사용)
+		//진료과 코드 (진료과 이름과 의사관련 정보 얻기 위해 사용)
 		int speciality_code = Integer.parseInt(request.getParameter("specialityCode"));
 		
 		//로그인 상태 체크를 위해 세션의 아이디를 가져옴
@@ -41,10 +43,25 @@ public class ReservationFormAction implements Action {
 	  		//진료과 코드에 해당하는 진료과 이름을 DB에서 가져옴
 	  		Speciality speciality = reservationFormService.selectSpeciality(speciality_code);
 	  		
-	  		//의사 코드에 해당하는 의사 이름을 DB에서 가져옴
-	  		Doctor doctor = reservationFormService.selectDoctorInfo(speciality_code);
+	  		//선택한 진료과 코드에 해당하는 의사 명단을 DB에서 가져옴
+	  		List<Doctor> doctorList = reservationFormService.selectDoctorInfo(speciality_code);
 	  		
+	  		//해당 진료과에 의사가 없는 경우 오류 출력 후 이전 페이지로
+	  		if(doctorList == null) {
+	  			response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				
+				out.println("<script>");
+				out.println("alert('해당 진료과에 등록된 의사가 없습니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+	  		}
+	  		
+	  		//진료과 코드로 얻어온 진료과 이름을 request영역에 셋팅
 	  		request.setAttribute("speciality_nameAttr", speciality.getSpeciality_name());
+	  		
+	  		//의사 코드와 진료과 코드로 얻어온 의사 이름을 request영역에 셋팅
+	  		request.setAttribute("doctorList", doctorList);
 	  		
 	  		forward = new ActionForward("reservationForm.jsp", false);
 	  	}

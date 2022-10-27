@@ -15,5 +15,5 @@ section table {
 
 section table tr,th,td {
 	border: 0.1rem solid lightblue;
-	padding: 0.5rem;
+	padding: 1rem;
 }

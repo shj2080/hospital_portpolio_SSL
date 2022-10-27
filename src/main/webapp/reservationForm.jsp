@@ -10,6 +10,34 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원 - 진료예약</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/reservationForm.css">
+<script type="text/javascript" src = "${pageContext.request.contextPath}/javascript/reservationFormCheck.js"></script>
+<script>
+
+	let selectDayPopup;
+	
+	window.onload = function() {
+		
+		const selectDayPopupBtn = document.getElementById("selectDayBtn");
+		selectDayPopupBtn.addEventListener("click", () => {
+			if(!selectDayPopup || selectDayPopup.closed) {
+				//팝업 객체가 없거나 팝업이 닫혀있는 상태인 경우 실행됨
+				const url = "SelectReservationDay.treat";
+				const windowName = "selectReservationDayWindow";
+				const popupOption = "width=200, height=200, menubar=no, toolbar=no, location=no, status=no,scrollbars=no, resizable=no";
+				
+				window.name = "reservationFormWindow";
+				selectDayPopup = window.open(url, windowName, popupOption);
+			} else {
+				selectDayPopup.focus();
+			}
+		});
+	}
+	
+	function settingTreatmentDay(inputDay) {
+		const treatmentDay = document.getElementById("treatmentDay");
+		treatmentDay.value = inputDay;
+	}
+</script>
 </head>
 <body>
 	<div id = "warpper">
@@ -18,14 +46,16 @@
 			<div>
 				<h2>진료 예약</h2>
 			</div>
-			<form action = "" name = "resForm" method="post">
+			<form action = "reservationInsert.treat" name = "resForm" method="post">
 				<table>
 					<tr>
 						<th>진료일자</th>
 						<td>
-							<!-- 구현중 -->
+							<input type = "text" id = "treatmentDay" name = "treatmentDay" size="10" readonly />
+							<button type = "button" id="selectDayBtn">날짜 선택</button>
 						</td>
 					</tr>
+					
 					<tr>
 						<th>진료시간</th>
 						<td>
@@ -47,13 +77,13 @@
 					<tr>
 						<th>환자성함</th>
 						<td>
-							<input type = "text" name = "name" value = "" size = "10" readonly />
+							<input type = "text" name = "name" value = "${sessionScope.userName}" size = "10" readonly />
 						</td>
 					</tr>
 					<tr>
 						<th>진료과</th>
 						<td>
-							<input type=hidden name = "speciality_code" value = "${speciality_code}" readonly/>
+							<input type= "hidden" name = "speciality_code" value = "${param.specialityCode}" readonly/>
 							${speciality_nameAttr}
 						</td>
 					</tr>
@@ -62,9 +92,18 @@
 						<td>
 							<select name = "doctor_code">
 								<!-- 의사 테이블의 값을 가져와 설정 -->
-								<option value = "${doctor_codeAttr }">${doctor_nameAttr }</option>
+								<option disabled>==의사 선택==</option>
+								<c:forEach var = "doctorInfo" items = "${doctorList}">
+									<option value = "${doctorInfo.speciality_code}">${doctorInfo.doctor_name}</option>
+								</c:forEach>
 							</select>
 						</td>
+					</tr>
+					<tr>
+						<th colspan="2">
+							<button type="button" onclick="vaildCheck();">예약하기</button>
+							<button type="button" onclick="resetCheck();">다시작성</button>
+						</th>
 					</tr>
 				</table>
 			</form>

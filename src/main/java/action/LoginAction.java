@@ -48,6 +48,7 @@ public class LoginAction implements Action {
 			//세션에 저장
 			session.setAttribute("userID", id); //ID
 			session.setAttribute("userName", userInfo.getName()); //이름
+			session.setAttribute("userPhone", userInfo.getPhone()); //회원 폰번호
 			
 			if(remember != null) { //아이디 저장 체크 시
 				response.addCookie(cookie); //response객체에 추가하여 클라이언트로 전송

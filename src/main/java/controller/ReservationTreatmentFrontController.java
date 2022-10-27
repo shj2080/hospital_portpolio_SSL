@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.reservation.ReservationFormAction;
+import action.reservation.ReservationInsertAction;
 import action.reservation.ReservationSelectViewAction;
+import action.reservation.SelectReservationDayAction;
 import vo.ActionForward;
 
 /**
@@ -77,6 +79,26 @@ public class ReservationTreatmentFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
 				System.out.println("ReservationFormAction ActionForward 예외 : " + e);
+			}
+		}
+		//진료 날짜 선택하는 팝업창
+		else if(command.equals("/SelectReservationDay.treat")) {
+			action = new SelectReservationDayAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("ReservationFormAction ActionForward 예외 : " + e);
+			}
+		}
+		//진료 예약 처리 요청
+		else if(command.equals("/reservationInsert.treat")) {
+			action = new ReservationInsertAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("ReservationInsertAction ActionForward 예외 : " + e);
 			}
 		}
 		

@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import vo.Doctor;
 import vo.Member;
 import vo.Speciality;
 import vo.TreatmentList;
@@ -88,6 +89,7 @@ public class HospitalDAO {
 				//session 영역에 저장할 데이터만 가져와 채움
 				userInfo.setId(rs.getString("id"));
 				userInfo.setName(rs.getString("name"));
+				userInfo.setPhone(rs.getString("phone"));
 			} 
 			
 		} catch(Exception e) {
@@ -239,6 +241,37 @@ public class HospitalDAO {
 		return speciality;
 	}
 	
+	public ArrayList<Doctor> selectDoctorInfo(int speciality_code) {
+		ArrayList<Doctor> doctorInfo = null;
+		Doctor doctor = null;
+		
+		String sql = "select * from doctor where speciality_code = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, speciality_code);
+
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				doctorInfo = new ArrayList<Doctor>();
+				
+				do {
+					doctor = new Doctor(rs.getInt("doctor_code"), rs.getString("doctor_name"), rs.getInt("speciality_code"));
+					
+					doctorInfo.add(doctor); //받아온 의사 VO들을 ArrayList에 담음
+				}while(rs.next());
+			}
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] selectDoctorInfo 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+			close(rs);
+		}
+		
+		return doctorInfo;
+	}
+	
 	//회원들의 진료/예약정보를 불러올 메서드
 	public ArrayList<TreatmentList> selectTreatmentList() {
 		ArrayList<TreatmentList> selectTreatmentList = null;
@@ -318,4 +351,5 @@ public class HospitalDAO {
 		
 		return treatmentListSearch;
 	}
+	
 }

@@ -4,6 +4,7 @@ package svc.reservation;
 import static db.JdbcUtil.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import dao.HospitalDAO;
 import vo.Doctor;
@@ -34,8 +35,8 @@ public class ReservationFormService {
 		return speciality;
 	}
 
-	public Doctor selectDoctorInfo(int speciality_code) {
-		Doctor doctor = null;
+	public ArrayList<Doctor> selectDoctorInfo(int speciality_code) {
+		ArrayList<Doctor> doctorList = null;
 		
 		//1.커넥션 풀에서 Connection객체 얻어와
 		Connection con = getConnection();
@@ -46,8 +47,8 @@ public class ReservationFormService {
 		
 		/*----DAO의 해당 메서드를 호출하여 처리-------------------*/		
 		
-		//구현작업중... -주의 (미구현)★★
-		//doctor = hospitalDAO.selectDoctor();
+		//의사정보 얻어오기
+		doctorList = hospitalDAO.selectDoctorInfo(speciality_code);
 		
 		/*-(update,delete,insert)성공하면 commit 실패하면 rollback
 		 * (select제외)----*/
@@ -55,7 +56,7 @@ public class ReservationFormService {
 		//4.해제
 		close(con);//Connection객체 해제
 		
-		return null;
+		return doctorList;
 	}
 
 }
