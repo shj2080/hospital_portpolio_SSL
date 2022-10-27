@@ -126,7 +126,7 @@ drop table treatment;
 delete from treatment;
 
 /* auto_increment 초기화 */
-alter table doctor auto_increment = 1;
+alter table treatment auto_increment = 1;
 
 /*treatment 테이블 생성 확인*/
 select * from treatment;
@@ -155,6 +155,6 @@ where speciality_name = '외과';
 */
 
 /* 특정 진료과 조회 SQL */
-select treatment_date, name, doctor_name, speciality_name  from
+select treatment_date, name, doctor_name, speciality_name from
 doctor natural join speciality natural join treatment join membertbl USING(id)
-where speciality_name = '외과';
+where speciality_name = '영상의학과';

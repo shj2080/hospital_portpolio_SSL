@@ -23,11 +23,27 @@
 	
 </style>
 <script>
-	function selectTreatmentDay(sendDay) {
+	function selectTreatmentDay(year, month, day) {
 		if(!window.opener) {
 			window.opener = window.open("", "reservationFormWindow");
 		}
-		opener.document.getElementById("treatmentDay").value = sendDay;
+		
+		let nowDate = new Date();
+		
+		if(year < nowDate.getFullYear() || month < nowDate.getMonth()+1 || day < nowDate.getDate()) {
+			opener.alert("이전 날짜를 선택할 수 없습니다.");
+			self.close();
+			return;
+		}
+		
+		if(month < 10) {
+			month = "0" + month;
+		}
+		
+		if(day < 10) {
+			day = "0" + day;
+		}
+		opener.document.getElementById("treatmentDay").value = year + "-" + month + "-" + day;
 		self.close();
 	}
 </script>
@@ -60,7 +76,7 @@
 		
 		<td>
 			<form name="f"> <!-- 위에  showPopupDay()함수 정의되어 있음-->
-			<input type="button" value="${days}" onclick="selectTreatmentDay('${year}-${month+1}-${days}');"/>
+			<input type="button" value="${days}" onclick="selectTreatmentDay(${year},${month+1},${days});"/>
 			<input type="hidden" name="${year}">
 			<input type="hidden" name="${month}">
 			<input type="hidden" name="${day}">

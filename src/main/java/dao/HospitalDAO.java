@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import vo.Doctor;
 import vo.Member;
 import vo.Speciality;
+import vo.TreatmentBean;
 import vo.TreatmentList;
 
 public class HospitalDAO {
@@ -104,39 +105,39 @@ public class HospitalDAO {
 	
 	//입력받은 정보를 membertbl테이블에 insert하는 메서드
 	//회원가입 - membertbl
-		public boolean join(Member member) {
-			int joinCount = 0;
-			boolean joinSuccess = false;
+	public boolean join(Member member) {
+		int joinCount = 0;
+		boolean joinSuccess = false;
+		
+		String sql="insert into membertbl(name,id_num,id,password,address1,address2,address3,postcode,phone) ";
+			sql += " values(?,?,?,?,?,?,?,?,?)";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getName());				
+			pstmt.setString(2, member.getId_num());				
+			pstmt.setString(3, member.getId());				
+			pstmt.setString(4, member.getPassword());				
+			pstmt.setString(5, member.getAddress1());				
+			pstmt.setString(6, member.getAddress2());				
+			pstmt.setString(7, member.getAddress3());				
+			pstmt.setString(8, member.getPostcode());				
+			pstmt.setString(9, member.getPhone());				
 			
-			String sql="insert into membertbl(name,id_num,id,password,address1,address2,address3,postcode,phone) ";
-				sql += " values(?,?,?,?,?,?,?,?,?)";
+			joinCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음	
 			
-			try {
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, member.getName());				
-				pstmt.setString(2, member.getId_num());				
-				pstmt.setString(3, member.getId());				
-				pstmt.setString(4, member.getPassword());				
-				pstmt.setString(5, member.getAddress1());				
-				pstmt.setString(6, member.getAddress2());				
-				pstmt.setString(7, member.getAddress3());				
-				pstmt.setString(8, member.getPostcode());				
-				pstmt.setString(9, member.getPhone());				
-				
-				joinCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음	
-				
-				if(joinCount > 0) {
-					joinSuccess = true;
-				}
-				
-			} catch (Exception e) {			
-				System.out.println("[HospitalDAO] join 에러:"+ e);
-			} finally {
-				//close(rs);
-				close(pstmt);
-			}	
-			return joinSuccess;
-		}
+			if(joinCount > 0) {
+				joinSuccess = true;
+			}
+			
+		} catch (Exception e) {			
+			System.out.println("[HospitalDAO] join 에러:"+ e);
+		} finally {
+			//close(rs);
+			close(pstmt);
+		}	
+		return joinSuccess;
+	}
 	
 	public Member selectMemberInfo(String id) {
 		Member userInfo = null;
@@ -350,6 +351,32 @@ public class HospitalDAO {
 		}
 		
 		return treatmentListSearch;
+	}
+	public int insertReservationTreatment(TreatmentBean treatmentBean) {
+		int insertResult = 0;
+		
+		String sql = "insert into treatment(speciality_code, doctor_code, id, treatment_date, phone)";
+		sql += " values(?,?,?,?,?)";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			//?안에 들어갈 값 세팅
+			pstmt.setInt(1, treatmentBean.getSpeciality_code());
+			pstmt.setInt(2, treatmentBean.getDoctor_code());
+			pstmt.setString(3, treatmentBean.getId());
+			pstmt.setTimestamp(4, treatmentBean.getTreatment_date());
+			pstmt.setString(5, treatmentBean.getPhone());
+			
+			insertResult = pstmt.executeUpdate();
+
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] insertReservationTreatment 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+		}
+		
+		return insertResult;
 	}
 	
 }
