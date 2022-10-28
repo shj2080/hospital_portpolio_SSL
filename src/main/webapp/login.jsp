@@ -6,8 +6,10 @@
 	<!-- 반응형 웹을 위한 기본 태그 부분 -->
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원 - 로그인</title>
-<link rel="stylesheet" type="text/css" href="./styles/loginForm.css">
-<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script> -->
+<link rel="stylesheet" type="text/css" href="style/login.css">
+<link rel="stylesheet" type="text/css" href="style/body.css">
+<link rel="stylesheet" type="text/css" href="style/header.css">
+<link rel="stylesheet" type="text/css" href="style/footer.css">
 <script type="text/javascript">
 //userID 쿠키 가져오는 함수
 function getCookie(name) {
@@ -67,26 +69,25 @@ function loginVaildCheck() {
 	<jsp:include page="header.jsp" />
 		<section>
 			<form action ="loginProcess.do" id = "loginForm" name = "loginForm" method="post">
-				<h2>로그인</h2>
-				<div class="FormBox">
+				<div id="loginBox">
 					<div class="loginItem">
 						아이디
 					</div>
 					<div class="loginItem">
-						<input type="text" name = "id" value="" maxlength="50" />
+						<input type="text" name = "id" value="" maxlength="50" id = "textfiled" />
 					</div>
 					<div class="loginItem">
 						비밀번호
 					</div>
 					<div class="loginItem">
-						<input type="password" name = "password" value="" maxlength="50" />
+						<input type="password" name = "password" value="" maxlength="50" id = "textfiled"  />
 					</div>
 					<div class="loginButton">
-						<input type="checkbox" name="remember" />아이디 저장
-						<button type="button" onclick="loginVaildCheck()">로그인</button>
-						<button type = "button" onclick="location.href='join.jsp'">회원가입</button>
+						<input type="checkbox" name="remember" />아이디 저장<br>
+						<button type="button" onclick="loginVaildCheck()" id = "loginbut">로그인</button>
+						<button type = "button" onclick="location.href='join.jsp'" id = "joinbut">회원가입</button>
 					</div>
-				</div>
+				</div><!-- 로그인 박스 끝 -->
 			</form>
 		</section>
 	<jsp:include page="footer.jsp" />

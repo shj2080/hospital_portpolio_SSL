@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#loginBox{
+	width: 300px;
+	border: 0px;
+	background-color: lightblue;
+	padding: 20px;
+	margin: 0 auto;
+	margin-top: 200px;
+	border-radius: 5px;
+}
+
+#textfiled{
+	border: none;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	width: 93%;
+}
+
+#loginbut{
+	padding: 10px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	border: none;
+	margin-left: 45px;
+}
+
+#joinbut{
+	padding: 10px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	border: none;
+	margin-left: 45px;
+	margin-top: 5px;
+}
+
+#namebox{
+	margin: 0 auto;
+}

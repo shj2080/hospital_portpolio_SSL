@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+#joinBox{
+	width: 500px;
+	border: 0px;
+	background-color: lightblue;
+	padding: 20px;
+	margin: 0 auto;
+	margin-top: 108px;
+	border-radius: 5px;
+	height: auto;
+}
+
+#textfiled{
+	border: none;
+	padding: 5px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	width: 50%;
+}
+
+#id{
+	border: none;
+	padding: 5px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	width: 50%;
+}
+
+#postcode, #address1, #address2, #address3{
+	border: none;
+	padding: 5px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	width: 50%;
+}
+
+#front_id_num, #back_id_num{
+	border: none;
+	padding: 5px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	width: 20%;
+}
+
+#button, #u_idck{
+	padding: 5px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	border: none;
+}
+
+#joinsucessbox{
+	margin: 0 auto;
+}
+

@@ -90,9 +90,19 @@ public class ReservationInsertAction implements Action {
 			
 			//진료예약 insert 성공시
 			if(isReservation > 0) {
-				request.setAttribute("treatmentDate", treatment_date);
+				//request.setAttribute("treatmentDate", treatment_date);
+				//request.setAttribute("treatmentHour", treatmentHour);
+				//request.setAttribute("treatmentMinute", treatmentMinute);
 				
-				forward = new ActionForward("/reservation/reservation_OK.jsp", false);
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				
+				out.println("<script>");
+				out.println("alert(' " + treatmentDay + " " + treatmentHour + "시 " + treatmentMinute + "분 진료예약 되었습니다.');");
+				out.println("location.href='treatmentList.do';");
+				out.println("</script>");
+				
+				//forward = new ActionForward("/reservation/reservation_OK.jsp", false);
 			} else {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();

@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+#treatmentListBox{
+	width: 900px;
+	border: 1px black;
+	background-color: lightblue;
+	padding: 20px;
+	margin: 0 auto;
+	margin-top: 108px;
+	border-radius: 5px;
+	height: auto;
+}
+
+#treatment{
+	width: 700px;
+}
+
+li{
+	display: inline;
+}
+
+
+
+#treatment_date, #name, #speciality_name2, #doctor_name{
+	border: 1px solid black;
+	padding: 10px;
+	margin: 25px;
+}

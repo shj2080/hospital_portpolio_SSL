@@ -7,6 +7,10 @@
 	<!-- 반응형 웹을 위한 기본 태그 부분 -->
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원</title>
+<link rel="stylesheet" type="text/css" href="style/header.css">
+<link rel="stylesheet" type="text/css" href="style/body.css">
+<link rel="stylesheet" type="text/css" href="style/footer.css">
+
 </head>
 <body>
 	<div id = "warpper">
@@ -14,7 +18,7 @@
 		<%-- 컨텐츠 표시 영역 시작 --%>
 		<section>
 			<div>
-				<img src="images/병원배경1.jpg">
+				<img src="images/병원배경1.jpg" id = "frontimg">
 			</div>
 		</section>
 		<%-- 컨텐츠 표시 영역 끝 --%>

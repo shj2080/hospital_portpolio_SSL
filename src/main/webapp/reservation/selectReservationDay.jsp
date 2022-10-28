@@ -10,7 +10,7 @@
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/defaultStyle.css">
+<link rel="stylesheet" type="text/css" href="style/reservation/selectReservationDay.css">
 <style type="text/css">
 	table, th, td { 
 		border: 0.1rem solid black; 

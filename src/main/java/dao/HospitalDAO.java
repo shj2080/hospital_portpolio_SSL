@@ -184,6 +184,8 @@ public class HospitalDAO {
 		if(member.getPassword() != null) {
 			sql += ",password = ?";
 		}
+		
+		//수정하려는 회원의 id
 		sql += " where id = ?";
 
 		try {
@@ -277,10 +279,17 @@ public class HospitalDAO {
 	public ArrayList<TreatmentList> selectTreatmentList() {
 		ArrayList<TreatmentList> selectTreatmentList = null;
 		
+		/*
 		String sql = "select treatment_date, name, doctor_name, speciality_name from" +
 				  " doctor natural join speciality join treatment USING(speciality_code) join membertbl USING(id)"+
 						 "where treatment_date > now() order by treatment_date asc";
-	
+		 */
+		String sql = "select treatment_date, name, doctor_name, speciality_name";
+		sql += " from treatment t LEFT JOIN membertbl m ON t.id = m.id";
+		sql += " LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code";
+		sql += " LEFT JOIN doctor d ON t.doctor_code = d.doctor_code";
+		sql += " WHERE treatment_date > now() order by treatment_date asc";
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -313,15 +322,11 @@ public class HospitalDAO {
 	public ArrayList<TreatmentList> treatmentListSearch(String speciality_name) {
 		ArrayList<TreatmentList> treatmentListSearch = null;
 		
-		/*
-		String sql = "select treatment_date, name, doctor_name, speciality_name  from"
-				+ " membertbl natural join doctor natural join treatment natural join speciality"
-				+ " where speciality_name =?";
-		*/
-		
-		String sql = "select treatment_date, name, doctor_name, speciality_name from";
-		sql += " doctor natural join speciality JOIN treatment USING(speciality_code)";
-		sql += " join membertbl USING(id) where treatment_date > now() and speciality_name = ? order by treatment_date asc";
+		String sql = "select treatment_date, name, doctor_name, speciality_name";
+		sql += " from treatment t LEFT JOIN membertbl m ON t.id = m.id";
+		sql += " LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code";
+		sql += " LEFT JOIN doctor d ON t.doctor_code = d.doctor_code";
+		sql += " WHERE treatment_date > now() AND speciality_name = '마취통증의학과' order by treatment_date asc;";
 		
 		try {
 			

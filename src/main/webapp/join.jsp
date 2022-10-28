@@ -11,26 +11,15 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 
-<style type="text/css">
-	
-	table {
-    border: 1px solid #444444;
-    border-collapse: collapse;
-    margin-left:auto; 
-    margin-right:auto;
-    margin-top: 10rem;
-	}
-	
-	tr, td, th {
-    border: 1px solid #444444;
-	padding: 1rem;
-	}
-	
-</style>
+<link rel="stylesheet" type="text/css" href="style/join.css">
+<link rel="stylesheet" type="text/css" href="style/body.css">
+<link rel="stylesheet" type="text/css" href="style/header.css">
+<link rel="stylesheet" type="text/css" href="style/footer.css">
+
 </head>
 
 <script type="text/javascript">
-	function check() {
+	function check() { //회원가입 유효성 검사
 		if (!join.name.value) {
 			alert("성함을 입력해주세요.");
 			return join.name.focus();
@@ -76,6 +65,8 @@
 </script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<!-- 우편번호찾기 카카오API -->
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -130,61 +121,46 @@
 
 <body>
 	<jsp:include page="header.jsp" />
+	<!-- 본문 시작구간 -->
 	<div id = "warpper">
 	<section>
 		<div>
-		<form action="join.do" method="post" name = "join" onsubmit="return dupCheck();">
-			<table>
-				<tr>
-					<th colspan="2">회원가입</th>
-				</tr>
-				<tr>
-					<td>성함</td>
-					<td><input type="text" name="name" size = "20" maxlength="20"></td>
-				</tr>
-				<tr>
-					<td>주민등록번호</td>
-					<td>
-						<input type="text" name="front_id_num" size = "9" maxlength="6"/> - 
-						<input type="password" name="back_id_num" size = "9" maxlength="7"/>
-					</td>
-				</tr>
-				<tr>
-					<td>아이디</td>
-					<td>
-						<input type="text" name="id" id="id" size=20 required="required" readonly="readonly" placeholder="id중복 확인을 눌러주세요!" />
-						<!-- 아이디 중복체크 확인 -->
-						<input type="button" name="u_idck" id="u_idck" value="id중복 확인" 
-						onclick="window.open('idCheck.jsp', '아이디중복확인', 'width=400, height=150')"/>
-					</td><br>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="password" size = "20" maxlength="20"></td>
-				</tr>
-				<tr>
-					<td>주소</td>
-					<td>
+		<form action="join.do" method="post" name = "join">
+			<div id = "joinBox">
+				<div id="box1" >
+						성함<div id="box2" > <input type="text" name="name" size = "20" maxlength="20" id = "textfiled"></div>
+				</div>
+				<div id="box1" >
+						주민등록번호<div id="box2" > <input type="text" name="front_id_num" size = "9" maxlength="6" id = "front_id_num"/> - <input type="password" name="back_id_num" size = "9" maxlength="7" id = "back_id_num"//></div>
+				</div>
+				<div id="box1" >
+					아이디<div id="box2" ><input type="text" name="id" size=20 required="required" readonly="readonly" placeholder="id중복 확인을 눌러주세요!" id = "id" />
+							<!-- 아이디 중복체크 확인 -->
+							<input type="button" name="u_idck" id="u_idck" value="id중복 확인" 
+							onclick="window.open('idCheck.jsp', '아이디중복확인', 'width=400, height=150')"/></div>
+				</div>
+				<div id=box1>
+					비밀번호<div id="box2" ><input type="password" name="password" size = "20" maxlength="20" id = "textfiled"></div>
+				</div>
+				<div id="box1" >
+					주소<div id="box2">
 						<input type="text" id="postcode" name = "postcode" placeholder="우편번호">
-						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" id="button"><br>
 						<input type="text" id="address1" name = "address1" placeholder="주소" readonly="readonly"><br>
 						<input type="text" id="address2" name = "address2" placeholder="건물이름" readonly="readonly">
 						<input type="text" id="address3" name = "address3" placeholder="상세주소">
-					</td>
-				</tr>
-				<tr>
-					<td>전화번호</td>
-					<td><input type="text" name="phone" size = "20" maxlength="14"></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type = "submit" value="회원가입" onclick="check(); return false">
-					</td>
-				</tr>
-			</table>
+						</div>
+				</div>
+				<div id="box1">
+					전화전호<div id="box2"><input type="text" name="phone" size = "20" maxlength="14" id = "textfiled"></div>
+				</div>
+				<div id="box1" align="center">
+					<input type = "submit" value="회원가입" onclick="check(); return false" id="button">
+				</div>
 		</form>
-		</div>
+		</div> <!-- 조인박스 끝 -->
 	</section>
+	<!-- 본문 끝 -->
 	<jsp:include page="footer.jsp" />
 	</div>
 </body>

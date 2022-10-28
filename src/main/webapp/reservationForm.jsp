@@ -9,8 +9,11 @@
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원 - 진료예약</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/reservationForm.css">
-<script type="text/javascript" src = "${pageContext.request.contextPath}/javascript/reservationFormCheck.js"></script>
+<link rel="stylesheet" type="text/css" href="style/header.css">
+<link rel="stylesheet" type="text/css" href="style/body.css">
+<link rel="stylesheet" type="text/css" href="style/footer.css">
+<link rel="stylesheet" type="text/css" href="style/reservation/reservationForm.css">
+<script type="text/javascript" src = "javascript/reservationFormCheck.js"></script>
 <script>
 
 	let selectDayPopup;
@@ -94,7 +97,7 @@
 								<!-- 의사 테이블의 값을 가져와 설정 -->
 								<option disabled>==의사 선택==</option>
 								<c:forEach var = "doctorInfo" items = "${doctorList}">
-									<option value = "${doctorInfo.speciality_code}">${doctorInfo.doctor_name}</option>
+									<option value = "${doctorInfo.doctor_code}">${doctorInfo.doctor_name}</option>
 								</c:forEach>
 							</select>
 						</td>

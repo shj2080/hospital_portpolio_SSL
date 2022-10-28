@@ -152,31 +152,25 @@ values(3,5,'rladlqkr','2022/10/25/10:15','010-2455-5707');
 insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
 values(3,5,'rladlqkr','2022/10/28/10:15','010-2455-5707');
 
-/*
-select treatment_date, name, doctor_name, speciality_name  from
-membertbl natural join doctor natural join treatment natural join speciality
-where speciality_name = '외과';
-*/
+/*----------------------------------------------------------------------*/
+/* 회원정보 수정[비밀번호 변경하지 않는 경우 SQL] (HospitalDAO - updateMemberInfo) */
+update membertbl
+set name = ?, address1 = ?, address2 = ?, address3 = ?, postcode = ?, phone = ?
+where id = ?;
 
-/* 특정 진료과 조회 SQL */
-select treatment_date, name, doctor_name, speciality_name from
-doctor natural join speciality natural join treatment join membertbl USING(id)
-where treatment_date > now() AND speciality_name = '영상의학과';
+/* 특정 진료과의 의사 정보 조회 (HospitalDAO - selectDoctorInfo) */
+select * from doctor where speciality_code = ?;
 
-/* 현재시간 이후의 진료예약 조회 */
-select treatment_date, name, doctor_name, speciality_name  from
-doctor natural join speciality natural join treatment join membertbl USING(id)
-where treatment_date > now();
+/* 현재시간 이후의 진료예약리스트 조회 (HospitalDAO - selectTreatmentList) */
+select treatment_date, name, doctor_name, speciality_name
+from treatment t LEFT JOIN membertbl m ON t.id = m.id
+LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code
+LEFT JOIN doctor d ON t.doctor_code = d.doctor_code
+WHERE treatment_date > now() order by treatment_date asc;
 
-/* 수정된 SQL 10_28(진료예약 조회) ★오류있음. 수정중★ */
-/* 특정 진료과 조회 SQL <DAO -> treatmentListSearch()> */
-select treatment_date, name, doctor_name, speciality_name  from
-doctor natural join speciality JOIN treatment USING(speciality_code) join membertbl USING(id)
-where treatment_date > now() AND speciality_name = '영상의학과' order by treatment_date asc;
-
-
-
-/* 모든 진료과 리스트 조회 SQL <DAO -> selectTreatmentList() */
-select treatment_date, name, doctor_name, speciality_name  from
-doctor natural join speciality JOIN treatment USING(speciality_code) join membertbl USING(id)
-where treatment_date > now() order by treatment_date asc;
+/* 현재시간 이후의 진료예약리스트 중 특정 진료과 조회 (HospitalDAO - treatmentListSearch) */
+select treatment_date, name, doctor_name, speciality_name
+from treatment t LEFT JOIN membertbl m ON t.id = m.id
+LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code
+LEFT JOIN doctor d ON t.doctor_code = d.doctor_code
+WHERE treatment_date > now() AND speciality_name = '마취통증의학과' order by treatment_date asc;
