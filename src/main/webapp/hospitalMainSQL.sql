@@ -112,7 +112,7 @@ create table treatment(
     speciality_code int not null,  /* 진료과 코드 */
     doctor_code int,        /* 의사코드 */
     id varchar(15) not null,     /* 아이디 */
-    treatment_date timestamp not null,    /* 진료 날짜 및 시간 */
+    treatment_date datetime not null,    /* 진료 날짜 및 시간 */
     phone varchar(14),   /* 전화번호 */
 
     primary key(treatment_code),
@@ -131,9 +131,9 @@ alter table treatment auto_increment = 1;
 /*treatment 테이블 생성 확인*/
 select * from treatment;
 
-/* treatment_date 컬럼 타입 변경 : timestamp */
+/* treatment_date 컬럼 타입 변경 : datetime */
 alter table treatment
-modify treatment_date timestamp not null;
+modify treatment_date datetime not null;
 
 
 /* 테스트를 위한 진료 테이블 정보 입력 */
@@ -147,6 +147,10 @@ insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
 values(2,3,'wjsdudsgns','2022/10/25','010-2455-5707');
 insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
 values(3,5,'rladlqkr','2022/10/25','010-2455-5707');
+insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
+values(3,5,'rladlqkr','2022/10/25/10:15','010-2455-5707');
+insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
+values(3,5,'rladlqkr','2022/10/28/10:15','010-2455-5707');
 
 /*
 select treatment_date, name, doctor_name, speciality_name  from
@@ -157,4 +161,22 @@ where speciality_name = '외과';
 /* 특정 진료과 조회 SQL */
 select treatment_date, name, doctor_name, speciality_name from
 doctor natural join speciality natural join treatment join membertbl USING(id)
-where speciality_name = '영상의학과';
+where treatment_date > now() AND speciality_name = '영상의학과';
+
+/* 현재시간 이후의 진료예약 조회 */
+select treatment_date, name, doctor_name, speciality_name  from
+doctor natural join speciality natural join treatment join membertbl USING(id)
+where treatment_date > now();
+
+/* 수정된 SQL 10_28(진료예약 조회) ★오류있음. 수정중★ */
+/* 특정 진료과 조회 SQL <DAO -> treatmentListSearch()> */
+select treatment_date, name, doctor_name, speciality_name  from
+doctor natural join speciality JOIN treatment USING(speciality_code) join membertbl USING(id)
+where treatment_date > now() AND speciality_name = '영상의학과' order by treatment_date asc;
+
+
+
+/* 모든 진료과 리스트 조회 SQL <DAO -> selectTreatmentList() */
+select treatment_date, name, doctor_name, speciality_name  from
+doctor natural join speciality JOIN treatment USING(speciality_code) join membertbl USING(id)
+where treatment_date > now() order by treatment_date asc;

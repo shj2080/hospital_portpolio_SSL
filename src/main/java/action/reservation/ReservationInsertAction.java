@@ -2,6 +2,8 @@ package action.reservation;
 
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,11 +55,31 @@ public class ReservationInsertAction implements Action {
 				treatmentMinute = String.valueOf(treatmentMinute_int);
 			}
 			
-			String treatmentTime = treatmentHour + ":" + treatmentMinute + ":" + "00";
-			String treatmentDate_tmp = treatmentDay + " " + treatmentTime;
+			String treatmentTime = treatmentHour + ":" + treatmentMinute;
 			
-			System.out.println("[DEBUG]<ReservationInsertAction>treatmentDate_tmp값:" + treatmentDate_tmp);
-			Timestamp treatment_date = Timestamp.valueOf(treatmentDate_tmp);
+			String treatment_date = treatmentDay + " " + treatmentTime;
+			
+			DateTimeFormatter defaultDayFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			
+			System.out.println("[DEBUG]ReservationInsertAction parse 전 부분 실행됨.");
+			LocalDateTime treatmentDate_datetime = LocalDateTime.parse(treatment_date, defaultDayFormat);
+			System.out.println("[DEBUG]ReservationInsertAction LocalDateTime parse 후 부분 실행됨.");
+			LocalDateTime nowDate = LocalDateTime.now();
+			
+			System.out.println("[DEBUG]LocalDateTime treatmentDate값 : " + treatmentDate_datetime);
+			System.out.println("[DEBUG]LocalDateTime nowDate값 : " + nowDate);
+			
+			if(treatmentDate_datetime.isBefore(nowDate)) {
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				
+				out.println("<script>");
+				out.println("alert('현재 날짜나 시간 이전으로 진료를 예약할 수 없습니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				
+				return forward; //아래 구문들이 실행되지 않도록 return 시킴(위의 스크립트에서 뒤로가기 하므로 forward 미지정)
+			}
 			
 			String phone = (String)session.getAttribute("userPhone");
 			

@@ -12,10 +12,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
 
-<link rel="stylesheet" type="text/css" href="styles/treatementList.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/treatmentList.css">
 
 <style type="text/css">
 	

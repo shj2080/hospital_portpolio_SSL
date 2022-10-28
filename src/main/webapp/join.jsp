@@ -69,7 +69,8 @@
 			alert("전화번호를 입력해주세요.");
 			return join.phone.focus();
 		}
-
+		
+		join.dupCheck();
 		document.join.submit();
 	}
 </script>
@@ -124,6 +125,7 @@
         }).open();
         
     }
+    
 </script>
 
 <body>
@@ -131,7 +133,7 @@
 	<div id = "warpper">
 	<section>
 		<div>
-		<form action="join.do" method="post" name = "join">
+		<form action="join.do" method="post" name = "join" onsubmit="return dupCheck();">
 			<table>
 				<tr>
 					<th colspan="2">회원가입</th>
@@ -149,7 +151,12 @@
 				</tr>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="id" size = "20" maxlength="15"></td>
+					<td>
+						<input type="text" name="id" id="id" size=20 required="required" readonly="readonly" placeholder="id중복 확인을 눌러주세요!" />
+						<!-- 아이디 중복체크 확인 -->
+						<input type="button" name="u_idck" id="u_idck" value="id중복 확인" 
+						onclick="window.open('idCheck.jsp', '아이디중복확인', 'width=400, height=150')"/>
+					</td><br>
 				</tr>
 				<tr>
 					<td>비밀번호</td>

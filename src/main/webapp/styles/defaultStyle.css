@@ -24,6 +24,7 @@ body {
 
 section {
 	padding-bottom: 9rem;
+	overflow: auto;
 }
 
 #footer {

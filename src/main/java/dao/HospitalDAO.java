@@ -241,7 +241,7 @@ public class HospitalDAO {
 		
 		return speciality;
 	}
-	
+	//의사 정보를 얻어오는 메서드
 	public ArrayList<Doctor> selectDoctorInfo(int speciality_code) {
 		ArrayList<Doctor> doctorInfo = null;
 		Doctor doctor = null;
@@ -277,8 +277,9 @@ public class HospitalDAO {
 	public ArrayList<TreatmentList> selectTreatmentList() {
 		ArrayList<TreatmentList> selectTreatmentList = null;
 		
-		 String sql = "select treatment_date, name, doctor_name, speciality_name from" +
-		  " doctor natural join speciality natural join treatment join membertbl USING(id)";
+		String sql = "select treatment_date, name, doctor_name, speciality_name from" +
+				  " doctor natural join speciality join treatment USING(speciality_code) join membertbl USING(id)"+
+						 "where treatment_date > now() order by treatment_date asc";
 	
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -305,7 +306,7 @@ public class HospitalDAO {
 					close(rs);
 					close(pstmt);
 				}
-			return selectTreatmentList;
+		return selectTreatmentList;
 	}
 	
 	//원하는 진료과 대기자 명단불러오기 메서드
@@ -319,8 +320,8 @@ public class HospitalDAO {
 		*/
 		
 		String sql = "select treatment_date, name, doctor_name, speciality_name from";
-		sql += " doctor natural join speciality natural join treatment";
-		sql += " join membertbl USING(id) where speciality_name = ?";
+		sql += " doctor natural join speciality JOIN treatment USING(speciality_code)";
+		sql += " join membertbl USING(id) where treatment_date > now() and speciality_name = ? order by treatment_date asc";
 		
 		try {
 			
@@ -365,7 +366,7 @@ public class HospitalDAO {
 			pstmt.setInt(1, treatmentBean.getSpeciality_code());
 			pstmt.setInt(2, treatmentBean.getDoctor_code());
 			pstmt.setString(3, treatmentBean.getId());
-			pstmt.setTimestamp(4, treatmentBean.getTreatment_date());
+			pstmt.setString(4, treatmentBean.getTreatment_date());
 			pstmt.setString(5, treatmentBean.getPhone());
 			
 			insertResult = pstmt.executeUpdate();

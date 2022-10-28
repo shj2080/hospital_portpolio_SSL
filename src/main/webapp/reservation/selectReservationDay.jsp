@@ -24,18 +24,16 @@
 </style>
 <script>
 	function selectTreatmentDay(year, month, day) {
+		//opener null 문제 해결
 		if(!window.opener) {
 			window.opener = window.open("", "reservationFormWindow");
 		}
 		
+		//오늘 날짜
 		let nowDate = new Date();
+		nowDate = nowDate.setHours(0,0,0,0); //날짜만 비교하기 위해 시간값을 0으로 설정
 		
-		if(year < nowDate.getFullYear() || month < nowDate.getMonth()+1 || day < nowDate.getDate()) {
-			opener.alert("이전 날짜를 선택할 수 없습니다.");
-			self.close();
-			return;
-		}
-		
+		//10월 보다 작거나 10일 미만
 		if(month < 10) {
 			month = "0" + month;
 		}
@@ -43,7 +41,21 @@
 		if(day < 10) {
 			day = "0" + day;
 		}
-		opener.document.getElementById("treatmentDay").value = year + "-" + month + "-" + day;
+		
+		let settingDate = year + "-" + month + "-" + day;
+		
+		//선택한 날짜
+		let reservationDate = new Date(settingDate);
+		
+		if(reservationDate < nowDate) {
+			opener.alert("이전 날짜를 선택할 수 없습니다.");
+			self.close();
+			return;
+		}
+		
+		opener.console.log(settingDate);
+		
+		opener.document.getElementById("treatmentDay").value = settingDate;
 		self.close();
 	}
 </script>

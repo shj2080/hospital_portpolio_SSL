@@ -1,18 +1,17 @@
 package vo;
 
-import java.sql.Timestamp;
 
 public class TreatmentBean {
 	private int treatment_code;
 	private int speciality_code;
 	private int doctor_code;
 	private String id;
-	private Timestamp treatment_date;
+	private String treatment_date;
 	private String phone;
 	
 	public TreatmentBean() {}
 
-	public TreatmentBean(int treatment_code, int speciality_code, int doctor_code, String id, Timestamp treatment_date,
+	public TreatmentBean(int treatment_code, int speciality_code, int doctor_code, String id, String treatment_date,
 			String phone) {
 		super();
 		this.treatment_code = treatment_code;
@@ -23,7 +22,7 @@ public class TreatmentBean {
 		this.phone = phone;
 	}
 	
-	public TreatmentBean(int speciality_code, int doctor_code, String id, Timestamp treatment_date, String phone) {
+	public TreatmentBean(int speciality_code, int doctor_code, String id, String treatment_date, String phone) {
 		super();
 		this.speciality_code = speciality_code;
 		this.doctor_code = doctor_code;
@@ -65,11 +64,11 @@ public class TreatmentBean {
 		this.id = id;
 	}
 
-	public Timestamp getTreatment_date() {
+	public String getTreatment_date() {
 		return treatment_date;
 	}
 
-	public void setTreatment_date(Timestamp treatment_date) {
+	public void setTreatment_date(String treatment_date) {
 		this.treatment_date = treatment_date;
 	}
 
