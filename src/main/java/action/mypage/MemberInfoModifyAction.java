@@ -1,8 +1,9 @@
-package action;
+package action.mypage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.Action;
 import svc.MemberInfoModifyService;
 import vo.ActionForward;
 import vo.Member;
@@ -45,7 +46,7 @@ public class MemberInfoModifyAction implements Action {
 		if(isMemberModify) {
 			out.println("<script>");
 			out.println("alert('회원 수정을 완료했습니다.');");
-			out.println("location.href='mypage.do';");
+			out.println("location.replace('mypage.do');");
 			out.println("</script>");
 			//자바스크립트로 메세지창 띄우려면 아래 코드 주석
 			//forward = new ActionForward("index.jsp", true);

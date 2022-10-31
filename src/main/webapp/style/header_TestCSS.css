@@ -27,3 +27,10 @@ header{
 	padding-left: 3rem; /*padding-left: 30px;*/
 	color: black;
 }
+
+/* 장치 최대 너비 768px인 경우 */
+@media screen and (max-width: 768px) {
+	#logo {
+		font-size: 1rem;
+	}
+}

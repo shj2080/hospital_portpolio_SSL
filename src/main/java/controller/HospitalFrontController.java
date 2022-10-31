@@ -11,10 +11,11 @@ import action.Action;
 import action.JoinAction;
 import action.LoginAction;
 import action.LogoutAction;
-import action.MemberInfoModifyAction;
-import action.MemberInfoModifyFormAction;
 import action.TreatmentListAction;
 import action.TreatmentListSearchAction;
+import action.mypage.MemberInfoModifyAction;
+import action.mypage.MemberInfoModifyFormAction;
+import action.mypage.MypageMainAction;
 import action.reservation.ReservationSelectViewAction;
 import vo.ActionForward;
 
@@ -92,8 +93,12 @@ public class HospitalFrontController extends HttpServlet {
 		}
 		//마이페이지 요청
 		else if(command.equals("/mypage.do")) {
-			request.setAttribute("showPage", "mypageMain.jsp");
-			forward = new ActionForward("mypage/mypageTemplate.jsp", false);
+			action = new MypageMainAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("MypageMain ActionForward 예외 : " + e);
+			}
 		}
 		//회원정보 수정 폼 보기 요청 - 로그인한 회원의 정보로 세팅됨(비밀번호 제외)
 		else if(command.equals("/memberInfoModifyForm.do")) {

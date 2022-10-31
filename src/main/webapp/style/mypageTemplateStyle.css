@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
+#contentWrap {
+	padding-top: 85px;
+}
+
 aside {
+	width: 100%;
     background-color: #00B4DB;
     padding: 2rem;
     margin-right: 5rem;
@@ -26,8 +31,12 @@ seciton {
     padding-top: 5rem;
 }
 
+section h2 {
+	margin: 0.5rem;
+}
+
 section table {
-    margin: auto;
+    margin: 10rem auto;
     border-collapse: collapse;
 }
 
@@ -49,17 +58,6 @@ section table tr,td,th {
 	text-align: center;
 }
 
-@media screen and (min-width: 720px) {
-    aside {
-        float: left;
-    }
-
-    #mypageMainView img{
-        width: 40%;
-        height: 30rem;
-    }
-}
-
 section input[type="submit"], input[type="button"] {
 	padding: 0.5rem;
 }
@@ -70,4 +68,20 @@ section input[type="text"], input[type="password"] {
 
 footer {
     clear: both;
+}
+
+@media screen and (min-width: 720px) {
+    aside {
+        float: left;
+        width: auto;
+    }
+
+    #mypageMainView img{
+        width: 40%;
+        height: 30rem;
+    }
+    
+    section h2 {
+		margin: 1.2rem;
+	}
 }

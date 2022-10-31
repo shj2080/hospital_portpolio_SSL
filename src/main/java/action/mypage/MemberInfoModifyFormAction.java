@@ -1,4 +1,4 @@
-package action;
+package action.mypage;
 
 import svc.MemberInfoModifyFormService;
 import vo.ActionForward;
@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import action.Action;
 
 public class MemberInfoModifyFormAction implements Action {
     @Override

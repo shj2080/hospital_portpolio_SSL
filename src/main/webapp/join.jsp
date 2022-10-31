@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 
+<link rel="stylesheet" type="text/css" href="style/initStyle.css">
 <link rel="stylesheet" type="text/css" href="style/join.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
