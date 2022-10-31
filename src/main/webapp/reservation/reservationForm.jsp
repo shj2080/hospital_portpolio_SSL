@@ -44,7 +44,7 @@
 </head>
 <body>
 	<div id = "warpper">
-		<jsp:include page="header.jsp" />
+		<jsp:include page="../header.jsp" />
 		<section>
 			<div>
 				<h2>진료 예약</h2>
@@ -106,12 +106,13 @@
 						<th colspan="2">
 							<button type="button" onclick="vaildCheck();">예약하기</button>
 							<button type="button" onclick="resetCheck();">다시작성</button>
+							<button type="button" onclick="javascript:history.back();">진료과 재선택</button>
 						</th>
 					</tr>
 				</table>
 			</form>
 		</section>
-		<jsp:include page="footer.jsp" />
+		<jsp:include page="../footer.jsp" />
 	</div>
 </body>
 </html>

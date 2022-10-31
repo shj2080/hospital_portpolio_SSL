@@ -17,7 +17,12 @@ header{
 	border-bottom: 0.1rem solid lightblue;
 }
 
-header nav a {
+#logo {
+	text-decoration: none;
+	color: black;
+}
+
+#headermenu a {
 	text-decoration: none;
 	padding-left: 3rem; /*padding-left: 30px;*/
 	color: black;

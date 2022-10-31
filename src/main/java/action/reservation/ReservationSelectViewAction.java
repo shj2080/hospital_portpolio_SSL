@@ -1,13 +1,16 @@
 package action.reservation;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import svc.reservation.ReservationSelectViewService;
 import vo.ActionForward;
+import vo.Speciality;
 
 public class ReservationSelectViewAction implements Action {
 
@@ -29,7 +32,24 @@ public class ReservationSelectViewAction implements Action {
   			out.println("</script>");
   		//로그인 상태라면
 	  	}else {
-	  		forward = new ActionForward("reservationView.jsp", false);
+	  		//진료과 정보 가져오는 서비스 호출
+	  		ReservationSelectViewService reservationSelectViewService = new ReservationSelectViewService();
+	  		List<Speciality> speciality_list = reservationSelectViewService.select_SpecialityInfoList();
+	  		
+	  		if(speciality_list != null) {
+	  			request.setAttribute("specialityList", speciality_list);
+	  			
+	  			forward = new ActionForward("reservation/reservationView.jsp", false);
+	  		} else {
+	  			response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				
+				out.println("<script>");
+				out.println("alert('DB접근 오류입니다. 관리자에게 문의하세요.');");
+				out.println("history.back();");
+				out.println("</script>");
+	  		}
+	  		
 	  	}
 		
 		return forward;

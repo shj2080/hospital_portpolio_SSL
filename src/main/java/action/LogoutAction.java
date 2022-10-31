@@ -14,9 +14,12 @@ public class LogoutAction implements Action {
 
 		HttpSession session = request.getSession();
 		
-		//기존 세션을 삭제 (세션에 저장된 값 전부 삭제됨)
+		//기존 세션을 삭제 
 		if(session.getAttribute("userID") != null) {
-			session.invalidate();
+			//session.invalidate(); //(세션에 저장된 값 전부 삭제됨)
+			session.removeAttribute("userID");
+			session.removeAttribute("userName");
+			session.removeAttribute("userPhone");
 		}
 
 		//header에서 이전 페이지 정보를 가져옴

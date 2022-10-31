@@ -36,8 +36,8 @@ public class BoardFrontController extends HttpServlet {
         ActionForward forward = null;
 
         //2. 비즈니스 로직 구분------------------------------------------------
-        if(command.equals("/BoardWrite.bo")) {
-
+        if(command.equals("/bbsMain.bo")) {
+        	
         }
 
         //---------------------------------------------------------------

@@ -11,6 +11,7 @@ create table membertbl(
    phone varchar(14)       /* 전화번호 */
 );
 
+
 /* 회원가입 비밀번호 허용 자리수 (20?) */
 /* 회원정보 테스트 데이터 */
 insert into membertbl values('홍길동', '960101-1234567', 'test001', 'eb508df11dd58cf4bb4e8ed2c5629c2d6fcb6455913c1e0e3ce2cd11a9cd7e20', '대구 달서구 달구벌대로', '테스트', '테스트데이터', 0, '010-0000-0000');
@@ -102,6 +103,11 @@ delete from doctor;
 /* auto_increment 초기화 */
 alter table doctor auto_increment = 1;
 
+/* 데이터가 있는 상태에서 auto_increment 재정렬 */
+ALTER TABLE `doctor` AUTO_INCREMENT=1;
+SET @COUNT = 0;
+UPDATE `doctor` SET doctor_code = @COUNT:=@COUNT+1;
+
 /*doctor 테이블 생성 확인*/
 select * from doctor;
 
@@ -153,15 +159,31 @@ insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
 values(3,5,'rladlqkr','2022/10/28/10:15','010-2455-5707');
 
 /*----------------------------------------------------------------------*/
+/** ?가 들어간 SQL문은 DAO 작업 시 PrepareStatement 사용됨 **/
+
+/* 특정 회원의 정보를 가져오는 SQL문  (HospitalDAO - selectUserInfo)*/
+/* 이 메서드에선 id, name , phone만 가져옴 */
+select * from membertbl where id = ?
+
+/* 회원가입(HospitalDAO - join) */
+insert into membertbl(name,id_num,id,password,address1,address2,address3,postcode,phone)
+values(?,?,?,?,?,?,?,?,?)
+
+/* 회원수정폼에서 회원 정보를 가져와 세팅해놓음 (HospitalDAO - selectMemberInfo) */
+select * from membertbl where id = ?
+
 /* 회원정보 수정[비밀번호 변경하지 않는 경우 SQL] (HospitalDAO - updateMemberInfo) */
 update membertbl
 set name = ?, address1 = ?, address2 = ?, address3 = ?, postcode = ?, phone = ?
 where id = ?;
 
+/* 특정 진료과의 진료과명을 얻어오는 SQL (HospitalDAO - selectSpeciality) */
+select * from speciality where speciality_code = ?
+
 /* 특정 진료과의 의사 정보 조회 (HospitalDAO - selectDoctorInfo) */
 select * from doctor where speciality_code = ?;
 
-/* 현재시간 이후의 진료예약리스트 조회 (HospitalDAO - selectTreatmentList) */
+/* 현재시간 이후의 진료예약리스트 전체 조회 (HospitalDAO - selectTreatmentList) */
 select treatment_date, name, doctor_name, speciality_name
 from treatment t LEFT JOIN membertbl m ON t.id = m.id
 LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code
@@ -174,3 +196,13 @@ from treatment t LEFT JOIN membertbl m ON t.id = m.id
 LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code
 LEFT JOIN doctor d ON t.doctor_code = d.doctor_code
 WHERE treatment_date > now() AND speciality_name = '마취통증의학과' order by treatment_date asc;
+
+/* 진료내역 전체 조회 (사용된 곳 없음) */
+select treatment_date, doctor_name, speciality_name
+from treatment t LEFT JOIN membertbl m ON t.id = m.id
+LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code
+LEFT JOIN doctor d ON t.doctor_code = d.doctor_code
+WHERE t.id = 'wjsdudsgns' order by treatment_date asc;
+/**************************************************************************/
+/* 게시판 관련 SQL */
+

@@ -6,6 +6,15 @@ public class Speciality {
 	
 	public Speciality() {}
 
+	//진료과, 진료과명
+	public Speciality(int speciality_code, String speciality_name) {
+		super();
+		this.speciality_code = speciality_code;
+		this.speciality_name = speciality_name;
+	}
+
+
+
 	public int getSpeciality_code() {
 		return speciality_code;
 	}

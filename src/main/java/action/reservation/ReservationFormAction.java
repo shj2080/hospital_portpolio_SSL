@@ -63,7 +63,7 @@ public class ReservationFormAction implements Action {
 	  		//의사 코드와 진료과 코드로 얻어온 의사 이름을 request영역에 셋팅
 	  		request.setAttribute("doctorList", doctorList);
 	  		
-	  		forward = new ActionForward("reservationForm.jsp", false);
+	  		forward = new ActionForward("reservation/reservationForm.jsp", false);
 	  	}
 		
 		return forward;

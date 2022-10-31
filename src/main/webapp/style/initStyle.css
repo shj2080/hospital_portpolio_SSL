@@ -1,0 +1,7 @@
+@charset "UTF-8";
+/* 문서의 마진과 패딩, 박스 사이즈 조절 방식 변경 */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}

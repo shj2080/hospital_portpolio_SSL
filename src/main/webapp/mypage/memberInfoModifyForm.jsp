@@ -31,13 +31,6 @@
 			return memberform.id.focus();
 		}
 
-		/*
-		if (!memberform.password.value) {
-			alert("변경할 비밀번호를 입력해주세요.");
-			return memberform.password.focus();
-		}
-		*/
-
 		if (!memberform.address1.value) {
 			alert("지번을 입력해주세요.");
 			return memberform.address1.focus();
@@ -108,6 +101,7 @@
         
     }
 </script>
+<script type="text/javascript" src = "javascript/phoneNumberFormat.js"></script>
 </head>
 <body>
 	<form action = "memberInfoModifyAction.do" name = "memberform" method="post">
@@ -146,7 +140,7 @@
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input type="text" name="phone" size = "20" value = "${memberInfo.phone}" maxlength="14"></td>
+				<td><input type="text" name="phone" size = "20" value = "${memberInfo.phone}" maxlength="13" oninput="autoHyphen(this)" /></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

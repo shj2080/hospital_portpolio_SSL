@@ -139,6 +139,7 @@ public class HospitalDAO {
 		return joinSuccess;
 	}
 	
+	//회원의 정보를 가져옴(회원수정폼에서 사용됨) memberInfoModifyForm.jsp
 	public Member selectMemberInfo(String id) {
 		Member userInfo = null;
 		
@@ -216,7 +217,7 @@ public class HospitalDAO {
 		return result;
     }
     
-    //진료과명을 얻어오는 메서드
+    //하나의 진료과명을 얻어오는 메서드
 	public Speciality selectSpeciality(int speciality_code) {
 		Speciality speciality = null;
 
@@ -326,7 +327,7 @@ public class HospitalDAO {
 		sql += " from treatment t LEFT JOIN membertbl m ON t.id = m.id";
 		sql += " LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code";
 		sql += " LEFT JOIN doctor d ON t.doctor_code = d.doctor_code";
-		sql += " WHERE treatment_date > now() AND speciality_name = '마취통증의학과' order by treatment_date asc;";
+		sql += " WHERE treatment_date > now() AND speciality_name = ? order by treatment_date asc;";
 		
 		try {
 			
@@ -383,6 +384,37 @@ public class HospitalDAO {
 		}
 		
 		return insertResult;
+	}
+	
+	//진료과 테이블의 전체 데이터를 가져옴
+	public ArrayList<Speciality> selectSpecialityList() {
+		ArrayList<Speciality> specialityList = null;
+		Speciality speciality = null;
+			
+		String sql = "select * from speciality";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				specialityList = new ArrayList<Speciality>();
+				
+				do {
+					speciality = new Speciality(rs.getInt("speciality_code"), rs.getString("speciality_name"));
+					
+					specialityList.add(speciality); //받아온 진료과 VO들을 ArrayList에 담음
+				}while(rs.next());
+			}
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] selectSpecialityList 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+			close(rs);
+		}
+		
+		return specialityList;
 	}
 	
 }
