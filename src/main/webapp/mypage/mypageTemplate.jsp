@@ -8,12 +8,22 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원 - 마이페이지</title>
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
 <link rel = "stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/mypageTemplateStyle.css">
+
+
+<style>
+/* box-sizing를 변경한 적이 있는 경우 이 스타일 사용 */
+	.selector-for-some-widget {
+	  box-sizing: content-box;
+	}
+</style>
 </head>
 <body>
+	<script type="text/javascript" src = "bootstrap/js/bootstrap.bundle.min.js"></script>
      <jsp:include page="../header.jsp" />
 
 		

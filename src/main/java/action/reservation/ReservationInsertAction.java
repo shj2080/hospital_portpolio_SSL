@@ -35,6 +35,7 @@ public class ReservationInsertAction implements Action {
   		//로그인 상태라면
 	  	}else {
 			String treatmentDay = request.getParameter("treatmentDay");
+			//비교를 위해 시간과 분을 int타입으로 변환
 			int treatmentHour_int = Integer.parseInt(request.getParameter("treatmentHour"));
 			int treatmentMinute_int = Integer.parseInt(request.getParameter("treatmentMinute"));
 			int speciality_code = Integer.parseInt(request.getParameter("speciality_code"));

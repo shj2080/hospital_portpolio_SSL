@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-#contentWrap {
+/* #contentWrap {
 	padding-top: 85px;
-}
+} */
 
 aside {
 	width: 100%;
@@ -35,7 +35,7 @@ section h2 {
 	margin: 0.5rem;
 }
 
-section table {
+/* section table {
     margin: 10rem auto;
     border-collapse: collapse;
 }
@@ -43,8 +43,19 @@ section table {
 section table tr,td,th {
     border: 0.1rem solid lightblue;
     padding: 1rem;
+ }
+ */
+ /* 회원수정테이블 스타일 */
+#memberTable{
+	margin-top: 1rem;
+	width: 70%; 
 }
 
+/* 회원수정 제목 */
+#memberTable tr:nth-child(1) th:nth-child(1){
+	text-align: center;
+}
+ 
 #mypageMainView {
 	text-align: center;
 }
@@ -58,19 +69,21 @@ section table tr,td,th {
 	text-align: center;
 }
 
+/* 
 section input[type="submit"], input[type="button"] {
 	padding: 0.5rem;
 }
 
 section input[type="text"], input[type="password"] {
 	padding:0.5rem;
-}
+} */
 
 footer {
     clear: both;
 }
 
-@media screen and (min-width: 720px) {
+/* 최소 크기 857px */
+@media screen and (min-width: 857px) {
     aside {
         float: left;
         width: auto;

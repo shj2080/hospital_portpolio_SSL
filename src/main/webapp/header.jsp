@@ -30,7 +30,6 @@
 			<a href = "logout.do"><span class = "menu">로그아웃</span></a>
 			<a href = "mypage.do"><span class = "menu">마이페이지</span></a>
 			</c:if>
-			</a>
 		</nav>
 	</header>
 </body>

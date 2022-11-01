@@ -16,8 +16,6 @@
 <link rel="stylesheet" type="text/css" href="style/footer.css">
 </head>
 
-
-
 <body>
 	<jsp:include page="header.jsp" />
 		<div id = "contentWrap">

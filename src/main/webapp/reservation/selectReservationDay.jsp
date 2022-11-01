@@ -88,11 +88,11 @@
 		<c:set var = "count" value = "${count + 1}"/>
 		
 		<td>
-			<form name="f"> <!-- 위에  showPopupDay()함수 정의되어 있음-->
-			<input type="button" value="${days}" onclick="selectTreatmentDay(${year},${month+1},${days});"/>
-			<input type="hidden" name="${year}">
+			<form name="f">
+				<input type="button" value="${days}" onclick="selectTreatmentDay(${year},${month+1},${days});"/>
+			<%-- <input type="hidden" name="${year}">
 			<input type="hidden" name="${month}">
-			<input type="hidden" name="${day}">
+			<input type="hidden" name="${day}"> --%>
 			</form>
 		</td>
 		

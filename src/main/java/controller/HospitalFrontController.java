@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.JoinAction;
 import action.LoginAction;
+import action.LoginFormAction;
 import action.LogoutAction;
 import action.MyTreatmentListAction;
 import action.TreatmentListAction;
@@ -69,7 +70,14 @@ public class HospitalFrontController extends HttpServlet {
 		
 		//로그인 이동
 		if(command.equals("/login.do")) {
-			forward = new ActionForward("login.jsp", false);
+			action = new LoginFormAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("loginForm ActionForward 예외 : " + e);
+			}
+	
 		}
 		//로그인 프로세스
 		else if(command.equals("/loginProcess.do")) {

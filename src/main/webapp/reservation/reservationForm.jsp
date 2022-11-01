@@ -10,6 +10,7 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원 - 진료예약</title>
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
@@ -43,10 +44,16 @@
 		treatmentDay.value = inputDay;
 	}
 </script>
+<style>
+/* box-sizing를 변경한 적이 있는 경우 이 스타일 사용 */
+	.selector-for-some-widget {
+	  box-sizing: content-box;
+	}
+</style>
 </head>
 <body>
-	<div id = "warpper">
 		<jsp:include page="../header.jsp" />
+		<div id = "contentWrap">
 		<section>
 			<div>
 				<h2>진료 예약</h2>
@@ -57,7 +64,7 @@
 						<th>진료일자</th>
 						<td>
 							<input type = "text" id = "treatmentDay" name = "treatmentDay" size="10" readonly />
-							<button type = "button" id="selectDayBtn">날짜 선택</button>
+							<button type = "button" class = "btn btn-primary fs-4" id="selectDayBtn" >날짜 선택</button>
 						</td>
 					</tr>
 					
@@ -106,15 +113,15 @@
 					</tr>
 					<tr>
 						<th colspan="2">
-							<button type="button" onclick="vaildCheck();">예약하기</button>
-							<button type="button" onclick="resetCheck();">다시작성</button>
-							<button type="button" onclick="javascript:history.back();">진료과 재선택</button>
+							<button type="button" class="btn btn-outline-secondary fs-4" onclick="vaildCheck();">예약하기</button>
+							<button type="button" class="btn btn-outline-secondary fs-4" onclick="resetCheck();">다시작성</button>
+							<button type="button" id = "treatmentHover" class="btn btn-outline-secondary fs-4" onclick="javascript:history.back();">진료과 재선택</button>
 						</th>
 					</tr>
 				</table>
 			</form>
 		</section>
+		</div>
 		<jsp:include page="../footer.jsp" />
-	</div>
 </body>
 </html>

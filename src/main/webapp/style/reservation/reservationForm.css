@@ -17,3 +17,7 @@ section table tr,th,td {
 	border: 0.1rem solid lightblue;
 	padding: 1rem;
 }
+
+#treatmentHover:hover {
+	background-color: #04bdfb;
+}

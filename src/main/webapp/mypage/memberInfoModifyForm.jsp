@@ -105,46 +105,81 @@
 </head>
 <body>
 	<form action = "memberInfoModifyAction.do" name = "memberform" method="post">
-		<table>
+		<table id = "memberTable" class="table table-hover">
 			<tr>
 				<th colspan="2">회원수정</th>
 			</tr>
 			<tr>
 				<td>성함</td>
-				<td><input type="text" name="name" size = "20" value = "${memberInfo.name}" maxlength="20"></td>
+				<td>
+					<div class = "col-sm-3">
+						<input type="text" name="name" class = "form-control fs-4" value = "${memberInfo.name}" maxlength="20">
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<td>주민등록번호</td>
 				<td>
-					<input type="text" name="front_id_num" size = "9" value = "${front_id_num}" maxlength="6"/> - 
-					<input type="password" name="back_id_num" size = "9" value ="${back_id_num}" maxlength="7"/>
+					<div class = "row">
+						<div class = "col-sm-4">
+						<input type="text" name="front_id_num" class = "form-control fs-4"  value = "${front_id_num}" maxlength="6"/>
+						</div> - 
+						<div class = "col-sm-4">
+						<input type="password" name="back_id_num" class = "form-control fs-4"  value ="${back_id_num}" maxlength="7"/>
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="id" size = "20" maxlength="15" value = "${memberInfo.id}" readonly></td>
+				<td>
+					<div class = "col-sm-4">
+						<input type="text" name="id"  class = "form-control fs-4"  maxlength="15" value = "${memberInfo.id}" readonly>
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" name="password" size = "20" value = "" maxlength="20" placeholder="변경할 비밀번호"></td>
+				<td>
+					<div class = "row">
+						<div class = "col-sm-4">
+					<input type="password" name="password" class = "form-control fs-4" value = "" maxlength="20" placeholder="변경할 비밀번호">
+						</div>
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<td>주소</td>
 				<td>
-					<input type="text" name = "postcode" id="postcode" value = "${memberInfo.postcode}" placeholder="우편번호" readonly>
-					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" name = "address1" id="address1" value = "${memberInfo.address1}" placeholder="주소" readonly><br>
-					<input type="text" name = "address2" id="address2" value = "${memberInfo.address2}" placeholder="건물이름" readonly>
-					<input type="text" name = "address3" id="address3" value = "${memberInfo.address3}" placeholder="상세주소">
+					
+					<div class = "row">
+						<div class = "col-sm-3">
+							<input type="text" name = "postcode" id="postcode" class = "form-control fs-4 my-1" value = "${memberInfo.postcode}" placeholder="우편번호" readonly>
+						</div>
+						<div class = "col-sm-4">
+							<button type="button" onclick="sample6_execDaumPostcode()" class="btn btn-secondary btn-lg">우편번호 찾기</button>
+						</div>
+					</div>
+					<div class = "row">
+						<div class = "col-sm-5">
+							<input type="text" name = "address1" id="address1" class = "form-control fs-4 my-1" value = "${memberInfo.address1}" placeholder="주소" readonly>
+							<input type="text" name = "address2" id="address2" class = "form-control fs-4 my-1" value = "${memberInfo.address2}" placeholder="건물이름" readonly>
+							<input type="text" name = "address3" id="address3" class = "form-control fs-4 my-1" value = "${memberInfo.address3}" placeholder="상세주소">
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input type="text" name="phone" size = "20" value = "${memberInfo.phone}" maxlength="13" oninput="autoHyphen(this)" /></td>
+				<td>
+					<div class = "col-sm-5">
+						<input type="text" name="phone" class = "form-control fs-4" value = "${memberInfo.phone}" maxlength="13" oninput="autoHyphen(this)" />
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type = "submit" value="회원수정" onclick="check(); return false">
+					<button type = "submit" onclick="check(); return false" class="btn btn-outline-secondary fs-4">회원수정</button>
 				</td>
 			</tr>
 		</table>
