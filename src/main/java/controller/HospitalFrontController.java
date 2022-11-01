@@ -148,7 +148,9 @@ public class HospitalFrontController extends HttpServlet {
 				System.out.println("treatmentListSearch ActionForward 예외 : " + e);
 			}
 		}
-		
+		else if(command.equals("/introduce.do")) {
+			forward = new ActionForward("introduce.jsp", true);
+		}
 		//---------------------------------------------------------------
 		
 		/****************************************************************************

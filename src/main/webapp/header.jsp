@@ -19,7 +19,7 @@
 		<nav id = "headermenu">
 			<a href = "reservationSelectView.treat"><span class = "menu">진료예약하기</span></a>
 			<a href = "treatmentList.do"><span class = "menu">진료대기자명단</span></a>
-			<a href = "#"><span class = "menu">병원소개</span></a>
+			<a href = "introduce.do"><span class = "menu">병원소개</span></a>
 			<a href = "#"><span class = "menu">의료진소개</span></a>
 			<a href = "bbs.bo"><span class = "menu">게시판</span></a>
 			<!-- <a href = "#"><span class = "menu">메뉴6</span></a> -->

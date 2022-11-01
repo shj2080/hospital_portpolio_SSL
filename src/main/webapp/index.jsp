@@ -11,19 +11,41 @@
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
-
+<style>
+	.contentTitle {
+		font-size: 2rem;
+	}
+	ul {
+		margin-left: 1rem;
+		list-style:none;
+	}
+	section div:nth-child(2) {
+		margin-left: 3rem;
+		margin-top: 1rem;
+		border: 0.1rem solid lightblue;
+		width: 30rem;
+	}
+</style>
 </head>
 <body>
-	<div id = "warpper">
 	<jsp:include page="header.jsp" />
-		<%-- 컨텐츠 표시 영역 시작 --%>
-		<section>
-			<div>
-				<img src="images/병원배경1.jpg" id = "frontimg">
-			</div>
-		</section>
-		<%-- 컨텐츠 표시 영역 끝 --%>
+		<div id = "contentWrap">
+			<%-- 컨텐츠 표시 영역 시작 --%>
+			<section>
+				<div>
+					<img src="images/병원배경1.jpg" id = "frontimg">
+				</div>
+				<div>
+					<span class = "contentTitle">공지사항</span>
+					<ul>
+						<li>1111</li>
+						<li>12345</li>
+						<li>12345</li>
+					</ul>
+				</div>
+			</section>
+			<%-- 컨텐츠 표시 영역 끝 --%>
+		</div>
 	<jsp:include page="footer.jsp" />
-	</div>
 </body>
 </html>

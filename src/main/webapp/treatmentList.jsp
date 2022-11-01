@@ -19,8 +19,8 @@
 
 </head>
 <body>
-	<div id = "warpper">
 	<jsp:include page="header.jsp" />
+		<div id = "contentWrap">
 		<section>	
 		<form method = "post">
 			<table id = "treatmentListBox">
@@ -119,8 +119,8 @@
 		</form>
 		
 		</section>
+		</div>
 		<%-- 컨텐츠 표시 영역 끝 --%>
 	<jsp:include page="footer.jsp" />
-	</div>
 </body>
 </html>

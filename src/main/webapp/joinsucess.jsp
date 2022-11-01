@@ -13,8 +13,8 @@
 <link rel="stylesheet" type="text/css" href="style/joinSucess.css">
 </head>
 <body>
-	<div id = "warpper">
 	<jsp:include page="header.jsp" />
+		<div id = "contentWrap">
 		<%-- 컨텐츠 표시 영역 시작 --%>
 		<section id = "joinsucess">
 			<div>
@@ -23,6 +23,7 @@
 			</div>
 		</section>
 		<%-- 컨텐츠 표시 영역 끝 --%>
+		</div>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

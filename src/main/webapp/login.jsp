@@ -66,8 +66,8 @@ function loginVaildCheck() {
 </script>
 </head>
 <body>
-	<div id = "warpper">
 	<jsp:include page="header.jsp" />
+		<div id = "contentWrap">
 		<section>
 			<form action ="loginProcess.do" id = "loginForm" name = "loginForm" method="post">
 				<div id="loginBox">
@@ -91,7 +91,7 @@ function loginVaildCheck() {
 				</div><!-- 로그인 박스 끝 -->
 			</form>
 		</section>
+		</div>
 	<jsp:include page="footer.jsp" />
-	</div>
 </body>
 </html>

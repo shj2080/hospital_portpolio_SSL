@@ -11,17 +11,19 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원 - 진료예약</title>
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
-<link rel="stylesheet" type="text/css" href="style/header.css">
+<!-- <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
-<link rel="stylesheet" type="text/css" href="style/footer.css">
+<link rel="stylesheet" type="text/css" href="style/footer.css"> -->
+<link rel="stylesheet" type="text/css" href="style/header_TestCSS.css">
+<link rel="stylesheet" type="text/css" href="style/body_TestCSS.css">
+<link rel="stylesheet" type="text/css" href="style/footer_TestCSS.css">
 <link rel="stylesheet" type="text/css" href="style/reservation/reservationView.css">
 </head>
 <body>
-	<div id = "warpper">
 	    <jsp:include page="../header.jsp" />
 	    <%-- 컨텐츠 표시 영역 시작 --%>
+	    <div id = "contentWrap">
 	    <section>
-	        <div>
 	            <h2>진료 예약 - 진료과 선택</h2>
 	            <div id = "treatmentListConteinerBox">
 	            	<c:forEach var = "specList" items="${specialityList }">
@@ -37,10 +39,10 @@
 	            	</div>
 	            	</c:forEach>
 	            </div>
-	        </div>
 	    </section>
+	    </div>
 	    <%-- 컨텐츠 표시 영역 끝 --%>
 	    <jsp:include page="../footer.jsp" />
-	</div>
+		
 </body>
 </html>

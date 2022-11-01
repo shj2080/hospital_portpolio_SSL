@@ -123,7 +123,7 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<!-- 본문 시작구간 -->
-	<div id = "warpper">
+	<div id = "contentWrap">
 	<section>
 		<div>
 		<form action="join.do" method="post" name = "join">
@@ -158,11 +158,12 @@
 				<div id="box1" align="center">
 					<input type = "submit" value="회원가입" onclick="check(); return false" id="button">
 				</div>
+				</div> <!-- 조인박스 끝 -->
 		</form>
-		</div> <!-- 조인박스 끝 -->
+		</div>	
 	</section>
 	<!-- 본문 끝 -->
-	<jsp:include page="footer.jsp" />
 	</div>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>
