@@ -15,13 +15,13 @@
 </head>
 <body>
 	<header>
-		<a id = "logo" href = "index.jsp"><h1>로고가들어갈자리</h1></a>
+		<a href = "index.jsp"><img src="images/logo.jpg" height="95px"></a>
 		<nav id = "headermenu">
 			<a href = "reservationSelectView.treat"><span class = "menu">진료예약하기</span></a>
 			<a href = "treatmentList.do"><span class = "menu">진료대기자명단</span></a>
 			<a href = "introduce.do"><span class = "menu">병원소개</span></a>
 			<a href = "#"><span class = "menu">의료진소개</span></a>
-			<a href = "bbs.bo"><span class = "menu">게시판</span></a>
+			<a href = "errorPage/404error.html"><span class = "menu">게시판</span></a>
 			<!-- <a href = "#"><span class = "menu">메뉴6</span></a> -->
 			<c:if test="${userID  == null}">
 			<a href = "login.do" ><span class = "menu">로그인/회원가입</span></a>

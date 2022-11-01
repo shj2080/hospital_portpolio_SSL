@@ -10,7 +10,7 @@
 <body>
 	<ul>
 		<li><a href="memberInfoModifyForm.do">회원 정보 수정</a></li>
-		<li><a href="#">진료내역</a></li>
+		<li><a href="myTreatmentListCheck.jsp">진료내역</a></li>
 	</ul>
 </body>
 </html>

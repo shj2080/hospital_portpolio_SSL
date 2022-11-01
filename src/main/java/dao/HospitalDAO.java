@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import vo.Doctor;
 import vo.Member;
+import vo.MyTreatmentList;
 import vo.Speciality;
 import vo.TreatmentBean;
 import vo.TreatmentList;
@@ -415,6 +416,48 @@ public class HospitalDAO {
 		}
 		
 		return specialityList;
+	}
+	
+	public ArrayList<MyTreatmentList> myTreatmentList(String id) {
+		ArrayList<MyTreatmentList> myTreatmentList = null;
+		MyTreatmentList mytreatmentList = null;
+		
+		/*
+		String sql = "select treatment_date, name, doctor_name, speciality_name from" +
+				  " doctor natural join speciality join treatment USING(speciality_code) join membertbl USING(id)"+
+						 "where treatment_date > now() order by treatment_date asc";
+		 */
+		String sql = "select treatment_date, doctor_name, speciality_name";
+			   sql += " from treatment t LEFT JOIN membertbl m ON t.id = m.id";
+			   sql += " LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code";
+			   sql += " LEFT JOIN doctor d ON t.doctor_code = d.doctor_code";
+			   sql += " WHERE t.id = ? order by treatment_date asc";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+					
+			if(rs.next()){
+				myTreatmentList = new ArrayList<MyTreatmentList>();
+						
+						do {
+							mytreatmentList = new MyTreatmentList(rs.getString("treatment_date"),
+												rs.getString("speciality_name"),
+												rs.getString("doctor_name"));
+							//ArrayList에 추가
+							myTreatmentList.add(mytreatmentList);
+						} while (rs.next());
+						
+					}
+					
+				} catch (Exception e) {
+					System.out.println("myTreatmentList() 메서드 예외 발생 : " + e); //예외종류 + 예외메세지
+				} finally {
+					close(rs);
+					close(pstmt);
+				}
+		return myTreatmentList;
 	}
 	
 }

@@ -19,7 +19,7 @@ body {
 /* section 스타일 */
 #contentWrap {
 	flex: 1;
-	padding-top: 8.5rem; /* header 높이만큼 위 padding */
+	padding-top: 9.6rem; /* header 높이만큼 위 padding */
 	margin-bottom: 1rem;
 }
 

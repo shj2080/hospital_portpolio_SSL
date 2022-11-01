@@ -11,12 +11,12 @@ import action.Action;
 import action.JoinAction;
 import action.LoginAction;
 import action.LogoutAction;
+import action.MyTreatmentListAction;
 import action.TreatmentListAction;
 import action.TreatmentListSearchAction;
 import action.mypage.MemberInfoModifyAction;
 import action.mypage.MemberInfoModifyFormAction;
 import action.mypage.MypageMainAction;
-import action.reservation.ReservationSelectViewAction;
 import vo.ActionForward;
 
 /**
@@ -148,6 +148,17 @@ public class HospitalFrontController extends HttpServlet {
 				System.out.println("treatmentListSearch ActionForward 예외 : " + e);
 			}
 		}
+		//마이페이지 진료내역
+		else if (command.equals("/MyTratmentList.do")) {
+			action = new MyTreatmentListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("treatmentListSearch ActionForward 예외 : " + e);
+			}
+		}
+		//병원 소개
 		else if(command.equals("/introduce.do")) {
 			forward = new ActionForward("introduce.jsp", true);
 		}

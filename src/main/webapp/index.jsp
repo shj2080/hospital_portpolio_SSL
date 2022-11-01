@@ -33,7 +33,7 @@
 			<%-- 컨텐츠 표시 영역 시작 --%>
 			<section>
 				<div>
-					<img src="images/병원배경1.jpg" id = "frontimg">
+					<img src="images/율제병원.jpg" id = "frontimg">
 				</div>
 				<div>
 					<span class = "contentTitle">공지사항</span>

@@ -11,12 +11,9 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원 - 진료예약</title>
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
-<!-- <link rel="stylesheet" type="text/css" href="style/header.css">
+<link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
-<link rel="stylesheet" type="text/css" href="style/footer.css"> -->
-<link rel="stylesheet" type="text/css" href="style/header_TestCSS.css">
-<link rel="stylesheet" type="text/css" href="style/body_TestCSS.css">
-<link rel="stylesheet" type="text/css" href="style/footer_TestCSS.css">
+<link rel="stylesheet" type="text/css" href="style/footer.css">
 <link rel="stylesheet" type="text/css" href="style/reservation/reservationView.css">
 </head>
 <body>
