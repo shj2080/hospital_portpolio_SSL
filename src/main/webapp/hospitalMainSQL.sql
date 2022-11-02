@@ -8,7 +8,7 @@ create table membertbl(
    address2 Nvarchar(60),    /* 주소 */
    address3 Nvarchar(60),    /* 주소 */
    postcode int not null,
-   phone varchar(14)       /* 전화번호 */
+   phone varchar(13)       /* 전화번호 */
 );
 /* 관리자 식별할 컬럼? */
 
@@ -124,7 +124,7 @@ create table treatment(
     doctor_code int,        /* 의사코드 */
     id varchar(15) not null,     /* 아이디 */
     treatment_date datetime not null,    /* 진료 날짜 및 시간 */
-    phone varchar(14),   /* 전화번호 */
+    phone varchar(13),   /* 전화번호 */
 
     primary key(treatment_code),
     constraint uq_treament_key UNIQUE KEY(speciality_code, doctor_code, treatment_date),
@@ -237,7 +237,7 @@ LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code
 LEFT JOIN doctor d ON r.doctor_code = d.doctor_code
 WHERE speciality_name = '마취통증의학과' order by reservation_date asc;
 
-/******************************/
+/******************************************************************/
 
 /* 현재시간 이후의 진료리스트 전체 조회 (HospitalDAO - selectTreatmentList) */
 select treatment_date, name, doctor_name, speciality_name

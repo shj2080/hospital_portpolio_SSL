@@ -7,20 +7,21 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>율제대학교병원 - 내가 예약한 진료내역</title>
 <link rel="stylesheet" type="text/css" href = "style/mypage/myReservationList_style.css">
+<script type="text/javascript" src = "javascript/mypage/myReservationList_script.js"></script>
 </head>
 <body>
-	<form action = "" method = "post" name = "reservationListForm">
 	<table class = "table mt-5">
 		<tr>
-			<th scope="col">선택</th>
+			<th colspan="2" scope="col">선택</th>
 			<th scope="col">예약코드</th>
 			<th scope="col">진료날짜</th>
 			<th scope="col">의사명</th>
 			<th scope="col">진료과</th>
 		</tr>
 		<tr>
-			<td>
-				<input type="button" name = "cancelReservations" value = "취소" class = "btn btn-danger fs-3" />
+			<td colspan="2">
+				<input type="button" name = "modifyReservation" value = "수정" class = "btn btn-info fs-4" onclick = "modifyRes();"/>
+				<input type="button" name = "cancelReservation" value = "취소" class = "btn btn-danger fs-4" onclick = "cancelRes();"/>
 			</td>
 			<td>
 				Code
@@ -36,6 +37,5 @@
 			</td>
 		</tr>
 	</table>
-	</form>
 </body>
 </html>
