@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import svc.reservation.ReservationInsertService;
 import vo.ActionForward;
+import vo.ReservationBean;
 import vo.TreatmentBean;
 
 public class ReservationInsertAction implements Action {
@@ -34,36 +35,36 @@ public class ReservationInsertAction implements Action {
   			out.println("</script>");
   		//로그인 상태라면
 	  	}else {
-			String treatmentDay = request.getParameter("treatmentDay");
+			String reservationDay = request.getParameter("reservationDay");
 			//비교를 위해 시간과 분을 int타입으로 변환
-			int treatmentHour_int = Integer.parseInt(request.getParameter("treatmentHour"));
-			int treatmentMinute_int = Integer.parseInt(request.getParameter("treatmentMinute"));
+			int reservationHour_int = Integer.parseInt(request.getParameter("reservationHour"));
+			int reservationMinute_int = Integer.parseInt(request.getParameter("reservationMinute"));
 			int speciality_code = Integer.parseInt(request.getParameter("speciality_code"));
 			int doctor_code = Integer.parseInt(request.getParameter("doctor_code"));
 			
-			String treatmentHour = null;
-			String treatmentMinute = null;
+			String reservationHour = null;
+			String reservationMinute = null;
 			
-			if(treatmentHour_int < 10) {
-				treatmentHour = "0" + treatmentHour_int;
+			if(reservationHour_int < 10) {
+				reservationHour = "0" + reservationHour_int;
 			}else {
-				treatmentHour = String.valueOf(treatmentHour_int);
+				reservationHour = String.valueOf(reservationHour_int);
 			}
 			
-			if(treatmentMinute_int < 10) {
-				treatmentMinute = "0" + treatmentMinute_int;
+			if(reservationMinute_int < 10) {
+				reservationMinute = "0" + reservationMinute_int;
 			}else {
-				treatmentMinute = String.valueOf(treatmentMinute_int);
+				reservationMinute = String.valueOf(reservationMinute_int);
 			}
 			
-			String treatmentTime = treatmentHour + ":" + treatmentMinute;
+			String reservationTime = reservationHour + ":" + reservationMinute;
 			
-			String treatment_date = treatmentDay + " " + treatmentTime;
+			String reservation_date = reservationDay + " " + reservationTime;
 			
 			DateTimeFormatter defaultDayFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 			
 			System.out.println("[DEBUG]ReservationInsertAction parse 전 부분 실행됨.");
-			LocalDateTime treatmentDate_datetime = LocalDateTime.parse(treatment_date, defaultDayFormat);
+			LocalDateTime treatmentDate_datetime = LocalDateTime.parse(reservation_date, defaultDayFormat);
 			System.out.println("[DEBUG]ReservationInsertAction LocalDateTime parse 후 부분 실행됨.");
 			LocalDateTime nowDate = LocalDateTime.now();
 			
@@ -84,22 +85,23 @@ public class ReservationInsertAction implements Action {
 			
 			String phone = (String)session.getAttribute("userPhone");
 			
-			TreatmentBean treatmentBean = new TreatmentBean(speciality_code, doctor_code, viewId, treatment_date, phone);
+			ReservationBean reservationBean = new ReservationBean(speciality_code, doctor_code, viewId, reservation_date, phone);
+			//TreatmentBean treatmentBean = new TreatmentBean(speciality_code, doctor_code, viewId, reservation_date, phone);
 					
 			ReservationInsertService reservationInsertService = new ReservationInsertService();
-			int isReservation = reservationInsertService.insertReservationTreatment(treatmentBean);
+			int isReservation = reservationInsertService.insertReservationTreatment(reservationBean);
 			
 			//진료예약 insert 성공시
 			if(isReservation > 0) {
-				//request.setAttribute("treatmentDate", treatment_date);
-				//request.setAttribute("treatmentHour", treatmentHour);
-				//request.setAttribute("treatmentMinute", treatmentMinute);
+				//request.setAttribute("reservationDate", reservation_date);
+				//request.setAttribute("reservationHour", reservationHour);
+				//request.setAttribute("reservationMinute", reservationMinute);
 				
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				
 				out.println("<script>");
-				out.println("alert(' " + treatmentDay + " " + treatmentHour + "시 " + treatmentMinute + "분 진료예약 되었습니다.');");
+				out.println("alert(' " + reservationDay + " " + reservationHour + "시 " + reservationMinute + "분 진료예약 되었습니다.');");
 				out.println("location.href='treatmentList.do';");
 				out.println("</script>");
 				
@@ -109,7 +111,7 @@ public class ReservationInsertAction implements Action {
 				PrintWriter out = response.getWriter();
 				
 				out.println("<script>");
-				out.println("alert('진료예약을 실패했습니다.');");
+				out.println("alert('요청하신 진료날짜로 이미 예약된 회원이 있어 진료예약을 할 수 없습니다.');");
 				out.println("history.back();");
 				out.println("</script>");
 			}

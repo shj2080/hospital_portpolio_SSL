@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import vo.Doctor;
 import vo.Member;
 import vo.MyTreatmentList;
+import vo.ReservationBean;
 import vo.Speciality;
 import vo.TreatmentBean;
 import vo.TreatmentList;
@@ -360,21 +361,21 @@ public class HospitalDAO {
 		
 		return treatmentListSearch;
 	}
-	public int insertReservationTreatment(TreatmentBean treatmentBean) {
+	public int insertReservationTreatment(ReservationBean reservationBean) {
 		int insertResult = 0;
 		
-		String sql = "insert into treatment(speciality_code, doctor_code, id, treatment_date, phone)";
+		String sql = "insert into reservation(speciality_code, doctor_code, id, reservation_date, phone)";
 		sql += " values(?,?,?,?,?)";
 
 		try {
 			pstmt = con.prepareStatement(sql);
 			
 			//?안에 들어갈 값 세팅
-			pstmt.setInt(1, treatmentBean.getSpeciality_code());
-			pstmt.setInt(2, treatmentBean.getDoctor_code());
-			pstmt.setString(3, treatmentBean.getId());
-			pstmt.setString(4, treatmentBean.getTreatment_date());
-			pstmt.setString(5, treatmentBean.getPhone());
+			pstmt.setInt(1, reservationBean.getSpeciality_code());
+			pstmt.setInt(2, reservationBean.getDoctor_code());
+			pstmt.setString(3, reservationBean.getId());
+			pstmt.setString(4, reservationBean.getReservation_date());
+			pstmt.setString(5, reservationBean.getPhone());
 			
 			insertResult = pstmt.executeUpdate();
 

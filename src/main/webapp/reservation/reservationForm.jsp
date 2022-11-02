@@ -40,8 +40,8 @@
 	}
 	
 	function settingTreatmentDay(inputDay) {
-		const treatmentDay = document.getElementById("treatmentDay");
-		treatmentDay.value = inputDay;
+		const reservationDay = document.getElementById("reservationDay");
+		reservationDay.value = inputDay;
 	}
 </script>
 <style>
@@ -63,7 +63,7 @@
 					<tr>
 						<th>진료일자</th>
 						<td>
-							<input type = "text" id = "treatmentDay" name = "treatmentDay" size="10" readonly />
+							<input type = "text" id = "reservationDay" name = "reservationDay" size="10" readonly />
 							<button type = "button" class = "btn btn-primary fs-4" id="selectDayBtn" >날짜 선택</button>
 						</td>
 					</tr>
@@ -71,17 +71,17 @@
 					<tr>
 						<th>진료시간</th>
 						<td>
-							<select name = "treatmentHour">
+							<select name = "reservationHour">
 								<!-- 9 ~ 17 범위로 1씩 증가하는 정수 출력 -->
-								<c:forEach var="treatmentHour_loop" begin="9" end="17" step="1"> 
-									<option value="${treatmentHour_loop }">${treatmentHour_loop }</option>
+								<c:forEach var="reservationHour_loop" begin="9" end="17" step="1"> 
+									<option value="${reservationHour_loop }">${reservationHour_loop }</option>
 								</c:forEach>
 								
 							</select>시
-							<select name = "treatmentMinute">
+							<select name = "reservationMinute">
 								<!-- 0 ~ 50 범위로 10씩 증가하는 정수 출력 -->
-								<c:forEach var="treatmentMinute_loop" begin="0" end="50" step="10">
-								<option value="${treatmentMinute_loop }">${treatmentMinute_loop}</option>
+								<c:forEach var="reservationHour_loop" begin="0" end="50" step="10">
+								<option value="${reservationHour_loop }">${reservationHour_loop}</option>
 								</c:forEach>
 							</select>분
 						</td>

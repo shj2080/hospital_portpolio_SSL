@@ -8,11 +8,12 @@ import static db.JdbcUtil.rollback;
 import java.sql.Connection;
 
 import dao.HospitalDAO;
+import vo.ReservationBean;
 import vo.TreatmentBean;
 
 public class ReservationInsertService {
 
-	public int insertReservationTreatment(TreatmentBean treatmentBean) {
+	public int insertReservationTreatment(ReservationBean reservationBean) {
 		int result = 0;
 		
 		//1.커넥션 풀에서 Connection객체 얻어와
@@ -24,7 +25,7 @@ public class ReservationInsertService {
 		
 		/*----DAO의 해당 메서드를 호출하여 처리-------------------*/		
 		
-		result = hospitalDAO.insertReservationTreatment(treatmentBean);
+		result = hospitalDAO.insertReservationTreatment(reservationBean);
 		
 		/*-(update,delete,insert)성공하면 commit 실패하면 rollback
 		 * (select제외)----*/

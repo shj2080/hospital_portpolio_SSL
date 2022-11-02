@@ -1,6 +1,6 @@
 //예약 폼 유효성 검사
 function vaildCheck() {
-	if(!resForm.treatmentDay.value) {
+	if(!resForm.reservationDay.value) {
 		alert("진료일자를 선택해주세요.");
 		return false;
 	}
@@ -10,7 +10,7 @@ function vaildCheck() {
 		return false;
 	}
 	
-	if (!resForm.treatmentHour.value && !resForm.treatmentMinute.value) {
+	if (!resForm.reservationHour.value && !resForm.reservationMinute.value) {
 		alert("진료시간을 선택해주세요.");
 		return false;
 	}

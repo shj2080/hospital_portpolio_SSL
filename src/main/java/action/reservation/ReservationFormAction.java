@@ -55,6 +55,8 @@ public class ReservationFormAction implements Action {
 				out.println("alert('해당 진료과에 등록된 의사가 없습니다.');");
 				out.println("history.back();");
 				out.println("</script>");
+				
+				return forward; //아래 구문이 실행되는 것을 막기 위해 리턴
 	  		}
 	  		
 	  		//진료과 코드로 얻어온 진료과 이름을 request영역에 셋팅

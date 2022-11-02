@@ -16,13 +16,23 @@ aside ul {
     line-height: 5rem;
 }
 
-aside a {
-    color: white;
-    text-decoration: none;
-    padding: 2rem;
+aside li {
+	 margin: 0.5rem auto;
+	 transition: all 0.5s;
 }
 
-aside a:hover {
+aside a {
+    text-decoration: none;
+   	padding: 2rem;
+    color: white;
+}
+
+asdie a:hover {
+	color: white;
+}
+
+aside li:hover {
+	transition: all 0.5s;
     background-color: #00D8FF;
 }
 
@@ -80,6 +90,11 @@ section input[type="text"], input[type="password"] {
 
 footer {
     clear: both;
+}
+
+.boldFont {
+	font-size: 2rem;
+	font-weight: bold;
 }
 
 /* 최소 크기 857px */

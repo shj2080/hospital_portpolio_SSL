@@ -56,7 +56,7 @@
 		
 		opener.console.log(settingDate);
 		
-		opener.document.getElementById("treatmentDay").value = settingDate;
+		opener.document.getElementById("reservationDay").value = settingDate;
 		self.close();
 	}
 </script>
