@@ -7,27 +7,26 @@ import static db.JdbcUtil.rollback;
 
 import java.sql.Connection;
 
-import dao.HospitalDAO;
+import dao.ReservationDAO;
 import vo.ReservationBean;
-import vo.TreatmentBean;
 
-public class ReservationInsertService {
+public class ReservationModifyService {
 
-	public int insertReservationTreatment(ReservationBean reservationBean) {
+	public int modifyReservationTreatment(ReservationBean reservationBean) {
 		int result = 0;
 		
 		//1.커넥션 풀에서 Connection객체 얻어와
 		Connection con = getConnection();
 		
 		//2.싱글톤 패턴:DAO객체 생성
-		HospitalDAO hospitalDAO = HospitalDAO.getInstance();
+		ReservationDAO reservationDAO = ReservationDAO.getInstance();
 		
 		//3.DB작업에 사용될 Connection객체를 DAO의 멤버변수로 삽입하여 DB 연결
-		hospitalDAO.setConnection(con);
+		reservationDAO.setConnection(con);
 		
 		/*----DAO의 해당 메서드를 호출하여 처리-------------------*/		
 		
-		result = hospitalDAO.insertReservationTreatment(reservationBean);
+		result = reservationDAO.modifyReservationTreatment(reservationBean);
 		
 		/*-(update,delete,insert)성공하면 commit 실패하면 rollback
 		 * (select제외)----*/
@@ -39,7 +38,7 @@ public class ReservationInsertService {
 		
 		//4.해제
 		close(con);//Connection객체 해제
-				
+		
 		return result;
 	}
 

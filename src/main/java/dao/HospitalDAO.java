@@ -324,12 +324,12 @@ public class HospitalDAO {
 	//원하는 진료과 대기자 명단불러오기 메서드
 	public ArrayList<TreatmentList> treatmentListSearch(String speciality_name) {
 		ArrayList<TreatmentList> treatmentListSearch = null;
-		
-		String sql = "select treatment_date, name, doctor_name, speciality_name";
-		sql += " from treatment t LEFT JOIN membertbl m ON t.id = m.id";
-		sql += " LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code";
-		sql += " LEFT JOIN doctor d ON t.doctor_code = d.doctor_code";
-		sql += " WHERE treatment_date > now() AND speciality_name = ? order by treatment_date asc;";
+
+		String sql = "select reservation_date, name, doctor_name, speciality_name";
+		sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
+		sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
+		sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
+		sql += "  where r.reservation_date > now() AND spec.speciality_name = ? order by r.reservation_date asc";
 		
 		try {
 			
@@ -342,7 +342,7 @@ public class HospitalDAO {
 				
 				do {
 					TreatmentList treatmentList = new TreatmentList(
-										rs.getString("treatment_date"),
+										rs.getString("reservation_date"),
 										rs.getString("name"),
 										rs.getString("doctor_name"),
 										rs.getString("speciality_name")

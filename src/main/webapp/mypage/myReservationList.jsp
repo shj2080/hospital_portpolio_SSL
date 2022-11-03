@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%-- JSTL 사용을 위한 선언 부분 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,24 +22,45 @@
 			<th scope="col">의사명</th>
 			<th scope="col">진료과</th>
 		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="button" name = "modifyReservation" value = "수정" class = "btn btn-info fs-4" onclick = "modifyRes();"/>
-				<input type="button" name = "cancelReservation" value = "취소" class = "btn btn-danger fs-4" onclick = "cancelRes();"/>
-			</td>
-			<td>
-				Code
-			</td>
-			<td>
-				yyyy-mm-dd hh:mm
-			</td>
-			<td>
-				샘플데이터
-			</td>
-			<td>
-				샘플데이터2
-			</td>
-		</tr>
+		<c:forEach var = "resRow" items="${myReservationList }">
+			<tr>
+				<td colspan="2">
+					<input type="button" name = "modifyReservation" value = "수정" class = "btn btn-info fs-4" onclick = "modifyRes(${resRow.speciality_code},${resRow.reservation_code});"/>
+					<input type="button" name = "cancelReservation" value = "취소" class = "btn btn-danger fs-4" onclick = "cancelRes(${resRow.reservation_code});"/>
+				</td>
+				<td>
+					${resRow.reservation_code }
+				</td>
+				<td>
+					${resRow.reservation_date}
+				</td>
+				<td>
+					${resRow.doctor_name }
+				</td>
+				<td>
+					${resRow.speciality_name }
+				</td>
+			</tr>
+		</c:forEach>
+<%--		<tr>
+		<td colspan="2">
+			<input type="button" name = "modifyReservation" value = "수정" class = "btn btn-info fs-4" onclick = "modifyRes();"/>
+			<input type="button" name = "cancelReservation" value = "취소" class = "btn btn-danger fs-4" onclick = "cancelRes();"/>
+		</td>
+		<td>
+			Code
+		</td>
+		<td>
+			yyyy-mm-dd hh:mm
+		</td>
+		<td>
+			샘플데이터
+		</td>
+		<td>
+			샘플데이터2
+		</td>
+	</tr>--%>
+
 	</table>
 </body>
 </html>

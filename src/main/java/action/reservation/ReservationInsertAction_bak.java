@@ -16,7 +16,7 @@ import vo.ActionForward;
 import vo.ReservationBean;
 import vo.TreatmentBean;
 
-public class ReservationInsertAction implements Action {
+public class ReservationInsertAction_bak implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

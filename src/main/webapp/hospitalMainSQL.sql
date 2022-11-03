@@ -186,6 +186,9 @@ select * from information_schema.table_constraints where table_name in ('reserva
 /* 문제 발생 시 테이블 삭제 */
 drop table reservation;
 
+/* auto_increment 초기화 */
+alter table reservation auto_increment = 1;
+
 /* 예약진료 테이블 샘플데이터 */
 /*----------------------------------------------------------------------*/
 /** ?가 들어간 SQL문은 DAO 작업 시 PrepareStatement 사용됨 **/
@@ -272,3 +275,22 @@ delete reservation where reservation_code = ?;
 /**************************************************************************/
 /* 게시판 관련 SQL */
 
+/**********************************************************************/
+/* 예약된 본인 진료내역 출력 (ReservationDAO - myReservationList) */
+select reservation_code , reservation_date, doctor_name, speciality_name
+from reservation r LEFT JOIN membertbl m ON r.id = m.id
+LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code
+LEFT JOIN doctor d ON r.doctor_code = d.doctor_code
+WHERE r.id = ? order by reservation_date asc;
+
+/***예약 수정 SQL**/
+update reservation
+set speciality_code = ?, doctor_code = ?, reservation_date = ?, phone = ?
+where id = ? AND reservation_code = ?;
+
+
+update reservation
+set reservation_date = '2022-10-01 10:00:00'
+where id = 'test2' AND reservation_code = 2;
+
+select * from reservation;

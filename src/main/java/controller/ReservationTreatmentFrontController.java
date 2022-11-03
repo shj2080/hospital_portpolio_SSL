@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.mypage.MyReservationListAction;
 import action.reservation.ReservationFormAction;
-import action.reservation.ReservationInsertAction;
+import action.reservation.ReservationInsertModifyAction;
 import action.reservation.ReservationSelectViewAction;
 import action.reservation.SelectReservationDayAction;
 import vo.ActionForward;
@@ -93,13 +93,13 @@ public class ReservationTreatmentFrontController extends HttpServlet {
 			}
 		}
 		//진료 예약 처리 요청
-		else if(command.equals("/reservationInsert.treat")) {
-			action = new ReservationInsertAction();
+		else if(command.equals("/reservationInsertModify.treat")) {
+			action = new ReservationInsertModifyAction();
 			
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
-				System.out.println("ReservationInsertAction ActionForward 예외 : " + e);
+				System.out.println("ReservationInsertModifyAction ActionForward 예외 : " + e);
 			}
 		}
 		//마이페이지 - 내 예약진료 내역 보기(예약 수정, 삭제)

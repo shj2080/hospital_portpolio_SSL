@@ -56,14 +56,19 @@
 		<div id = "contentWrap">
 		<section>
 			<div>
+				<c:if test = "${param.modifyState == null }">
 				<h2>진료 예약</h2>
+				</c:if>
+				<c:if test = "${param.modifyState != null }">
+				<h2>진료 예약 수정</h2>
+				</c:if>
 			</div>
-			<form action = "reservationInsert.treat" name = "resForm" method="post">
+			<form action = "reservationInsertModify.treat" name = "resForm" method="post">
 				<table>
 					<tr>
 						<th>진료일자</th>
 						<td>
-							<input type = "text" id = "reservationDay" name = "reservationDay" size="10" readonly />
+							<input type = "text" id = "reservationDay" name = "reservationDay" value="${resBean.reservation_date}" size="10" readonly />
 							<button type = "button" class = "btn btn-primary fs-4" id="selectDayBtn" >날짜 선택</button>
 						</td>
 					</tr>
@@ -73,15 +78,25 @@
 						<td>
 							<select name = "reservationHour">
 								<!-- 9 ~ 17 범위로 1씩 증가하는 정수 출력 -->
-								<c:forEach var="reservationHour_loop" begin="9" end="17" step="1"> 
-									<option value="${reservationHour_loop }">${reservationHour_loop }</option>
+								<c:forEach var="reservationHour_loop" begin="9" end="17" step="1">
+									<c:if test="${resHour != null and resHour == reservationHour_loop }">
+										<option selected value="${reservationHour_loop }">${reservationHour_loop }</option>
+									</c:if>
+									<c:if test="${resHour == null or resHour != reservationHour_loop}">
+										<option value="${reservationHour_loop }">${reservationHour_loop }</option>
+									</c:if>
 								</c:forEach>
 								
 							</select>시
 							<select name = "reservationMinute">
 								<!-- 0 ~ 50 범위로 10씩 증가하는 정수 출력 -->
-								<c:forEach var="reservationHour_loop" begin="0" end="50" step="10">
-								<option value="${reservationHour_loop }">${reservationHour_loop}</option>
+								<c:forEach var="reservationMinute_loop" begin="0" end="50" step="10">
+									<c:if test="${resMinute != null and resMinute == reservationMinute_loop }">
+										<option selected value="${reservationMinute_loop }">${reservationMinute_loop}</option>
+									</c:if>
+									<c:if test="${resMinute == null or resMinute != reservationMinute_loop}">
+										<option value="${reservationMinute_loop }">${reservationMinute_loop}</option>
+									</c:if>
 								</c:forEach>
 							</select>분
 						</td>
@@ -106,7 +121,12 @@
 								<!-- 의사 테이블의 값을 가져와 설정 -->
 								<option disabled>==의사 선택==</option>
 								<c:forEach var = "doctorInfo" items = "${doctorList}">
-									<option value = "${doctorInfo.doctor_code}">${doctorInfo.doctor_name}</option>
+									<c:if test="${resBean != null and resBean.doctor_code == doctorInfo.doctor_code}">
+										<option selected value = "${doctorInfo.doctor_code}">${doctorInfo.doctor_name}</option>
+									</c:if>
+									<c:if test="${resBean == null or resBean.doctor_code != doctorInfo.doctor_code}">
+										<option value = "${doctorInfo.doctor_code}">${doctorInfo.doctor_name}</option>
+									</c:if>
 								</c:forEach>
 							</select>
 						</td>
@@ -115,7 +135,12 @@
 						<th colspan="2">
 							<button type="button" class="btn btn-outline-secondary fs-4" onclick="vaildCheck();">예약하기</button>
 							<button type="button" class="btn btn-outline-secondary fs-4" onclick="resetCheck();">다시작성</button>
-							<button type="button" id = "treatmentHover" class="btn btn-outline-secondary fs-4" onclick="javascript:history.back();">진료과 재선택</button>
+							
+							<c:if test = "${param.modifyState == null }">
+							<button type="button" id = "treatmentHover" class="btn btn-outline-secondary fs-4" onclick="javascript:location.replace('reservationSelectView.treat');">진료과 재선택</button>
+							</c:if>
+							<input type = "hidden" name = "modifyState_hidden" value = "${param.modifyState}" readonly/>
+							<input type = "hidden" name = "reservation_code_hidden" value = "${param.reservation_code}" readonly/>
 						</th>
 					</tr>
 				</table>

@@ -8,13 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import vo.Doctor;
-import vo.Member;
-import vo.MyTreatmentList;
 import vo.ReservationBean;
-import vo.Speciality;
-import vo.TreatmentBean;
-import vo.TreatmentList;
+import vo.mypage.MyReservationListBean;
 
 public class ReservationDAO {
 	private Connection con = null;
@@ -45,11 +40,12 @@ public class ReservationDAO {
 	}
 	
 	//예약된 본인의 진료내역 불러오는 DAO 메서드
-	public ArrayList<ReservationBean> myReservationList(String id) {
-		ArrayList<ReservationBean> reservationList = null;
-		ReservationBean reservation = null;
+	public ArrayList<MyReservationListBean> myReservationList(String userID) {
+		ArrayList<MyReservationListBean> reservationList = null;
+		MyReservationListBean myReservation = null;
 		
-		String sql = "select reservation_code , reservation_date, doctor_name, speciality_name";
+		String sql = "select reservation_code , reservation_date, doctor_name, speciality_name,";
+		sql += " r.doctor_code, r.speciality_code";
 		sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
 		sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
 		sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
@@ -57,27 +53,93 @@ public class ReservationDAO {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();
 					
 			if(rs.next()){
-				reservationList = new ArrayList<ReservationBean>();
+				reservationList = new ArrayList<MyReservationListBean>();
 						
 						do {
-							reservation = new ReservationBean(0, 0, 0, id, null, null);
+							myReservation = new MyReservationListBean(rs.getInt("reservation_code"),
+									rs.getString("reservation_date"),
+									rs.getString("doctor_name"),
+									rs.getString("speciality_name"),
+									rs.getInt("doctor_code"),
+									rs.getInt("speciality_code"));
 							//ArrayList에 추가
-							reservationList.add(reservation);
+							reservationList.add(myReservation);
 						} while (rs.next());
 						
 					}
 					
 				} catch (Exception e) {
-					System.out.println("myReservationList() 메서드 예외 발생 : " + e); //예외종류 + 예외메세지
+					System.out.println("[ReservationDAO] myReservationList() 메서드 예외 발생 : " + e); //예외종류 + 예외메세지
 				} finally {
-					close(rs);
 					close(pstmt);
+					close(rs);
 				}
 		return reservationList;
 	}
+	//진료예약 수정 DAO 메서드
+	public int modifyReservationTreatment(ReservationBean reservationBean) {
+		int updateResult = 0;
+		
+		String sql = "update reservation";
+		sql += " set speciality_code = ?, doctor_code = ?, reservation_date = ?, phone = ?";
+		sql += " where id = ? AND reservation_code = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			//?안에 들어갈 값 세팅
+			pstmt.setInt(1, reservationBean.getSpeciality_code());
+			pstmt.setInt(2, reservationBean.getDoctor_code());
+			pstmt.setString(3, reservationBean.getReservation_date());
+			pstmt.setString(4, reservationBean.getPhone());
+			pstmt.setString(5, reservationBean.getId());
+			pstmt.setInt(6, reservationBean.getReservation_code());
+			
+			updateResult = pstmt.executeUpdate();
+
+		} catch(Exception e) {
+			System.out.println("[ReservationDAO] modifyReservationTreatment 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+		}
+		
+		return updateResult;
+	}
+	//예약진료조회 메서드(한 예약항목만)
+	public ReservationBean selectReservation(int reservation_code) {
+		ReservationBean reservation = null;
+		
+		String sql = "select * from reservation where reservation_code = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			//? 들어갈 값 지정
+			pstmt.setInt(1, reservation_code);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				reservation = new ReservationBean(reservation_code,
+						rs.getInt("speciality_code"), rs.getInt("doctor_code"),
+						rs.getString("id"),
+						rs.getString("reservation_date"),
+						rs.getString("phone"));
+			}
+			
+		} catch(Exception e) {
+			System.out.println("[ReservationDAO] modifyReservationTreatment 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+			close(rs);
+		}
+		
+		return reservation;
+	}
 	
+	//특정 예약코드의 데이터 조회(폼 세팅용)
 }

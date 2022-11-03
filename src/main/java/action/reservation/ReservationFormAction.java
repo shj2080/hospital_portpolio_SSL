@@ -1,6 +1,8 @@
 package action.reservation;
 
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import action.Action;
 import svc.reservation.ReservationFormService;
 import vo.ActionForward;
 import vo.Doctor;
+import vo.ReservationBean;
 import vo.Speciality;
 
 public class ReservationFormAction implements Action {
@@ -20,8 +23,15 @@ public class ReservationFormAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		
+		//디버깅 코드 (debug)
+		System.out.println("[DEBUG] specialityCode : " + request.getParameter("specialityCode"));
+		System.out.println("[DEBUG] modifyState : " + request.getParameter("modifyState"));
+		
 		//진료과 코드 (진료과 이름과 의사관련 정보 얻기 위해 사용)
 		int speciality_code = Integer.parseInt(request.getParameter("specialityCode"));
+		
+		//예약 수정을 확인하기 위한 파라메터
+		String modifyState = request.getParameter("modifyState");
 		
 		//로그인 상태 체크를 위해 세션의 아이디를 가져옴
 		HttpSession session = request.getSession();
@@ -37,6 +47,8 @@ public class ReservationFormAction implements Action {
   			out.println("</script>");
   		//로그인 상태라면
 	  	}else {
+	  		//===폼 공통 부분===
+	  		
 	  		//진료예약폼 서비스 객체 생성
 	  		ReservationFormService reservationFormService = new ReservationFormService();
 	  		
@@ -64,6 +76,37 @@ public class ReservationFormAction implements Action {
 	  		
 	  		//의사 코드와 진료과 코드로 얻어온 의사 이름을 request영역에 셋팅
 	  		request.setAttribute("doctorList", doctorList);
+	  		
+	  		
+	  		//===폼 공통 부분===
+	  		
+	  		
+	  		//예약수정 파라미터가 없다면 기본값으로 초기화된 폼으로 진행하지만
+	  		//예약 진료를 수정하는 파라미터가 있다면 예약코드값으로 정보를 받아와 폼에 대입해야함
+	  		if(modifyState != null && !modifyState.equals("")) {
+	  			//예약 코드를 넘겨받음
+	  			int reservation_code = Integer.parseInt(request.getParameter("reservation_code"));
+	  			
+	  			ReservationBean reservation = reservationFormService.selectReservationInfo(reservation_code);
+				
+	  			DateTimeFormatter defaultHourFormat = DateTimeFormatter.ofPattern("H");
+	  			DateTimeFormatter defaultMinuteFormat = DateTimeFormatter.ofPattern("m");
+	  			DateTimeFormatter defaultDayFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	  			DateTimeFormatter defaultDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	  			
+	  			LocalDateTime reservationDate_datetime = LocalDateTime.parse(reservation.getReservation_date(), defaultDateFormat);
+	  			String reservationHour = reservationDate_datetime.format(defaultHourFormat);
+	  			String reservationMinute = reservationDate_datetime.format(defaultMinuteFormat);
+	  			reservation.setReservation_date(reservationDate_datetime.format(defaultDayFormat));
+	  			
+	  			System.out.println("[DEBUG]reservationHour : " + reservationHour);
+	  			System.out.println("[DEBUG]reservationMinute : " + reservationMinute);
+	  			
+	  			//불러온 예약 정보를 폼에 대입
+	  			request.setAttribute("resBean", reservation);
+	  			request.setAttribute("resHour", reservationHour);
+	  			request.setAttribute("resMinute", reservationMinute);
+	  		}
 	  		
 	  		forward = new ActionForward("reservation/reservationForm.jsp", false);
 	  	}
