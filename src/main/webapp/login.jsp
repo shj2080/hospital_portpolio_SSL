@@ -84,7 +84,8 @@ function loginVaildCheck() {
 						<input type="password" name = "password" value="" maxlength="50" id = "textfiled"  />
 					</div>
 					<div class="loginButton">
-						<input type="checkbox" name="remember" />아이디 저장<br>
+
+						<label><input type="checkbox" name="remember" />아이디 저장<br></label>
 						<button type="button" onclick="loginVaildCheck()" id = "loginbut">로그인</button>
 						<button type = "button" onclick="location.href='join.jsp'" id = "joinbut">회원가입</button>
 					</div>
