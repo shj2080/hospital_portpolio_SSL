@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.mypage.MyReservationListAction;
+import action.reservation.MyReservationCancelAction;
 import action.reservation.ReservationFormAction;
 import action.reservation.ReservationInsertModifyAction;
 import action.reservation.ReservationSelectViewAction;
@@ -102,7 +103,7 @@ public class ReservationTreatmentFrontController extends HttpServlet {
 				System.out.println("ReservationInsertModifyAction ActionForward 예외 : " + e);
 			}
 		}
-		//마이페이지 - 내 예약진료 내역 보기(예약 수정, 삭제)
+		//마이페이지 - 내 예약진료 내역 보기(예약 수정, 취소)
 		else if(command.equals("/myReservationList.treat")) {
 			action = new MyReservationListAction();
 			
@@ -110,6 +111,16 @@ public class ReservationTreatmentFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
 				System.out.println("myReservationListAction ActionForward 예외 : " + e);
+			}
+		}
+		//마이페이지 - 내 예약진료 취소(예약 수정, 취소)
+		else if(command.equals("/myReservationCancel.treat")) {
+			action = new MyReservationCancelAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("MyReservationCancelAction ActionForward 예외 : " + e);
 			}
 		}
 		

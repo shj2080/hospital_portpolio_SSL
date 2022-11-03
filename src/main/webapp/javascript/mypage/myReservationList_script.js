@@ -47,6 +47,28 @@ function modifyRes(specCode,resCode) {
 //취소 버튼 함수
 function cancelRes(resCode) {
 	if(confirm("해당 진료예약을 취소하시겠습니까?")) {
-		location.href = "myReservationCancel.treat?reservation_code=" + resCode;
+		//form 객체 만들기
+		let deleteDataForm = document.createElement("form");
+	
+		//form 내장값 설정
+		deleteDataForm.name = "deleteDataForm";
+		deleteDataForm.method = "post";
+		deleteDataForm.action = "myReservationCancel.treat";
+		
+		//전송에 필요한 hidden input 태그 생성
+		let reservation_code_input = document.createElement("input");
+		
+		//hidden input 태그 설정
+		reservation_code_input.setAttribute("type", "hidden");
+		reservation_code_input.setAttribute("name", "reservation_code");
+		reservation_code_input.setAttribute("value", resCode);
+		deleteDataForm.appendChild(reservation_code_input);
+		
+		//폼 요소를 body에 추가함
+		document.body.appendChild(deleteDataForm);
+		
+		//추가된 form을 submit
+		deleteDataForm.submit();
+		
 	}
 }

@@ -140,6 +140,28 @@ public class ReservationDAO {
 		
 		return reservation;
 	}
+	public int deleteReservationTreatment(int reservation_code, String userID) {
+		int deleteResult = 0;
+		
+		String sql = "delete from reservation where reservation_code = ? AND id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			//?안에 들어갈 값 세팅
+			pstmt.setInt(1, reservation_code);
+			pstmt.setString(2, userID);
+			
+			deleteResult = pstmt.executeUpdate();
+
+		} catch(Exception e) {
+			System.out.println("[ReservationDAO] deleteReservationTreatment 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+		}
+		
+		return deleteResult;
+	}
 	
 	//특정 예약코드의 데이터 조회(폼 세팅용)
 }
