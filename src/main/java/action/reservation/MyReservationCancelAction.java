@@ -38,9 +38,15 @@ public class MyReservationCancelAction implements Action {
 	  		int cancelResult = myReservationCancelService.deleteReservation(reservation_code, viewId);
 	  		
 	  		if(cancelResult > 0) {
-	  			
+	  			forward = new ActionForward("myReservationList.treat", true);
 	  		}else {
-	  			
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+
+				out.println("<script>");
+				out.println("alert('진료예약 취소를 실패했습니다. 잠시 후 다시 시도해 주세요.');");
+				out.println("history.back();");
+				out.println("</script>");
 	  		}
 	  	}
 		
