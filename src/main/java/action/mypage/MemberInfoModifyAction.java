@@ -32,9 +32,17 @@ public class MemberInfoModifyAction implements Action {
 		
 		//앞자리 주민번호와 뒷자리 주민번호 조합
 		String id_num = front_id_num + "-" + back_id_num;
-
 		
-		Member member = new Member(name, id_num, id, password, address1, address2, address3, postcode, phone);
+		Member member = null;
+		
+		
+		System.out.println("[DEBUG]넘겨받는password:"+password);
+		if(password == null || password.equals("")) {
+			System.out.println("[DEBUG]MemberInfoModifyAction:비밀번호 변경 안 함.");
+			member = new Member(name, id_num, id, address1, address2, address3, postcode, phone);
+		}else {
+			member = new Member(name, id_num, id, password, address1, address2, address3, postcode, phone);
+		}
 		
 		MemberInfoModifyService memberInfoModifyService = new MemberInfoModifyService();
 

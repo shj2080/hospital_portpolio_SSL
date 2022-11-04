@@ -181,16 +181,15 @@ public class HospitalDAO {
     public int updateMemberInfo(Member member) {
 		int result = 0;
 
-		String sql = "update membertbl set name = ?,";
-		sql += " address1 = ?, address2 = ?, address3 = ?, postcode = ?, phone = ?";
-
-		//쿼리문 분기(비밀번호 입력한 경우)
-		if(member.getPassword() != null && !member.getPassword().equals("")) {
-			sql += ",password = ?";
-		}
+		String sql = "";
 		
-		//수정하려는 회원의 id
-		sql += " where id = ?";
+		if (member.getPassword() == null || member.getPassword().equals("")) {
+			sql = "update membertbl set name = ?,";
+			sql += " address1 = ?, address2 = ?, address3 = ?, postcode = ?, phone = ? where id = ?";
+		}else {
+			sql = "update membertbl set name = ?,";
+			sql += " address1 = ?, address2 = ?, address3 = ?, postcode = ?, phone = ?, password = ? where id = ?";
+		}
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -201,12 +200,12 @@ public class HospitalDAO {
 			pstmt.setString(5, member.getPostcode());
 			pstmt.setString(6, member.getPhone());
 
-			//비밀번호 입력 안한 경우 수정하지 않음
-			if(member.getPassword() != null && !member.getPassword().equals("")) {
+			//비밀번호 입력 안한 경우 비밀번호 수정하지 않음
+			if(member.getPassword() == null || member.getPassword().equals("")) {
+				pstmt.setString(7, member.getId());
+			} else {
 				pstmt.setString(7, member.getPassword());
 				pstmt.setString(8, member.getId());
-			} else {
-				pstmt.setString(7, member.getId());
 			}
 
 			result = pstmt.executeUpdate();

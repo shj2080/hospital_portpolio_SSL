@@ -48,7 +48,7 @@ modify address1 Nvarchar(60);
 select * from information_schema.table_constraints where table_name in ('membertbl');
 
 /* 테스트데이터 업데이트 */
-update membertbl set password = 'eb508df11dd58cf4bb4e8ed2c5629c2d6fcb6455913c1e0e3ce2cd11a9cd7e20' where id = 'test3';
+update membertbl set password = 'eb508df11dd58cf4bb4e8ed2c5629c2d6fcb6455913c1e0e3ce2cd11a9cd7e20' where id = 'test';
 commit;
 
 /* 테이블 문제 발생 시 삭제 */
