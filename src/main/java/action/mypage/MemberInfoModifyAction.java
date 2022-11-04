@@ -2,6 +2,7 @@ package action.mypage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import svc.MemberInfoModifyService;
@@ -35,10 +36,8 @@ public class MemberInfoModifyAction implements Action {
 		
 		Member member = null;
 		
-		
-		System.out.println("[DEBUG]넘겨받는password:"+password);
+		//변경할 비밀번호를 입력안했을 경우(비밀번호 변경을 원치 않을 경우)
 		if(password == null || password.equals("")) {
-			System.out.println("[DEBUG]MemberInfoModifyAction:비밀번호 변경 안 함.");
 			member = new Member(name, id_num, id, address1, address2, address3, postcode, phone);
 		}else {
 			member = new Member(name, id_num, id, password, address1, address2, address3, postcode, phone);
@@ -56,6 +55,14 @@ public class MemberInfoModifyAction implements Action {
 			out.println("alert('회원 수정을 완료했습니다.');");
 			out.println("location.replace('mypage.do');");
 			out.println("</script>");
+			
+			HttpSession session = request.getSession();
+			
+			//수정된 회원정보로 세션값 갱신
+			session.setAttribute("userName",name);
+			session.setAttribute("userPhone",phone);
+			
+			
 			//자바스크립트로 메세지창 띄우려면 아래 코드 주석
 			//forward = new ActionForward("index.jsp", true);
 		}else {
