@@ -10,8 +10,7 @@
 <body>
 	<ul>
 		<li><a href="memberInfoModifyForm.do">회원 정보 수정</a></li>
-		<li><a href="myReservationList.treat">예약한 진료</a></li>
-		<li><a href="myTratmentListCheck.do">진료내역</a></li>
+		<li><a href="reservationCheckList.ad">예약된 진료내역</a></li>
 	</ul>
 </body>
 </html>

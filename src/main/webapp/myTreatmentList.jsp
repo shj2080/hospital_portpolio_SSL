@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
+<link rel="stylesheet" type="text/css" href="style/myTreatmentList.css">
 </head>
 
 <body>
@@ -21,26 +22,39 @@
 		<div id = "contentWrap">
 		<!-- 컨텐츠 표시 영역 시작 -->
 		<section>
+		<div id = "myReservationBox" align="center">
 			<c:if test="${myTreatmentList != null }">
-			<table>
-				<tr id = "treatment">
-					<c:forEach var= "mytreatment" items="${myTreatmentList }" varStatus="status">
-						<th id = "treatment_date">
-							${mytreatment.treatment_date}
+			<table id = "myReservationList">
+				<tr>
+						<th id = "myReservationData">
+							예약일
 						</th>
 						
-						<th id = "speciality_name">
-							${mytreatment.speciality_name}
+						<th id = "mySpecialityName">
+							진료과
 						</th>
 						
-						<th id = "doctor_name">
-							${mytreatment.doctor_name}
+						<th id = "mySpecialityDoctorName">
+							의사명
 						</th>
-					</c:forEach>
 				</tr>
-					
+				<c:forEach var= "mytreatment" items="${myTreatmentList }" varStatus="status">
+				<tr>
+					<td id = "myReservationData">
+						${mytreatment.reservation_date}
+					</td>
+					<td id = "mySpecialityName">
+						${mytreatment.doctor_name}
+					</td>
+					<td id = "mySpecialityDoctorName">
+						${mytreatment.speciality_name}
+					</td>
+				</tr>
+					</c:forEach>
 				</table>
-			</c:if>
+				</c:if>
+		</div>
+			
 				<!-- --진료대기리스트가 비어 있는 경우--- -->
 				<c:if test="${myTreatmentList == null }">
 				<table>

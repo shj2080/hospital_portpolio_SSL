@@ -45,7 +45,8 @@ public class ReservationInsertModifyAction implements Action {
 			int speciality_code = Integer.parseInt(request.getParameter("speciality_code"));
 			//의사
 			int doctor_code = Integer.parseInt(request.getParameter("doctor_code"));
-			//수정상태 확인
+			
+			//수정상태 확인하는 파라미터(마이페이지 에서 수정요청이 들어온 경우)
 			String modify_status = request.getParameter("modifyState_hidden");
 			
 			String reservationHour = null;
@@ -77,6 +78,7 @@ public class ReservationInsertModifyAction implements Action {
 			System.out.println("[DEBUG]LocalDateTime treatmentDate값 : " + treatmentDate_datetime);
 			System.out.println("[DEBUG]LocalDateTime nowDate값 : " + nowDate);
 			
+			//날짜 비교를 위해
 			if(treatmentDate_datetime.isBefore(nowDate)) {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();

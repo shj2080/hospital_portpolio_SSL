@@ -25,6 +25,10 @@ body {
 
 #frontimg{
 	width: 100%;
-	height: 50rem;
-	
+	height: 50rem;	
+}
+
+#noticBox{
+    width: 300px;
+    height: 200px;
 }

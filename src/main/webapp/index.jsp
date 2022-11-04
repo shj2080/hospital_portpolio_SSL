@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- 반응형 웹을 위한 기본 태그 부분 -->
-	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 반응형 웹을 위한 기본 태그 부분 -->
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원</title>
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
@@ -35,7 +35,7 @@
 				<div>
 					<img src="images/율제병원.jpg" id = "frontimg">
 				</div>
-				<div>
+				<div id = "noticBox">
 					<span class = "contentTitle">공지사항</span>
 					<ul>
 						<li>1111</li>

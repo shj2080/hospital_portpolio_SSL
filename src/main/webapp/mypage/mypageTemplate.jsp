@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
+<%-- JSTL 사용을 위한 선언 부분 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +34,12 @@
 	 <div id = "contentWrap">
    	 <%-- 좌측 메뉴 영역 시작 --%>
         <aside>
-              <jsp:include page="mypageSideBar.jsp" />
+        	  <c:if test="${userType eq 'N'}">
+              	<jsp:include page="mypageSideBar.jsp" />
+              </c:if>
+              <c:if test="${userType eq 'M'}">
+              	<jsp:include page="admin/mypageSideBar.jsp" />
+              </c:if>
         </aside>
      <%-- 좌측 메뉴 영역 끝 --%>
 

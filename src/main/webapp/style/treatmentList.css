@@ -22,7 +22,23 @@ li{
 
 
 #treatment_date, #name, #speciality_name2, #doctor_name{
-	border: 1px solid black;
+	border: 1px solid white;
 	padding: 10px;
 	margin: 25px;
+}
+
+#treatment_date{
+	    background-color: lightyellow;
+}
+
+#speciality_name2{
+	background-color: lightyellow;
+}
+
+#name{
+	background-color: white;
+}
+
+#doctor_name{
+	background-color: white;
 }

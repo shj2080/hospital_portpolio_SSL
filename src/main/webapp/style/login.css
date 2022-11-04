@@ -6,11 +6,11 @@
 	background-color: lightblue;
 	padding: 20px;
 	margin: 0 auto;
-	margin-top: 200px;
+	margin-top: 150px;
 	border-radius: 5px;
 }
 
-#textfiled{
+.textfiled{
 	border: none;
 	padding: 10px;
 	margin-bottom: 10px;

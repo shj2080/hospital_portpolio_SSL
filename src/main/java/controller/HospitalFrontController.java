@@ -15,8 +15,12 @@ import action.LogoutAction;
 import action.MyTreatmentListAction;
 import action.TreatmentListAction;
 import action.TreatmentListSearchAction;
+import action.board.PostShowAcrion;
+import action.board.UserBoardWriteAction;
+import action.board.UserboardShowAcrion;
 import action.mypage.MemberInfoModifyAction;
 import action.mypage.MemberInfoModifyFormAction;
+import action.mypage.MyTreatmentListCheckAction;
 import action.mypage.MypageMainAction;
 import vo.ActionForward;
 
@@ -153,7 +157,7 @@ public class HospitalFrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
-				System.out.println("treatmentListSearch ActionForward 예외 : " + e);
+				System.out.println("TreatmentListSearchAction ActionForward 예외 : " + e);
 			}
 		}
 		//마이페이지 진료내역
@@ -163,14 +167,56 @@ public class HospitalFrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
-				System.out.println("treatmentListSearch ActionForward 예외 : " + e);
+				System.out.println("MyTreatmentListAction ActionForward 예외 : " + e);
 			}
 		}
 		//병원 소개
 		else if(command.equals("/introduce.do")) {
 			forward = new ActionForward("introduce.jsp", true);
 		}
+		//마이페이지 진료내역 id체크 접근
+		else if(command.equals("/myTratmentListCheck.do")) {
+			action = new MyTreatmentListCheckAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("MyTreatmentListCheckAction ActionForward 예외 : " + e);
+			}
+		}
 		//---------------------------------------------------------------
+		else if(command.equals("/userBoard.do")) {//'게시판 보기' 요청이면
+			action = new UserboardShowAcrion();//게시판 글 목록 불러오는 Action
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}					
+		}
+		
+		else if(command.equals("/userBoardWrite.do")) {//'글쓰기 폼 보기' 요청이면
+			request.setAttribute("showPage", "boardWrite.jsp");
+			forward = new ActionForward("boardWrite.jsp", false);
+			//forward = new ActionForward("userBoard.jsp", false);	//반드시 디스패치 방식으로 포워딩					
+		}
+		
+		else if(command.equals("/userBoardWriteAction.do")) {//'글쓰기 처리' 요청이면
+			action  = new UserBoardWriteAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}
+		}
+
+		else if(command.equals("/showPost.do")) {//'게시글 보기' 요청이면
+			action = new PostShowAcrion();//게시판 글 목록 불러오는 Action
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}	
+		}
 		
 		/****************************************************************************
 		 * 포워딩

@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#myReservationBox{
+	width: 700px;
+	border: 1px black;
+	background-color: lightblue;
+	padding: 20px;
+	margin: 0 auto;
+	margin-top: 108px;
+	border-radius: 5px;
+	height: auto;
+}
+
+#myReservationList{
+	width: 500px;
+}
+
+#myReservationData, #mySpecialityName, #mySpecialityDoctorName{
+	border: 1px solid white;
+	text-align: center;
+}
+
+#myReservationData{
+	background-color: lightyellow;
+}
+
+#mySpecialityName{
+	background-color: white;
+}
+
+#mySpecialityDoctorName{
+	background-color: lightyellow;
+}

@@ -42,6 +42,7 @@ window.onload = function() {
 		loginForm.id.value = saveid;
 		loginForm.remember.checked = true;
 	}
+
 };
 
 /* 로그인 유효성 검사 */
@@ -75,13 +76,13 @@ function loginVaildCheck() {
 						아이디
 					</div>
 					<div class="loginItem">
-						<input type="text" name = "id" value="" maxlength="50" id = "textfiled" />
+						<input type="text" name = "id" value="" maxlength="50" id = "idText" class = "textfiled" />
 					</div>
 					<div class="loginItem">
 						비밀번호
 					</div>
 					<div class="loginItem">
-						<input type="password" name = "password" value="" maxlength="50" id = "textfiled"  />
+						<input type="password" name = "password" value="" maxlength="50" id = "pwText" class = "textfiled" />
 					</div>
 					<div class="loginButton">
 

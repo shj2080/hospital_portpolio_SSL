@@ -119,7 +119,7 @@
     }
     
 </script>
-
+<script type="text/javascript" src = "javascript/phoneNumberFormat.js"></script>
 <body>
 	<jsp:include page="header.jsp" />
 	<!-- 본문 시작구간 -->
@@ -132,7 +132,7 @@
 						성함<div id="box2" > <input type="text" name="name" size = "20" maxlength="20" id = "textfiled"></div>
 				</div>
 				<div id="box1" >
-						주민등록번호<div id="box2" > <input type="text" name="front_id_num" size = "9" maxlength="6" id = "front_id_num"/> - <input type="password" name="back_id_num" size = "9" maxlength="7" id = "back_id_num"//></div>
+						주민등록번호<div id="box2" > <input type="text" name="front_id_num" size = "9" maxlength="6" id = "front_id_num"/> - <input type="password" name="back_id_num" size = "9" maxlength="7" id = "back_id_num"/></div>
 				</div>
 				<div id="box1" >
 					아이디<div id="box2" ><input type="text" name="id" size=20 required="required" readonly="readonly" placeholder="id중복 확인을 눌러주세요!" id = "id" />
@@ -153,7 +153,7 @@
 						</div>
 				</div>
 				<div id="box1">
-					전화전호<div id="box2"><input type="text" name="phone" size = "20" maxlength="14" id = "textfiled"></div>
+					전화전호<div id="box2"><input type="text" name="phone" size = "20" maxlength="13" id = "textfiled" oninput="autoHyphen(this)" /></div>
 				</div>
 				<div id="box1" align="center">
 					<input type = "submit" value="회원가입" onclick="check(); return false" id="button">

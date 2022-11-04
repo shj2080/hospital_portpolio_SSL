@@ -8,9 +8,21 @@ create table membertbl(
    address2 Nvarchar(60),    /* 주소 */
    address3 Nvarchar(60),    /* 주소 */
    postcode int not null,
-   phone varchar(13)       /* 전화번호 */
+   phone varchar(13),       /* 전화번호 */
+   user_type char(1) not null default 'N' CHECK (user_type IN('N','M'))
 );
 /* 관리자 식별할 컬럼? */
+일반회원 : N
+관리자 : M
+
+/* 관리자 설정 */
+update membertbl
+set user_type = 'M'
+where id = 'admin'; /* 기본키 */
+
+/* 유저 타입 컬럼 추가  */
+alter table membertbl
+add user_type char(1) not null default 'N' CHECK (user_type IN('N','M'));
 
 /* 회원가입 비밀번호 허용 자리수 (20?) */
 /* 회원정보 테스트 데이터 */
@@ -36,7 +48,7 @@ modify address1 Nvarchar(60);
 select * from information_schema.table_constraints where table_name in ('membertbl');
 
 /* 테스트데이터 업데이트 */
-update membertbl set password = 'eb508df11dd58cf4bb4e8ed2c5629c2d6fcb6455913c1e0e3ce2cd11a9cd7e20' where id = 'test001';
+update membertbl set password = 'eb508df11dd58cf4bb4e8ed2c5629c2d6fcb6455913c1e0e3ce2cd11a9cd7e20' where id = 'test3';
 commit;
 
 /* 테이블 문제 발생 시 삭제 */
@@ -80,25 +92,25 @@ create table doctor(
 
 /* 테스트를 위한 의료진 테이블 정보 입력 */
 insert into doctor(doctor_name,speciality_code)
-values('김이박',1);
+values('조용원',1);
 insert into doctor(doctor_name,speciality_code)
-values('박이김',1);
+values('여환영',1);
 insert into doctor(doctor_name,speciality_code)
-values('이김박',2);
+values('이대현',2);
 insert into doctor(doctor_name,speciality_code)
-values('박김이',2);
+values('권은재',2);
 insert into doctor(doctor_name,speciality_code)
-values('이박김',3);
+values('박혜나',3);
 insert into doctor(doctor_name,speciality_code)
-values('최전오',3);
+values('김은경',3);
 insert into doctor(doctor_name,speciality_code)
-values('오전최',4);
+values('전영훈',4);
 insert into doctor(doctor_name,speciality_code)
-values('전최오',4);
+values('황보창민',4);
 insert into doctor(doctor_name,speciality_code)
-values('전오최',5);
+values('송호진',5);
 insert into doctor(doctor_name,speciality_code)
-values('오최전',5);
+values('장혜원',5);
 
 /*테이블 문제 발생 시 삭제*/
 drop table doctor;
@@ -189,7 +201,27 @@ drop table reservation;
 /* auto_increment 초기화 */
 alter table reservation auto_increment = 1;
 
-/* 예약진료 테이블 샘플데이터 */
+/*게시판 테이블 작성*/
+create table user_board(
+	post_no INT NOT NULL,
+	id varchar(20) NOT NULL,
+	post_date datetime NOT NULL,
+	post_pwd NVARCHAR(12),
+	post_subject NVARCHAR(50) NOT NULL,
+	post_text TEXT,
+	post_file VARCHAR(300),
+ 	
+	PRIMARY KEY (post_no),
+ 	foreign key(id) REFERENCES membertbl(id)
+
+);
+
+select * from user_board;
+
+/* 게시판 컬럼형식 datetime 변환 */
+alter table user_board
+modify post_date datetime NOT NULL;
+
 /*----------------------------------------------------------------------*/
 /** ?가 들어간 SQL문은 DAO 작업 시 PrepareStatement 사용됨 **/
 
@@ -274,8 +306,16 @@ values(?,?,?,?,?);
 delete reservation where reservation_code = ?;
 /**************************************************************************/
 /* 게시판 관련 SQL */
-
+select post_no, post_subject ,id, post_date from membertbl natural join user_board order by post_no desc;
+									
+select post_no, post_subject, id, post_date, post_text from user_board where post_no = 1;
 /**********************************************************************/
+/* 예약시간이 현재시간보다 높은 전체예약자 명단불러오기 */		  select reservation_date, name, doctor_name, speciality_name
+from reservation r LEFT JOIN membertbl m ON r.id = m.id
+LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code
+LEFT JOIN doctor d ON r.doctor_code = d.doctor_code
+where r.reservation_date > now() order by r.reservation_date asc;
+
 /* 예약된 본인 진료내역 출력 (ReservationDAO - myReservationList) */
 select reservation_code , reservation_date, doctor_name, speciality_name
 from reservation r LEFT JOIN membertbl m ON r.id = m.id
@@ -288,9 +328,10 @@ update reservation
 set speciality_code = ?, doctor_code = ?, reservation_date = ?, phone = ?
 where id = ? AND reservation_code = ?;
 
-
+/* 예약 수정 */
 update reservation
 set reservation_date = '2022-10-01 10:00:00'
 where id = 'test2' AND reservation_code = 2;
 
+/* 예약 테이블 */
 select * from reservation;

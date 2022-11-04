@@ -9,9 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title>header</title>
-
-<!-- <link rel="stylesheet" type="text/css" href="style/header.css"> -->
-
 </head>
 <body>
 	<header>
@@ -21,14 +18,14 @@
 			<a href = "treatmentList.do"><span class = "menu">진료대기자명단</span></a>
 			<a href = "introduce.do"><span class = "menu">병원소개</span></a>
 			<a href = "#"><span class = "menu">의료진소개</span></a>
-			<a href = "errorPage/404error.html"><span class = "menu">게시판</span></a>
 			<!-- <a href = "#"><span class = "menu">메뉴6</span></a> -->
 			<c:if test="${userID  == null}">
-			<a href = "login.do" ><span class = "menu">로그인/회원가입</span></a>
+				<a href = "login.do" ><span class = "menu">로그인/회원가입</span></a>
 			</c:if>
 			<c:if test="${userID != null}">
-			<a href = "logout.do"><span class = "menu">로그아웃</span></a>
-			<a href = "mypage.do"><span class = "menu">마이페이지</span></a>
+				<a href = "userBoard.do"><span class = "menu">게시판</span></a>
+				<a href = "logout.do"><span class = "menu">로그아웃</span></a>
+				<a href = "mypage.do"><span class = "menu">마이페이지</span></a>
 			</c:if>
 		</nav>
 	</header>

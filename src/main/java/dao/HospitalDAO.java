@@ -74,7 +74,7 @@ public class HospitalDAO {
 		return checkLoginResult;
 	}
 	
-	//해당 id의 id와 이름을 가져오는 메서드
+	//해당 id의 특정 정보들을 가져오는 메서드
 	public Member selectUserInfo(String id) {
 		Member userInfo = null;
 		
@@ -93,6 +93,7 @@ public class HospitalDAO {
 				userInfo.setId(rs.getString("id"));
 				userInfo.setName(rs.getString("name"));
 				userInfo.setPhone(rs.getString("phone"));
+				userInfo.setUserType(rs.getString("user_type"));
 			} 
 			
 		} catch(Exception e) {
@@ -183,8 +184,8 @@ public class HospitalDAO {
 		String sql = "update membertbl set name = ?,";
 		sql += " address1 = ?, address2 = ?, address3 = ?, postcode = ?, phone = ?";
 
-		//쿼리문 분기(비밀번호 아무것도 입력안한 경우)
-		if(member.getPassword() != null) {
+		//쿼리문 분기(비밀번호 입력한 경우)
+		if(member.getPassword() != null && !member.getPassword().equals("")) {
 			sql += ",password = ?";
 		}
 		
@@ -201,7 +202,7 @@ public class HospitalDAO {
 			pstmt.setString(6, member.getPhone());
 
 			//비밀번호 입력 안한 경우 수정하지 않음
-			if(member.getPassword() != null) {
+			if(member.getPassword() != null && !member.getPassword().equals("")) {
 				pstmt.setString(7, member.getPassword());
 				pstmt.setString(8, member.getId());
 			} else {
@@ -287,11 +288,11 @@ public class HospitalDAO {
 				  " doctor natural join speciality join treatment USING(speciality_code) join membertbl USING(id)"+
 						 "where treatment_date > now() order by treatment_date asc";
 		 */
-		String sql = "select treatment_date, name, doctor_name, speciality_name";
-		sql += " from treatment t LEFT JOIN membertbl m ON t.id = m.id";
-		sql += " LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code";
-		sql += " LEFT JOIN doctor d ON t.doctor_code = d.doctor_code";
-		sql += " WHERE treatment_date > now() order by treatment_date asc";
+		String sql = "select reservation_date, name, doctor_name, speciality_name";
+		sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
+		sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
+		sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
+		sql += " WHERE r.reservation_date > now() order by r.reservation_date asc";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -302,7 +303,7 @@ public class HospitalDAO {
 						
 						do {
 							TreatmentList treatment = new TreatmentList(
-															rs.getString("treatment_date"),
+															rs.getString("reservation_date"),
 															rs.getString("name"),
 															rs.getString("doctor_name"),
 															rs.getString("speciality_name")
@@ -428,11 +429,11 @@ public class HospitalDAO {
 				  " doctor natural join speciality join treatment USING(speciality_code) join membertbl USING(id)"+
 						 "where treatment_date > now() order by treatment_date asc";
 		 */
-		String sql = "select treatment_date, doctor_name, speciality_name";
-			   sql += " from treatment t LEFT JOIN membertbl m ON t.id = m.id";
-			   sql += " LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code";
-			   sql += " LEFT JOIN doctor d ON t.doctor_code = d.doctor_code";
-			   sql += " WHERE t.id = ? order by treatment_date asc";
+		String sql = "select reservation_date, doctor_name, speciality_name";
+			   sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
+			   sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
+			   sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
+			   sql += " WHERE r.id = ? order by reservation_date desc";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -443,7 +444,7 @@ public class HospitalDAO {
 				myTreatmentList = new ArrayList<MyTreatmentList>();
 						
 						do {
-							mytreatmentList = new MyTreatmentList(rs.getString("treatment_date"),
+							mytreatmentList = new MyTreatmentList(rs.getString("reservation_date"),
 												rs.getString("speciality_name"),
 												rs.getString("doctor_name"));
 							//ArrayList에 추가
