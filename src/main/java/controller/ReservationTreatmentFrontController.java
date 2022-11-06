@@ -9,11 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.mypage.MyReservationListAction;
-import action.reservation.MyReservationCancelAction;
-import action.reservation.ReservationFormAction;
-import action.reservation.ReservationInsertModifyAction;
-import action.reservation.ReservationSelectViewAction;
-import action.reservation.SelectReservationDayAction;
+import action.reservation.*;
+import action.reservation.ReservationCancelAction;
 import vo.ActionForward;
 
 /**
@@ -115,12 +112,12 @@ public class ReservationTreatmentFrontController extends HttpServlet {
 		}
 		//마이페이지 - 내 예약진료 취소(예약 수정, 취소)
 		else if(command.equals("/myReservationCancel.treat")) {
-			action = new MyReservationCancelAction();
+			action = new ReservationCancelAction();
 			
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
-				System.out.println("MyReservationCancelAction ActionForward 예외 : " + e);
+				System.out.println("ReservationCancelAction ActionForward 예외 : " + e);
 			}
 		}
 		

@@ -8,8 +8,7 @@ import static db.JdbcUtil.rollback;
 import java.sql.Connection;
 
 import dao.HospitalDAO;
-import vo.ReservationBean;
-import vo.TreatmentBean;
+import vo.reservation.ReservationBean;
 
 public class ReservationInsertService {
 

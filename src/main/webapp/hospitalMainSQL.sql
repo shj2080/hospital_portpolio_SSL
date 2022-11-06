@@ -12,8 +12,8 @@ create table membertbl(
    user_type char(1) not null default 'N' CHECK (user_type IN('N','M'))
 );
 /* 관리자 식별할 컬럼? */
-일반회원 : N
-관리자 : M
+/* 일반회원 : N */
+/* 관리자 : M */
 
 /* 관리자 설정 */
 update membertbl

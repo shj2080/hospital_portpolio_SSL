@@ -64,6 +64,9 @@
 				</c:if>
 			</div>
 			<form action = "reservationInsertModify.treat" name = "resForm" method="post">
+				<c:if test="${resBean != null}">
+				<input type="hidden" name = "resUserID" value = "${resBean.id}" readonly/>
+				</c:if>
 				<table>
 					<tr>
 						<th>진료일자</th>
@@ -104,7 +107,12 @@
 					<tr>
 						<th>환자성함</th>
 						<td>
-							<input type = "text" name = "name" value = "${sessionScope.userName}" size = "10" readonly />
+							<c:if test="${resUserName == null}">
+								<input type = "text" name = "name" value = "${sessionScope.userName}" size = "10" readonly />
+							</c:if>
+							<c:if test="${resUserName != null}">
+								<input type = "text" name = "name" value = "${resUserName}" size = "10" readonly />
+							</c:if>
 						</td>
 					</tr>
 					<tr>

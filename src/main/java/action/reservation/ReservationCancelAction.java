@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import svc.reservation.MyReservationCancelService;
+import svc.reservation.ReservationCancelService;
 import vo.ActionForward;
 
-public class MyReservationCancelAction implements Action {
+public class ReservationCancelAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -18,7 +18,8 @@ public class MyReservationCancelAction implements Action {
 		
 		HttpSession session = request.getSession();
         String viewId = (String)session.getAttribute("userID");
-        
+        String cancelID = request.getParameter("cancel_id");
+
         //현재 로그인된 상태가 아니면
 	  	if(viewId == null) {
   			response.setContentType("text/html;charset=utf-8");
@@ -33,12 +34,12 @@ public class MyReservationCancelAction implements Action {
 	  		int reservation_code = Integer.parseInt(request.getParameter("reservation_code"));
 	  		
 	  		//서비스 객체 생성
-	  		MyReservationCancelService myReservationCancelService = new MyReservationCancelService();
+	  		ReservationCancelService reservationCancelService = new ReservationCancelService();
 	  		
-	  		int cancelResult = myReservationCancelService.deleteReservation(reservation_code, viewId);
+	  		int cancelResult = reservationCancelService.deleteReservation(reservation_code, cancelID);
 	  		
 	  		if(cancelResult > 0) {
-	  			forward = new ActionForward("myReservationList.treat", true);
+	  			forward = new ActionForward("reservationCheckList.ad", true);
 	  		}else {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();

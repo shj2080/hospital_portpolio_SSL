@@ -8,7 +8,7 @@ import static db.JdbcUtil.rollback;
 import java.sql.Connection;
 
 import dao.ReservationDAO;
-import vo.ReservationBean;
+import vo.reservation.ReservationBean;
 
 public class ReservationModifyService {
 

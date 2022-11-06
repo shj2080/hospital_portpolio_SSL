@@ -1,10 +1,8 @@
 package action.reservation;
 
 import java.io.PrintWriter;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,8 +12,7 @@ import action.Action;
 import svc.reservation.ReservationInsertService;
 import svc.reservation.ReservationModifyService;
 import vo.ActionForward;
-import vo.ReservationBean;
-import vo.TreatmentBean;
+import vo.reservation.ReservationBean;
 
 public class ReservationInsertModifyAction implements Action {
 
@@ -48,7 +45,7 @@ public class ReservationInsertModifyAction implements Action {
 			
 			//수정상태 확인하는 파라미터(마이페이지 에서 수정요청이 들어온 경우)
 			String modify_status = request.getParameter("modifyState_hidden");
-			
+
 			String reservationHour = null;
 			String reservationMinute = null;
 			
@@ -106,14 +103,16 @@ public class ReservationInsertModifyAction implements Action {
 			if(modify_status != null && !modify_status.equals("")) {
 				//예약코드(수정할 경우 필요)
 				int reservation_code = Integer.parseInt(request.getParameter("reservation_code_hidden"));
-				
+				//유저ID
+				String resUserID = request.getParameter("resUserID");
+
 				//예약코드를 포함한 생성자를 사용하여 초기화
-				reservationBean = new ReservationBean(reservation_code, speciality_code, doctor_code, viewId, reservation_date, phone);
+				reservationBean = new ReservationBean(reservation_code, speciality_code, doctor_code, resUserID, reservation_date, phone);
 				System.out.println("[DEBUG]ReservationInsertModifyAction (modify) 구문 실행됨.");
 				ReservationModifyService reservationModifyService = new ReservationModifyService();
 				isReservation = reservationModifyService.modifyReservationTreatment(reservationBean);
 				
-				moveLocation = "myReservationList.treat"; //예약 진료 내역
+				moveLocation = "reservationCheckList.ad"; //예약 진료 내역
 			}else { //insert 일 경우
 				reservationBean = new ReservationBean(speciality_code, doctor_code, viewId, reservation_date, phone);
 				System.out.println("[DEBUG]ReservationInsertModifyAction (insert) 구문 실행됨.");

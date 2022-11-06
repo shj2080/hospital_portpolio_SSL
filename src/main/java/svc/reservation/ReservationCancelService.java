@@ -9,7 +9,7 @@ import java.sql.Connection;
 
 import dao.ReservationDAO;
 
-public class MyReservationCancelService {
+public class ReservationCancelService {
 
 	public int deleteReservation(int reservation_code, String userID) {
 		int result = 0;

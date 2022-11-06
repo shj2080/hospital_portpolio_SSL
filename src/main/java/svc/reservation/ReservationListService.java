@@ -1,9 +1,7 @@
-package svc.mypage;
+package svc.reservation;
 
-import dao.HospitalDAO;
 import dao.ReservationDAO;
-import vo.ReservationBean;
-import vo.mypage.MyReservationListBean;
+import vo.reservation.ReservationListBean;
 
 import java.sql.Connection;
 import java.util.List;
@@ -11,10 +9,11 @@ import java.util.List;
 import static db.JdbcUtil.close;
 import static db.JdbcUtil.getConnection;
 
-public class MyReservationListService {
-
-    public List<MyReservationListBean> getMyReservationList(String userID) {
-        List<MyReservationListBean> myReservationList = null;
+public class ReservationListService {
+    
+    //특정 회원ID로 예약된 리스트 출력하는 메서드
+    public List<ReservationListBean> getReservationList(String userID) {
+        List<ReservationListBean> myReservationList = null;
 
         //커넥션 풀에서 커넥션 객체 얻어오기
         Connection con = getConnection();

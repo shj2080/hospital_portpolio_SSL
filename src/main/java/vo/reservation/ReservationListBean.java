@@ -1,19 +1,34 @@
-package vo.mypage;
+package vo.reservation;
 
-public class MyReservationListBean {
+public class ReservationListBean {
     private int reservation_code;
     private String reservation_date;
     private String doctor_name;
     private String speciality_name;
     private int doctor_code;
     private int speciality_code;
-    
+
+    private String id;
+    private String name;
+
+    //id와 이름값을 얻어오는 부분 추가
+    public ReservationListBean(int reservation_code, String reservation_date, String doctor_name, String speciality_name, int doctor_code, int speciality_code, String id, String name) {
+        this.reservation_code = reservation_code;
+        this.reservation_date = reservation_date;
+        this.doctor_name = doctor_name;
+        this.speciality_name = speciality_name;
+        this.doctor_code = doctor_code;
+        this.speciality_code = speciality_code;
+        this.id = id;
+        this.name = name;
+    }
+
     //기본생성자
-    public MyReservationListBean() {}
+    public ReservationListBean() {}
 
     //멤버변수를 생성시점부터 초기화 하는 생성자(코드 제외)
-    public MyReservationListBean(String reservation_date, String doctor_name, String speciality_name, int doctor_code,
-			int speciality_code) {
+    public ReservationListBean(String reservation_date, String doctor_name, String speciality_name, int doctor_code,
+                               int speciality_code) {
 		super();
 		this.reservation_date = reservation_date;
 		this.doctor_name = doctor_name;
@@ -23,8 +38,8 @@ public class MyReservationListBean {
 	}
     
     //멤버변수를 생성시점부터 초기화 하는 생성자(코드 포함)
-    public MyReservationListBean(int reservation_code, String reservation_date, String doctor_name,
-			String speciality_name, int doctor_code, int speciality_code) {
+    public ReservationListBean(int reservation_code, String reservation_date, String doctor_name,
+                               String speciality_name, int doctor_code, int speciality_code) {
 		super();
 		this.reservation_code = reservation_code;
 		this.reservation_date = reservation_date;
@@ -83,5 +98,20 @@ public class MyReservationListBean {
 	public void setSpeciality_code(int speciality_code) {
 		this.speciality_code = speciality_code;
 	}
-    
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -3,7 +3,6 @@ package action.reservation;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,7 @@ import action.Action;
 import svc.reservation.ReservationFormService;
 import vo.ActionForward;
 import vo.Doctor;
-import vo.ReservationBean;
+import vo.reservation.ReservationBean;
 import vo.Speciality;
 
 public class ReservationFormAction implements Action {
@@ -86,7 +85,8 @@ public class ReservationFormAction implements Action {
 	  		if(modifyState != null && !modifyState.equals("")) {
 	  			//예약 코드를 넘겨받음
 	  			int reservation_code = Integer.parseInt(request.getParameter("reservation_code"));
-	  			
+
+				  //예약정보
 	  			ReservationBean reservation = reservationFormService.selectReservationInfo(reservation_code);
 				
 	  			DateTimeFormatter defaultHourFormat = DateTimeFormatter.ofPattern("H");
@@ -101,8 +101,12 @@ public class ReservationFormAction implements Action {
 	  			
 	  			System.out.println("[DEBUG]reservationHour : " + reservationHour);
 	  			System.out.println("[DEBUG]reservationMinute : " + reservationMinute);
-	  			
+
+			    //불러온 예약 정보의 id로 회원의 이름을 구함
+				String resUserName = reservationFormService.selectMemberNameInfo(reservation.getId()).getName();
+
 	  			//불러온 예약 정보를 폼에 대입
+				request.setAttribute("resUserName", resUserName);
 	  			request.setAttribute("resBean", reservation);
 	  			request.setAttribute("resHour", reservationHour);
 	  			request.setAttribute("resMinute", reservationMinute);

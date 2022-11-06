@@ -8,8 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import vo.ReservationBean;
-import vo.mypage.MyReservationListBean;
+import vo.reservation.ReservationBean;
+import vo.reservation.ReservationListBean;
 
 public class ReservationDAO {
 	private Connection con = null;
@@ -40,12 +40,12 @@ public class ReservationDAO {
 	}
 	
 	//예약된 본인의 진료내역 불러오는 DAO 메서드
-	public ArrayList<MyReservationListBean> myReservationList(String userID) {
-		ArrayList<MyReservationListBean> reservationList = null;
-		MyReservationListBean myReservation = null;
+	public ArrayList<ReservationListBean> myReservationList(String userID) {
+		ArrayList<ReservationListBean> reservationList = null;
+		ReservationListBean myReservation = null;
 		
 		String sql = "select reservation_code , reservation_date, doctor_name, speciality_name,";
-		sql += " r.doctor_code, r.speciality_code";
+		sql += " r.doctor_code, r.speciality_code, r.id, m.name";
 		sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
 		sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
 		sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
@@ -57,15 +57,17 @@ public class ReservationDAO {
 			rs = pstmt.executeQuery();
 					
 			if(rs.next()){
-				reservationList = new ArrayList<MyReservationListBean>();
+				reservationList = new ArrayList<ReservationListBean>();
 						
 						do {
-							myReservation = new MyReservationListBean(rs.getInt("reservation_code"),
+							myReservation = new ReservationListBean(rs.getInt("reservation_code"),
 									rs.getString("reservation_date"),
 									rs.getString("doctor_name"),
 									rs.getString("speciality_name"),
 									rs.getInt("doctor_code"),
-									rs.getInt("speciality_code"));
+									rs.getInt("speciality_code"),
+									rs.getString("id"),
+									rs.getString("name"));
 							//ArrayList에 추가
 							reservationList.add(myReservation);
 						} while (rs.next());
@@ -140,6 +142,7 @@ public class ReservationDAO {
 		
 		return reservation;
 	}
+	//특정 예약내역 삭제
 	public int deleteReservationTreatment(int reservation_code, String userID) {
 		int deleteResult = 0;
 		

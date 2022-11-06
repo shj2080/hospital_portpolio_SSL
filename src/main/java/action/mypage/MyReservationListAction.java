@@ -5,10 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import svc.mypage.MyReservationListService;
+import svc.reservation.ReservationListService;
 import vo.ActionForward;
-import vo.ReservationBean;
-import vo.mypage.MyReservationListBean;
+import vo.reservation.ReservationListBean;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -33,8 +32,8 @@ public class MyReservationListAction implements Action {
 			//로그인 상태라면
 		}else {
 			//서비스 객체 생성
-			MyReservationListService myReservationListService = new MyReservationListService();
-			List<MyReservationListBean> myReservationInfo = myReservationListService.getMyReservationList(viewId);
+			ReservationListService reservationListService = new ReservationListService();
+			List<ReservationListBean> myReservationInfo = reservationListService.getReservationList(viewId);
 
 			//request에 List 담음
 			request.setAttribute("myReservationList", myReservationInfo);

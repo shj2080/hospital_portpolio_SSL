@@ -11,9 +11,8 @@ import java.util.ArrayList;
 import vo.Doctor;
 import vo.Member;
 import vo.MyTreatmentList;
-import vo.ReservationBean;
+import vo.reservation.ReservationBean;
 import vo.Speciality;
-import vo.TreatmentBean;
 import vo.TreatmentList;
 
 public class HospitalDAO {

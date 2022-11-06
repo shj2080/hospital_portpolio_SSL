@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.mypage.admin.ReservationCheckListAction;
-import action.reservation.ReservationSelectViewAction;
+import action.mypage.admin.ReservationSearchListAction;
+import action.reservation.TreatmentAddConfirmAction;
 import vo.ActionForward;
 
 /**
@@ -60,18 +61,37 @@ public class AdminFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 		//2. 비즈니스 로직 구분------------------------------------------------
-		//진료 예약 조회 후 관리자가 진료테이블에 추가할 수 있는 화면을 제공하는 액션
+		//회원의 진료 예약 조회 후 관리자가 진료테이블에 추가할 수 있는 화면을 제공하는 액션
 		if(command.equals("/reservationCheckList.ad")) {
 			action = new ReservationCheckListAction();
-			
+
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
 				System.out.println("ReservationCheckListAction ActionForward 예외 : " + e);
 			}
 		}
-		
-		
+		//관리자의 진료예약 조회 화면에서 회원 id를 검색하는 액션
+		else if (command.equals("/reservationMemberSearch.ad")) {
+			action = new ReservationSearchListAction();
+
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("ReservationSearchListAction ActionForward 예외 : " + e);
+			}
+		}
+		//진료확인 버튼을 눌렀을 때 진료테이블에 추가하는 액션
+		else if (command.equals("/treatmentAddConfirm.ad")) {
+			action = new TreatmentAddConfirmAction();
+
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("TreatmentAddConfirmAction ActionForward 예외 : " + e);
+			}
+		}
+
 		/****************************************************************************
 		 * 포워딩
 		*****************************************************************************/

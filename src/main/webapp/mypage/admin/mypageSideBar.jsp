@@ -9,7 +9,7 @@
 </head>
 <body>
 	<ul>
-		<li><a href="memberInfoModifyForm.do">회원 정보 수정</a></li>
+		<li><a href="memberInfoModifyForm.do">내 회원 정보 수정</a></li>
 		<li><a href="reservationCheckList.ad">예약된 진료내역</a></li>
 	</ul>
 </body>

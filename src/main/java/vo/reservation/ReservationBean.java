@@ -1,4 +1,4 @@
-package vo;
+package vo.reservation;
 
 public class ReservationBean {
 	private int reservation_code;
