@@ -19,7 +19,7 @@
 		<section id = "joinsucess">
 			<div>
 				<h1 align="center">회원가입에 성공하셨습니다!!!!</h1>
-				<div align="center"><a href = "index.jsp"><input type = "button" value="홈으로"></a></div>
+				<div align="center"><a href = "index.do"><input type = "button" value="홈으로"></a></div>
 			</div>
 		</section>
 		<%-- 컨텐츠 표시 영역 끝 --%>

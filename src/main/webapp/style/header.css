@@ -21,6 +21,7 @@ header{
 	text-decoration: none;
 	padding-left: 3rem; /*padding-left: 30px;*/
 	color: black;
+	font-size: 1.5rem;
 }
 
 /* 장치 최대 너비 768px인 경우 */

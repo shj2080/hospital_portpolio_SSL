@@ -18,7 +18,7 @@ create table membertbl(
 /* 관리자 설정 */
 update membertbl
 set user_type = 'M'
-where id = 'admin'; /* 기본키 */
+where id = 'admin2'; /* 기본키 */
 
 /* 유저 타입 컬럼 추가  */
 alter table membertbl
@@ -225,6 +225,11 @@ select * from user_board;
 /* 게시판 컬럼형식 datetime 변환 */
 alter table user_board
 modify post_date datetime NOT NULL;
+
+/* 게시판 공지사항 컬럼 */
+alter table user_board
+add column post_notice int not null default 0;
+
 
 /*----------------------------------------------------------------------*/
 /** ?가 들어간 SQL문은 DAO 작업 시 PrepareStatement 사용됨 **/

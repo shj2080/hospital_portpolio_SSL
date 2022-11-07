@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.IndexPageAction;
 import action.JoinAction;
 import action.LoginAction;
 import action.LoginFormAction;
@@ -72,8 +73,19 @@ public class HospitalFrontController extends HttpServlet {
 		
 		//2. 비즈니스 로직 구분------------------------------------------------
 		
+		//index 처리 액션
+		if(command.equals("/index.do")) {
+			action = new IndexPageAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("IndexPageAction ActionForward 예외 : " + e);
+			}
+		}
+		
 		//로그인 이동
-		if(command.equals("/login.do")) {
+		else if(command.equals("/login.do")) {
 			action = new LoginFormAction();
 			
 			try {

@@ -10,11 +10,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="style/initStyle.css">
-<link rel="stylesheet" type="text/css" href="style/header.css">
+
 <link rel="stylesheet" type="text/css" href="style/body.css">
-<link rel="stylesheet" type="text/css" href="style/footer.css">
-<link rel="stylesheet" type="text/css" href="style/myTreatmentList.css">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
 </head>
 
 <body>
@@ -23,43 +22,44 @@
 		<!-- 컨텐츠 표시 영역 시작 -->
 		<section>
 		<div id = "myReservationBox" align="center">
-			<c:if test="${myTreatmentList != null }">
-			<table id = "myReservationList">
-				<tr>
-						<th id = "myReservationData">
+			<table id = "myReservationList" class = "table mt-5">
+				<tr align="center">
+						<th id = "myReservationData" class = "fs-4">
 							예약일
 						</th>
 						
-						<th id = "mySpecialityName">
+						<th id = "mySpecialityName" class = "fs-4">
 							진료과
 						</th>
 						
-						<th id = "mySpecialityDoctorName">
+						<th id = "mySpecialityDoctorName" class = "fs-4">
 							의사명
 						</th>
 				</tr>
+				<c:if test="${myTreatmentList != null }">
 				<c:forEach var= "mytreatment" items="${myTreatmentList }" varStatus="status">
-				<tr>
-					<td id = "myReservationData">
-						${mytreatment.reservation_date}
-					</td>
-					<td id = "mySpecialityName">
-						${mytreatment.doctor_name}
-					</td>
-					<td id = "mySpecialityDoctorName">
-						${mytreatment.speciality_name}
-					</td>
-				</tr>
-					</c:forEach>
+					<tr align="center" >
+						<th class = "fs-4">
+							${mytreatment.reservation_date}
+						</th>
+						<th class = "fs-4">
+							${mytreatment.doctor_name}
+						</th>
+						<th class = "fs-4">
+							${mytreatment.speciality_name}
+						</th>
+					</tr>
+		</c:forEach>
+			</c:if>
 				</table>
-				</c:if>
-		</div>
-			
+				</div>
 				<!-- --진료대기리스트가 비어 있는 경우--- -->
 				<c:if test="${myTreatmentList == null }">
 				<table>
 					<tr id = "treatment" align="center" >
-						<td>진료대기리스트가 비어있습니다.</td>
+						<th class = "fs-4">
+							진료리스트가 비어있습니다.
+						</th>
 					</tr>
 				</table>
 				</c:if>

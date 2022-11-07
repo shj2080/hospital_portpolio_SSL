@@ -28,36 +28,40 @@
 								<th colspan="3"style="background-color: #eeeeee; text-align: center;">게시판 글보기</th>
 							</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td style="width: 20%;">글 제목</td>
-							<td colspan="2">${showPost.post_subject}</td>
-						</tr>
-						<tr>
-							<td>작성자</td>
-							<td colspan="2">${showPost.id }</td>
-						</tr>
-						<tr>
-							<td>작성일자</td>
-							<td colspan="2">${showPost.post_date }</td>
-						</tr>
-						<tr>
-							<td>내용</td>
-						</tr>
-						<tr>
 						<c:if test="${showPost != null}">
-							<td colspan="2" style="min-height: 200px; text-align: left;">
-								${showPost.post_text }
-							</td>
-						</c:if>
-						</tr>
+						<tbody>
+							<tr>
+								<td style="width: 20%;">글 제목</td>
+								<td colspan="2">${showPost.post_subject}</td>
+							</tr>
+							<tr>
+								<td>작성자</td>
+								<td colspan="2">${showPost.id }</td>
+							</tr>
+							<tr>
+								<td>작성일자</td>
+								<td colspan="2">${showPost.post_date }</td>
+							</tr>
+							<tr>
+								<td>내용</td>
+							</tr>
+							<tr>
+							
+								<td colspan="2" style="min-height: 200px; text-align: left;">
+									${showPost.post_text }
+								</td>
+							
+							</tr>
 						</tbody>
+						</c:if>
 					<c:if test="${showPost == null}">
 					<tbody>
-						<td colspan="3">post 정보를 불러오지 못했습니다.</td>
+						<tr>
+							<td colspan="3">post 정보를 불러오지 못했습니다.</td>
+						</tr>
 					</tbody>
 					</c:if>
-			</table>
+				</table>
 			<div align="center">
 				<a href="userBoard.do" class="btn btn-primary fs-4">목록</a>
 				<button type="button" id = "modifyPostBtn" class = "btn btn-secondary fs-4">수정</button>

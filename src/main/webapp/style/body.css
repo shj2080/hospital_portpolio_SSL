@@ -19,16 +19,17 @@ body {
 /* section 스타일 */
 #contentWrap {
 	flex: 1;
-	padding-top: 9.6rem; /* header 높이만큼 위 padding */
 	margin-bottom: 1rem;
 }
 
 #frontimg{
 	width: 100%;
-	height: 50rem;	
+	height: 35rem;
+	
 }
 
-#noticBox{
-    width: 300px;
-    height: 200px;
+#noticsBox{
+	width: 30%;
+    height: 20rem;
+    margin-top: 20px;
 }

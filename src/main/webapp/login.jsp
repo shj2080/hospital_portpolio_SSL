@@ -73,22 +73,22 @@ function loginVaildCheck() {
 			<form action ="loginProcess.do" id = "loginForm" name = "loginForm" method="post">
 				<div id="loginBox">
 					<div class="loginItem">
-						아이디
+						<span class="fs-4">아이디</span>
 					</div>
 					<div class="loginItem">
-						<input type="text" name = "id" value="" maxlength="50" id = "idText" class = "textfiled" />
+						<input type="text" name = "id" value="" maxlength="50" id = "idText" class = "textfiled fs-4" />
 					</div>
 					<div class="loginItem">
-						비밀번호
+						<span class="fs-4">비밀번호</span>
 					</div>
 					<div class="loginItem">
-						<input type="password" name = "password" value="" maxlength="50" id = "pwText" class = "textfiled" />
+						<input type="password" name = "password" value="" maxlength="50" id = "pwText" class = "textfiled fs-4" />
 					</div>
 					<div class="loginButton">
 
-						<label><input type="checkbox" name="remember" />아이디 저장<br></label>
-						<button type="button" onclick="loginVaildCheck()" id = "loginbut">로그인</button>
-						<button type = "button" onclick="location.href='join.jsp'" id = "joinbut">회원가입</button>
+						<label><input type="checkbox" name="remember" /><span class="fs-4">아이디 저장</span><br></label>
+						<button class = "fs-4" type="button" onclick="loginVaildCheck()" id = "loginbut">로그인</button>
+						<button class = "fs-4" type = "button" onclick="location.href='join.jsp'" id = "joinbut">회원가입</button>
 					</div>
 				</div><!-- 로그인 박스 끝 -->
 			</form>

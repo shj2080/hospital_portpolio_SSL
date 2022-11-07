@@ -11,11 +11,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" type="text/css" href="style/initStyle.css">
-<link rel="stylesheet" type="text/css" href="style/treatmentList.css">
-<link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
-<link rel="stylesheet" type="text/css" href="style/footer.css">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 
 </head>
 <body>
@@ -23,7 +20,7 @@
 		<div id = "contentWrap">
 		<section>	
 		<form method = "post">
-			<table id = "treatmentListBox">
+			<table id = "treatmentListBox" class = "table mt-5">
 				<tr id = "speciality_name">
 					<td colspan="4" align="right"><select id="speciality" name="speciality">
 						<option>=나의 진료과=</option>
@@ -81,37 +78,34 @@
 						 <input type="submit" value="검색" formaction="treatmentListSearch.do" />
 						</td>
 					</tr>
-					<tr>
-						<th id = "treatment_date">진료시간</td>
-						<th id = "name">환자성함</td>
-						<th id = "speciality_name2">진료과</td>
-						<th id = "doctor_name">의사명</td>
+					<tr align="center" >
+						<th id = "treatment_date" class = "fs-4">진료시간</th>
+						<th id = "name" class = "fs-4">환자성함</th>
+						<th id = "speciality_name2" class = "fs-4">진료과</th>
+						<th id = "doctor_name" class = "fs-4">의사명</th>
 					</tr>
 				<c:if test="${treatmentList != null }">
-				<tr id = "treatment">
-					<c:forEach var= "treatment" items="${treatmentList }" varStatus="status">
-						<th id = "treatment_date">
+				<c:forEach var = "treatment" items="${treatmentList }">
+					<tr align="center" >
+						<th class = "fs-4">
 							${treatment.treatment_date}
 						</th>
-						
-						<th id = "name">
+						<th class = "fs-4">
 							${treatment.name}
 						</th>
-						
-						<th id = "speciality_name2">
+						<th class = "fs-4">
 							${treatment.speciality_name}
 						</th>
-						
-						<th id = "doctor_name">
+						<th class = "fs-4">
 							${treatment.doctor_name}
 						</th>
-				</tr>
-					</c:forEach>
+					</tr>
+		</c:forEach>
 				</c:if>
 				<!-- --진료대기리스트가 비어 있는 경우--- -->
 				<c:if test="${treatmentList == null }">
 					<tr id = "treatment" align="center" >
-						<td>진료대기리스트가 비어있습니다.</td>
+						<td colspan="4" class = "fs-4">진료대기리스트가 비어있습니다.</td>
 					</tr>
 				</c:if>
 				<!-- --진료대기리스트가 비어 있는 경우--- -->
