@@ -105,14 +105,29 @@ public class ReservationInsertModifyAction implements Action {
 				int reservation_code = Integer.parseInt(request.getParameter("reservation_code_hidden"));
 				//유저ID
 				String resUserID = request.getParameter("resUserID");
-
+				//예약진료상태(Y : 진료받음, N : 진료받기 전 또는 진료받지 않음)
+				String treatment_status = request.getParameter("resTreatStatus");
+				
+				/*
+				 * if(treatment_status.equals("Y")) {
+				 * response.setContentType("text/html;charset=UTF-8"); PrintWriter out =
+				 * response.getWriter();
+				 * 
+				 * out.println("<script>");
+				 * out.println("alert('진료확인이 된 예약은 일정을 수정할 수 없습니다!');");
+				 * out.println("history.back();"); out.println("</script>"); }
+				 */
+				
 				//예약코드를 포함한 생성자를 사용하여 초기화
-				reservationBean = new ReservationBean(reservation_code, speciality_code, doctor_code, resUserID, reservation_date, phone);
+				reservationBean = new ReservationBean(reservation_code, speciality_code, doctor_code, resUserID, reservation_date, phone, treatment_status);
+				
 				System.out.println("[DEBUG]ReservationInsertModifyAction (modify) 구문 실행됨.");
+				
 				ReservationModifyService reservationModifyService = new ReservationModifyService();
 				isReservation = reservationModifyService.modifyReservationTreatment(reservationBean);
 				
-				moveLocation = "reservationCheckList.ad"; //예약 진료 내역
+				//이동 위치 지정
+				moveLocation = "reservationMemberSearch.ad?u_id=" + resUserID; //예약 진료 내역(수정했던 회원ID로 검색)
 			}else { //insert 일 경우
 				reservationBean = new ReservationBean(speciality_code, doctor_code, viewId, reservation_date, phone);
 				System.out.println("[DEBUG]ReservationInsertModifyAction (insert) 구문 실행됨.");

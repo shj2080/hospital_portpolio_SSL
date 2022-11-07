@@ -67,7 +67,6 @@ create table speciality(
 /* 진료과 샘플데이터 */
 insert into speciality(speciality_name) values('내과');
 insert into speciality(speciality_name) values('외과');
-/*insert into speciality(speciality_name) values('신경과');*/
 insert into speciality(speciality_name) values('산부인과');
 insert into speciality(speciality_name) values('영상의학과');
 insert into speciality(speciality_name) values('마취통증의학과');
@@ -185,9 +184,14 @@ CREATE TABLE reservation (
 	id VARCHAR(15) not NULL,
 	reservation_date DATETIME not NULL,
 	phone VARCHAR(13) not NULL,
+	treatment_status CHAR(1) not null default 'N' check (treatment_status in ('Y', 'N')),
 	PRIMARY KEY (reservation_code),
 	constraint uq_reservation UNIQUE KEY(reservation_date, doctor_code, speciality_code)
 );
+
+/* 예약 테이블 진료확인 상태 컬럼 추가 */
+ALTER TABLE `reservation` 
+ADD COLUMN `treatment_status` CHAR(1) NOT NULL DEFAULT 'N'; 
 
 /* 테이블 데이터 확인 */
 select * from reservation;
@@ -304,6 +308,12 @@ values(?,?,?,?,?);
 
 /* 선택한 예약정보를 진료테이블에 insert한 후 예약내역에서 삭제? */
 delete reservation where reservation_code = ?;
+
+/* 선택한 예약정보의 진료상태 업데이트 */
+update reservation
+set treatment_status = 'Y'
+where reservation_code = 1;
+
 /**************************************************************************/
 /* 게시판 관련 SQL */
 select post_no, post_subject ,id, post_date from membertbl natural join user_board order by post_no desc;

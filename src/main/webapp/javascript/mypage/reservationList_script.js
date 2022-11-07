@@ -1,6 +1,18 @@
+function treatStatusChecking(treatStatus) {
+	if(treatStatus == "Y") {
+		alert("이미 진료 확인 처리된 예약 항목이므로 처리할 수 없습니다.");
+		return true;
+	}
+}
+
 //진료확인 버튼 함수
-function treatmentAdd(resCode) {
+function treatmentAdd(resCode, treatStatus) {
 	if(confirm("해당 예약 진료 항목을 진료를 받은 것으로 처리하시겠습니까?")) {
+	
+		if(treatStatusChecking(treatStatus)) {
+			return false;
+		}
+	
 		//form 객체 생성
 		let treatmentAddForm = document.createElement("form");
 
@@ -27,8 +39,13 @@ function treatmentAdd(resCode) {
 }
 
 //수정 버튼 함수
-function modifyRes(specCode,resCode) {
+function modifyRes(specCode,resCode, treatStatus) {
 	if(confirm("진료예약을 수정하시겠습니까?")) {
+		
+		if(treatStatusChecking(treatStatus)) {
+			return false;
+		}
+		
 		//form 객체 만들기
 		let modifyDataForm = document.createElement("form");
 	
@@ -73,8 +90,13 @@ function modifyRes(specCode,resCode) {
 }
 
 //취소 버튼 함수
-function cancelRes(resCode, cancel_id) {
+function cancelRes(resCode, cancel_id, treatStatus) {
 	if(confirm("해당 진료예약을 취소하시겠습니까?")) {
+	
+		if(treatStatusChecking(treatStatus)) {
+			return false;
+		}
+		
 		//form 객체 만들기
 		let deleteDataForm = document.createElement("form");
 	

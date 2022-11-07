@@ -15,7 +15,7 @@ function vaildCheck() {
 		return false;
 	}
 	
-	if(doubleSubmitCheck()) return;
+	//if(doubleSubmitCheck()) return;
 	
 	resForm.submit();
 }

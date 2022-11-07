@@ -86,7 +86,7 @@ public class ReservationFormAction implements Action {
 	  			//예약 코드를 넘겨받음
 	  			int reservation_code = Integer.parseInt(request.getParameter("reservation_code"));
 
-				  //예약정보
+				//예약정보
 	  			ReservationBean reservation = reservationFormService.selectReservationInfo(reservation_code);
 				
 	  			DateTimeFormatter defaultHourFormat = DateTimeFormatter.ofPattern("H");
@@ -107,7 +107,7 @@ public class ReservationFormAction implements Action {
 
 	  			//불러온 예약 정보를 폼에 대입
 				request.setAttribute("resUserName", resUserName);
-	  			request.setAttribute("resBean", reservation);
+	  			request.setAttribute("resBean", reservation);		//예약정보가 담긴 Bean 객체
 	  			request.setAttribute("resHour", reservationHour);
 	  			request.setAttribute("resMinute", reservationMinute);
 	  		}

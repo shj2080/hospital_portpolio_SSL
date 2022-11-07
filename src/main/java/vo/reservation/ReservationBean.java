@@ -7,11 +7,25 @@ public class ReservationBean {
 	private String id;
 	private String reservation_date;
 	private String phone;
+	private String treatment_status;
 	
 	//기본 생성자
 	public ReservationBean() {}
 
-	//예약코드 포함한 전체 생성자
+	
+	/* 예약코드, 상태코드 포함한 전체 생성자 */
+	public ReservationBean(int reservation_code, int speciality_code, int doctor_code, String id,
+			String reservation_date, String phone, String treatment_status) {
+		this.reservation_code = reservation_code;
+		this.speciality_code = speciality_code;
+		this.doctor_code = doctor_code;
+		this.id = id;
+		this.reservation_date = reservation_date;
+		this.phone = phone;
+		this.treatment_status = treatment_status;
+	}
+
+	//예약코드 포함한 전체 생성자 (상태코드 제외)
 	public ReservationBean(int reservation_code, int speciality_code, int doctor_code, String id, String reservation_date, String phone) {
 		this.reservation_code = reservation_code;
 		this.speciality_code = speciality_code;
@@ -78,6 +92,14 @@ public class ReservationBean {
 
 	public void setReservation_date(String reservation_date) {
 		this.reservation_date = reservation_date;
+	}
+
+	public String getTreatment_status() {
+		return treatment_status;
+	}
+
+	public void setTreatment_status(String treatment_status) {
+		this.treatment_status = treatment_status;
 	}
 	
 }

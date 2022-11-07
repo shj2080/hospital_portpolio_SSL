@@ -66,6 +66,7 @@
 			<form action = "reservationInsertModify.treat" name = "resForm" method="post">
 				<c:if test="${resBean != null}">
 				<input type="hidden" name = "resUserID" value = "${resBean.id}" readonly/>
+				<input type="hidden" name = "resTreatStatus" value = "${resBean.treatment_status}" readonly/>
 				</c:if>
 				<table>
 					<tr>

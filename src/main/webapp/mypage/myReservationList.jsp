@@ -22,6 +22,7 @@
 			<th scope="col">진료날짜</th>
 			<th scope="col">의사명</th>
 			<th scope="col">진료과</th>
+			<th scope="col">진료상태</th>
 		</tr>
 		<c:forEach var = "resRow" items="${myReservationList }">
 			<tr>
@@ -40,6 +41,9 @@
 				</td>
 				<td>
 					${resRow.speciality_name }
+				</td>
+				<td>
+					${resRow.treatment_status}
 				</td>
 			</tr>
 		</c:forEach>

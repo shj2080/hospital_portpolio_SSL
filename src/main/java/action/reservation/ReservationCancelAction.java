@@ -39,7 +39,15 @@ public class ReservationCancelAction implements Action {
 	  		int cancelResult = reservationCancelService.deleteReservation(reservation_code, cancelID);
 	  		
 	  		if(cancelResult > 0) {
-	  			forward = new ActionForward("reservationCheckList.ad", true);
+	  			response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+
+				out.println("<script>");
+				out.println("alert('선택한 진료예약을 취소했습니다.');");
+				out.println("location.replace('reservationMemberSearch.ad?u_id="+ cancelID +"')");
+				out.println("</script>");
+				
+	  			//forward = new ActionForward("reservationMemberSearch.ad?u_id=" + cancelID, true);
 	  		}else {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();

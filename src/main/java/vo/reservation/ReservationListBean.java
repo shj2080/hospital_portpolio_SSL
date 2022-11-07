@@ -7,23 +7,28 @@ public class ReservationListBean {
     private String speciality_name;
     private int doctor_code;
     private int speciality_code;
-
+    
     private String id;
     private String name;
+    private String treatment_status; //진료상태(Y : 진료받음, N : 진료 받기 전) - DB의 기본값 : N
 
-    //id와 이름값을 얻어오는 부분 추가
-    public ReservationListBean(int reservation_code, String reservation_date, String doctor_name, String speciality_name, int doctor_code, int speciality_code, String id, String name) {
-        this.reservation_code = reservation_code;
-        this.reservation_date = reservation_date;
-        this.doctor_name = doctor_name;
-        this.speciality_name = speciality_name;
-        this.doctor_code = doctor_code;
-        this.speciality_code = speciality_code;
-        this.id = id;
-        this.name = name;
-    }
+	//id와 이름값을 얻어오는 부분 추가
+    public ReservationListBean(int reservation_code, String reservation_date, String doctor_name,
+			String speciality_name, int doctor_code, int speciality_code, String id, String name,
+			String treatment_status) {
+		super();
+		this.reservation_code = reservation_code;
+		this.reservation_date = reservation_date;
+		this.doctor_name = doctor_name;
+		this.speciality_name = speciality_name;
+		this.doctor_code = doctor_code;
+		this.speciality_code = speciality_code;
+		this.id = id;
+		this.name = name;
+		this.treatment_status = treatment_status;
+	}
 
-    //기본생성자
+	//기본생성자
     public ReservationListBean() {}
 
     //멤버변수를 생성시점부터 초기화 하는 생성자(코드 제외)
@@ -114,4 +119,13 @@ public class ReservationListBean {
     public void setName(String name) {
         this.name = name;
     }
+
+	public String getTreatment_status() {
+		return treatment_status;
+	}
+
+	public void setTreatment_status(String treatment_status) {
+		this.treatment_status = treatment_status;
+	}
+    
 }

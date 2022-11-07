@@ -1,5 +1,6 @@
 package action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,11 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import svc.MyTreatmentListService;
-import svc.TreatmentListSearchService;
-import svc.TreatmentListService;
 import vo.ActionForward;
 import vo.MyTreatmentList;
-import vo.TreatmentList;
 
 public class MyTreatmentListAction implements Action {
 
@@ -21,24 +19,29 @@ public class MyTreatmentListAction implements Action {
 		
 		MyTreatmentListService myTreatmentListService = new MyTreatmentListService();
 		
-		//입력한 id
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		//입력받은 id
 		String id = request.getParameter("id");
 		
-		//
+		//현제 로그인되어 있는 id
 		HttpSession session = request.getSession();
         String viewId = (String)session.getAttribute("userID");
-        
-        
 		
+        if(id.equals(viewId)) {
 		ArrayList<MyTreatmentList> myTreatmentList = myTreatmentListService.getMyTreatmentList(id);
 		
 		System.out.println("[DEBUG]MyTreatmentListAction의 ID 파라미터 값:" + id);
-		
-		//System.out.println("[DEBUG]MyTreatmentListAction의 myTreatmentList :" + myTreatmentList.isEmpty());
 		request.setAttribute("id", id);
 		request.setAttribute("myTreatmentList", myTreatmentList);
 		forward = new ActionForward("myTreatmentList.jsp", false);
-		
+        }else {
+        	out.println("<script>");
+			out.println("alert('아이디를 잘못입력하였습니다..');");
+			out.println("history.back();");
+			out.println("</script>");
+        }
 		return forward;
 	}
 

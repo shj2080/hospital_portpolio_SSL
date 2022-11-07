@@ -4,6 +4,7 @@
 	padding-top: 85px;
 } */
 
+/* 좌측 메뉴바 관련 스타일 */
 aside {
 	width: 100%;
     background-color: #00B4DB;
@@ -36,6 +37,7 @@ aside li:hover {
     background-color: #00D8FF;
 }
 
+/* section 영역 스타일 */
 seciton {
     float: right;
     padding-top: 5rem;
@@ -55,6 +57,7 @@ section table tr,td,th {
     padding: 1rem;
  }
  */
+ 
  /* 회원수정테이블 스타일 */
 #memberTable{
 	margin-top: 1rem;
@@ -102,6 +105,7 @@ footer {
     aside {
         float: left;
         width: auto;
+        height: 100%;
     }
 
     #mypageMainView img{

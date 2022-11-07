@@ -15,6 +15,9 @@
 	window.onload = function () {
 		//버튼 이벤트 리스너 설정
 		document.getElementById("searchID").addEventListener("click", memberSearch);
+		
+		//get 방식으로 넘어온 파라미터 제거함
+		history.replaceState({}, null, location.pathname);
 	};
 </script>
 <script type="text/javascript" src = "javascript/mypage/reservationList_script.js"></script>
@@ -40,13 +43,14 @@
 			<th scope="col">진료날짜</th>
 			<th scope="col">의사명</th>
 			<th scope="col">진료과</th>
+			<th scope="col">진료상태</th>
 		</tr>
 		<c:forEach var = "resRow" items="${resCheckList }">
 			<tr>
 				<td colspan="2">
-					<input type="button" id = "treatConfirm" name = "treatConfirm" value = "진료확인" class = "btn btn-info fs-4" onclick = "treatmentAdd(${resRow.reservation_code});"/>
-					<input type="button" name = "modifyReservation" value = "수정" class = "btn btn-info fs-4" onclick = "modifyRes(${resRow.speciality_code},${resRow.reservation_code});"/>
-					<input type="button" name = "cancelReservation" value = "취소" class = "btn btn-danger fs-4" onclick = "cancelRes(${resRow.reservation_code}, '${resRow.id}');"/>
+					<input type="button" id = "treatConfirm" name = "treatConfirm" value = "진료확인" class = "btn btn-info fs-4" onclick = "treatmentAdd(${resRow.reservation_code},'${resRow.treatment_status}');"/>
+					<input type="button" id = "modifyResBtn" name = "modifyReservation" value = "수정" class = "btn btn-info fs-4" onclick = "modifyRes(${resRow.speciality_code},${resRow.reservation_code},'${resRow.treatment_status}');"/>
+					<input type="button" id = "cancelResBtn" name = "cancelReservation" value = "취소" class = "btn btn-danger fs-4" onclick = "cancelRes(${resRow.reservation_code}, '${resRow.id}','${resRow.treatment_status}');"/>
 				</td>
 				<td>
 					${resRow.reservation_code }
@@ -65,6 +69,9 @@
 				</td>
 				<td>
 					${resRow.speciality_name }
+				</td>
+				<td>
+					${resRow.treatment_status}
 				</td>
 			</tr>
 		</c:forEach>

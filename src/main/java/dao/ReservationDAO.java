@@ -73,7 +73,7 @@ public class ReservationDAO {
 		ReservationListBean myReservation = null;
 		
 		String sql = "select reservation_code , reservation_date, doctor_name, speciality_name,";
-		sql += " r.doctor_code, r.speciality_code, r.id, m.name";
+		sql += " r.doctor_code, r.speciality_code, r.id, m.name, treatment_status";
 		sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
 		sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
 		sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
@@ -95,7 +95,8 @@ public class ReservationDAO {
 									rs.getInt("doctor_code"),
 									rs.getInt("speciality_code"),
 									rs.getString("id"),
-									rs.getString("name"));
+									rs.getString("name"),
+									rs.getString("treatment_status"));
 							//ArrayList에 추가
 							reservationList.add(myReservation);
 						} while (rs.next());
@@ -114,20 +115,40 @@ public class ReservationDAO {
 	public int modifyReservationTreatment(ReservationBean reservationBean) {
 		int updateResult = 0;
 		
-		String sql = "update reservation";
-		sql += " set speciality_code = ?, doctor_code = ?, reservation_date = ?, phone = ?";
+		String sql = "";
+		
+		if(reservationBean.getTreatment_status() != null) {
+			sql = "update reservation";
+			sql += " set speciality_code = ?, doctor_code = ?, reservation_date = ?, phone = ?, treatment_status = ?";
+			
+		}else {
+			sql = "update reservation";
+			sql += " set speciality_code = ?, doctor_code = ?, reservation_date = ?, phone = ?";
+		}
+		
+		
 		sql += " where id = ? AND reservation_code = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
 			//?안에 들어갈 값 세팅
-			pstmt.setInt(1, reservationBean.getSpeciality_code());
-			pstmt.setInt(2, reservationBean.getDoctor_code());
-			pstmt.setString(3, reservationBean.getReservation_date());
-			pstmt.setString(4, reservationBean.getPhone());
-			pstmt.setString(5, reservationBean.getId());
-			pstmt.setInt(6, reservationBean.getReservation_code());
+			if(reservationBean.getTreatment_status() != null) {
+				pstmt.setInt(1, reservationBean.getSpeciality_code());
+				pstmt.setInt(2, reservationBean.getDoctor_code());
+				pstmt.setString(3, reservationBean.getReservation_date());
+				pstmt.setString(4, reservationBean.getPhone());
+				pstmt.setString(5, reservationBean.getTreatment_status());
+				pstmt.setString(6, reservationBean.getId());
+				pstmt.setInt(7, reservationBean.getReservation_code());
+			}else {
+				pstmt.setInt(1, reservationBean.getSpeciality_code());
+				pstmt.setInt(2, reservationBean.getDoctor_code());
+				pstmt.setString(3, reservationBean.getReservation_date());
+				pstmt.setString(4, reservationBean.getPhone());
+				pstmt.setString(5, reservationBean.getId());
+				pstmt.setInt(6, reservationBean.getReservation_code());
+			}
 			
 			updateResult = pstmt.executeUpdate();
 
@@ -158,7 +179,8 @@ public class ReservationDAO {
 						rs.getInt("speciality_code"), rs.getInt("doctor_code"),
 						rs.getString("id"),
 						rs.getString("reservation_date"),
-						rs.getString("phone"));
+						rs.getString("phone"),
+						rs.getString("treatment_status"));
 			}
 			
 		} catch(Exception e) {
