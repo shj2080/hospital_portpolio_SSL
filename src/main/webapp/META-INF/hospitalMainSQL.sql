@@ -214,7 +214,8 @@ create table user_board(
 	post_subject NVARCHAR(50) NOT NULL,
 	post_text TEXT,
 	post_file VARCHAR(300),
- 	
+ 	post_notice int not null default 0 check(post_notice in (0, 1)),	/* 공지사항 구분 컬럼 */
+	
 	PRIMARY KEY (post_no),
  	foreign key(id) REFERENCES membertbl(id)
 

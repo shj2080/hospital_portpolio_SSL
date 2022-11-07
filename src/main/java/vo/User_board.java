@@ -2,7 +2,7 @@ package vo;
 
 
 public class User_board {
-	private int post_no;
+	private int post_no;		//글 번호
 	private String post_date;
 	private String post_pwd;
 	private String post_subject;
@@ -10,7 +10,9 @@ public class User_board {
 	private String post_file;
 	
 	private String id;
+	private int post_notice;  //공지사항 구분 컬럼
 	
+	//기본생성자
 	public User_board() {
 		super();
 	}
@@ -46,9 +48,19 @@ public class User_board {
 		this.post_text = post_text;
 		this.post_file = post_file;
 	}
-
-
-
+	
+	//공지사항 작성 시 생성자
+	public User_board(int post_no, String post_date, String post_pwd, String post_subject, String post_text,
+			String post_file, int post_notice) {
+		super();
+		this.post_no = post_no;
+		this.post_date = post_date;
+		this.post_pwd = post_pwd;
+		this.post_subject = post_subject;
+		this.post_text = post_text;
+		this.post_file = post_file;
+		this.post_notice = post_notice;
+	}
 
 	public int getPost_no() {
 		return post_no;
@@ -107,7 +119,15 @@ public class User_board {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	
+
+
+	public int getPost_notice() {
+		return post_notice;
+	}
+
+
+	public void setPost_notice(int post_notice) {
+		this.post_notice = post_notice;
+	}
 	
 }

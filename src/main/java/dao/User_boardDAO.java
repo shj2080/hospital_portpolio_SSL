@@ -74,6 +74,7 @@ public class User_boardDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
+			//쿼리문에서 ?에 대입될 값 지정
 			pstmt.setInt(1, post_no);				
 			pstmt.setString(2, userboard.getId());	
 			pstmt.setString(3, userboard.getPost_date());			
@@ -102,10 +103,10 @@ public class User_boardDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				User_board ub = new User_board(
-							rs.getInt(1),
-							rs.getString(2),
-							rs.getString(3),
-							rs.getString(4) );
+							rs.getInt("post_no"),
+							rs.getString("post_subject"),
+							rs.getString("id"),
+							rs.getString("post_date") );
 				list.add(ub); 
 			}
 			
@@ -128,11 +129,11 @@ public class User_boardDAO {
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					ub = new User_board(
-								rs.getInt(1),
-								rs.getString(2),
-								rs.getString(3),
-								rs.getString(4),
-								rs.getString(5) );
+								rs.getInt("post_no"),
+								rs.getString("post_subject"),
+								rs.getString("id"),
+								rs.getString("post_date"),
+								rs.getString("post_text") );
 				}
 				
 			}catch (SQLException e) {
