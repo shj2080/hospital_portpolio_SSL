@@ -38,7 +38,35 @@ public class ReservationDAO {
 	public void setConnection(Connection con) {
 		this.con = con;
 	}
-	
+
+	//예약진료목록 하나를 예약테이블에 추가
+	public int insertReservation(ReservationBean reservationBean) {
+		int insertResult = 0;
+
+		String sql = "insert into reservation(speciality_code, doctor_code, id, reservation_date, phone)";
+		sql += " values(?,?,?,?,?)";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+
+			//?안에 들어갈 값 세팅
+			pstmt.setInt(1, reservationBean.getSpeciality_code());
+			pstmt.setInt(2, reservationBean.getDoctor_code());
+			pstmt.setString(3, reservationBean.getId());
+			pstmt.setString(4, reservationBean.getReservation_date());
+			pstmt.setString(5, reservationBean.getPhone());
+
+			insertResult = pstmt.executeUpdate();
+
+		} catch(Exception e) {
+			System.out.println("[ReservationDAO] insertReservation 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+		}
+
+		return insertResult;
+	}
+
 	//예약된 본인의 진료내역 불러오는 DAO 메서드
 	public ArrayList<ReservationListBean> myReservationList(String userID) {
 		ArrayList<ReservationListBean> reservationList = null;
@@ -134,7 +162,7 @@ public class ReservationDAO {
 			}
 			
 		} catch(Exception e) {
-			System.out.println("[ReservationDAO] modifyReservationTreatment 에러:"+ e);
+			System.out.println("[ReservationDAO] selectReservation 에러:"+ e);
 		} finally { //사용 후 커넥션 해제
 			close(pstmt);
 			close(rs);
@@ -166,5 +194,32 @@ public class ReservationDAO {
 		return deleteResult;
 	}
 	
-	//특정 예약코드의 데이터 조회(폼 세팅용)
+	//예약진료 항목을 진료테이블에 insert하는 메서드
+	public int insertTreatment_Reservation(ReservationBean reservationInfo) {
+		int insertResult = 0;
+		
+		String sql = "insert into treatment(speciality_code, doctor_code, id, treatment_date, phone)";
+		sql += " values(?,?,?,?,?)";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+
+			//?안에 들어갈 값 세팅
+			pstmt.setInt(1, reservationInfo.getSpeciality_code());
+			pstmt.setInt(2, reservationInfo.getDoctor_code());
+			pstmt.setString(3, reservationInfo.getId());
+			pstmt.setString(4, reservationInfo.getReservation_date());
+			pstmt.setString(5, reservationInfo.getPhone());
+
+			insertResult = pstmt.executeUpdate();
+
+		} catch(Exception e) {
+			System.out.println("[ReservationDAO] insertTreatment_Reservation 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+		}
+		
+		return insertResult;
+	}
+	
 }

@@ -7,7 +7,7 @@ import static db.JdbcUtil.rollback;
 
 import java.sql.Connection;
 
-import dao.HospitalDAO;
+import dao.ReservationDAO;
 import vo.reservation.ReservationBean;
 
 public class ReservationInsertService {
@@ -19,14 +19,14 @@ public class ReservationInsertService {
 		Connection con = getConnection();
 		
 		//2.싱글톤 패턴:DAO객체 생성
-		HospitalDAO hospitalDAO = HospitalDAO.getInstance();
+		ReservationDAO reservationDAO = ReservationDAO.getInstance();
 		
 		//3.DB작업에 사용될 Connection객체를 DAO의 멤버변수로 삽입하여 DB 연결
-		hospitalDAO.setConnection(con);
+		reservationDAO.setConnection(con);
 		
 		/*----DAO의 해당 메서드를 호출하여 처리-------------------*/		
 		
-		result = hospitalDAO.insertReservationTreatment(reservationBean);
+		result = reservationDAO.insertReservation(reservationBean);
 		
 		/*-(update,delete,insert)성공하면 commit 실패하면 rollback
 		 * (select제외)----*/

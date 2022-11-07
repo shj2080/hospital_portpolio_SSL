@@ -360,32 +360,6 @@ public class HospitalDAO {
 		
 		return treatmentListSearch;
 	}
-	public int insertReservationTreatment(ReservationBean reservationBean) {
-		int insertResult = 0;
-		
-		String sql = "insert into reservation(speciality_code, doctor_code, id, reservation_date, phone)";
-		sql += " values(?,?,?,?,?)";
-
-		try {
-			pstmt = con.prepareStatement(sql);
-			
-			//?안에 들어갈 값 세팅
-			pstmt.setInt(1, reservationBean.getSpeciality_code());
-			pstmt.setInt(2, reservationBean.getDoctor_code());
-			pstmt.setString(3, reservationBean.getId());
-			pstmt.setString(4, reservationBean.getReservation_date());
-			pstmt.setString(5, reservationBean.getPhone());
-			
-			insertResult = pstmt.executeUpdate();
-
-		} catch(Exception e) {
-			System.out.println("[HospitalDAO] insertReservationTreatment 에러:"+ e);
-		} finally { //사용 후 커넥션 해제
-			close(pstmt);
-		}
-		
-		return insertResult;
-	}
 	
 	//진료과 테이블의 전체 데이터를 가져옴
 	public ArrayList<Speciality> selectSpecialityList() {
