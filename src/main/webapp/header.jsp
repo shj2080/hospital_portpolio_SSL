@@ -11,7 +11,7 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title></title>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
 
 <link rel="stylesheet" type="text/css" href="style/header.css">
 		
@@ -45,6 +45,9 @@
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "#"><span class = "menu">의료진소개</span></a>
 			</li>
+<!-- 			<li class="nav-item">
+				<a class = "nav-link nav-link fs-3" href = "qboardList.qna"><span class = "menu">TEMP게시판</span></a>
+			</li> -->
 			<c:if test="${userID  == null}">
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "login.do" ><span class = "menu">로그인/회원가입</span></a>

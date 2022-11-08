@@ -34,7 +34,7 @@
 		<h2>예약된 진료내역이 없습니다.</h2>
 	</c:if>
 	<c:if test="${resCheckList != null}">
-	<table class = "table mt-5">
+	<table id ="resCheckTable" class = "table mt-5">
 		<tr>
 			<th colspan="2" scope="col">선택</th>
 			<th scope="col">예약코드</th>

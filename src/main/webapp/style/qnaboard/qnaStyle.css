@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+h2 {
+	padding-top: 1rem;
+	text-align: center;
+}
+
+h4 {
+	text-align: right;
+	background-color: lightblue;
+}
+h4 a{
+	text-decoration: none;
+	color: white;
+}
+
+#listForm{
+	background-color: lightblue;
+	}  
+
+#tr_top {
+	text-align: center;
+	color:white;
+}
+
+#pageList {
+	width: 100%;
+	text-align: center;
+	background-color: lightblue;
+}
+
+#emptyArea {
+	margin: auto;
+	width: 500px;
+	text-align: center;
+}
+#tr_down{
+  background-color: white;
+  color: lightblue;
+}
+#write{
+	background-color: lightblue;
+}
+
+#first-table{
+	border-color: #e1e4e1;
+	}

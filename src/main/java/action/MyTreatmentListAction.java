@@ -29,6 +29,8 @@ public class MyTreatmentListAction implements Action {
 		HttpSession session = request.getSession();
         String viewId = (String)session.getAttribute("userID");
 		
+        
+        
         if(id.equals(viewId)) {
 		ArrayList<MyTreatmentList> myTreatmentList = myTreatmentListService.getMyTreatmentList(id);
 		

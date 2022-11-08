@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">

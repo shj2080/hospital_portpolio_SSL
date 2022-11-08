@@ -20,7 +20,7 @@ public class LoginFormAction implements Action {
 	    if(viewId == null) {
 	    	forward = new ActionForward("login.jsp", false);
 	    }else {
-	    	forward = new ActionForward("index.jsp", false);
+	    	forward = new ActionForward("index.do", false);
 	    }
 		
 		return forward;

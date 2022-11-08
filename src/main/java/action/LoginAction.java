@@ -61,7 +61,7 @@ public class LoginAction implements Action {
 			//세션 유지시간 변경(기본 30분)
 			session.setMaxInactiveInterval(1*60*60); //세션 유지시간을 3600초 = 1시간으로 변경
 			
-			forward = new ActionForward("index.jsp", true);
+			forward = new ActionForward("index.do", true);
 		} else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();

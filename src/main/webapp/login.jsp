@@ -7,6 +7,8 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원 - 로그인</title>
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="style/login.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
