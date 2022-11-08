@@ -1,6 +1,7 @@
 package action.mypage.admin;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import svc.MemberInfoListViewService;
 import vo.ActionForward;
+import vo.Member;
 
 public class MemberInfoListViewAction implements Action {
 
@@ -42,9 +44,16 @@ public class MemberInfoListViewAction implements Action {
 	  			return forward;
 	  		}
 	  		
-	  		//멤버정보 조회 서비스 객체 생성
+	  		//회원정보 조회 서비스 객체 생성
 	  		MemberInfoListViewService memberInfoListViewService = new MemberInfoListViewService();
+	  		List<Member> memberList =  memberInfoListViewService.selectMemberList();
 	  		
+	  		System.out.println("[DEBUG]memberList 0번 인덱스값:"+memberList.get(0).getId());
+	  		
+	  		request.setAttribute("memList", memberList);
+	  		
+	  		request.setAttribute("showPage", "admin/memberListView.jsp");
+	        forward = new ActionForward("mypage/mypageTemplate.jsp", false);
 	  	}
 	  	
 		return forward;

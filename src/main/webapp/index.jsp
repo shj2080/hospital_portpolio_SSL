@@ -34,43 +34,45 @@ section{
 				<img src="images/율제병원.jpg" width="100%" height="300px">
 			</div>
 			
-			<fieldset id = "boardBox">
-			<legend align="center">공지사항</legend>
-				<table class="table table-striped" id = "boardListBox">
-					<thead>
-						<tr>
-							<th style="background-color: #eeeeee; text-align: center;">제목</th>
-							<th style="background-color: #eeeeee; text-align: center;">작성자</th>
-							<th style="background-color: #eeeeee; text-align: center;">작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:if test="${boardList != null && boardList.size() > 0}">
-							<!-- 1.board 메뉴목록이 있으면 -->
-							<c:forEach var="board" items="${boardList}" varStatus="status">
-								<!-- 행 시작  -->
-								<tr align="center">
-									<td><a href="showPost.do?post_no=${board.post_no}">${board.post_subject }</a></td>
-									<td>${board.id }</td>
-									<td>${board.post_date }</td>
-								</tr>
-								<!-- 행 끝 -->
-							</c:forEach>
-						</c:if>
-						<c:if test="${boardList == null}">
-							<!-- 2.board 메뉴목록이 없으면 -->
-							<td colspan="4">등록된 게시글이 없습니다.</td>
-						</c:if>
-					</tbody>
-				</table>
-			</fieldset>
-			
-			<fieldset id = "menuBox">
-				<div id = "menu1">예약하러 가기</div>
-				<div id = "menu2">대기자명단 보기</div>
-				<div id = "menu3">병원소개</div>
-				<div id = "menu4">의료진 소개</div>
-			</fieldset>
+			<div id = "flexBox">
+				<fieldset id = "boardBox">
+				<legend align="center">공지사항</legend>
+					<table class="table table-striped" id = "boardListBox">
+						<thead>
+							<tr>
+								<th style="background-color: #eeeeee; text-align: center;">제목</th>
+								<th style="background-color: #eeeeee; text-align: center;">작성자</th>
+								<th style="background-color: #eeeeee; text-align: center;">작성일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:if test="${boardList != null && boardList.size() > 0}">
+								<!-- 1.board 메뉴목록이 있으면 -->
+								<c:forEach var="board" items="${boardList}" varStatus="status">
+									<!-- 행 시작  -->
+									<tr align="center">
+										<td><a href="showPost.do?post_no=${board.post_no}">${board.post_subject }</a></td>
+										<td>${board.id }</td>
+										<td>${board.post_date }</td>
+									</tr>
+									<!-- 행 끝 -->
+								</c:forEach>
+							</c:if>
+							<c:if test="${boardList == null}">
+								<!-- 2.board 메뉴목록이 없으면 -->
+								<td colspan="4">등록된 게시글이 없습니다.</td>
+							</c:if>
+						</tbody>
+					</table>
+				</fieldset>
+				
+				<fieldset id = "menuBox">
+					<div id = "menu1">예약하러 가기</div>
+					<div id = "menu2">대기자명단 보기</div>
+					<div id = "menu3">병원소개</div>
+					<div id = "menu4">의료진 소개</div>
+				</fieldset>
+			</div>
 		</section>
 	</div>
 	<jsp:include page="footer.jsp" />

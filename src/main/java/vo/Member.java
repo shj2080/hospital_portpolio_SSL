@@ -25,6 +25,16 @@ public class Member {
 		this.password = SHA256.encodeSHA256(password);
 	}
 
+	
+	//관리자 모드에서 회원 검색 시 필요한 정보들을 받아옴(주소, 비밀번호, 주민번호 제외)
+	public Member(String name, String id, String phone, String userType) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.phone = phone;
+		this.userType = userType;
+	}
+
 	//모든 회원정보(유저타입, 비밀번호 제외)
 	public Member(String name, String id_num, String id, String address1, String address2, String address3,
 			String postcode, String phone) {

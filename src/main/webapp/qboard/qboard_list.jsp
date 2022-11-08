@@ -17,6 +17,11 @@
 <link rel="stylesheet" type="text/css" href="style/footer.css">
 <link rel="stylesheet" type="text/css" href="style/qnaboard/qnaStyle.css">
 <title>게시판 글목록</title>
+<script>
+function movePage(page) {
+	location.href = "qboardList.qna?page=" + page;
+}
+</script>
 </head>
 
 <body>
@@ -30,7 +35,7 @@
 			 <c:choose>
 				 <c:when test="${userID != null}">
 				     <h4>
-					 	<a href="qboardWriteForm.qna" class="btn"><span class="fs-2">문의하기</span></a>
+					 	<a href="qboardWriteForm.qna" class="btn btn-primary pull-right fs-4"><span class="fs-2">문의하기</span></a>
 				     </h4>
 				 </c:when>
 				 <c:otherwise>
@@ -43,11 +48,11 @@
 	 	<c:set var="nowPage" value="${pageInfo.page}"/>
 	 	<table border="1" id="first-table"  class="table table-hover">
 			<tr id="tr_top">
-				<td>번호</td>
-				<td>작성자ID</td>
-				<td>제목</td>
-				<td>날짜</td>
-				<td>조회수</td>
+				<th>번호</th>
+				<th>작성자ID</th>
+				<th>제목</th>
+				<th>날짜</th>
+				<th>조회수</th>
 			</tr>
 
 				<c:forEach var = "boardList" items="${articleList}">
@@ -63,6 +68,7 @@
 							<c:forEach var = "r" begin="0" end="${boardList.QBOARD_RE_LEV * 2}" step="1">
 							&nbsp;
 							</c:forEach>
+							RE:▷
 						</c:when>
 						<c:otherwise>
 							 ▶
@@ -87,30 +93,30 @@
 		<div id="pageList">
 			<c:choose>
 				<c:when test="${nowPage <= 1 }">
-					[이전]&nbsp;
+					<button type="button" class="btn btn-success btn-arraw-left fs-4" disabled>이전</button>&nbsp;
 				</c:when>
 				<c:otherwise>
-					<a href="qboardList.qna?page=${nowPage-1 }">[이전]</a>&nbsp;
+					<button type = "button" class = "btn btn-success btn-arraw-left fs-4" onclick="movePage(${nowPage-1});" >이전</button>
 				</c:otherwise>
 			</c:choose>
 	
 			<c:forEach var = "p" begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1">
 				<c:choose>
 					<c:when test="${p == nowPage }"> <%--현재페이지[1]가 시작페이지[1]와 같으면 링크x ex:[1]-click링크X--%>
-						[${p}]
+						<button type = "button" class = "btn fs-5" disabled>${p}</button>
 					</c:when>
 					<c:otherwise>
-						<a href="qboardList.qna?page=${p}">[${p}]</a>&nbsp; <%--그게아니면 ex:[2]-click링크O -> [2]페이지의 리스트 출력--%>
+						<button type = "button" class = "btn fs-5" onclick = "movePage(${p});">${p}</button>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			
 			<c:choose>
 				<c:when test="${nowPage >= pageInfo.maxPage }"> <%--현재페이지가 마지막 페이지일경우 링크X [다음] --%>
-					[다음]
+					<button type = "button" class = "btn btn-success fs-4" disabled>다음</button>
 				</c:when>
 				<c:otherwise>
-					<a href="qboardList.qna?page=${nowPage + 1}">[다음]</a>  <%--마지막이아닐 경우 [다음]에 링크 --%>
+					<button type = "button" class = "btn btn-success fs-4" onclick="movePage(${nowPage+1});" >다음</button>
 				</c:otherwise>
 			</c:choose>
 		

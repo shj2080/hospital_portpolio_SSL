@@ -39,7 +39,6 @@ public class QBoardDAO {
 		ResultSet rs = null;
 
 		try{
-			System.out.println("getConnection");
 			pstmt=con.prepareStatement("select count(*) from qboard");
 			rs = pstmt.executeQuery();
 

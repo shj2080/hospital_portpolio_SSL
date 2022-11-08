@@ -21,6 +21,9 @@
 		<div id = "contentWrap">
 			<%-- 컨텐츠 표시 영역 시작 --%>
 			<section>
+				<div class="text-center">
+					<h2>공지사항</h2>
+				</div>
 				<div class="row" style="margin: 0 auto;">
 					<table class="table table-striped" id = "boardListBox">
 						<thead>
@@ -52,7 +55,12 @@
 						</tbody>
 					</table>
 					<div id = "butBOX" align="center">
-					<a href="userBoardWrite.do" class="btn btn-primary pull-right fs-4">글쓰기</a>
+					<c:if test="${userType == 'M' }">
+					<button type = "button" onclick="location.href='userBoardWrite.do'" class="btn btn-primary pull-right fs-4">글쓰기</button>
+					</c:if>
+					<c:if test="${userType == 'N' }">
+					<button type = "button" class="btn btn-primary pull-right fs-4" disabled>글쓰기</button>
+					</c:if>
 					<a href="userBoard.do" class="btn btn-success btn-arraw-left fs-4">이전</a>
 					<a href="userBoard.do" class="btn btn-success btn-arraw-left fs-4">다음</a>
 					</div>

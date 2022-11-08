@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+section div:nth-child(1) {
+	padding-top:1rem;
+}
+
 #boardListBox{
 	margin: 3rem auto;
 	text-align: center;

@@ -20,13 +20,14 @@ h4 a{
 
 #tr_top {
 	text-align: center;
-	color:white;
+	color:lightblack;
 }
 
 #pageList {
 	width: 100%;
 	text-align: center;
 	background-color: lightblue;
+	padding: 0.5rem;
 }
 
 #emptyArea {
@@ -36,7 +37,7 @@ h4 a{
 }
 #tr_down{
   background-color: white;
-  color: lightblue;
+  color: #000000;
 }
 #write{
 	background-color: lightblue;

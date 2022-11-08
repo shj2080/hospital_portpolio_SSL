@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
 .table {
-	width: 70%;
+	width: 95%;
+}
+
+/* 최소 크기 857px */
+@media screen and (min-width: 857px) {
+	
+	.table {
+		width:70%;
+	}
 }

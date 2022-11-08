@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
-section{
-	top: 0px;
+#flexBox{
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 #boardBox{
@@ -16,375 +18,42 @@ section{
 
 #menuBox{
     width: 46%;
-    height: auto;
-    border: 1px solid lightblue;
-    padding: 10px;
-    margin-top: 15px;
-    margin-right: 75px;
-    float: right;
-}
-
-
-#menu1{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-left: 11%;
-	    margin-right: 20px;
-	}
-	
-	#menu2{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-right: 20px;
-	}
-	
-	#menu3{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-right: 20px;
-	}
-	
-	#menu4{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	}
-
-/**********************/
-
-@media all and (max-width:1719px) {
-	#boardBox{
-	width: 97%;
-    height: auto;
-    padding: 20px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
     border: 1px solid lightblue;
     margin-top: 15px;
     margin-left: 15px;
 }
 
-#menuBox{
-    height: auto;
-    border: 1px solid lightblue;
-    padding: 10px;
-    margin: 15px;
-    width: 97%;
-}
 
-
-	#menu1{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-left: 15%;
-	    margin-right: 25px;
-	}
-	
-	#menu2{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-right: 50px;
-	}
-	
-	#menu3{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-right: 25px;
-	}
-	
-	#menu4{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	}
-}
-
-/* 메인 게시판 너비 97% */
-/* 메뉴박스 너비 97% */
-@media (min-width: 768px) and (max-width: 1490px) {
-#boardBox{
-	width: 97%;
-    height: auto;
-    padding: 20px;
-    border: 1px solid lightblue;
-    margin-top: 15px;
-    margin-left: 15px;
-}
-
-#menuBox{
-    height: auto;
-    border: 1px solid lightblue;
-    padding: 10px;
-    margin: 15px;
-    width: 97%;
-}
-
-
-#menu1{
-		border: 1px solid black;
+#menu1,#menu2,#menu3,#menu4{
+	border: 1px solid black;
+	flex: none;
     width: 150px;
     height: 300px;
-    display: inline-block;
-    margin-left: 15%;
-    margin-right: 25px;
-	}
-	
-	#menu2{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-right: 25px;
-	}
-	
-	#menu3{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-right: 25px;
-	}
-	
-	#menu4{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	}
-
+    margin: 1rem auto;
 }
-
-/**********************/
-/* @media (max-width: 1491px) {
-#boardBox{
-	width: 700px;
-    height: auto;
-    padding: 20px;
-    border: 1px solid lightblue;
-    margin-top: 15px;
-    margin-left: 15px;
-    display: inline-block;
-}
-
-#menuBox{
-    width: 50%;
-    height: auto;
-    border: 1px solid lightblue;
-    padding: 10px;
-    margin: 15px;
-}
-
-
-#menu1{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-left: 25px;
-	    margin-right: 25px;
-	}
 	
-	#menu2{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-right: 25px;
-	}
-	
-	#menu3{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	    margin-right: 25px;
-	}
-	
-	#menu4{
-		border: 1px solid black;
-	    width: 150px;
-	    height: 300px;
-	    display: inline-block;
-	}
-
-} */
-
-@media (max-width: 991px) {
-	 #boardBox{
+@media all and (max-width:1719px) {
+	#boardBox{
 		width: 97%;
-	    height: auto;
-	    padding: 20px;
-	    border: 1px solid lightblue;
-	    margin-top: 15px;
-	    margin: 10px;
 	}
-	
 	#menuBox{
-	    width: 97%;
-	    height: auto;
-	    border: 1px solid lightblue;
-	    padding: 20px;
-	    margin: 10px;
+		width: 97%;
 	}
-	
 }
-
-/* 태블릿 사이즈 */
-@media (max-width: 769px) {
-	#menu1 {
-		margin-right: 10px;
-		margin-left: 35px;
-	}
-	
-	#menu2 {
-		margin-right: 10px;
-	}
-	
-	#menu3 {
-		margin-right: 10px;
-	}
-	
-}
-
-/* 427~768px 사이의 사이즈 대응 */
-
-/********************/
-
 
 /* 큰 핸드폰 화면 사이즈 대응 */
-@media (max-width: 426px) {
-	
-	 #boardBox{
-		width: 97%;
-	    height: auto;
-	    padding: 20px;
-	    border: 1px solid lightblue;
-	    margin: 5px;
-	}
-	
+@media all and (max-width: 768px) {
 	#menuBox{
-	    width: 97%;
-	    height: auto;
-	    border: 1px solid lightblue;
-	    padding: 20px;
-	    margin: 5px;
+		flex-direction: column;
+		justify-content: center;
+		align-content: space-around;
 	}
 	
-	#menu1 {
-		width: 150px;
-	    margin: 10px;
-	    margin-right: 35px;
-	}
-	
-	#menu2 {
-		width: 150px;
-	    margin: 10px;
-	}
-	
-	#menu3 {
-		width: 150px;
-	    margin: 10px;
-	    margin-right: 35px;
-	}
-	
-	#menu4 {
-		width: 150px;
-	    margin: 10px;
-	}
-	
-}
-
-/* 소형 핸드폰 크기 대응 스타일 */
-@media (min-width: 376px) and (max-width: 424px) {
-	
-	 #boardBox{
-		width: 97%;
-	    height: auto;
-	    padding: 20px;
-	    border: 1px solid lightblue;
-	    margin: 5px;
-	}
-	
-	#menuBox{
-	    width: 97%;
-	    height: auto;
-	    border: 1px solid lightblue;
-	    padding: 20px;
-	    margin: 5px;
-	}
-	
-	#menu1 {
+	#menu1,#menu2,#menu3,#menu4{
+		text-align:center;
 		width: 300px;
-    	margin: 10px;
 	}
-	
-	#menu2 {
-		width: 300px;
-    	margin: 10px;
-	}
-	
-	#menu3 {
-		width: 300px;
-    	margin: 10px;
-	}
-	
-	#menu4 {
-		width: 300px;
-    	margin: 10px;
-	}
-	
-}
-
-
-/* 더 작은 핸드폰 화면 사이즈 대응 */
-@media (max-width: 376px) {
-	
-	 #boardBox{
-		width: 97%;
-	    height: auto;
-	    padding: 20px;
-	    border: 1px solid lightblue;
-	    margin: 5px;
-	}
-	
-	#menuBox{
-	    width: 97%;
-	    height: auto;
-	    border: 1px solid lightblue;
-	    padding: 20px;
-	    margin: 5px;
-	}
-	
-	#menu1 {
-		width: 300px;
-    	margin: 10px;
-	}
-	
-	#menu2 {
-		width: 300px;
-    	margin: 10px;
-	}
-	
-	#menu3 {
-		width: 300px;
-    	margin: 10px;
-	}
-	
-	#menu4 {
-		width: 300px;
-    	margin: 10px;
-	}
-	
 }

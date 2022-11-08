@@ -136,7 +136,7 @@ function deleteArticle(board_num, nowPage) {
 			</c:if>
 						
 			<%-- <a href="boardList.qna?page=<%=nowPage%>">[목록]</a>&nbsp;&nbsp; --%>
-			<a href="qboardList.qna" class="btn btn-outline-dark" style="font-size:12px;">목록</a>
+			<a href="qboardList.qna" class="btn btn-outline-dark " style="font-size:12px;">목록</a>
 						
 	</section>
 	</div>

@@ -433,5 +433,38 @@ public class HospitalDAO {
 				}
 		return myTreatmentList;
 	}
+	//회원들의 특정 정보를 받아옴(주민번호나 비밀번호, 주소는 제외)
+	public ArrayList<Member> selectMemberListInfo_safe() {
+		ArrayList<Member> memberList = null; //모든 회원의 정보를 담은 ArrayList 객체
+		Member member = null; //특정 회원의 정보가 담기는 객체
+		
+		String sql = "select name, id, phone, user_type from membertbl";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				System.out.println("selectMemberListInfo_safe() 쿼리값 감지됨.");
+				memberList = new ArrayList<Member>();
+				
+				do {
+					member = new Member(rs.getString("name"),
+							rs.getString("id"),
+							rs.getString("phone"),
+							rs.getString("user_type"));
+
+					memberList.add(member); //받아온 회원 VO들을 ArrayList에 담음
+				}while(rs.next());
+			}
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] selectMemberListInfo_safe 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+			close(rs);
+		}
+		
+		return memberList;
+	}
 	
 }

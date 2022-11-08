@@ -55,7 +55,7 @@
 			</c:if>
 			<c:if test="${userID != null}">
 			<li class="nav-item">
-				<a class = "nav-link nav-link fs-3" href = "userBoard.do"><span class = "menu">게시판</span></a>
+				<a class = "nav-link nav-link fs-3" href = "userBoard.do"><span class = "menu">공지사항</span></a>
 			</li>
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "logout.do"><span class = "menu">로그아웃</span></a>

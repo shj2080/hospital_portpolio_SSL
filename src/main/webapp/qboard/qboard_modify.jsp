@@ -33,9 +33,12 @@ QBoardBean article = (QBoardBean)request.getAttribute("article");
       height: 600px;
       margin:auto; 
    }   
-   h4{
-      text-align: center; padding-top:20px ;
-   }
+h4 {
+	text-align: center;
+	margin-top: 1rem;
+	padding: 1rem;
+	font-size: 2.5rem;
+	}
    table{
       margin:auto;
       width: 600px;
@@ -63,7 +66,7 @@ QBoardBean article = (QBoardBean)request.getAttribute("article");
 <input type = "hidden" name = "QBOARD_NUM" value = "${article.QBOARD_NUM}"/>
 
 <h4>게시판글수정</h4>
-<table border="1" id="table-first" class="table table-bordered">
+<table border="1" id="table-first" class="table table-bordered fs-4">
 	<tr>
 		<td id="td_left">
 			<label for = "QBOARD_NAME">작성자 ID</label>
@@ -78,7 +81,7 @@ QBoardBean article = (QBoardBean)request.getAttribute("article");
 			<label for = "QBOARD_SUBJECT" >제 목</label>
 		</td>
 		<td>
-			<input name="QBOARD_SUBJECT" type="text" id = "QBOARD_SUBJECT" value = "${article.QBOARD_SUBJECT}"  class="form-control"/>
+			<input name="QBOARD_SUBJECT" type="text" id = "QBOARD_SUBJECT" value = "${article.QBOARD_SUBJECT}"  class="form-control fs-4"/>
 		</td>
 	</tr>	
 	<tr>
@@ -86,7 +89,7 @@ QBoardBean article = (QBoardBean)request.getAttribute("article");
 			<label for = "QBOARD_CONTENT">내 용</label>
 		</td>
 		<td>
-			<textarea id = "QBOARD_CONTENT" name="QBOARD_CONTENT" cols="60" rows="12"  class="form-control" style="font-size:12px;">${article.QBOARD_CONTENT}</textarea>
+			<textarea id = "QBOARD_CONTENT" name="QBOARD_CONTENT" cols="60" rows="12"  class="form-control fs-4">${article.QBOARD_CONTENT}</textarea>
 		</td>
 	</tr>
 
@@ -95,14 +98,14 @@ QBoardBean article = (QBoardBean)request.getAttribute("article");
 	         <%--로그인 한 사람의 본인의 작성글만 수정할 수 있는 조건문 --%>
 	         <c:choose>
 	         	<c:when test="${userID == article.MEM_ID }">
-	         		<button type = "button" onclick = "modifyboard()" class="btn btn-outline-dark" style="font-size:12px;">수정</button>&nbsp;&nbsp;
+	         		<button type = "button" onclick = "modifyboard()" class="btn btn-outline-dark fs-4">수정</button>&nbsp;&nbsp;
 	         	</c:when>
 	         	<c:otherwise>
-	         		<button type = "button" onclick="" class="btn btn-outline-dark" style="font-size:12px;" disabled>수정</button>&nbsp;&nbsp;
+	         		<button type = "button" onclick="" class="btn btn-outline-dark fs-4" disabled>수정</button>&nbsp;&nbsp;
 	         	</c:otherwise>
 	         </c:choose>
 			
-			<a href="javascript:history.go(-1)" class="btn btn-outline-dark" style="font-size:12px;">뒤로</a>
+			<a href="javascript:history.back();" class="btn btn-outline-dark fs-4">뒤로</a>
 	</section> 
 </form>
 

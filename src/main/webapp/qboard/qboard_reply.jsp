@@ -35,7 +35,11 @@ h4 {
  text-align: center; font-size: 12px;
 
 }
-#table1{border-color: #e1e4e1; width: 55%; margin:70px auto auto auto;}
+#table1{
+	border-color: #e1e4e1;
+	width: 55%;
+	margin:1rem auto auto auto;
+}
  
 </style>
 </head>
