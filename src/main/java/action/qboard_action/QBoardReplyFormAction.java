@@ -19,6 +19,7 @@ public class QBoardReplyFormAction implements Action {
 	 	
 	 	HttpSession session = request.getSession();
         String viewId = (String)session.getAttribute("userID");
+        String userType = (String)session.getAttribute("userType");
         
         //현재 로그인된 상태가 아니면
 	  	if(viewId == null) {
@@ -30,6 +31,18 @@ public class QBoardReplyFormAction implements Action {
   			out.println("</script>");
   		//로그인 상태라면
 	  	}else {
+	  		
+	  		if(!userType.equals("M")) {
+	  			response.setContentType("text/html;charset=utf-8");
+	  			PrintWriter out = response.getWriter();
+	  			out.println("<script>");
+	  			out.println("alert('관리자가 아니면 답글을 다실 수 없습니다.');");
+	  			out.println("history.back();");
+	  			out.println("</script>");
+	  			return forward;
+	  		}
+	  		
+	  		//현재 게시판 페이지 수 받아옴
 	   		String nowPage = request.getParameter("page");
 	   		int qboard_num=Integer.parseInt(request.getParameter("qboard_num")); //해당하는 글의 borad_num값을 받아서 borad_num에 담음
 	   		   		

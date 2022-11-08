@@ -48,10 +48,9 @@
 				</td>
 			</tr>
 		</c:forEach>
+		<caption><span>진료예약 관련 하여 수정/취소는 예약 접수 창구나 전화로 문의하시기 바랍니다.</span></caption>
 	</table>
-		<div>
-			<span>진료예약 관련 하여 수정/취소는 예약 접수 창구나 전화로 문의하시기 바랍니다.</span>
-		</div>
+			
 	</c:if>
 	<c:if test="${myReservationList == null }">
 		<h2>예약된 진료내역이 없습니다.</h2>

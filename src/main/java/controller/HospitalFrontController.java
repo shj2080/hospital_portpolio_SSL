@@ -183,8 +183,11 @@ public class HospitalFrontController extends HttpServlet {
 			}
 		}
 		//병원 소개
-		else if(command.equals("/introduce.do")) {
-			forward = new ActionForward("introduce.jsp", true);
+		else if(command.equals("/introduce.do")) {			
+			//action = new IntroduceViewAction();
+			
+			//request.setAttribute("showPage", "");
+			forward = new ActionForward("introduce/introduceTemplate.jsp", false);
 		}
 		//마이페이지 진료내역 id체크 접근
 		else if(command.equals("/myTratmentListCheck.do")) {

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.mypage.admin.MemberInfoListViewAction;
 import action.mypage.admin.ReservationCheckListAction;
 import action.mypage.admin.ReservationSearchListAction;
 import action.reservation.TreatmentAddConfirmAction;
@@ -89,6 +90,16 @@ public class AdminFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
 				System.out.println("TreatmentAddConfirmAction ActionForward 예외 : " + e);
+			}
+		}
+		//전체 회원 정보를 조회하는 액션
+		else if (command.equals("/memberListView.ad")) {
+			action = new MemberInfoListViewAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				System.out.println("MemberInfoListViewAction ActionForward 예외 : " + e);
 			}
 		}
 

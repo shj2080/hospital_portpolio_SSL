@@ -11,6 +11,7 @@
 	<ul>
 		<li><a href="memberInfoModifyForm.do">내 회원 정보 수정</a></li>
 		<li><a href="reservationCheckList.ad">예약된 진료내역</a></li>
+		<li><a href="memberListView.ad">회원 목록 조회</a></li>
 	</ul>
 </body>
 </html>

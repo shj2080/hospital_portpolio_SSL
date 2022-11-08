@@ -11,12 +11,14 @@ import vo.QBoardBean;
 
 public class QBoardReplyProAction implements Action {
 	
-	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) 
-	 throws Exception{
-		 
+	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		 	ActionForward forward = null;
+		 	
+		 	//현재 페이지
 		    String nowPage = request.getParameter("page");
 		 	QBoardBean article = new QBoardBean();  		
+		 	
+		 	//작성자 ID 받아옴
 		 	article.setMEM_ID(request.getParameter("loginID"));
 		 	article.setQBOARD_NUM(Integer.parseInt(request.getParameter("qboard_num")));
 		 	article.setQBOARD_SUBJECT(request.getParameter("QBOARD_SUBJECT"));
@@ -38,7 +40,7 @@ public class QBoardReplyProAction implements Action {
 	   			response.setContentType("text/html;charset=UTF-8");
 	   			PrintWriter out = response.getWriter();
 	   			out.println("<script>");
-	   			out.println("alert('답장실패')");
+	   			out.println("alert('답글 작성을 실패했습니다. 잠시 후 다시 시도해 주세요.')");
 	   			out.println("history.back()");
 	   			out.println("</script>");
 	   		}

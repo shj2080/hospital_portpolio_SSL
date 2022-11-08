@@ -125,8 +125,9 @@ function deleteArticle(board_num, nowPage) {
 	</section>
 
 	<section id="commandList">
-		      <a href="qboardReplyForm.qna?qboard_num=${article.QBOARD_NUM}&page=${page}" class="btn btn-outline-dark" style="font-size:12px;">답변</a> 				   		    
-	
+		<c:if test="${userType == 'M' }">
+			<a href="qboardReplyForm.qna?qboard_num=${article.QBOARD_NUM}&page=${page}" class="btn btn-outline-dark" style="font-size:12px;">답변</a> 				   		    
+		</c:if>
 				<c:if test="${article.MEM_ID == userID }">
 				<a href="qboardModifyForm.qna?qboard_num=${article.QBOARD_NUM }" class="btn btn-outline-dark" style="font-size:12px;">수정</a>
 				

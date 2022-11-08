@@ -1,4 +1,4 @@
----8.문의게시판
+---문의게시판
 CREATE TABLE qboard(
    QBOARD_NUM INT,     /* 글 번호 */
     MEM_ID VARCHAR(20) NOT NULL, /* 회원ID */

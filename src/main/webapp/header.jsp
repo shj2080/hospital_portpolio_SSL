@@ -45,9 +45,9 @@
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "#"><span class = "menu">의료진소개</span></a>
 			</li>
-<!-- 			<li class="nav-item">
-				<a class = "nav-link nav-link fs-3" href = "qboardList.qna"><span class = "menu">TEMP게시판</span></a>
-			</li> -->
+			<li class="nav-item">
+				<a class = "nav-link nav-link fs-3" href = "qboardList.qna"><span class = "menu">Q&A게시판</span></a>
+			</li>
 			<c:if test="${userID  == null}">
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "login.do" ><span class = "menu">로그인/회원가입</span></a>
