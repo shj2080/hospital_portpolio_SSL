@@ -63,14 +63,6 @@ public class UserBoardWriteAction implements Action {
 			//첨부파일?
 			String post_file = request.getParameter("post_file");
 			
-			//공지사항 구분 (체크된 경우 값 1이 들어옴)
-			int post_notice = -1;
-			
-			try {
-				post_notice = Integer.parseInt(request.getParameter("post_notice"));
-			}catch(Exception e){
-				System.out.println("[Info]일반 게시글로 작성됨.");
-			}
 			
 			User_board userboard = new User_board(); //기본생성자
 			
@@ -82,9 +74,6 @@ public class UserBoardWriteAction implements Action {
 			userboard.setPost_text(post_text);
 			userboard.setPost_file(post_file);
 			
-			if(post_notice > 0) {
-				userboard.setPost_notice(post_notice);
-			}
 			
 			//게시글 작성 서비스 객체 생성 및 관련 메서드 호출
 			UserBoardWriteService userBoardWriteService =new UserBoardWriteService();

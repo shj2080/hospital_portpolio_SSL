@@ -4,13 +4,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%
-	QBoardBean article = (QBoardBean)request.getAttribute("article");
-	
-    String nowPage = (String)request.getAttribute("page");
-    String loginID = (String)session.getAttribute("userID"); //세션에 있는 ID불러오기 
-    //String mem_grade = (String)session.getAttribute("mem_grade");
-%>
 
 <!DOCTYPE html>
 <html>
@@ -33,7 +26,7 @@ h4 {
 	margin-top: 1rem;
 	padding: 1rem;
 	font-size: 2.5rem;
-	}
+}
 
 #staticMap{
  margin:0 auto;
@@ -45,14 +38,18 @@ h4 {
 }
 
 #table-first{
-	margin:1rem auto auto auto; width: 60%; border-color: black; font-size: 12px; border-color: #e1e4e1;
+	margin:1rem auto auto auto;
+	width: 60%;
+	border-color: black;
+	font-size: 1.2rem;
+	border-color: #e1e4e1;
 }
 
 #commandList {
 	margin: auto;
-	width: 500px;
+	width: 50rem;
 	text-align: center;
-	padding-bottom: 20px;
+	padding-bottom: 2rem;
 }
 
 </style>

@@ -281,16 +281,11 @@ public class HospitalDAO {
 	public ArrayList<TreatmentList> selectTreatmentList() {
 		ArrayList<TreatmentList> selectTreatmentList = null;
 		
-		/*
-		String sql = "select treatment_date, name, doctor_name, speciality_name from" +
-				  " doctor natural join speciality join treatment USING(speciality_code) join membertbl USING(id)"+
-						 "where treatment_date > now() order by treatment_date asc";
-		 */
 		String sql = "select reservation_date, name, doctor_name, speciality_name";
 		sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
 		sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
 		sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
-		sql += " WHERE r.reservation_date > now() order by r.reservation_date asc";
+		sql += " WHERE r.reservation_date > now() and DATE_FORMAT(reservation_date, '%Y-%m-%d') = CURDATE() order by r.reservation_date asc";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -328,7 +323,8 @@ public class HospitalDAO {
 		sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
 		sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
 		sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
-		sql += "  where r.reservation_date > now() AND spec.speciality_name = ? order by r.reservation_date asc";
+		sql += "  where r.reservation_date > now() AND spec.speciality_name = ? ";
+		sql += "and DATE_FORMAT(reservation_date, '%Y-%m-%d') = CURDATE() order by r.reservation_date asc";
 		
 		try {
 			
@@ -392,20 +388,16 @@ public class HospitalDAO {
 		return specialityList;
 	}
 	
+	//마이페이지 진료내역 조회 메서드
 	public ArrayList<MyTreatmentList> myTreatmentList(String id) {
 		ArrayList<MyTreatmentList> myTreatmentList = null;
 		MyTreatmentList mytreatmentList = null;
 		
-		/*
-		String sql = "select treatment_date, name, doctor_name, speciality_name from" +
-				  " doctor natural join speciality join treatment USING(speciality_code) join membertbl USING(id)"+
-						 "where treatment_date > now() order by treatment_date asc";
-		 */
-		String sql = "select reservation_date, doctor_name, speciality_name";
-			   sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
-			   sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
-			   sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
-			   sql += " WHERE r.id = ? order by reservation_date desc";
+		String sql = "select treatment_date, doctor_name, speciality_name";
+		   sql += " from treatment t LEFT JOIN membertbl m ON t.id = m.id";
+		   sql += " LEFT JOIN speciality spec ON t.speciality_code = spec.speciality_code";
+		   sql += " LEFT JOIN doctor d ON t.doctor_code = d.doctor_code";
+		   sql += " WHERE t.id = ? order by treatment_date desc";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -416,9 +408,9 @@ public class HospitalDAO {
 				myTreatmentList = new ArrayList<MyTreatmentList>();
 						
 						do {
-							mytreatmentList = new MyTreatmentList(rs.getString("reservation_date"),
-												rs.getString("speciality_name"),
-												rs.getString("doctor_name"));
+							mytreatmentList = new MyTreatmentList(rs.getString("treatment_date"),
+									rs.getString("speciality_name"),
+									rs.getString("doctor_name"));
 							//ArrayList에 추가
 							myTreatmentList.add(mytreatmentList);
 						} while (rs.next());

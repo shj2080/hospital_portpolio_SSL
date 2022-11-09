@@ -25,7 +25,8 @@ import vo.PageInfo;
 		if(request.getParameter("page")!=null){ 
 				try {//임시방편
 					page=Integer.parseInt(request.getParameter("page"));
-				} catch (NumberFormatException e) { 
+				} catch (NumberFormatException e) {
+					System.out.println("[DEBUG]QBoardList 표시 중 예외 : " + e);
 				} 
 		}
 		

@@ -10,7 +10,7 @@
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>율제대학병원 - 회원정보조회</title>
-<link rel="stylesheet" type="text/css" href = "style/mypage/myReservationList_style.css">
+<link rel="stylesheet" type="text/css" href = "style/mypage/mypageListTable_style.css">
 </head>
 <body>
 	<c:choose>

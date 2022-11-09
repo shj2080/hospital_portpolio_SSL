@@ -127,7 +127,7 @@ UPDATE `doctor` SET doctor_code = @COUNT:=@COUNT+1;
 select * from doctor;
 
 /*진료 테이블 생성*/
-/*진료코드(PK) , 진료과 코드, 의사 코드, 아이디, 회원 이름, 진료 날짜 및 시간, 전화번호*/
+/*진료코드(PK) , 진료과 코드, 의사 코드, 아이디, 회원 이름, 진료 날짜 및 시간, 전화번호,회원이름 */
 /* (의사코드,진료과코드,진료날짜 및 시간) - UNIQUE */
 create table treatment(
     treatment_code int auto_increment,  /* 진료코드 */
@@ -136,13 +136,17 @@ create table treatment(
     id varchar(15) not null,     /* 아이디 */
     treatment_date datetime not null,    /* 진료 날짜 및 시간 */
     phone varchar(13),   /* 전화번호 */
-
+	u_name varchar(20) not null, /* 회원이름 */
     primary key(treatment_code),
     constraint uq_treament_key UNIQUE KEY(speciality_code, doctor_code, treatment_date),
     foreign key(id) REFERENCES membertbl(id),
     foreign key(speciality_code) REFERENCES speciality(speciality_code),
     foreign key(doctor_code) REFERENCES doctor(doctor_code)
 );
+
+/* 2022-11-09 16:15 SQL 수정(이름 추가) */
+alter table treatment
+add column u_name varchar(20) not null;
 
 /*테이블 문제 발생 시 삭제*/
 drop table treatment;
@@ -176,7 +180,7 @@ insert into treatment(speciality_code,doctor_code,id,treatment_date,phone)
 values(3,5,'rladlqkr','2022/10/28/10:15','010-2455-5707');
 
 /* 예약진료 테이블 정의 */
-/* 예약번호(PK), 예약날짜, 유저id, 전화번호, 의사코드, 진료과코드 */
+/* 예약번호(PK), 예약날짜, 유저id, 전화번호, 의사코드, 진료과코드, 진료상태, 회원이름 */
 CREATE TABLE reservation (
 	reservation_code INT NOT NULL AUTO_INCREMENT,
 	speciality_code INT not NULL,
@@ -185,9 +189,14 @@ CREATE TABLE reservation (
 	reservation_date DATETIME not NULL,
 	phone VARCHAR(13) not NULL,
 	treatment_status CHAR(1) not null default 'N' check (treatment_status in ('Y', 'N')),
+	u_name varchar(20) not null,
 	PRIMARY KEY (reservation_code),
 	constraint uq_reservation UNIQUE KEY(reservation_date, doctor_code, speciality_code)
 );
+
+/* 2022-11-09 16:15 SQL 수정(이름 추가) */
+alter table reservation
+add column u_name varchar(20) not null;
 
 /* 예약 테이블 진료확인 상태 컬럼 추가 */
 ALTER TABLE `reservation` 
@@ -217,11 +226,12 @@ create table user_board(
  	post_notice int not null default 0 check(post_notice in (0, 1)),	/* 공지사항 구분 컬럼 */
 	
 	PRIMARY KEY (post_no),
- 	foreign key(id) REFERENCES membertbl(id)
+ 	foreign key(id) REFERENCES membertbl(id) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 
 select * from user_board;
+
 
 /* 게시판 컬럼형식 datetime 변환 */
 alter table user_board

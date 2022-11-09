@@ -27,23 +27,14 @@ function movePage(page) {
 <body>
 	<jsp:include page="../header.jsp" />
 	 
-	 <div id = "contentWrap">
+<div id = "contentWrap">
 	<section>
 		
 		<div id = "listForm">
 		 <h2>병원문의 게시판</h2>
-			 <c:choose>
-				 <c:when test="${userID != null}">
-				     <h4>
-					 	<a href="qboardWriteForm.qna" class="btn btn-primary pull-right fs-4"><span class="fs-2">문의하기</span></a>
-				     </h4>
-				 </c:when>
-				 <c:otherwise>
-					 <h4>
-					 	<a href="login.do" class="btn"><span class=" fs-2">문의하기</span></a>	 
-					 </h4>	 
-				 </c:otherwise>
-			 </c:choose>
+		     <h4>
+			 	<a href="qboardWriteForm.qna" class="btn btn-primary fs-5">문의하기</a>
+		     </h4>
 	 	<c:if test="${articleList != null and 0 < pageInfo.listCount}">
 	 	<c:set var="nowPage" value="${pageInfo.page}"/>
 	 	<table border="1" id="first-table"  class="table table-hover">
@@ -55,7 +46,7 @@ function movePage(page) {
 				<th>조회수</th>
 			</tr>
 
-				<c:forEach var = "boardList" items="${articleList}">
+			<c:forEach var = "boardList" items="${articleList}">
 			<tr id="tr_down">
 				<td>${boardList.QBOARD_NUM}</td>
 				
@@ -83,7 +74,7 @@ function movePage(page) {
 				<td>${boardList.QBOARD_DATE}</td>
 				<td>${boardList.QBOARD_READCOUNT }</td>
 			</tr>
-			      </c:forEach>
+	      </c:forEach>
 		</table>
 		</c:if>
 		</div>

@@ -10,6 +10,7 @@
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
+<script type="text/javascript" src = "javascript/mypage/removeChecking.js"></script>
 <script type="text/javascript">
 	function check() {
 		if (!memberform.name.value) {
@@ -102,6 +103,12 @@
     }
 </script>
 <script type="text/javascript" src = "javascript/phoneNumberFormat.js"></script>
+<script type = "text/javascript">
+	window.onload = function() {
+		document.getElementById("removeMemBtn").addEventListener("click", removeChk);
+	};
+</script>
+<link rel="stylesheet" type="text/css" href = "style/mypage/mypageListTable_style.css">
 </head>
 <body>
 	<form action = "memberInfoModifyAction.do" name = "memberform" method="post">
@@ -180,6 +187,7 @@
 			<tr>
 				<td colspan="2" align="center">
 					<button type = "submit" onclick="check(); return false" class="btn btn-outline-secondary fs-4">회원수정</button>
+					<button id = "removeMemBtn" type = "button" class="btn btn-danger fs-4">회원탈퇴</button>					
 				</td>
 			</tr>
 		</table>

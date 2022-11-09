@@ -37,7 +37,8 @@ public class MyTreatmentListAction implements Action {
 		System.out.println("[DEBUG]MyTreatmentListAction의 ID 파라미터 값:" + id);
 		request.setAttribute("id", id);
 		request.setAttribute("myTreatmentList", myTreatmentList);
-		forward = new ActionForward("myTreatmentList.jsp", false);
+		request.setAttribute("showPage", "../myTreatmentList.jsp");
+		forward = new ActionForward("mypage/mypageTemplate.jsp", false);
         }else {
         	out.println("<script>");
 			out.println("alert('아이디를 잘못입력하였습니다..');");

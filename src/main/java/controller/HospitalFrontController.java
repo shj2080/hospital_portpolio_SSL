@@ -19,8 +19,11 @@ import action.TreatmentListSearchAction;
 import action.board.PostShowAcrion;
 import action.board.UserBoardWriteAction;
 import action.board.UserboardShowAcrion;
+import action.board.UserboardWriteFormAcrion;
 import action.mypage.MemberInfoModifyAction;
 import action.mypage.MemberInfoModifyFormAction;
+import action.mypage.MemberUnregisterAction;
+import action.mypage.MemberUnregisterCheckingAction;
 import action.mypage.MyTreatmentListCheckAction;
 import action.mypage.MypageMainAction;
 import vo.ActionForward;
@@ -210,8 +213,15 @@ public class HospitalFrontController extends HttpServlet {
 		}
 		
 		else if(command.equals("/userBoardWrite.do")) {//'글쓰기 폼 보기' 요청이면
-			request.setAttribute("showPage", "boardWrite.jsp");
-			forward = new ActionForward("boardWrite.jsp", false);
+			//허가받지 않은 유저가 글쓰기 가능한 문제 해결을 위해 Action 사용
+			action = new UserboardWriteFormAcrion();//게시판 글 목록 불러오는 Action
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}		
+			//request.setAttribute("showPage", "boardWrite.jsp");
+			//forward = new ActionForward("boardWrite.jsp", false);
 			//forward = new ActionForward("userBoard.jsp", false);	//반드시 디스패치 방식으로 포워딩					
 		}
 		
@@ -232,6 +242,25 @@ public class HospitalFrontController extends HttpServlet {
 				e.printStackTrace();
 			}	
 		}
+		//회원 탈퇴안내창 이동 처리
+		else if(command.equals("/UnResisterChecking.do")) {//'회원 탈퇴 확인' 요청이면
+			action = new MemberUnregisterCheckingAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}	
+		}
+		//회원 탈퇴 요청 처리
+		else if(command.equals("/memberUnResister.do")) {//'회원 탈퇴' 요청이면
+			action = new MemberUnregisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}	
+		}
+		
 		
 		/****************************************************************************
 		 * 포워딩

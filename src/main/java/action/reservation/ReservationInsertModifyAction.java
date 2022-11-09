@@ -43,6 +43,9 @@ public class ReservationInsertModifyAction implements Action {
 			//의사
 			int doctor_code = Integer.parseInt(request.getParameter("doctor_code"));
 			
+			//회원이름
+			String u_name = request.getParameter("name");
+			
 			//수정상태 확인하는 파라미터(마이페이지 에서 수정요청이 들어온 경우)
 			String modify_status = request.getParameter("modifyState_hidden");
 
@@ -108,6 +111,7 @@ public class ReservationInsertModifyAction implements Action {
 				//예약진료상태(Y : 진료받음, N : 진료받기 전 또는 진료받지 않음)
 				String treatment_status = request.getParameter("resTreatStatus");
 				
+				
 				/*
 				 * if(treatment_status.equals("Y")) {
 				 * response.setContentType("text/html;charset=UTF-8"); PrintWriter out =
@@ -129,7 +133,7 @@ public class ReservationInsertModifyAction implements Action {
 				//이동 위치 지정
 				moveLocation = "reservationMemberSearch.ad?u_id=" + resUserID; //예약 진료 내역(수정했던 회원ID로 검색)
 			}else { //insert 일 경우
-				reservationBean = new ReservationBean(speciality_code, doctor_code, viewId, reservation_date, phone);
+				reservationBean = new ReservationBean(speciality_code, doctor_code, viewId, reservation_date, phone, u_name);
 				System.out.println("[DEBUG]ReservationInsertModifyAction (insert) 구문 실행됨.");
 				ReservationInsertService reservationInsertService = new ReservationInsertService();
 				isReservation = reservationInsertService.insertReservationTreatment(reservationBean);

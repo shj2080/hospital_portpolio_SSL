@@ -7,9 +7,10 @@
 /* 좌측 메뉴바 관련 스타일 */
 aside {
 	width: 100%;
+	float: left;
     background-color: #00B4DB;
     padding: 2rem;
-    margin-right: 5rem;
+    /* margin-right: 5rem; */
 }
 
 aside ul {
@@ -37,15 +38,25 @@ aside li:hover {
     background-color: #00D8FF;
 }
 
-/* section 영역 스타일 */
-seciton {
+/* section 영역 스타일(오른쪽) */
+.contentPageZone {
+	float: left;
+	position: relative;
+}
+
+.contentPageZone > h2 {
+	margin: 0.5rem;
+}
+
+
+/* seciton {
     float: right;
     padding-top: 5rem;
 }
 
 section h2 {
 	margin: 0.5rem;
-}
+} */
 
 /* section table {
     margin: 10rem auto;
@@ -103,7 +114,6 @@ footer {
 /* 최소 크기 857px */
 @media screen and (min-width: 857px) {
     aside {
-        float: left;
         width: auto;
     }
 
@@ -112,7 +122,7 @@ footer {
         height: 30rem;
     }
     
-    section h2 {
+    .contentPageZone h2 {
 		margin: 1.2rem;
 	}
 }

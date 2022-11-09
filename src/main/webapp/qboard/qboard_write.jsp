@@ -45,7 +45,9 @@ p{
 	border-color: #e1e4e1;
 }
 
-#address{width: 50%;}
+#address{
+	width: 50%;
+}
 
 </style>
 </head>
@@ -62,16 +64,13 @@ p{
 		  <h4><a href="qboardList.qna" class="btn btn-outline-dark fs-4" style="font-size:12px;">게시판목록</a></h4>
 		   	  
 		<form action="qboardWritePro.qna" method="post" name="boardform"> <%--multypart/form-data : 파일이나 이미지전송할때 --%>
+			<!-- 로그인한 아이디로 게시글 작성시 로그인한 ID를 sql의 MEM_ID에 넣기위해 hidden으로 전송 -->
+   	        <input type="hidden" id="loginID" name="loginID" value="${userID}">
 			<table id="table-first" class="table table-bordered fs-4" >
-			
 	   	        <tr>
 		   	          <td id="td_left" class="fs-4">작성자 ID</td>
 		   	          <td>${userID}</td>	   	          
 	   	        </tr>
-	   	     
-	   	   
-	   	         <!-- 로그인한 아이디로 게시글 작성시 로그인한 ID를 sql의 MEM_ID에 넣기위해 hidden으로 실어보낸다. -->
-	   	         <input type="hidden" id="loginID" name="loginID" value="${userID}">
 				<tr>
 					  <td id="td_left"><label for="QBOARD_SUBJECT" class="fs-4">제목</label></td>
 					  <td>

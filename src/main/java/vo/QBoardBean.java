@@ -1,7 +1,5 @@
 package vo;
 
-import java.time.LocalDateTime;
-
 public class QBoardBean {
 	
 	private int QBOARD_NUM;

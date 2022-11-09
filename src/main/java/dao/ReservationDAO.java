@@ -43,8 +43,8 @@ public class ReservationDAO {
 	public int insertReservation(ReservationBean reservationBean) {
 		int insertResult = 0;
 
-		String sql = "insert into reservation(speciality_code, doctor_code, id, reservation_date, phone)";
-		sql += " values(?,?,?,?,?)";
+		String sql = "insert into reservation(speciality_code, doctor_code, id, reservation_date, phone, u_name)";
+		sql += " values(?,?,?,?,?,?)";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -55,6 +55,7 @@ public class ReservationDAO {
 			pstmt.setString(3, reservationBean.getId());
 			pstmt.setString(4, reservationBean.getReservation_date());
 			pstmt.setString(5, reservationBean.getPhone());
+			pstmt.setString(6, reservationBean.getU_name());
 
 			insertResult = pstmt.executeUpdate();
 

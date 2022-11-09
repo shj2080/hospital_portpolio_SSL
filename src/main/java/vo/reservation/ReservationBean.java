@@ -8,6 +8,7 @@ public class ReservationBean {
 	private String reservation_date;
 	private String phone;
 	private String treatment_status;
+	private String u_name;
 	
 	//기본 생성자
 	public ReservationBean() {}
@@ -15,7 +16,8 @@ public class ReservationBean {
 	
 	/* 예약코드, 상태코드 포함한 전체 생성자 */
 	public ReservationBean(int reservation_code, int speciality_code, int doctor_code, String id,
-			String reservation_date, String phone, String treatment_status) {
+			String reservation_date, String phone, String treatment_status, String u_name) {
+		super();
 		this.reservation_code = reservation_code;
 		this.speciality_code = speciality_code;
 		this.doctor_code = doctor_code;
@@ -23,25 +25,29 @@ public class ReservationBean {
 		this.reservation_date = reservation_date;
 		this.phone = phone;
 		this.treatment_status = treatment_status;
+		this.u_name = u_name;
 	}
 
 	//예약코드 포함한 전체 생성자 (상태코드 제외)
-	public ReservationBean(int reservation_code, int speciality_code, int doctor_code, String id, String reservation_date, String phone) {
+	public ReservationBean(int reservation_code, int speciality_code, int doctor_code, String id, String reservation_date, String phone ,String u_name) {
 		this.reservation_code = reservation_code;
 		this.speciality_code = speciality_code;
 		this.doctor_code = doctor_code;
 		this.id = id;
 		this.reservation_date = reservation_date;
 		this.phone = phone;
+		this.u_name = u_name;
 	}
 
+
 	//예약코드 제외한 전체 생성자
-	public ReservationBean(int speciality_code, int doctor_code, String id, String reservation_date, String phone) {
+	public ReservationBean(int speciality_code, int doctor_code, String id, String reservation_date, String phone, String u_name) {
 		this.speciality_code = speciality_code;
 		this.doctor_code = doctor_code;
 		this.id = id;
 		this.reservation_date = reservation_date;
 		this.phone = phone;
+		this.u_name = u_name;
 	}
 	
 	//get~set 메서드
@@ -101,5 +107,16 @@ public class ReservationBean {
 	public void setTreatment_status(String treatment_status) {
 		this.treatment_status = treatment_status;
 	}
+
+
+	public String getU_name() {
+		return u_name;
+	}
+
+
+	public void setU_name(String u_name) {
+		this.u_name = u_name;
+	}
+	
 	
 }

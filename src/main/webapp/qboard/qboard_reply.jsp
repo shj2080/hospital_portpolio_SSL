@@ -1,12 +1,6 @@
-<%@page import="vo.QBoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	QBoardBean article=(QBoardBean)request.getAttribute("article");
-
-    String nowPage = (String)request.getAttribute("page");
-    String loginID = (String)session.getAttribute("userID"); //세션에 있는 ID불러오기
-%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,12 +49,12 @@ h4 {
 			<input type="hidden" name="QBOARD_RE_REF" value="${article.QBOARD_RE_REF}"> 
 			<input type="hidden" name="QBOARD_RE_LEV" value="${article.QBOARD_RE_LEV}"> 
 			<input type="hidden" name="QBOARD_RE_SEQ" value="${article.QBOARD_RE_SEQ}">
+			<input type="hidden" id="loginID" name="loginID" value="${userID}">
 			<table border="1" id="table1" class="table table-bordered">
 		   		<tr>
 					<td id="td_left">회원ID</td>
-					<td class="td_right"><%=loginID %></td>
+					<td class="td_right">${userID}</td>
 				</tr>
-		         <input type="hidden" id="loginID" name="loginID" value="${userID}">
 				<tr>
 					<td id="td_left"><label for="QBOARD_SUBJECT">제 목</label></td>
 					<td class="td_right"><input name="QBOARD_SUBJECT" type="text"

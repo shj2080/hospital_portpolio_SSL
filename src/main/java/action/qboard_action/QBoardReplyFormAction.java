@@ -47,8 +47,12 @@ public class QBoardReplyFormAction implements Action {
 	   		int qboard_num=Integer.parseInt(request.getParameter("qboard_num")); //해당하는 글의 borad_num값을 받아서 borad_num에 담음
 	   		   		
 	   		QBoardDetailService boardDetailService = new QBoardDetailService();
-	   		QBoardBean article=boardDetailService.getArticle(qboard_num);	
+	   		QBoardBean article=boardDetailService.getArticle(qboard_num);
+	   		
+	   		//게시글 관련
 	   		request.setAttribute("article", article);
+	   		
+	   		//페이지 관련
 	   		request.setAttribute("page", nowPage);
 	   		forward = new ActionForward("/qboard/qboard_reply.jsp", false);
 	  	}

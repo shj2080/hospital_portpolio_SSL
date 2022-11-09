@@ -10,9 +10,9 @@ public class MyTreatmentList {
 	public MyTreatmentList() {}
 
 	//모든 회원정보
-	public MyTreatmentList(String reservation_date, String doctor_name, String speciality_name) {
+	public MyTreatmentList(String treatment_date, String doctor_name, String speciality_name) {
 		super();
-		this.reservation_date = reservation_date;
+		this.treatment_date = treatment_date;
 		this.doctor_name = doctor_name;
 		this.speciality_name = speciality_name;
 	}

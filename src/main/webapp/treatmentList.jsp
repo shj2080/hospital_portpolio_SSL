@@ -22,7 +22,7 @@
 		<form method = "post">
 			<table id = "treatmentListBox" class = "table mt-5">
 				<tr id = "speciality_name">
-					<td colspan="4" align="right"><select id="speciality" name="speciality">
+					<td colspan="4" align="right"><select class="fs-4" id="speciality" name="speciality">
 						<option>=나의 진료과=</option>
 							<c:choose>
 									<c:when test="${speciality=='내과' }">
@@ -75,7 +75,7 @@
 
 								</c:choose>
 							</select>
-						 <input type="submit" value="검색" formaction="treatmentListSearch.do" />
+						 <input type="submit" class="fs-4" value="검색" formaction="treatmentListSearch.do" />
 						</td>
 					</tr>
 					<tr align="center" >

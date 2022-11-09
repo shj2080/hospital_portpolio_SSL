@@ -51,15 +51,6 @@
 									<th class = "fs-4">비밀번호</th>
 									<td><input type="password" class="form-control fs-4" placeholder="글 비밀번호" name="post_pwd" maxlength="50"></td>
 								</tr>
-<%-- 								유저타입이 'M'인 경우(관리자)에만 출력되는 메뉴
-								<c:if test="${userType == 'M'}">
-									<tr>
-										<th colspan="2" class = "fs-4">
-										공지사항 등록
-										<input type="checkbox" name = "notice_status" value = "1"/>
-										</th>
-									</tr>
-								</c:if> --%>
 							</tbody>
 						</table>
 					<div align="center">

@@ -31,25 +31,24 @@
 
 		
 	 <!-- 내부 메뉴바와 컨텐츠를 묶는 div -->
-	 <div id = "contentWrap">
-   	 <%-- 좌측 메뉴 영역 시작 --%>
-        <aside>
-        	  <c:if test="${userType eq 'N'}">
-              	<jsp:include page="mypageSideBar.jsp" />
-              </c:if>
-              <c:if test="${userType eq 'M'}">
-              	<jsp:include page="admin/mypageSideBar.jsp" />
-              </c:if>
-        </aside>
-     <%-- 좌측 메뉴 영역 끝 --%>
-
+	 <!-- <div id = "contentWrap"> -->
      <%-- 컨텐츠 표시 영역 시작 --%>
-        <section>
-            <div>
+        <section id = "contentWrap">
+        	<%-- 좌측 메뉴 영역 시작 --%>
+	        <aside>
+	        	  <c:if test="${userType eq 'N'}">
+	              	<jsp:include page="mypageSideBar.jsp" />
+	              </c:if>
+	              <c:if test="${userType eq 'M'}">
+	              	<jsp:include page="admin/mypageSideBar.jsp" />
+	              </c:if>
+	        </aside>
+	    	<%-- 좌측 메뉴 영역 끝 --%>
+	    	<div class = "contentPageZone container">
                 <jsp:include page="${showPage}" />
             </div>
         </section>
-     </div>
+     <!-- </div> -->
      <%-- 컨텐츠 표시 영역 끝 --%>
      <jsp:include page="../footer.jsp" />
 </body>
