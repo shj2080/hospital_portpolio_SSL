@@ -9,11 +9,12 @@ create table membertbl(
    address3 Nvarchar(60),    /* 주소 */
    postcode int not null,
    phone varchar(13),       /* 전화번호 */
-   user_type char(1) not null default 'N' CHECK (user_type IN('N','M'))
+   user_type char(1) not null default 'N' CHECK (user_type IN('N','M','D'))
 );
 /* 관리자 식별할 컬럼? */
 /* 일반회원 : N */
 /* 관리자 : M */
+/* 탈퇴회원 : D */
 
 /* 관리자 설정 */
 update membertbl
@@ -22,7 +23,11 @@ where id = 'admin2'; /* 기본키 */
 
 /* 유저 타입 컬럼 추가  */
 alter table membertbl
-add user_type char(1) not null default 'N' CHECK (user_type IN('N','M'));
+add user_type char(1) not null default 'N' CHECK (user_type IN('N','M','D'));
+
+
+alter table membertbl
+add constraint chk_membertbl_user_type CHECK(user_type IN('N','M','D'));
 
 /* 회원가입 비밀번호 허용 자리수 (20?) */
 /* 회원정보 테스트 데이터 */
@@ -319,8 +324,8 @@ WHERE t.id = 'wjsdudsgns' order by treatment_date asc;
 
 /***************** 관리자  **************************************************/
 /* 예약내역을 확인하여 진료테이블에 insert(진료확인) */
-insert into treatment(speciality_code, doctor_code, id, treatment_date, phone)
-values(?,?,?,?,?);
+insert into treatment(speciality_code, doctor_code, id, treatment_date, phone, u_name)
+values(?,?,?,?,?,?);
 
 /* 선택한 예약정보를 진료테이블에 insert한 후 예약내역에서 삭제? */
 delete reservation where reservation_code = ?;
