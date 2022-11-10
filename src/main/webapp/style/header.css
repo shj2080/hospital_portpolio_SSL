@@ -1,9 +1,11 @@
 @charset "UTF-8";
 
+
+/* ? 이 스타일을 참조하는 요소가 없음 */
 header{
 	height: 9.6rem; /* == 96px */
 	padding: 1rem; /* 1rem = 10px */
-	color: black;
+	color: black; 
 	background: white;
 	font-weight: bold;
 	display: flex;
@@ -17,6 +19,7 @@ header{
 	border-bottom: 0.1rem solid lightblue;
 }
 
+/* ? 이 스타일을 참조하는 요소가 없음 */
 #headermenu a {
 	text-decoration: none;
 	padding-left: 3rem; /*padding-left: 30px;*/

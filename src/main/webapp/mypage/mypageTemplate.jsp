@@ -27,7 +27,7 @@
 </head>
 <body>
 	<script type="text/javascript" src = "bootstrap/js/bootstrap.bundle.min.js"></script>
-     <jsp:include page="../header.jsp" />
+     <jsp:include page="/header.jsp" />
 
 		
 	 <!-- 내부 메뉴바와 컨텐츠를 묶는 div -->
@@ -50,6 +50,6 @@
         </section>
      <!-- </div> -->
      <%-- 컨텐츠 표시 영역 끝 --%>
-     <jsp:include page="../footer.jsp" />
+     <jsp:include page="/footer.jsp" />
 </body>
 </html>

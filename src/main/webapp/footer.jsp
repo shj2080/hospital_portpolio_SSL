@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 
 <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/footer.css">
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/footer.css"> --%>
 
 <style type="text/css">
 

@@ -37,7 +37,7 @@ function getCookie(name) {
 //userID 쿠키 가져오는 함수 끝
 
 //자바스크립트에서 아이디 저장 체크박스 설정 시작
-window.onload = function() {
+window.onload = () => {
 	let saveid = getCookie(name);
 
 	if(saveid == undefined) {
@@ -63,7 +63,7 @@ function loginVaildCheck() {
 		return false;
 	}
 	
-	loginForm.submit();
+	return true;
 }
 /* 로그인 유효성 검사 끝 */
 
@@ -77,7 +77,7 @@ function loginVaildCheck() {
 		<section>
 		
 			<!-- loginProcess.do로 전송할 id pw 입력값 받기시작 -->
-			<form action ="loginProcess.do" id = "loginForm" name = "loginForm" method="post">
+			<form action ="loginProcess.do" id = "loginForm" name = "loginForm" method="post" onsubmit="return loginVaildCheck();">
 				<!-- 로그인 박스 시작 -->
 				<div id="loginBox">
 				
@@ -104,7 +104,7 @@ function loginVaildCheck() {
 						<label>
 						<input type="checkbox" name="remember" /><span class="fs-4">아이디 저장</span><br>
 						</label>
-						<button class = "fs-4" type="button" onclick="loginVaildCheck()" id = "loginbut">로그인</button>
+						<button class = "fs-4" type="submit" id = "loginbut">로그인</button>
 						<button class = "fs-4" type = "button" onclick="location.href='join.jsp'" id = "joinbut">회원가입</button>
 					</div>
 					<!-- 각종 버튼 끝 -->

@@ -13,13 +13,12 @@
 <!-- Bootstrap CSS -->
 <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css">
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css"> --%>
 		
 </head>
 	<body>
 		<!-- Bootstrap JS -->
 		<script type="text/javascript" src = "${pageContext.request.contextPath}/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 		<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="${pageContext.request.contextPath}/index.do"><img src="${pageContext.request.contextPath}/images/logo2.png" width="50px" height="50px;"></a>

@@ -177,6 +177,7 @@ public class HospitalDAO {
 		return userInfo;
 	}
 
+	//회원정보 수정
     public int updateMemberInfo(Member member) {
 		int result = 0;
 
@@ -457,6 +458,51 @@ public class HospitalDAO {
 		}
 		
 		return memberList;
+	}
+	
+	//탈퇴하는 회원의 개인정보를 삭제(id만 보존하며 user_type D 설정)
+	public int leaveMemberDeleteInfo(String viewId) {
+		int result = 0;
+
+		String sql = "update membertbl set name = '탈퇴회원',";
+			sql += " id_num = null, password = '', address1 = '', address2 = null, address3 = null, postcode = 0, phone = null, user_type = 'D'";
+			sql += " where id = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, viewId);
+
+			result = pstmt.executeUpdate();
+
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] leaveMemberDeleteInfo 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+		}
+
+		return result;
+	}
+	public int insertLeaveMemberInfo(String viewId) {
+		int result = 0;
+		
+		//현재 시간으로 탈퇴일자가 지정되고, 탈퇴한 회원의 ID 저장
+		String sql = "insert into leaveMemberList values(?, now())";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			//? 값 설정
+			pstmt.setString(1, viewId);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			System.out.println("[HospitalDAO] insertLeaveMemberInfo 에러:"+ e);
+		}finally { //커넥션 해제
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 }

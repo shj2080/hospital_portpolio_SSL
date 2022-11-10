@@ -7,6 +7,7 @@ create table leaveMemberList(
 
 /* 회원 탈퇴 정보 테이블 */
 select * from leaveMemberList;
+select * from leaveMemberList order by leave_date;
 
 /* 
 회원 탈퇴 과정 순서
@@ -21,8 +22,6 @@ select * from leaveMemberList;
 insert into leaveMemberList values('testtest', now());
 
 /* 회원정보 테이블에서 id 제외한 데이터 제거, 유저타입 'D'(탈퇴회원 타입) 설정 */
-update membertbl set name = '탈퇴회원', id_num = '', password = '', address1 = '',
+update membertbl set name = '탈퇴회원', id_num = null, password = '', address1 = '',
                      address2 = null, address3 = null, postcode = 0, phone = null, user_type = 'D'
 where id = 'testtest';
-
-drop table leaveMemberList;

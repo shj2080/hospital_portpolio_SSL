@@ -63,7 +63,7 @@ public class SHA256 {
 			System.out.println("encodeSHA256() 처리 중 예외 : " + e);
 		}
 		
-		//System.out.println("encodeSHA256() 암호화된 비밀번호:" + result);
+		System.out.println("encodeSHA256() 암호화된 비밀번호:" + result);
 		return result;
 	}
 	

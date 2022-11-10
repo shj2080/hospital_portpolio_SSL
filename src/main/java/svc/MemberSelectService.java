@@ -1,6 +1,5 @@
 package svc;
 
-//DB 연결을 위한 패키지 내 모든 static 메서드를 미리 메모리에 올림 -> 바로 호출가능한 상태
 import static db.JdbcUtil.*;
 
 import java.sql.Connection;
@@ -8,8 +7,7 @@ import java.sql.Connection;
 import dao.HospitalDAO;
 import vo.Member;
 
-public class MemberInfoModifyFormService {
-
+public class MemberSelectService {
 	public Member selectMemberInfo(String id) {
 		Member member = null;
 		
@@ -30,5 +28,4 @@ public class MemberInfoModifyFormService {
 		
 		return member;
 	}
-	
 }
