@@ -20,6 +20,7 @@ import action.board.PostShowAcrion;
 import action.board.UserBoardWriteAction;
 import action.board.UserboardShowAcrion;
 import action.board.UserboardWriteFormAcrion;
+import action.member_find.MemberIdFindFormAction;
 import action.mypage.MemberInfoModifyAction;
 import action.mypage.MemberInfoModifyFormAction;
 import action.mypage.MemberUnregisterAction;
@@ -254,6 +255,15 @@ public class HospitalFrontController extends HttpServlet {
 		//회원 탈퇴 요청 처리
 		else if(command.equals("/memberUnResister.do")) {//'회원 탈퇴' 요청이면
 			action = new MemberUnregisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}	
+		}
+		//회원 아이디 찾기 폼 이동
+		else if(command.equals("/find_member/idFind.do")) {//'회원 아이디 찾기 폼' 요청이면
+			action = new MemberIdFindFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {				

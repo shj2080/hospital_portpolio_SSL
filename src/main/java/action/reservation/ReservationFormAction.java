@@ -89,10 +89,12 @@ public class ReservationFormAction implements Action {
 				//예약정보
 	  			ReservationBean reservation = reservationFormService.selectReservationInfo(reservation_code);
 				
+	  			//------날짜 형식과 관련된 포맷-------//
 	  			DateTimeFormatter defaultHourFormat = DateTimeFormatter.ofPattern("H");
 	  			DateTimeFormatter defaultMinuteFormat = DateTimeFormatter.ofPattern("m");
 	  			DateTimeFormatter defaultDayFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	  			DateTimeFormatter defaultDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	  			//------날짜 형식과 관련된 포맷-------//
 	  			
 	  			LocalDateTime reservationDate_datetime = LocalDateTime.parse(reservation.getReservation_date(), defaultDateFormat);
 	  			String reservationHour = reservationDate_datetime.format(defaultHourFormat);

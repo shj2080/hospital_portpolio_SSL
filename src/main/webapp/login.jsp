@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
+<link rel="stylesheet" type="text/css" href="style/init/ul_listStyle_none.css">
 <script type="text/javascript">
 //userID 쿠키 가져오는 함수
 function getCookie(name) {
@@ -87,10 +88,15 @@ function loginVaildCheck() {
 						<input type="password" name = "password" value="" maxlength="50" id = "pwText" class = "textfiled fs-4" />
 					</div>
 					<div class="loginButton">
-
-						<label><input type="checkbox" name="remember" /><span class="fs-4">아이디 저장</span><br></label>
+						<label>
+						<input type="checkbox" name="remember" /><span class="fs-4">아이디 저장</span><br>
+						</label>
 						<button class = "fs-4" type="button" onclick="loginVaildCheck()" id = "loginbut">로그인</button>
 						<button class = "fs-4" type = "button" onclick="location.href='join.jsp'" id = "joinbut">회원가입</button>
+					</div>
+					<div>
+						<a href = "find_member/idFind.do" class="link-primary"><b>아이디 찾기</b></a>
+						<a href = "#" class="link-primary"><b>비밀번호 찾기</b></a>
 					</div>
 				</div><!-- 로그인 박스 끝 -->
 			</form>

@@ -121,6 +121,17 @@
 						</td>
 					</tr>
 					<tr>
+						<th>연락처</th>
+						<td>
+							<c:if test="${resBean == null}">
+								<input type = "text" name = "name" value = "${sessionScope.userPhone}" size = "12" readonly />
+							</c:if>
+							<c:if test="${resBean != null}">
+								<input type = "text" name = "name" value = "${resBean.phone}" size = "12"/>
+							</c:if>
+						</td>
+					</tr>
+					<tr>
 						<th>진료과</th>
 						<td>
 							<input type= "hidden" name = "speciality_code" value = "${param.specialityCode}" readonly/>
