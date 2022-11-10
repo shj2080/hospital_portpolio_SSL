@@ -7,7 +7,7 @@
 <title>아이디 찾기</title>
 <script type="text/javascript">
 	window.onload = () => {
-		document.getElementById("BackBtn").addEventListener("click", () = > {
+		document.getElementById("BackBtn").addEventListener("click", () => {
 			history.back();
 		});
 	};

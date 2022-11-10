@@ -17,7 +17,9 @@
 	<link rel="stylesheet" type="text/css" href="style/board.css">
 </head>
 <body>
+	<!-- header.jsp 불러오기 -->
 	<jsp:include page="header.jsp" />
+	
 		<div id = "contentWrap">
 			<%-- 컨텐츠 표시 영역 시작 --%>
 			<section>
@@ -25,7 +27,11 @@
 					<h2>공지사항</h2>
 				</div>
 				<div class="row" style="margin: 0 auto;">
+				
+				<!-- 게시판 테이블 시작 -->
 					<table class="table table-striped" id = "boardListBox">
+					
+					<!-- 테이블 헤더 부분 -->
 						<thead>
 							<tr>
 								<th style="background-color: #eeeeee; text-align: center;">번호</th>
@@ -34,7 +40,12 @@
 								<th style="background-color: #eeeeee; text-align: center;">작성일</th>
 							</tr>
 						</thead>
+					<!-- 테이블 헤더 부분 끝 -->
+						
+					<!-- 테이블 바디 부분 시작 -->
 						<tbody>
+						
+						<!-- 게시판 목록에 글이 있는다면 출력 시작 -->
 							<c:if test="${boardList != null && boardList.size() > 0}">
 								<!-- 1.board 메뉴목록이 있으면 -->
 								<c:forEach var="board" items="${boardList}" varStatus="status">
@@ -48,26 +59,47 @@
 									<!-- 행 끝 -->
 								</c:forEach>
 							</c:if>
+						<!-- 게시판 목록에 글이 있는다면 출력 끝 -->
+							
+						<!-- 게시판 목록에 글이 없다면 출력 시작 -->
 							<c:if test="${boardList == null}">
 								<!-- 2.board 메뉴목록이 없으면 -->
 								<td colspan="4">등록된 게시글이 없습니다.</td>
 							</c:if>
+						<!-- 게시판 목록에 글이 없다면 출력 시작 -->
+							
 						</tbody>
+					<!-- 테이블 바디 부분 끝 -->
+					
 					</table>
+					<!-- 게시판 테이블 끝 -->
+					
+					<!-- 각종버튼 부분 시작 -->
 					<div id = "butBOX" align="center">
+					
+					<!-- 유저 타입이 관리자(M)이라면 출력 시작 -->
 					<c:if test="${userType == 'M' }">
 					<button type = "button" onclick="location.href='userBoardWrite.do'" class="btn btn-primary pull-right fs-4">글쓰기</button>
 					</c:if>
+					<!-- 유저 타입이 관리자(M)이라면 출력 끝 -->
+					
+					<!-- 유저 타입이 일반유저(N)이라면 출력 시작 -->
 					<c:if test="${userType == 'N' }">
 					<button type = "button" class="btn btn-primary pull-right fs-4" disabled>글쓰기</button>
 					</c:if>
+					<!-- 유저 타입이 일반유저(N)이라면 출력 끝 -->
+					
 					<a href="userBoard.do" class="btn btn-success btn-arraw-left fs-4">이전</a>
 					<a href="userBoard.do" class="btn btn-success btn-arraw-left fs-4">다음</a>
 					</div>
+					<!-- 각종버튼 부분 끝 -->
+					
 			</div>
 			</section>
 			<%-- 컨텐츠 표시 영역 끝 --%>
 		</div>
+		
+	<!-- footer.jsp 불러오기 -->
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

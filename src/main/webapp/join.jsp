@@ -13,16 +13,17 @@
 
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
 <!-- <link rel="stylesheet" type="text/css" href="style/join.css"> -->
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
-
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 
 </head>
 
 <script type="text/javascript">
-	function check() { //회원가입 유효성 검사
+
+/* 회원가입 유효성검사 시작 */
+	function check() {
 		if (!join.name.value) {
 			alert("성함을 입력해주세요.");
 			return join.name.focus();
@@ -65,13 +66,15 @@
 		join.dupCheck();
 		document.join.submit();
 	}
+/* 회원가입 유효성검사 끝 */
+	
 </script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script type="text/javascript" src = "javascript/phoneNumberFormat.js"></script>
 
-<!-- 우편번호찾기 카카오API -->
+<!-- 우편번호찾기 카카오API 시작 회원가입 주소용 -->
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -121,35 +124,48 @@
         }).open();
         
     }
-    
 </script>
+<!-- 우편번호찾기 카카오API 끝 회원가입 주소용 -->
+
 
 <body>
+	<!-- header.jsp불러오기 -->
 	<jsp:include page="header.jsp" />
+	
 	<!-- 본문 시작구간 -->
 	<div id = "contentWrap">
 	<section>
 		<div>
+		
+		<!-- 회원가입에 필요한 정보들 입력받기 시작 -->
 		<form action="join.do" method="post" name = "join">
+			
+			<!-- 조인 박스 시작 -->
 			<table id = "joinBox" class="table table-hover">
+			
 				<tr>
 					<th colspan="2">
 						회원가입
 					</th>
 				</tr>
-				<tr id="box1" >
+				
+				<!-- 이름 입력창 시작 -->
+				<tr class="box1" >
 					<td>성함</td>
 					<td>
-						<div id="box2" class = "col-sm-3">
-							<input type="text" name="name" size = "20" maxlength="20" class = "form-control fs-4" id = "textfiled">
+						<div class = "box2 col-sm-3">
+							<input type="text" name="name" size = "20" maxlength="20" class = "textfiled form-control fs-4">
 						</div>
 					</td>
 				</tr>
-				<tr id="box1">
+				<!-- 이름 입력창 끝 -->
+				
+				<!-- 주민등록번호 입력창 시작 -->
+				<tr class = "box1">
 					<td>주민등록번호</td>
 					<td>
 						<div class = "row">
-							<div id="box2" class = "col-sm-4">
+							<div class = "box2 col-sm-4">
 								<input type="text" name="front_id_num" size = "9" maxlength="6" class = "form-control fs-4" id = "front_id_num"/>
 							</div> - 
 							<div class = "col-sm-4">
@@ -158,10 +174,13 @@
 						</div>
 					</td>
 				</tr>
-				<tr id="box1" >
+				<!-- 주민등록번호 입력창 끝 -->
+				
+				<!-- id 입력창 시작 -->
+				<tr class="box1" >
 					<td>아이디</td>
 					<td>
-						<div id="box2" class = "row">
+						<div class = "box2 row">
 							<div class = "col-sm-3">
 								<input type="text" name="id" size=20 required="required" readonly="readonly" placeholder="id중복 확인을 눌러주세요!" class = "form-control fs-4" id = "id" />
 							</div>
@@ -172,20 +191,26 @@
 						</div>
 					</td>
 				</tr>
-				<tr id=box1>
+				<!-- id 입력창 끝 -->
+			
+				<!-- pw 입력창 시작 -->
+				<tr class=box1>
 					<td>비밀번호</td>
 					<td>
 						<div class = "row">
 							<div class = "col-sm-4">
-								<input type="password" name="password" size = "20" maxlength="20" class = "form-control fs-4" id = "textfiled">
+								<input type="password" name="password" size = "20" maxlength="20" class = "textfiled form-control fs-4">
 							</div>
 						</div>
 					</td>
 				</tr>
-				<tr id="box1" >
+				<!-- pw 입력창 끝 -->
+				
+				<!-- 주소 입력창 시작 -->
+				<tr class="box1" >
 					<td>주소</td>
 					<td>
-						<div id="box2" class = "row">
+						<div class = "box2 row">
 							<div class = "col-sm-3">
 								<input type="text" id="postcode" name = "postcode" class = "form-control fs-4 my-1" placeholder="우편번호">
 							</div>
@@ -202,6 +227,9 @@
 						</div>
 					<td>
 				</tr>
+				<!-- 주소 입력창 끝 -->
+				
+				<!-- 전화번호 입력창 시작 -->
 				<tr>
 					<td>전화번호</td>
 					<td>
@@ -210,17 +238,29 @@
 						</div>
 					</td>
 				</tr>
+				<!-- 전화번호 입력창 끝 -->
+				
+				<!-- 회원가입 버튼 시작 -->
 				<tr>
-					<td colspan="2" align="center">
+					<td colspan="2" style="text-align: center;">
 						<input type = "submit" value="회원가입" onclick="check(); return false" id="button" class="btn btn-outline-secondary fs-4">
 					<td>
 				</tr>
-				</table> <!-- 조인박스 끝 -->
+				<!-- 회원가입 버튼 끝 -->
+				
+				</table>
+				<!-- 조인박스 끝 -->
+				
 		</form>
+		<!-- 회원가입에 필요한 정보들 입력받기 끝 -->
+		
 		</div>	
 	</section>
+	
 	<!-- 본문 끝 -->
 	</div>
+	
+	<!-- footer.jsp 불러오기 -->
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

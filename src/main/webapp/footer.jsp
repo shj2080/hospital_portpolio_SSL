@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 
 <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
-<link rel="stylesheet" type="text/css" href="style/footer.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/footer.css">
 
 <style type="text/css">
 
 body{
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 footer{
