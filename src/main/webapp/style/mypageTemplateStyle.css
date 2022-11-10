@@ -41,7 +41,6 @@ aside li:hover {
 /* section 영역 스타일(오른쪽) */
 .contentPageZone {
 	float: left;
-	position: relative;
 }
 
 .contentPageZone > h2 {

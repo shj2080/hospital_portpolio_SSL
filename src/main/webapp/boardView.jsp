@@ -9,12 +9,14 @@
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원</title>
-	<link rel="stylesheet" type="text/css" href="style/initStyle.css">
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="style/header.css">
-	<link rel="stylesheet" type="text/css" href="style/body.css">
-	<link rel="stylesheet" type="text/css" href="style/footer.css">
-	<link rel="stylesheet" type="text/css" href="style/board.css">
+<link rel="stylesheet" type="text/css" href="style/initStyle.css">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style/header.css">
+<link rel="stylesheet" type="text/css" href="style/body.css">
+<link rel="stylesheet" type="text/css" href="style/footer.css">
+<link rel="stylesheet" type="text/css" href="style/board.css">
+<script>const post_no = "${param.post_no}";</script>
+<script src = "${pageContext.request.contextPath}/javascript/board/boardModifyFormMove.js"></script>
 </head>
 <body>
 
@@ -63,8 +65,8 @@
 						<!-- 작성일자 출력 끝 -->
 						
 						<!-- 게시글 내용 출력 시작 -->
-							<tr>
-								<td>내용</td>
+							<tr class = "text-center">
+								<td colspan="3">내용</td>
 							</tr>
 							<tr>
 							

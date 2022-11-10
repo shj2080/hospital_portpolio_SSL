@@ -504,5 +504,32 @@ public class HospitalDAO {
 		
 		return result;
 	}
+	//이름과 주민번호로 회원 ID 조회
+	public Member select_idFind(String name, String id_num) {
+		Member userInfo = null;
+		
+		//쿼리문
+		String sql = "select id from membertbl where name = ? AND id_num = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, id_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				userInfo = new Member();
+				userInfo.setId(rs.getString("id"));
+			} 
+			
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] select_idFind 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+			close(rs);
+		}
+		
+		return userInfo;
+	}
 	
 }

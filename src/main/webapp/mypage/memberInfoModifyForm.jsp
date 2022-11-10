@@ -130,7 +130,7 @@
 					<div class = "row">
 						<div class = "col-sm-4">
 						<input type="text" name="front_id_num" class = "form-control fs-4"  value = "${front_id_num}" maxlength="6"/>
-						</div> - 
+						</div>
 						<div class = "col-sm-4">
 						<input type="password" name="back_id_num" class = "form-control fs-4"  value ="${back_id_num}" maxlength="7"/>
 						</div>

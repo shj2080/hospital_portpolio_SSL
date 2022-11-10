@@ -17,9 +17,11 @@ import action.MyTreatmentListAction;
 import action.TreatmentListAction;
 import action.TreatmentListSearchAction;
 import action.board.PostShowAcrion;
+import action.board.UserBoardModifyFormAction;
 import action.board.UserBoardWriteAction;
 import action.board.UserboardShowAcrion;
 import action.board.UserboardWriteFormAcrion;
+import action.member_find.MemberIdFindAction;
 import action.member_find.MemberIdFindFormAction;
 import action.mypage.MemberInfoModifyAction;
 import action.mypage.MemberInfoModifyFormAction;
@@ -234,6 +236,15 @@ public class HospitalFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		//'글수정 폼' 요청이면
+		else if(command.equals("/userBoardModifyFormAction.do")) {
+			action  = new UserBoardModifyFormAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}
+		}
 
 		else if(command.equals("/showPost.do")) {//'게시글 보기' 요청이면
 			action = new PostShowAcrion();//게시판 글 목록 불러오는 Action
@@ -262,8 +273,17 @@ public class HospitalFrontController extends HttpServlet {
 			}	
 		}
 		//회원 아이디 찾기 폼 이동
-		else if(command.equals("/find_member/idFind.do")) {//'회원 아이디 찾기 폼' 요청이면
+		else if(command.equals("/find_member/idFindForm.do")) {//'회원 아이디 찾기 폼' 요청이면
 			action = new MemberIdFindFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}	
+		}
+		//회원 아이디 찾기 요청
+		else if(command.equals("/find_member/idFind.do")) {//'회원 아이디 찾기' 요청이면
+			action = new MemberIdFindAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {				

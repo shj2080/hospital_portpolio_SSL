@@ -16,6 +16,9 @@
 	<link rel="stylesheet" type="text/css" href="style/body.css">
 	<!-- <link rel="stylesheet" type="text/css" href="style/footer.css"> -->
 	<link rel="stylesheet" type="text/css" href="style/board.css">
+	<script src = "javascript/board/modifySend.js">
+	
+	</script>
 </head>
 <body>
 
@@ -27,7 +30,7 @@
 				<div class="row">
 				
 			<!-- userBoardWriteAction.do로 입력받은 값을 보내줄 테이블 시작 -->
-				<form method="post" action="userBoardWriteAction.do">
+				<form method="post" action="userBoardWriteAction.do" name = "boardWriteForm" onsubmit="return modifyChk();">
 						<table class="table table-striped" id = "boardWriteBox">
 						
 						<!-- 헤더 부분 시작 -->
@@ -74,7 +77,14 @@
 						</table>
 				<!-- 입력받은 값들을 userBoardWriteAction.do로 보내줄 버튼 시작 -->
 					<div align="center">
-					<input type="submit" class="btn btn-primary pull-right fs-4" value="글쓰기">
+					<c:choose>
+						<c:when test="${modifyData == null }">
+							<input type="submit" class="btn btn-primary pull-right fs-4" value="글쓰기">
+						</c:when>
+						<c:otherwise>
+							<input type="submit" id = "modifyBtn" class="btn btn-primary pull-right fs-4" value="수정">
+						</c:otherwise>
+					</c:choose>
 					</div>
 				<!-- 입력받은 값들을 userBoardWriteAction.do로 보내줄 버튼 끝 -->
 				

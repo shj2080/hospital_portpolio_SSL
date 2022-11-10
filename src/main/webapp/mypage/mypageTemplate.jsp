@@ -10,11 +10,11 @@
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원 - 마이페이지</title>
-<link rel="stylesheet" type="text/css" href="style/initStyle.css">
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="style/header.css">
-<link rel="stylesheet" type="text/css" href="style/body.css">
-<link rel="stylesheet" type="text/css" href="style/footer.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/initStyle.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/body.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/footer.css">
 <link rel = "stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/mypageTemplateStyle.css">
 
 
