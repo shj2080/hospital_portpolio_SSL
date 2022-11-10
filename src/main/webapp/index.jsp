@@ -18,7 +18,7 @@
 <style type="text/css">
 
 section{
-	top: 0px;
+	top: 0;
 }
 
 </style>
@@ -27,13 +27,19 @@ section{
 
 
 <body class="d-flex flex-column min-vh-100">
+	<!-- header.jsp불러오기 -->
 	<jsp:include page="header.jsp" />
+	
 	<div id = "contentWrap">
+		<!-- 컨텐츠 시작 위치 -->
 		<section>
+			<!-- 병원 메인 이미지 -->
 			<div>
 				<img src="images/율제병원.jpg" width="100%" height="300px">
 			</div>
+			<!-- 병원 메인 이미지 끝 -->
 			
+			<!-- 홈페이지 공지사항 시작 -->
 			<div id = "flexBox">
 				<fieldset id = "boardBox">
 				<legend align="center">공지사항</legend>
@@ -65,16 +71,23 @@ section{
 						</tbody>
 					</table>
 				</fieldset>
+				<!-- 홈페이지 공지사항 끝 -->
 				
+				<!-- 바로가기 메뉴 시작 -->
 				<fieldset id = "menuBox">
 					<div id = "menu1">예약하러 가기</div>
 					<div id = "menu2">대기자명단 보기</div>
 					<div id = "menu3">병원소개</div>
 					<div id = "menu4">의료진 소개</div>
 				</fieldset>
+				<!-- 바로가기 메뉴 끝 -->
+				
 			</div>
 		</section>
+		<!-- 컨텐츠 끝나는 위치 -->
 	</div>
+	
+	<!-- footer.jsp 불러오기 -->
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

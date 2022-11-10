@@ -33,6 +33,8 @@
 				</button>
 		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 		<ul class="navbar-nav">
+
+			<!-- 로그인 여부에 관계없이 항상 출력되는 메뉴 -->
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/reservationSelectView.treat"><span class = "menu">진료예약하기</span></a>
 			</li>
@@ -48,11 +50,15 @@
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/qboardList.qna"><span class = "menu">Q&A게시판</span></a>
 			</li>
+
+			<!-- userID가 null일 떄만 출력되는 메뉴-->
 			<c:if test="${userID  == null}">
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/login.do" ><span class = "menu">로그인/회원가입</span></a>
 			</li>
 			</c:if>
+
+			<!-- userID가 null이 아닐때만 출력되는 메뉴 -->
 			<c:if test="${userID != null}">
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/userBoard.do"><span class = "menu">공지사항</span></a>

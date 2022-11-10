@@ -17,31 +17,52 @@
 	<link rel="stylesheet" type="text/css" href="style/board.css">
 </head>
 <body>
+
+	<!-- header.jsp 불러오기 -->
 	<jsp:include page="header.jsp" />
+	
 		<div id = "contentWrap">
 			<%-- 컨텐츠 표시 영역 시작 --%>
 			<section>
 				<div class="row">
+				
+				<!-- 게시판 글보기 테이블 시작 -->
 					<table class="table table-striped"  id = "boardViewBox">
+					
+					<!-- 헤더 부분 시작 -->
 						<thead>
 							<tr>
 								<th colspan="3"style="background-color: #eeeeee; text-align: center;">게시판 글보기</th>
 							</tr>
-					</thead>
+						</thead>
+					<!-- 헤더 부분 끝 -->
+						
+					<!-- 게시글 내용이 있다면 출력 시작 -->
 						<c:if test="${showPost != null}">
 						<tbody>
+						
+						<!-- 글제목 출력 시작 -->
 							<tr>
 								<td style="width: 20%;">글 제목</td>
 								<td colspan="2">${showPost.post_subject}</td>
 							</tr>
+						<!-- 글제목 출력 끝 -->
+						
+						<!-- 작성자 출력 시작 -->
 							<tr>
 								<td>작성자</td>
 								<td colspan="2">${showPost.id }</td>
 							</tr>
+						<!-- 작성자 출력 끝 -->
+						
+						<!-- 작성일자 출력 시작 -->
 							<tr>
 								<td>작성일자</td>
 								<td colspan="2">${showPost.post_date }</td>
 							</tr>
+						<!-- 작성일자 출력 끝 -->
+						
+						<!-- 게시글 내용 출력 시작 -->
 							<tr>
 								<td>내용</td>
 							</tr>
@@ -52,8 +73,12 @@
 								</td>
 							
 							</tr>
+						<!-- 게시글 내용 출력 끝 -->
 						</tbody>
 						</c:if>
+					<!-- 게시글 내용이 있다면 출력 끝 -->
+					
+				<!-- 게시글 내용이 없다면 출력 시작 -->
 					<c:if test="${showPost == null}">
 					<tbody>
 						<tr>
@@ -61,7 +86,11 @@
 						</tr>
 					</tbody>
 					</c:if>
+				<!-- 게시글 내용이 없다면 출력 끝 -->
+				
 				</table>
+			<!-- 게시판 글보기 테이블 끝 -->
+				
 			<div align="center">
 				<a href="userBoard.do" class="btn btn-primary fs-4">목록</a>
 				<button type="button" id = "modifyPostBtn" class = "btn btn-secondary fs-4">수정</button>

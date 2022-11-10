@@ -3,8 +3,6 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page import = "java.util.*, vo.TreatmentList" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +14,17 @@
 
 </head>
 <body>
+	
+	<!-- header.jsp 불러오기 -->
 	<jsp:include page="header.jsp" />
 		<div id = "contentWrap">
 		<section>	
 		<form method = "post">
+		
+		<!-- 예약대기자 명단을 보여줄 테이블 시작 -->
 			<table id = "treatmentListBox" class = "table mt-5">
+			
+			<!-- 진료과별로 선택할수 있는 메뉴 시작 -->
 				<tr id = "speciality_name">
 					<td colspan="4" align="right"><select class="fs-4" id="speciality" name="speciality">
 						<option>=나의 진료과=</option>
@@ -78,12 +82,18 @@
 						 <input type="submit" class="fs-4" value="검색" formaction="treatmentListSearch.do" />
 						</td>
 					</tr>
+					<!-- 진료과별로 선택할수 있는 메뉴 끝 -->
+					
+					<!-- 테이블 헤드 시작 -->
 					<tr align="center" >
 						<th id = "treatment_date" class = "fs-4">진료시간</th>
 						<th id = "name" class = "fs-4">환자성함</th>
 						<th id = "speciality_name2" class = "fs-4">진료과</th>
 						<th id = "doctor_name" class = "fs-4">의사명</th>
 					</tr>
+					<!-- 테이블 헤드 끝 -->
+				
+				<!-- 불어온 대기자 명단을 출력 시작 -->
 				<c:if test="${treatmentList != null }">
 				<c:forEach var = "treatment" items="${treatmentList }">
 					<tr align="center" >
@@ -100,8 +110,10 @@
 							${treatment.doctor_name}
 						</th>
 					</tr>
-		</c:forEach>
+				</c:forEach>
 				</c:if>
+				<!-- 불어온 대기자 명단을 출력 끝 -->
+				
 				<!-- --진료대기리스트가 비어 있는 경우--- -->
 				<c:if test="${treatmentList == null }">
 					<tr id = "treatment" align="center" >
@@ -109,7 +121,10 @@
 					</tr>
 				</c:if>
 				<!-- --진료대기리스트가 비어 있는 경우--- -->
+			
 			</table>
+			<!-- 예약대기자 명단을 보여줄 테이블 시작 -->
+			
 		</form>
 		
 		</section>
