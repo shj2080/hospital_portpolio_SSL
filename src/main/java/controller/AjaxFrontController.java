@@ -6,17 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import action.Action;
-import action.LoginAction;
-import action.LoginFormAction;
-import action.LogoutAction;
 import ajax.AjaxService;
 import ajax.LoginCheckingService;
-import svc.LoginService;
-import vo.ActionForward;
-import vo.Member;
+import ajax.board.UserBoardDeleteAjax;
 
 /**
  * Servlet implementation class HospitalFrontController
@@ -66,7 +59,6 @@ public class AjaxFrontController extends HttpServlet {
 		
 		//2. 비즈니스 로직 구분------------------------------------------------
 		
-		
 		//로그인 프로세스
 		if(command.equals("/loginProcess.aj")) {
 			ajaxService = new LoginCheckingService();
@@ -79,6 +71,23 @@ public class AjaxFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
+			//값을 출력
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().print(result);
+		}
+
+		//게시판 삭제 프로세스
+		else if(command.equals("/userBoardDelete.aj")) {
+			ajaxService = new UserBoardDeleteAjax();
+			
+			boolean result = false;
+			try {
+				result = ajaxService.ProcessResult(request,response);
+			} catch (Exception e) {
+				// TODO 자동 생성된 catch 블록
+				e.printStackTrace();
+			}
+			
 			//값을 출력
 			response.setContentType("text/html; charset=UTF-8");
 			response.getWriter().print(result);

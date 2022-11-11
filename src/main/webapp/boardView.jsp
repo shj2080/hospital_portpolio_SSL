@@ -15,8 +15,9 @@
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
 <link rel="stylesheet" type="text/css" href="style/board.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script> 
 <script>const post_no = "${param.post_no}";</script>
-<script src = "${pageContext.request.contextPath}/javascript/board/boardModifyFormMove.js"></script>
+<script src = "${pageContext.request.contextPath}/javascript/board/boardEventListener.js"></script>
 </head>
 <body>
 
@@ -97,6 +98,7 @@
 				<a href="userBoard.do" class="btn btn-primary fs-4">목록</a>
 				<c:if test="${userID == showPost.id}">
 				<button type="button" id = "modifyPostBtn" class = "btn btn-secondary fs-4">수정</button>
+				<button type="button" id = "deletePostBtn" class = "btn btn-danger fs-4">삭제</button>
 				</c:if>
 			</div>
 		</div>

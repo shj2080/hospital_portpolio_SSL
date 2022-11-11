@@ -60,7 +60,7 @@ p{
 	<div id = "contentWrap">
 
 	<section id="writeForm">
-		<h4>QNA</h4>
+		<h4>Q&A</h4>
 		  <h4><a href="qboardList.qna" class="btn btn-outline-dark fs-4" style="font-size:12px;">게시판목록</a></h4>
 		   	  
 		<form action="qboardWritePro.qna" method="post" name="boardform"> <%--multypart/form-data : 파일이나 이미지전송할때 --%>

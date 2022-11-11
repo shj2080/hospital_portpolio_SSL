@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="style/body.css">
 	<!-- <link rel="stylesheet" type="text/css" href="style/footer.css"> -->
 	<link rel="stylesheet" type="text/css" href="style/board.css">
-	<script src = "javascript/board/modifySend.js">
+	<script src = "javascript/board/boardFormMove_script.js">
 	
 	</script>
 </head>

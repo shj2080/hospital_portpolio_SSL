@@ -18,7 +18,8 @@ public class IndexPageAction implements Action {
 		//DB작업이 필요한 부분은 여기에 작성
 		UserboardShowService UserboardShowService = new UserboardShowService();
 		
-		ArrayList<User_board> boardList= UserboardShowService.getBoardList();
+		//5줄로 제한하여 index에 출력
+		ArrayList<User_board> boardList= UserboardShowService.getLimitBoardList(5);
 		
 		request.setAttribute("boardList", boardList);
 		//request.setAttribute("showPage", "index.jsp");

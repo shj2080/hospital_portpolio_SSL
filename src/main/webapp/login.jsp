@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script> 
 <script type="text/javascript">
 
 //userID 쿠키 가져오는 함수 시작지점
@@ -62,12 +63,13 @@ function loginVaildCheck() {
 		loginForm.password.focus();
 		return false;
 	}
-	
+	event.preventDefault();
+	loginProcess();
 	return true;
 }
 /* 로그인 유효성 검사 끝 */
-
 </script>
+<script src = "${pageContext.request.contextPath}/javascript/ajax/loginChecker.js"></script>
 </head>
 <body>
 	<!-- header.jsp불러오기 -->
@@ -77,7 +79,7 @@ function loginVaildCheck() {
 		<section>
 		
 			<!-- loginProcess.do로 전송할 id pw 입력값 받기시작 -->
-			<form action ="loginProcess.do" id = "loginForm" name = "loginForm" method="post" onsubmit="return loginVaildCheck();">
+			<form action ="" id = "loginForm" name = "loginForm" method="post" onsubmit="return loginVaildCheck();">
 				<!-- 로그인 박스 시작 -->
 				<div id="loginBox">
 				

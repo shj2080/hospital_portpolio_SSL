@@ -17,6 +17,7 @@ import action.MyTreatmentListAction;
 import action.TreatmentListAction;
 import action.TreatmentListSearchAction;
 import action.board.PostShowAcrion;
+import action.board.UserBoardDeleteAction;
 import action.board.UserBoardModifyAction;
 import action.board.UserBoardModifyFormAction;
 import action.board.UserBoardWriteAction;
@@ -249,6 +250,15 @@ public class HospitalFrontController extends HttpServlet {
 		//'글수정' 요청이면
 		else if(command.equals("/userBoardModify.do")) {
 			action  = new UserBoardModifyAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}
+		}
+		//'글 삭제' 요청이면
+		else if(command.equals("/userBoardDelete.do")) {
+			action  = new UserBoardDeleteAction();			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {				

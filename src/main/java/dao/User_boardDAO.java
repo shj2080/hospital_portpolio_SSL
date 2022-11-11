@@ -117,6 +117,32 @@ public class User_boardDAO {
 		}
 		return list;
 	}
+
+	//게시글 목록 수 제한하여 조회 (R)
+	public ArrayList<User_board> showLimitList(int limitRow){
+		String sql = "select post_no, post_subject ,id, post_date from user_board order by post_no desc limit ?";
+		ArrayList<User_board> list = new ArrayList<User_board>();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, limitRow);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				User_board ub = new User_board(
+						rs.getInt("post_no"),
+						rs.getString("post_subject"),
+						rs.getString("id"),
+						rs.getString("post_date") );
+				list.add(ub); 
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("[User_boardDAO] showLimitList() 에러 : "+e);
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 	//조회 (R)
 	public User_board showPost(int post_no){
@@ -164,12 +190,34 @@ public class User_boardDAO {
 			modifyCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음			
 			
 		} catch (Exception e) {			
-			System.out.println("[User_boardDAO] modify 에러:"+ e);
+			System.out.println("[User_boardDAO] modifyPost 에러:"+ e);
 		} finally {
 			close(pstmt);
 		}
 		
 		return modifyCount;
+	}
+	public int deletePost(User_board userBoard) {
+		int deleteCount = 0;
+		
+		String sql = "delete from user_board where post_no = ? AND id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			//쿼리문에서 ?에 대입될 값 지정
+			pstmt.setInt(1, userBoard.getPost_no());					
+			pstmt.setString(2, userBoard.getId());			
+			
+			deleteCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음			
+			
+		} catch (Exception e) {			
+			System.out.println("[User_boardDAO] deletePost 에러:"+ e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return deleteCount;
 	}
 	
 	//삭제 (D)
