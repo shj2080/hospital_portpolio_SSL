@@ -21,7 +21,12 @@
 	</script>
 </head>
 <body>
-
+<%-- 수정작업을 하는 경우 수정할 게시글 정보를 얻어옴 --%>
+<c:if test="${modifyData != null }">
+	<c:set var = "subject" value = "${modifyData.post_subject }" />
+	<c:set var = "board_text" value = "${modifyData.post_text }" />
+	<c:set var = "post_no" value = "${modifyData.post_no}"/>
+</c:if>
 	<!-- header.jsp 불러오기 -->
 	<jsp:include page="header.jsp" />
 		<div id = "contentWrap">
@@ -45,7 +50,9 @@
 							<!-- 글제목 입력 부분 시작 -->
 								<tr>
 									<th class = "fs-4">제목</th>
-									<td><input type="text" class="form-control fs-4" placeholder="글제목" name="post_subject" maxlength="50" style="width: 480px;" required></td>
+									<td>
+									<input type="text" class="form-control fs-4" placeholder="글제목" name="post_subject" maxlength="50" style="width: 480px;" value = "${subject }" required>
+									</td>
 								</tr>
 							<!-- 글제목 입력 부분 끝 -->
 							
@@ -63,26 +70,28 @@
 									<th class = "fs-4" colspan="2">내용</th>
 								</tr>
 								<tr>
-									<td class = "fs-4" colspan="2"><textarea  class="form-control fs-4" placeholder="글 내용" name="post_text" maxlength="500" style="height:350px;"></textarea></td>
+									<td class = "fs-4" colspan="2"><textarea  class="form-control fs-4" placeholder="글 내용" name="post_text" maxlength="500" style="height:350px;">${board_text}</textarea></td>
 								</tr>
 							<!-- 글내용 입력 부분 끝 -->
 							
-							<!-- 게시글에 대한 비밀번호 입력 부분 시작 -->
+<!-- 							게시글에 대한 비밀번호 입력 부분 시작
 								<tr>
 									<th class = "fs-4">비밀번호</th>
 									<td><input type="password" class="form-control fs-4" placeholder="글 비밀번호" name="post_pwd" maxlength="50"></td>
 								</tr>
-							<!-- 게시글에 대한 비밀번호 입력 부분 끝 -->
+							게시글에 대한 비밀번호 입력 부분 끝 -->
 							</tbody>
 						</table>
 				<!-- 입력받은 값들을 userBoardWriteAction.do로 보내줄 버튼 시작 -->
 					<div align="center">
+						<a href="userBoard.do" class="btn btn-primary fs-4">목록</a>
 					<c:choose>
 						<c:when test="${modifyData == null }">
 							<input type="submit" class="btn btn-primary pull-right fs-4" value="글쓰기">
 						</c:when>
 						<c:otherwise>
-							<input type="submit" id = "modifyBtn" class="btn btn-primary pull-right fs-4" value="수정">
+							<input type="submit" id = "modifyBtn" class="btn btn-secondary fs-4" value="수정">
+							<input type = "hidden" name = "post_no" value = "${post_no}" readonly/>
 						</c:otherwise>
 					</c:choose>
 					</div>

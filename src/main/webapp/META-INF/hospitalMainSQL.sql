@@ -228,7 +228,6 @@ create table user_board(
 	post_subject NVARCHAR(50) NOT NULL,
 	post_text TEXT,
 	post_file VARCHAR(300),
- 	post_notice int not null default 0 check(post_notice in (0, 1)),	/* 공지사항 구분 컬럼 */
 	
 	PRIMARY KEY (post_no),
  	foreign key(id) REFERENCES membertbl(id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -242,11 +241,12 @@ select * from user_board;
 alter table user_board
 modify post_date datetime NOT NULL;
 
-/* 게시판 공지사항 컬럼 */
-alter table user_board
-add column post_notice int not null default 0;
+/* 게시판 수정 sql */
+update user_board post_date = ?, post_pwd = ?, post_subject = ?, post_text = ?, post_file = ?
+where id = ? AND post_no = ?;
 
-
+/* 게시판 특정 게시글 삭제 sql */
+delete from user_board where post_no = ? AND id = ? AND post_pwd = ?;
 /*----------------------------------------------------------------------*/
 /** ?가 들어간 SQL문은 DAO 작업 시 PrepareStatement 사용됨 **/
 

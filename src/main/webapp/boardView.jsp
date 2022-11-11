@@ -95,7 +95,9 @@
 				
 			<div align="center">
 				<a href="userBoard.do" class="btn btn-primary fs-4">목록</a>
+				<c:if test="${userID == showPost.id}">
 				<button type="button" id = "modifyPostBtn" class = "btn btn-secondary fs-4">수정</button>
+				</c:if>
 			</div>
 		</div>
 			</section>

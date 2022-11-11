@@ -68,20 +68,19 @@ public class User_boardDAO {
 		}	
 		
 		String sql = "insert into user_board"
-				+ "(post_no, id, post_date, post_pwd,"
+				+ "(post_no, id, post_date,"
 				+ "post_subject,post_text, post_file) "
-				+ "values(?,?,?,?,?,?,?)";
+				+ "values(?,?,?,?,?,?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			
 			//쿼리문에서 ?에 대입될 값 지정
 			pstmt.setInt(1, post_no);				
 			pstmt.setString(2, userboard.getId());	
-			pstmt.setString(3, userboard.getPost_date());			
-			pstmt.setString(4, userboard.getPost_pwd());			
-			pstmt.setString(5, userboard.getPost_subject());			
-			pstmt.setString(6, userboard.getPost_text());			
-			pstmt.setString(7, userboard.getPost_file());			
+			pstmt.setString(3, userboard.getPost_date());					
+			pstmt.setString(4, userboard.getPost_subject());			
+			pstmt.setString(5, userboard.getPost_text());			
+			pstmt.setString(6, userboard.getPost_file());			
 			
 			writeCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음			
 			
@@ -120,33 +119,58 @@ public class User_boardDAO {
 	}
 	
 	//조회 (R)
-		public User_board showPost(int post_no){
-			String sql = "select post_no, post_subject, id, post_date, post_text from user_board where post_no = ?";
-			User_board ub = null;
-			try {
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, post_no);;
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					ub = new User_board(
-								rs.getInt("post_no"),
-								rs.getString("post_subject"),
-								rs.getString("id"),
-								rs.getString("post_date"),
-								rs.getString("post_text") );
-				}
-				
-			}catch (SQLException e) {
-				System.out.println("[User_boardDAO] showPost() 에러 : "+e);
-			}finally {
-				close(rs);
-				close(pstmt);
+	public User_board showPost(int post_no){
+		String sql = "select post_no, post_subject, id, post_date, post_text from user_board where post_no = ?";
+		User_board ub = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, post_no);;
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				ub = new User_board();
+				ub.setPost_no(rs.getInt("post_no"));
+				ub.setPost_subject(rs.getString("post_subject"));
+				ub.setId(rs.getString("id"));
+				ub.setPost_date(rs.getString("post_date"));
+				ub.setPost_text(rs.getString("post_text"));
 			}
-			return ub;
+			
+		}catch (SQLException e) {
+			System.out.println("[User_boardDAO] showPost() 에러 : "+e);
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
-	
+		return ub;
+	}
 	//수정 (U)
-	
+	public int modifyPost(User_board userBoard) {
+		int modifyCount = 0;
+		
+		String sql = "update user_board set post_date = ?, post_subject = ?, post_text = ?, post_file = ?";
+		sql += " where id = ? AND post_no = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			//쿼리문에서 ?에 대입될 값 지정
+			pstmt.setString(1, userBoard.getPost_date());					
+			pstmt.setString(2, userBoard.getPost_subject());			
+			pstmt.setString(3, userBoard.getPost_text());			
+			pstmt.setString(4, userBoard.getPost_file());
+			pstmt.setString(5, userBoard.getId());
+			pstmt.setInt(6, userBoard.getPost_no());
+			
+			modifyCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음			
+			
+		} catch (Exception e) {			
+			System.out.println("[User_boardDAO] modify 에러:"+ e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return modifyCount;
+	}
 	
 	//삭제 (D)
 
