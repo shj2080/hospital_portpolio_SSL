@@ -62,7 +62,7 @@ public class FetchFrontController extends HttpServlet {
 		String command = requestURI.substring(contextPath.length());
 		
 		//Fetch 인터페이스
-		FetchAction fetchAction = null;
+		FetchAction<?> fetchAction = null;
 		
 		//2. 비즈니스 로직 구분------------------------------------------------
 		
