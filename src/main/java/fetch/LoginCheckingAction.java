@@ -1,4 +1,4 @@
-package ajax;
+package fetch;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +9,7 @@ import svc.LoginService;
 import vo.Member;
 
 
-public class LoginCheckingService implements AjaxService {
+public class LoginCheckingAction implements FetchAction {
 
 	@Override
 	public boolean ProcessResult(HttpServletRequest request, HttpServletResponse response) throws Exception {		

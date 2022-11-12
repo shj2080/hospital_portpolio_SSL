@@ -1,16 +1,14 @@
-package ajax.board;
-
-import java.io.PrintWriter;
+package fetch.board;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import ajax.AjaxService;
+import fetch.FetchAction;
 import svc.board.UserBoardDeleteService;
 import vo.User_board;
 
-public class UserBoardDeleteAjax implements AjaxService {
+public class UserBoardDeleteFetch implements FetchAction {
 
 	@Override
 	public boolean ProcessResult(HttpServletRequest request, HttpServletResponse response) throws Exception {

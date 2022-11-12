@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
-<script src="http://code.jquery.com/jquery-latest.js"></script> 
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>  -->
 <script type="text/javascript">
 
 //userID 쿠키 가져오는 함수 시작지점
@@ -69,7 +69,9 @@ function loginVaildCheck() {
 }
 /* 로그인 유효성 검사 끝 */
 </script>
-<script src = "${pageContext.request.contextPath}/javascript/ajax/loginChecker.js"></script>
+<%-- <script src = "${pageContext.request.contextPath}/javascript/ajax/loginChecker.js"></script> --%>
+<%-- 자바스크립트 Fetch 함수로 로그인 처리 --%>
+<script src = "${pageContext.request.contextPath}/javascript/fetch/loginChecker.js"></script>
 </head>
 <body>
 	<!-- header.jsp불러오기 -->

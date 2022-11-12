@@ -8,18 +8,23 @@ window.onload = () => {
 	document.getElementById("deletePostBtn").addEventListener("click", () => {
 		//location.href = "userBoardDelete.do?post_no=" + post_no;
 		
-		$.ajax({
-			type: 'POST',  // GET or POST 전송방법 
-			url: 'userBoardDelete.aj',  // 이쪽으로 보낸다(호출URL)
-			data: {'post_no':post_no},  // 폼 내부 값들 대입
-			success: function(result){  // 만약 성공적으로 수행되었다면 result로 값반환
-				if(result == "true"){  // 결과가 true인 경우 텍스트 출력
-					alert("게시글을 삭제했습니다.");
-					location.replace("userBoard.do");
-				} else {
-					alert('게시글 삭제를 실패했습니다.');
-				}
-			} 
+		//fetch 방식으로 삭제
+		fetch("userBoardDelete.fe",{
+			method: "POST",
+			body: "post_no="+post_no,
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded"}
+		})
+		.then((response) => response.json())
+		.then((data) => {
+			if(data.result == true) {
+				alert("게시글을 삭제했습니다.");
+				location.replace("userBoard.do");
+			}
+			else {
+				alert('게시글 삭제를 실패했습니다.');
+			}
 		});
+	
 	});
 };

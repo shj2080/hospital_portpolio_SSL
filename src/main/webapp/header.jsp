@@ -49,7 +49,9 @@
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/qboardList.qna"><span class = "menu">Q&A게시판</span></a>
 			</li>
-
+			<li class="nav-item">
+				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/userBoard.do"><span class = "menu">공지사항</span></a>
+			</li>
 			<!-- userID가 null일 떄만 출력되는 메뉴-->
 			<c:if test="${userID  == null}">
 			<li class="nav-item">
@@ -59,9 +61,6 @@
 
 			<!-- userID가 null이 아닐때만 출력되는 메뉴 -->
 			<c:if test="${userID != null}">
-			<li class="nav-item">
-				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/userBoard.do"><span class = "menu">공지사항</span></a>
-			</li>
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/logout.do"><span class = "menu">로그아웃</span></a>
 			</li>

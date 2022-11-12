@@ -1,27 +1,34 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ajax.AjaxService;
-import ajax.LoginCheckingService;
-import ajax.board.UserBoardDeleteAjax;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.mysql.cj.xdevapi.JsonString;
+
+import fetch.FetchAction;
+import fetch.LoginCheckingAction;
+import fetch.board.UserBoardDeleteFetch;
 
 /**
  * Servlet implementation class HospitalFrontController
  */
-@WebServlet("*.aj")
-public class AjaxFrontController extends HttpServlet {
+@WebServlet("*.fe")
+public class FetchFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxFrontController() {
+    public FetchFrontController() {
         super();
     }
 
@@ -54,44 +61,58 @@ public class AjaxFrontController extends HttpServlet {
 		//들어온 요청명 파악 (URI에서 contextPath길이만큼 잘라낸 나머지 문자열)
 		String command = requestURI.substring(contextPath.length());
 		
-		//Ajax 인터페이스
-		AjaxService ajaxService = null;
+		//Fetch 인터페이스
+		FetchAction fetchAction = null;
 		
 		//2. 비즈니스 로직 구분------------------------------------------------
 		
 		//로그인 프로세스
-		if(command.equals("/loginProcess.aj")) {
-			ajaxService = new LoginCheckingService();
+		if(command.equals("/loginProcess.fe")) {
+			fetchAction = new LoginCheckingAction();
 
 			boolean result = false;
 			try {
-				result = ajaxService.ProcessResult(request,response);
+				result = fetchAction.ProcessResult(request,response);
 			} catch (Exception e) {
 				// TODO 자동 생성된 catch 블록
 				e.printStackTrace();
 			}
 
+			//JSON 반환값 설정
+			Map<String, Boolean> data = new HashMap<String, Boolean>();
+			data.put("result", result);
+			
 			//값을 출력
-			response.setContentType("text/html; charset=UTF-8");
-			response.getWriter().print(result);
+			response.setContentType("application/json; charset=UTF-8");
+			ObjectMapper mapper = new ObjectMapper();
+	
+			response.getWriter().write(mapper.writeValueAsString(data));
 		}
 
 		//게시판 삭제 프로세스
-		else if(command.equals("/userBoardDelete.aj")) {
-			ajaxService = new UserBoardDeleteAjax();
+		
+		else if(command.equals("/userBoardDelete.fe")) {
+			fetchAction = new UserBoardDeleteFetch();
 			
 			boolean result = false;
 			try {
-				result = ajaxService.ProcessResult(request,response);
+				result = fetchAction.ProcessResult(request,response);
 			} catch (Exception e) {
 				// TODO 자동 생성된 catch 블록
 				e.printStackTrace();
 			}
 			
+			//JSON 반환값 설정
+			Map<String, Boolean> data = new HashMap<String, Boolean>();
+			data.put("result", result);
+			
 			//값을 출력
-			response.setContentType("text/html; charset=UTF-8");
-			response.getWriter().print(result);
+			response.setContentType("application/json; charset=UTF-8");
+			ObjectMapper mapper = new ObjectMapper();
+	
+			response.getWriter().write(mapper.writeValueAsString(data));
 		}
+		
 		
 	}
 }
