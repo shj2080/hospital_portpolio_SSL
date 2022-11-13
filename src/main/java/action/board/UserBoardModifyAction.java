@@ -54,12 +54,11 @@ public class UserBoardModifyAction implements Action {
 			
 	  		
 			//날짜 형식 지정
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			//현재 날짜와 시간
-			String post_date = simpleDateFormat.format(new Date());
+			//SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			
-			//게시글 비밀번호
-			//String post_pwd =request.getParameter("post_pwd");
+			//현재 날짜와 시간
+			//String post_date = simpleDateFormat.format(new Date());
+			
 			//게시글 제목
 			String post_subject = request.getParameter("post_subject");
 			//게시글 내용
@@ -73,7 +72,7 @@ public class UserBoardModifyAction implements Action {
 	  		System.out.println("[debug]post_text:" + post_text);
 	  		System.out.println("[debug]post_file:" + post_file);
 			
-	  		User_board userBoard = new User_board(post_no, post_date, post_subject, post_text, post_file, id);
+	  		User_board userBoard = new User_board(post_no, post_subject, post_text, post_file, id);
 	  				
 	  		//게시글 수정을 위한 서비스(DAO에서 수정작업을 위해 호출됨)
 			UserBoardModifyService userBoardModifyService = new UserBoardModifyService();

@@ -38,7 +38,7 @@ function getCookie(name) {
 //userID 쿠키 가져오는 함수 끝
 
 //자바스크립트에서 아이디 저장 체크박스 설정 시작
-window.onload = () => {
+window.onload = function(){
 	let saveid = getCookie(name);
 
 	if(saveid == undefined) {
@@ -69,9 +69,10 @@ function loginVaildCheck() {
 }
 /* 로그인 유효성 검사 끝 */
 </script>
-<%-- <script src = "${pageContext.request.contextPath}/javascript/ajax/loginChecker.js"></script> --%>
+
 <%-- 자바스크립트 Fetch 함수로 로그인 처리 --%>
-<script src = "${pageContext.request.contextPath}/javascript/fetch/loginChecker.js"></script>
+<script type = "text/babel" src = "${pageContext.request.contextPath}/javascript/fetch/loginChecker.js"></script>
+
 </head>
 <body>
 	<!-- header.jsp불러오기 -->

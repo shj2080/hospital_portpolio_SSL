@@ -47,6 +47,15 @@ public class User_board {
 		this.id = id;
 	}
 	
+	//글쓰기 수정용 생성자(작성일 갱신 안함)
+	public User_board(int post_no, String post_subject, String post_text, String post_file, String id) {
+		super();
+		this.post_no = post_no;
+		this.post_subject = post_subject;
+		this.post_text = post_text;
+		this.post_file = post_file;
+		this.id = id;
+	}
 
 	public int getPost_no() {
 		return post_no;

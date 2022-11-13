@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>it's 병원</title>
@@ -17,8 +18,9 @@
 	<!-- <link rel="stylesheet" type="text/css" href="style/footer.css"> -->
 	<link rel="stylesheet" type="text/css" href="style/board.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-	<script src = "javascript/board/boardFormMove_script.js"></script>
-	<script src = "javascript/board/FileSetting.js"></script>
+	
+	<!-- <script type = "text/javascript"src = "javascript/board/boardFormMove_script.js"></script> -->
+	
 </head>
 <body>
 <%-- 수정작업을 하는 경우 수정할 게시글 정보를 얻어옴 --%>
@@ -68,7 +70,7 @@
 								<tr>
 									<th class = "fs-4"><label for="formFileData" class="form-label">첨부파일</label></th>
 									<td>
-										<input type="file" class="form-control fs-4" id = "formFileData" name="fileData" onchange= "addFile(this)" multiple>
+										<input type="file" class="form-control fs-4" id = "formFileData" name="fileData" multiple>
 									</td>
 								</tr>
 							<!-- 파일 첨부 부분 끝 -->
@@ -113,5 +115,10 @@
 			<%-- 컨텐츠 표시 영역 끝 --%>
 		</div>
 	<jsp:include page="footer.jsp" />
+	<script>
+	var fileNo = 0;
+	var filesArr = new Array();
+	</script>
+	<script type="text/javascript" src = "javascript/board/FileSetting.js"></script>
 </body>
 </html>

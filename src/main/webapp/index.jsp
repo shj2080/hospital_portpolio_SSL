@@ -22,7 +22,8 @@ section{
 }
 
 </style>
-
+<!-- 현재 페이지가 Servlet을 거쳤는지 확인 -->
+<script type = "text/javascript" src = "${pageContext.request.contextPath}/javascript/indexCheck.js"></script>
 </head>
 
 

@@ -1,9 +1,9 @@
 //일정 시간 후 메인페이지 이동
 let timer = 5; //초단위
-window.onload = () => {
+window.onload = function() {
 
 	//1초마다 실행됨
-	setInterval(() => {
+	setInterval(function() {
 		timer--;
 		document.getElementById("time").innerHTML = timer;
 		

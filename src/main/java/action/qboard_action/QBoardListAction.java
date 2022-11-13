@@ -44,9 +44,9 @@ import vo.PageInfo;
 
    		PageInfo pageInfo = new PageInfo();
    		pageInfo.setEndPage(endPage);
-   		pageInfo.setListCount(listCount);
-		pageInfo.setMaxPage(maxPage);
-		pageInfo.setPage(page);
+   		pageInfo.setTotalPosts(listCount);
+		pageInfo.setTotalPages(maxPage);
+		pageInfo.setCurrentPage(page);
 		pageInfo.setStartPage(startPage);	
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("articleList", articleList);

@@ -68,14 +68,12 @@ public class FetchFrontController extends HttpServlet {
 		String command = requestURI.substring(contextPath.length());
 		
 		//Fetch 인터페이스
-		//FetchAction<K,V> fetchAction = null;
 		
 		
 		//2. 비즈니스 로직 구분------------------------------------------------
 		
 		//로그인 프로세스
 		if(command.equals("/loginProcess.fe")) {
-			//FetchAction<String,String> fetchAction = new LoginCheckingAction();
 			FetchAction<Boolean> fetchAction = new LoginCheckingAction();
 
 			try {
@@ -95,8 +93,7 @@ public class FetchFrontController extends HttpServlet {
 		
 		else if(command.equals("/userBoardDelete.fe")) {
 			FetchAction<Boolean> fetchAction = new UserBoardDeleteFetch();
-			
-			//Map<String, String> resultMap = null;
+
 			try {
 				FetchForward<Boolean> fetch = fetchAction.executeResult(request, response);
 				

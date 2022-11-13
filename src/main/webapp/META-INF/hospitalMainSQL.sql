@@ -219,40 +219,7 @@ drop table reservation;
 /* auto_increment 초기화 */
 alter table reservation auto_increment = 1;
 
-/*게시판 테이블 작성*/
-create table user_board(
-	post_no INT NOT NULL,
-	id varchar(20) NOT NULL,
-	post_date datetime NOT NULL,
-	post_pwd NVARCHAR(12),
-	post_subject NVARCHAR(50) NOT NULL,
-	post_text TEXT,
-	post_file CHAR(1) NOT NULL DEFAULT('N') CHECK(post_file IN ('Y','N'),
-	
-	PRIMARY KEY (post_no),
- 	foreign key(id) REFERENCES membertbl(id) ON DELETE CASCADE ON UPDATE CASCADE
 
-);
-
-select * from user_board;
-
-update user_board
-set post_file = 'N';
-
-/* 게시판 컬럼형식 datetime 변환 */
-alter table user_board
-modify post_date datetime NOT NULL;
-
-/* 게시판 첨부파일 컬럼 형식 변환 */
-alter table user_board
-modify post_file CHAR(1);
-
-/* 게시판 수정 sql */
-update user_board post_date = ?, post_pwd = ?, post_subject = ?, post_text = ?, post_file = ?
-where id = ? AND post_no = ?;
-
-/* 게시판 특정 게시글 삭제 sql */
-delete from user_board where post_no = ? AND id = ? AND post_pwd = ?;
 /*----------------------------------------------------------------------*/
 /** ?가 들어간 SQL문은 DAO 작업 시 PrepareStatement 사용됨 **/
 
@@ -342,12 +309,7 @@ set treatment_status = 'Y'
 where reservation_code = 1;
 
 /**************************************************************************/
-/* 게시판 관련 SQL */
-select * from user_board;
 
-select post_no, post_subject ,id, post_date from membertbl natural join user_board order by post_no desc;
-									
-select post_no, post_subject, id, post_date, post_text from user_board where post_no = 1;
 /**********************************************************************/
 /* 예약시간이 현재시간보다 높은 전체예약자 명단불러오기 */		  select reservation_date, name, doctor_name, speciality_name
 from reservation r LEFT JOIN membertbl m ON r.id = m.id

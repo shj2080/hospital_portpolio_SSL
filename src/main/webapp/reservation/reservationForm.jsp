@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="style/reservation/reservationForm.css">
 <script type="text/javascript" src = "javascript/defaultJavaScript.js"></script>
 <script type="text/javascript" src = "javascript/reservationFormCheck.js"></script>
-<script>
+<script type="text/babel">
 
 	let selectDayPopup;
 	

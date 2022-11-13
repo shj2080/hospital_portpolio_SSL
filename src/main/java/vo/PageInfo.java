@@ -1,27 +1,45 @@
 package vo;
 
+//페이지 관리 자바빈
 public class PageInfo {
 	
-	private int page;
-	private int maxPage;
-	private int startPage;
-	private int endPage;
-	private int listCount;
+	private int currentPage; //현재 페이지
+	private int totalPages;	//전체 페이지 수
+	private int startPage;	//시작 페이지
+	private int endPage;	//끝 페이지
+	private int totalPosts;	//전체 글 수
+	private int boardLimit; //한번에 표시할 게시글 수 제한
 	
-	public int getPage() {
-		return page;
+	//기본생성자
+	public PageInfo() {}
+
+	//전체 생성자
+	public PageInfo(int currentPage, int totalPages, int startPage, int endPage, int totalPosts, int boardLimit) {
+		super();
+		this.currentPage = currentPage;
+		this.totalPages = totalPages;
+		this.startPage = startPage;
+		this.endPage = endPage;
+		this.totalPosts = totalPosts;
+		this.boardLimit = boardLimit;
 	}
 	
-	public void setPage(int page) {
-		this.page = page;
+	
+	public int getCurrentPage() {
+		return currentPage;
 	}
 	
-	public int getMaxPage() {
-		return maxPage;
+
+	public void setCurrentPage(int page) {
+		this.currentPage = page;
 	}
 	
-	public void setMaxPage(int maxPage) {
-		this.maxPage = maxPage;
+	public int getTotalPages() {
+		return totalPages;
+	}
+	
+	public void setTotalPages(int maxPage) {
+		this.totalPages = maxPage;
 	}
 	
 	public int getStartPage() {
@@ -40,12 +58,20 @@ public class PageInfo {
 		this.endPage = endPage;
 	}
 	
-	public int getListCount() {
-		return listCount;
+	public int getTotalPosts() {
+		return totalPosts;
 	}
 	
-	public void setListCount(int listCount) {
-		this.listCount = listCount;
+	public void setTotalPosts(int listCount) {
+		this.totalPosts = listCount;
 	}
 
+	public int getBoardLimit() {
+		return boardLimit;
+	}
+
+	public void setBoardLimit(int boardLimit) {
+		this.boardLimit = boardLimit;
+	}
+	
 }

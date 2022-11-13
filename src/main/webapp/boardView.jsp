@@ -73,7 +73,7 @@
 						</tr>
 						<c:forEach var = "attachFile" items="${attachFiles}">
 							<tr>
-								<td colspan="3">${attachFile.original_name}</td>
+								<td colspan="3"><a href="javascript:fileDown(${attachFile.file_idx});">${attachFile.original_name}</a></td>
 							</tr>
 						</c:forEach>
 						<!-- 첨부파일 출력 끝 -->

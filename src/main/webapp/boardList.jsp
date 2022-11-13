@@ -15,6 +15,11 @@
 	<link rel="stylesheet" type="text/css" href="style/body.css">
 	<link rel="stylesheet" type="text/css" href="style/footer.css">
 	<link rel="stylesheet" type="text/css" href="style/board.css">
+<script>
+function movePage(page) {
+	location.href = "userBoard.do?page=" + page;
+}
+</script>
 </head>
 <body>
 	<!-- header.jsp 불러오기 -->
@@ -23,13 +28,19 @@
 		<div id = "contentWrap">
 			<%-- 컨텐츠 표시 영역 시작 --%>
 			<section>
-				<div class="text-center">
-					<h2>공지사항</h2>
+				<%-- 제목 부분 --%>
+				<div>
+					<h2 class = "text-center">공지사항</h2>
 				</div>
-				<div class="row" style="margin: 0 auto;">
+				
+				<div style="margin: 0 auto;">
+				<%-- 제목 부분 --%>
+				
+				
 				
 				<!-- 게시판 테이블 시작 -->
 					<table class="table table-striped" id = "boardListBox">
+					
 					
 					<!-- 테이블 헤더 부분 -->
 						<thead>
@@ -73,24 +84,54 @@
 					
 					</table>
 					<!-- 게시판 테이블 끝 -->
-					
+		
 					<!-- 각종버튼 부분 시작 -->
 					<div id = "butBOX" align="center">
 					
-					<!-- 유저 타입이 관리자(M)이라면 출력 시작 -->
+					<!-- 페이지 처리 부분 시작 -->
+						<c:choose>
+							<c:when test="${!hasPrev}">
+								<button type="button" class="btn btn-success btn-arraw-left fs-4" disabled>이전</button>&nbsp;
+							</c:when>
+							<c:otherwise>
+								<button type = "button" class = "btn btn-success btn-arraw-left fs-4" onclick="movePage(${nowPage-1});" >이전</button>
+							</c:otherwise>
+						</c:choose>
+	
+						<c:forEach var = "p" begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1">
+							<c:choose>
+								<c:when test="${p == pageInfo.currentPage }"> <%--현재페이지[1]가 시작페이지[1]와 같으면 링크x ex:[1]-click링크X--%>
+									<button type = "button" class = "btn fs-5" disabled>${p}</button>
+								</c:when>
+								<c:otherwise>
+									<button type = "button" class = "btn fs-5" onclick = "movePage(${p});">${p}</button>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+			
+						<c:choose>
+							<c:when test="${!hasNext}">
+								<button type = "button" class = "btn btn-success fs-4" disabled>다음</button>
+							</c:when>
+							<c:otherwise>
+								<button type = "button" class = "btn btn-success fs-4" onclick="movePage(${nowPage+1});" >다음</button>
+							</c:otherwise>
+						</c:choose>
+						
+					<!-- 페이지 처리 부분 끝 -->
+						
+						<!-- 유저 타입이 관리자(M)이라면 출력 시작 -->
 					<c:if test="${userType == 'M' }">
-					<button type = "button" onclick="location.href='userBoardWrite.do'" class="btn btn-primary pull-right fs-4">글쓰기</button>
+					<button type = "button" onclick="location.href='userBoardWrite.do'" class="btn btn-primary fs-4">글쓰기</button>
 					</c:if>
 					<!-- 유저 타입이 관리자(M)이라면 출력 끝 -->
 					
 					<!-- 유저 타입이 일반유저(N)이라면 출력 시작 -->
 					<c:if test="${userType == 'N' }">
-					<button type = "button" class="btn btn-primary pull-right fs-4" disabled>글쓰기</button>
+					<button type = "button" class="btn btn-primary fs-4" disabled>글쓰기</button>
 					</c:if>
 					<!-- 유저 타입이 일반유저(N)이라면 출력 끝 -->
 					
-					<a href="userBoard.do" class="btn btn-success btn-arraw-left fs-4">이전</a>
-					<a href="userBoard.do" class="btn btn-success btn-arraw-left fs-4">다음</a>
 					</div>
 					<!-- 각종버튼 부분 끝 -->
 					

@@ -141,10 +141,10 @@ public class UserBoardModifyFetch implements FetchAction<User_board> {
 			//게시글 작성 성공 여부 파악
 			if(modifyResult <= 0) {
 	  			alertMessage = "게시글 수정 실패";
-	  			type = "not";
+	  			type = "FAIL";
 			}else {
 	  			alertMessage = "게시글이 성공적으로 수정되었습니다.";
-	  			type = "ok";
+	  			type = "OK";
 			}
 	  	}
 				

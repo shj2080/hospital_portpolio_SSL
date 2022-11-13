@@ -138,10 +138,32 @@ public class User_boardDAO {
 		}catch (SQLException e) {
 			System.out.println("[User_boardDAO] showList() 에러 : "+e);
 		}finally {
-			close(rs);
 			close(pstmt);
+			close(rs);
 		}
 		return list;
+	}
+
+	//전체 게시글 수 count 조회 (R)
+	public int countTotalPosts(){
+		int totalPosts = 0;
+		
+		String sql = "select count(*) from user_board";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				totalPosts = rs.getInt(1); 
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("[User_boardDAO] countTotalPosts() 에러 : "+e);
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return totalPosts;
 	}
 
 	//게시글 목록 수 제한하여 조회 (R)
@@ -166,6 +188,37 @@ public class User_boardDAO {
 		}finally {
 			close(rs);
 			close(pstmt);
+		}
+		return list;
+	}
+
+	//게시글 목록 수 제한하여 조회 (R)
+	public ArrayList<User_board> showLimitBoardListDetail(int currentPage, int boardLimit){
+		String sql = "select post_no, post_subject ,id, post_date from user_board order by post_no desc limit ?, ?";
+		ArrayList<User_board> list = new ArrayList<User_board>();
+		
+		//현재 페이지 설정
+		currentPage = (currentPage-1) * 10;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, currentPage);
+			pstmt.setInt(2, boardLimit);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				User_board ub = new User_board(
+						rs.getInt("post_no"),
+						rs.getString("post_subject"),
+						rs.getString("id"),
+						rs.getString("post_date") );
+				list.add(ub); 
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("[User_boardDAO] showLimitBoardList() 에러 : "+e);
+		}finally {
+			close(pstmt);
+			close(rs);
 		}
 		return list;
 	}
@@ -200,19 +253,18 @@ public class User_boardDAO {
 	public int modifyPost(User_board userBoard) {
 		int modifyCount = 0;
 		
-		String sql = "update user_board set post_date = ?, post_subject = ?, post_text = ?, post_file = ?";
+		String sql = "update user_board set post_subject = ?, post_text = ?, post_file = ?";
 		sql += " where id = ? AND post_no = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			//쿼리문에서 ?에 대입될 값 지정
-			pstmt.setString(1, userBoard.getPost_date());					
-			pstmt.setString(2, userBoard.getPost_subject());			
-			pstmt.setString(3, userBoard.getPost_text());			
-			pstmt.setString(4, userBoard.getPost_file());
-			pstmt.setString(5, userBoard.getId());
-			pstmt.setInt(6, userBoard.getPost_no());
+			//쿼리문에서 ?에 대입될 값 지정				
+			pstmt.setString(1, userBoard.getPost_subject());			
+			pstmt.setString(2, userBoard.getPost_text());			
+			pstmt.setString(3, userBoard.getPost_file());
+			pstmt.setString(4, userBoard.getId());
+			pstmt.setInt(5, userBoard.getPost_no());
 			
 			modifyCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음			
 			

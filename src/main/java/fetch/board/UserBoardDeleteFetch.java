@@ -37,7 +37,7 @@ public class UserBoardDeleteFetch implements FetchAction<Boolean> {
 		} catch (NumberFormatException e) {
 			System.out.println("NumberFormatException 발생 : " + e);
   			alertMessage = "비정상적인 접근입니다.";
-  			type = "not";
+  			type = "FAIL";
   			fetch = new FetchForward<Boolean>(deleteResult, alertMessage, type);
   			return fetch;
 		}
@@ -58,10 +58,10 @@ public class UserBoardDeleteFetch implements FetchAction<Boolean> {
 			
 			if(deleteResult) {
 	  			alertMessage = "게시글이 삭제되었습니다.";
-	  			type = "ok";
+	  			type = "OK";
 			} else {
 	  			alertMessage = "게시글 삭제를 실패했습니다.";
-	  			type = "not";
+	  			type = "FAIL";
 			}
 		}else {
   			alertMessage = "삭제 권한이 없습니다.";

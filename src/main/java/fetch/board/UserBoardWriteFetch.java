@@ -126,7 +126,7 @@ public class UserBoardWriteFetch implements FetchAction<User_board> {
 			UserBoardWriteService userBoardWriteService = new UserBoardWriteService();
 			
 			//첫번째 항목에 null이 있어 파일이 있는 것으로 처리되서 버림
-			post_files.nextElement();
+			//post_files.nextElement();
 			
 			//첨부파일이 있는지 확인
 			if(post_files.hasMoreElements()) {
@@ -146,13 +146,15 @@ public class UserBoardWriteFetch implements FetchAction<User_board> {
 					serverFileNameStr = multi.getFilesystemName(uploadFiles);
 					origFileNameStr = multi.getOriginalFileName(uploadFiles);
 					
-					if(serverFileNameStr == null){
-						continue;//break를 하지 않는 이유는 1=null, 2=null, 3=file, 4=null 처럼 파일을 중간에 넣었을 경우도 고려해야 하기 때문입니다.
-					}
+					
+					 if(serverFileNameStr == null){
+						 continue;
+					 }
+					 
 					
 					attachFileBean.setBoard_idx(userBoardWriteService.insertPostnoCheck());
 					attachFileBean.setSave_name(serverFileNameStr);
-					attachFileBean.setOriginal_name(serverFileNameStr);
+					attachFileBean.setOriginal_name(origFileNameStr);
 					attachFileBean.setSize(multi.getFile(uploadFiles).length());
 					
 					attachFiles.add(attachFileBean);
@@ -170,10 +172,10 @@ public class UserBoardWriteFetch implements FetchAction<User_board> {
 			//게시글 작성 성공 여부 파악
 			if(isWriteSuccess == false) {
 	  			alertMessage = "게시글 등록 실패";
-	  			type = "not";
+	  			type = "FAIL";
 			}else {
 	  			alertMessage = "게시글이 성공적으로 등록되었습니다.";
-	  			type = "ok";
+	  			type = "OK";
 			}
 	  	}
 		fetch = new FetchForward<User_board>(userboard, alertMessage, type);

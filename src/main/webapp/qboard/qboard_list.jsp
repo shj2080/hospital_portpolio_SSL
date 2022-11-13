@@ -35,8 +35,8 @@ function movePage(page) {
 		     <h4>
 			 	<a href="qboardWriteForm.qna" class="btn btn-primary fs-5">문의하기</a>
 		     </h4>
-	 	<c:if test="${articleList != null and 0 < pageInfo.listCount}">
-	 	<c:set var="nowPage" value="${pageInfo.page}"/>
+	 	<c:if test="${articleList != null and 0 < pageInfo.totalPosts}">
+	 	<c:set var="nowPage" value="${pageInfo.currentPage}"/>
 	 	<table border="1" id="first-table"  class="table table-hover">
 			<tr id="tr_top">
 				<th>번호</th>
@@ -80,7 +80,7 @@ function movePage(page) {
 		</div>
 		
 		<c:choose>
-		<c:when test="${articleList != null and 0 < pageInfo.listCount}">
+		<c:when test="${articleList != null and 0 < pageInfo.totalPosts}">
 		<div id="pageList">
 			<c:choose>
 				<c:when test="${nowPage <= 1 }">
@@ -103,7 +103,7 @@ function movePage(page) {
 			</c:forEach>
 			
 			<c:choose>
-				<c:when test="${nowPage >= pageInfo.maxPage }"> <%--현재페이지가 마지막 페이지일경우 링크X [다음] --%>
+				<c:when test="${nowPage >= pageInfo.totalPages }"> <%--현재페이지가 마지막 페이지일경우 링크X [다음] --%>
 					<button type = "button" class = "btn btn-success fs-4" disabled>다음</button>
 				</c:when>
 				<c:otherwise>

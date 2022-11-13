@@ -1,13 +1,19 @@
-let fileNo = 0;
-let filesArr = new Array();
-
+window.onload = function() {
+	//파일 추가 이벤트 리스너
+	document.getElementById("formFileData").addEventListener("change", function(e) {
+   		addFile(e.target);
+	});
+}
+	
 /* 첨부파일 추가 */
 function addFile(obj){
     let maxFileCnt = 5;   // 첨부파일 최대 개수
     let attFileCnt = document.querySelectorAll('.fileList').length;    // 기존 추가된 첨부파일 개수
     let remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
     let curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
-
+	
+	console.log("addFile 함수 실행됨");
+	
     // 첨부파일 개수 확인
     if (curFileCnt > remainFileCnt) {
         alert("첨부파일은 최대 " + maxFileCnt + "개 까지 첨부 가능합니다.");
@@ -72,3 +78,64 @@ function deleteFile(num) {
     deleteFileRow.parentNode.removeChild(deleteFileRow);
     filesArr[num].is_delete = true;
 }
+
+//새로운 글 작성인지, 수정인지 체크
+function modifyChk() {
+
+	(event.preventDefault) ? event.preventDefault() : event.returnValue = false; 
+	
+	let formAction = "userBoardWriteAction.fe";
+
+	let modifyBtn = document.getElementById("modifyBtn");
+	
+	let boardForm = document.querySelector("#boardWriteForm");
+	let boardFormData = new FormData(boardForm);
+	
+	for (var i = 0; i < filesArr.length; i++) {
+	    // 삭제되지 않은 파일만 폼데이터에 담기
+	    if (!filesArr[i].is_delete) {
+	        boardFormData.append("post_file", filesArr[i]);
+	    }
+	}
+
+	
+	if(modifyBtn !== null) {
+		formAction = "userBoardModifyAction.fe";
+	}
+	
+	//const boardFormDataQueryString = new URLSearchParams(boardFormData).toString();
+	
+	fetch(formAction,{
+		method: "POST",
+		body: boardFormData,
+		cache: "no-cache",
+		headers: {}
+	})
+	.then(function(response){
+		//console.log(response);
+		return response.json();
+		
+		})
+	.then(function(data) {
+		//console.log(data);
+		
+		if(data.type == "OK") {
+			alert(data.message);
+			location.replace("showPost.do?post_no="+data.result.post_no);
+		}
+		else if (data.type == "login") {
+			alert(data.message);
+			location.replace("login.do");
+		}
+		else {
+			alert(data.message);
+			location.replace("userBoard.do");
+		}
+		
+	})
+	.catch(function(err) {
+		console.warn("Fetch Error:" + err);
+	});
+	
+	return false;
+};
