@@ -14,9 +14,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.mysql.cj.xdevapi.JsonString;
 
+import action.board.UserBoardModifyAction;
+import action.board.UserBoardWriteAction;
 import fetch.FetchAction;
 import fetch.LoginCheckingAction;
 import fetch.board.UserBoardDeleteFetch;
+import fetch.board.UserBoardModifyFetch;
+import fetch.board.UserBoardWriteFetch;
+import vo.User_board;
+import vo.fetch.FetchForward;
 
 /**
  * Servlet implementation class HospitalFrontController
@@ -62,57 +68,82 @@ public class FetchFrontController extends HttpServlet {
 		String command = requestURI.substring(contextPath.length());
 		
 		//Fetch 인터페이스
-		FetchAction<?> fetchAction = null;
+		//FetchAction<K,V> fetchAction = null;
+		
 		
 		//2. 비즈니스 로직 구분------------------------------------------------
 		
 		//로그인 프로세스
 		if(command.equals("/loginProcess.fe")) {
-			fetchAction = new LoginCheckingAction();
+			//FetchAction<String,String> fetchAction = new LoginCheckingAction();
+			FetchAction<Boolean> fetchAction = new LoginCheckingAction();
 
-			boolean result = false;
 			try {
-				result = fetchAction.ProcessResult(request,response);
-			} catch (Exception e) {
-				// TODO 자동 생성된 catch 블록
+				FetchForward<Boolean> fetch = fetchAction.executeResult(request, response);
+				
+				//값을 출력
+				response.setContentType("application/json; charset=UTF-8");
+				ObjectMapper mapper = new ObjectMapper();
+		
+				response.getWriter().write(mapper.writeValueAsString(fetch));
+			} catch (Exception e) {				
 				e.printStackTrace();
 			}
-
-			//JSON 반환값 설정
-			Map<String, Boolean> data = new HashMap<String, Boolean>();
-			data.put("result", result);
-			
-			//값을 출력
-			response.setContentType("application/json; charset=UTF-8");
-			ObjectMapper mapper = new ObjectMapper();
-	
-			response.getWriter().write(mapper.writeValueAsString(data));
 		}
 
 		//게시판 삭제 프로세스
 		
 		else if(command.equals("/userBoardDelete.fe")) {
-			fetchAction = new UserBoardDeleteFetch();
+			FetchAction<Boolean> fetchAction = new UserBoardDeleteFetch();
 			
-			boolean result = false;
+			//Map<String, String> resultMap = null;
 			try {
-				result = fetchAction.ProcessResult(request,response);
-			} catch (Exception e) {
-				// TODO 자동 생성된 catch 블록
+				FetchForward<Boolean> fetch = fetchAction.executeResult(request, response);
+				
+				//값을 출력
+				response.setContentType("application/json; charset=UTF-8");
+				ObjectMapper mapper = new ObjectMapper();
+		
+				response.getWriter().write(mapper.writeValueAsString(fetch));
+			} catch (Exception e) {				
 				e.printStackTrace();
 			}
-			
-			//JSON 반환값 설정
-			Map<String, Boolean> data = new HashMap<String, Boolean>();
-			data.put("result", result);
-			
-			//값을 출력
-			response.setContentType("application/json; charset=UTF-8");
-			ObjectMapper mapper = new ObjectMapper();
-	
-			response.getWriter().write(mapper.writeValueAsString(data));
 		}
 		
+		else if(command.equals("/userBoardWriteAction.fe")) {//'글쓰기 처리' 요청이면
+			FetchAction<User_board> fetchAction  = new UserBoardWriteFetch();		
+			
+			try {
+				FetchForward<User_board> fetch = fetchAction.executeResult(request,response);
+				
+				//값을 출력
+				response.setContentType("application/json; charset=UTF-8");
+				ObjectMapper mapper = new ObjectMapper();
+		
+				//System.out.println("JSON String 처리:"+mapper.writeValueAsString(fetch));
+				response.getWriter().print(mapper.writeValueAsString(fetch));
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}
+		}
+		
+		//'글수정' 요청이면
+		else if(command.equals("/userBoardModifyAction.fe")) {
+			FetchAction<User_board> fetchAction  = new UserBoardModifyFetch();		
+			
+			try {
+				FetchForward<User_board> fetch = fetchAction.executeResult(request,response);
+				
+				//값을 출력
+				response.setContentType("application/json; charset=UTF-8");
+				ObjectMapper mapper = new ObjectMapper();
+
+				//System.out.println("JSON String 처리:"+mapper.writeValueAsString(fetch));
+				response.getWriter().print(mapper.writeValueAsString(fetch));
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}
+		}
 		
 	}
 }

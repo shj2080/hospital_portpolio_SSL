@@ -14,9 +14,9 @@ function loginProcess(){
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded"}
 	})
-	.then((response) => response.json())
+	.then((response) => {return response.json()})
 	.then((data) => {
-		if(data.result == true) {
+		if(data.result === true) {
 			location.replace("index.do");
 		}
 		else {

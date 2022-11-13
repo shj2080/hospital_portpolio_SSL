@@ -7,13 +7,15 @@ import javax.servlet.http.HttpSession;
 
 import svc.LoginService;
 import vo.Member;
+import vo.fetch.FetchForward;
 
 
-public class LoginCheckingAction implements FetchAction {
+public class LoginCheckingAction implements FetchAction<Boolean> {
 
 	@Override
-	public boolean ProcessResult(HttpServletRequest request, HttpServletResponse response) throws Exception {		
-		boolean loginResult = false;
+	public FetchForward<Boolean> executeResult(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		FetchForward<Boolean> fetch = null;
+		String type = null;
 		
 		//로그인 서비스 객체 생성
 		LoginService loginService = new LoginService();
@@ -32,7 +34,7 @@ public class LoginCheckingAction implements FetchAction {
 		//로그인 처리 결과를 리턴 (id와 password로 체크)
 		//비밀번호를 Member 생성자에서 암호화함.
 		Member userLoginInfo = new Member(id, password);
-		loginResult = loginService.getLoginResult(userLoginInfo);
+		boolean loginResult = loginService.getLoginResult(userLoginInfo);
 		
 		//로그인 후 이동 위치 (성공 시 지정 페이지로 이동)
 		//세션과 쿠키에 id를 "userID"로 저장
@@ -58,10 +60,16 @@ public class LoginCheckingAction implements FetchAction {
 			
 			//세션 유지시간 변경(기본 30분)
 			session.setMaxInactiveInterval(1*60*60); //세션 유지시간을 3600초 = 1시간으로 변경
-			
+  			
+			type = "ok";
+  			
+		}else {
+			type = "not";
 		}
-
-		return loginResult;
+		
+		fetch = new FetchForward<Boolean>(loginResult, null, type);
+		
+		return fetch;
 	}
 	
 }

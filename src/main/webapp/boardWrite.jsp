@@ -16,9 +16,9 @@
 	<link rel="stylesheet" type="text/css" href="style/body.css">
 	<!-- <link rel="stylesheet" type="text/css" href="style/footer.css"> -->
 	<link rel="stylesheet" type="text/css" href="style/board.css">
-	<script src = "javascript/board/boardFormMove_script.js">
-	
-	</script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<script src = "javascript/board/boardFormMove_script.js"></script>
+	<script src = "javascript/board/FileSetting.js"></script>
 </head>
 <body>
 <%-- 수정작업을 하는 경우 수정할 게시글 정보를 얻어옴 --%>
@@ -35,7 +35,7 @@
 				<div class="row">
 				
 			<!-- userBoardWriteAction.do로 입력받은 값을 보내줄 테이블 시작 -->
-				<form method="post" action="userBoardWriteAction.do" name = "boardWriteForm" onsubmit="return modifyChk();">
+				<form method="post" action="" id = "boardWriteForm" name = "boardWriteForm" onsubmit="return modifyChk();" enctype="multipart/form-data">
 						<table class="table table-striped" id = "boardWriteBox">
 						
 						<!-- 헤더 부분 시작 -->
@@ -64,6 +64,14 @@
 									</td>
 								</tr>
 							<!-- id 입력 부분 끝 -->
+							<!-- 파일 첨부 부분 시작 -->
+								<tr>
+									<th class = "fs-4"><label for="formFileData" class="form-label">첨부파일</label></th>
+									<td>
+										<input type="file" class="form-control fs-4" id = "formFileData" name="fileData" onchange= "addFile(this)" multiple>
+									</td>
+								</tr>
+							<!-- 파일 첨부 부분 끝 -->
 							
 							<!-- 글내용 입력 부분 시작 -->
 								<tr>

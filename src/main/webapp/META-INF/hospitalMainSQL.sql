@@ -227,7 +227,7 @@ create table user_board(
 	post_pwd NVARCHAR(12),
 	post_subject NVARCHAR(50) NOT NULL,
 	post_text TEXT,
-	post_file VARCHAR(300),
+	post_file CHAR(1) NOT NULL DEFAULT('N') CHECK(post_file IN ('Y','N'),
 	
 	PRIMARY KEY (post_no),
  	foreign key(id) REFERENCES membertbl(id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -236,10 +236,16 @@ create table user_board(
 
 select * from user_board;
 
+update user_board
+set post_file = 'N';
 
 /* 게시판 컬럼형식 datetime 변환 */
 alter table user_board
 modify post_date datetime NOT NULL;
+
+/* 게시판 첨부파일 컬럼 형식 변환 */
+alter table user_board
+modify post_file CHAR(1);
 
 /* 게시판 수정 sql */
 update user_board post_date = ?, post_pwd = ?, post_subject = ?, post_text = ?, post_file = ?
@@ -337,6 +343,8 @@ where reservation_code = 1;
 
 /**************************************************************************/
 /* 게시판 관련 SQL */
+select * from user_board;
+
 select post_no, post_subject ,id, post_date from membertbl natural join user_board order by post_no desc;
 									
 select post_no, post_subject, id, post_date, post_text from user_board where post_no = 1;

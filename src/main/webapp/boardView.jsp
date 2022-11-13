@@ -65,6 +65,19 @@
 							</tr>
 						<!-- 작성일자 출력 끝 -->
 						
+							
+						<c:if test="${attachFiles != null }">
+						<!-- 첨부파일 출력 시작 -->
+						<tr class="text-center">
+							<th colspan="3">첨부파일</th>
+						</tr>
+						<c:forEach var = "attachFile" items="${attachFiles}">
+							<tr>
+								<td colspan="3">${attachFile.original_name}</td>
+							</tr>
+						</c:forEach>
+						<!-- 첨부파일 출력 끝 -->
+						</c:if>
 						<!-- 게시글 내용 출력 시작 -->
 							<tr class = "text-center">
 								<td colspan="3">내용</td>

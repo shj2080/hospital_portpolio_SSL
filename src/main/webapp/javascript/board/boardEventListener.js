@@ -17,13 +17,17 @@ window.onload = () => {
 		})
 		.then((response) => response.json())
 		.then((data) => {
-			if(data.result == true) {
-				alert("게시글을 삭제했습니다.");
+			if(data.result === true) {
+				alert(data.message);
 				location.replace("userBoard.do");
 			}
+			//응답은 받았으나 실패
 			else {
-				alert('게시글 삭제를 실패했습니다.');
+				alert(data.message);
+				location.replace("userBoard.do");
 			}
+		}).catch((err) => {
+			alert("네트워크 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.\n" + err);
 		});
 	
 	});

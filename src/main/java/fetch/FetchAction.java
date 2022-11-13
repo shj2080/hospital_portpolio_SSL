@@ -3,12 +3,11 @@ package fetch;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import vo.fetch.FetchForward;
+
 public interface FetchAction<T> {
-	//boolean 결과를 리턴하는 메서드
-	public default boolean ProcessResult(HttpServletRequest request, HttpServletResponse response) throws Exception {return false;};
+	//결과를 Map타입으로 리턴 (제네릭 형식)
+	//Map<K, V> ProcessResultMap(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	//특정 결과를 리턴하는 메서드
-	public default T ProcessResultData(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
-	}
+	FetchForward<T> executeResult (HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
