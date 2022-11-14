@@ -28,12 +28,47 @@
 
 
 #menu1,#menu2,#menu3,#menu4{
-	border: 1px solid black;
+	border: 1px solid lightblue;
 	flex: none;
     width: 150px;
     height: 300px;
     margin: 1rem auto;
 }
+
+a{
+	margin: 1rem auto;
+	text-decoration: none;
+	color: black;
+}
+	
+#menu1{
+	background-image: url("../images/진료.jpg");
+    background-size : 100% 100%;
+    text-align: center;
+    padding-top: 270px;
+}
+
+#menu2{
+	background-image: url("../images/진료대기.jpg");
+    background-size : 100% 100%;
+    text-align: center;
+    padding-top: 270px;
+}
+
+#menu3{
+	background-image: url("../images/병원소개.jpg");
+    background-size : 100% 100%;
+    text-align: center;
+    padding-top: 270px;
+}
+
+#menu4{
+	background-image: url("../images/공지사항.jpg");
+    background-size : 100% 100%;
+    text-align: center;
+    padding-top: 270px;
+}
+
 	
 @media all and (max-width:1719px) {
 	#boardBox{

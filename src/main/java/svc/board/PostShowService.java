@@ -54,4 +54,29 @@ public class PostShowService {
 		
 		return attachFiles;
 	}
+
+	//첨부파일 다운로드를 위해 한 파일의 정보를 가져오는 메서드
+	public AttachFileBean getAttachFile(int file_idx) {
+		//파일 번호값을 담아 DAO에 전송하기 위한 준비를 함
+		AttachFileBean attachFileInfo = new AttachFileBean();
+		attachFileInfo.setFile_idx(file_idx);
+		
+		//1.커넥션 풀에서 Connection객체 얻어와
+		Connection con = getConnection();
+		//2.싱글톤 패턴:MenuDAO객체 생성
+		User_boardDAO ubDAO = User_boardDAO.getInstance();
+		//3.DB작업에 사용될 Connection객체를 MenuDAO의 멤버변수로 삽입하여 DB 연결
+		ubDAO.setConnection(con);
+		
+		/*----DAO의 해당 메서드를 호출하여 처리-------------------*/		
+		attachFileInfo = ubDAO.getAttachFileData(attachFileInfo);
+		
+		/*-(update,delete,insert)성공하면 commit 실패하면 rollback
+		 * (select제외)----*/	
+		
+		//4.해제
+		close(con);//Connection객체 해제		
+		
+		return attachFileInfo;
+	}
 }

@@ -79,10 +79,12 @@ function deleteFile(num) {
     filesArr[num].is_delete = true;
 }
 
-//새로운 글 작성인지, 수정인지 체크
+//새로운 글 작성인지, 수정인지 체크 (폼 전송 시 체크됨)
 function modifyChk() {
 
+	//IE대응 코드
 	(event.preventDefault) ? event.preventDefault() : event.returnValue = false; 
+	
 	
 	let formAction = "userBoardWriteAction.fe";
 
@@ -91,13 +93,29 @@ function modifyChk() {
 	let boardForm = document.querySelector("#boardWriteForm");
 	let boardFormData = new FormData(boardForm);
 	
+	//첨부한 파일들 폼에 추가
 	for (var i = 0; i < filesArr.length; i++) {
 	    // 삭제되지 않은 파일만 폼데이터에 담기
 	    if (!filesArr[i].is_delete) {
-	        boardFormData.append("post_file", filesArr[i]);
+	        boardFormData.append("post_file" + i, filesArr[i]);
 	    }
 	}
-
+	
+	//파일 첨부를 위해 사용하던 input 객체 제외 처리(파일을 첨부하지 않아도 있는 것으로 판별되는 문제 수정)
+	boardFormData.delete("fileData");
+	
+	/* key 확인하기 */
+	/*
+	for (let key of boardFormData.keys()) {
+		   console.log(key);
+	}
+	*/
+	/* value 확인하기 */
+	/*
+	for (let value of boardFormData.values()) {
+	      console.log(value);
+	}
+	*/
 	
 	if(modifyBtn !== null) {
 		formAction = "userBoardModifyAction.fe";
@@ -105,6 +123,7 @@ function modifyChk() {
 	
 	//const boardFormDataQueryString = new URLSearchParams(boardFormData).toString();
 	
+	//fetch() 함수로 서버와 연결
 	fetch(formAction,{
 		method: "POST",
 		body: boardFormData,

@@ -21,6 +21,9 @@ import fetch.LoginCheckingAction;
 import fetch.board.UserBoardDeleteFetch;
 import fetch.board.UserBoardModifyFetch;
 import fetch.board.UserBoardWriteFetch;
+import fetch.board.getAttachFileFetch;
+import util.FileDownUtil;
+import vo.AttachFileBean;
 import vo.User_board;
 import vo.fetch.FetchForward;
 
@@ -137,6 +140,19 @@ public class FetchFrontController extends HttpServlet {
 
 				//System.out.println("JSON String 처리:"+mapper.writeValueAsString(fetch));
 				response.getWriter().print(mapper.writeValueAsString(fetch));
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}
+		}
+		
+		//'파일다운' 요청이면
+		else if(command.equals("/fileDown.fe")) {
+			FetchAction<AttachFileBean> fetchAction = new getAttachFileFetch();
+			try {
+				FetchForward<AttachFileBean> fetch = fetchAction.executeResult(request, response);
+				
+				return;
+				
 			} catch (Exception e) {				
 				e.printStackTrace();
 			}

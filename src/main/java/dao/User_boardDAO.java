@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import vo.AttachFileBean;
@@ -95,7 +96,7 @@ public class User_boardDAO {
 		
 		String sql = "insert into user_board"
 				+ "(post_no, id, post_date,"
-				+ "post_subject,post_text, post_file) "
+				+ "post_subject,post_text, isAttachFile) "
 				+ "values(?,?,?,?,?,?)";
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -106,7 +107,7 @@ public class User_boardDAO {
 			pstmt.setString(3, userboard.getPost_date());					
 			pstmt.setString(4, userboard.getPost_subject());			
 			pstmt.setString(5, userboard.getPost_text());			
-			pstmt.setString(6, userboard.getPost_file());	
+			pstmt.setString(6, userboard.getIsAttachFile());	
 			
 			writeCount = pstmt.executeUpdate();//업데이트를 성공하면 1을 리턴받음			
 			
@@ -225,7 +226,7 @@ public class User_boardDAO {
 	
 	//조회 (R)
 	public User_board showPost(int post_no){
-		String sql = "select post_no, post_subject, id, post_date, post_text, post_file from user_board where post_no = ?";
+		String sql = "select post_no, post_subject, id, post_date, post_text, isAttachFile from user_board where post_no = ?";
 		User_board ub = null;
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -238,7 +239,7 @@ public class User_boardDAO {
 				ub.setId(rs.getString("id"));
 				ub.setPost_date(rs.getString("post_date"));
 				ub.setPost_text(rs.getString("post_text"));
-				ub.setPost_file(rs.getString("post_file"));
+				ub.setIsAttachFile(rs.getString("isAttachFile"));
 			}
 			
 		}catch (SQLException e) {
@@ -253,7 +254,7 @@ public class User_boardDAO {
 	public int modifyPost(User_board userBoard) {
 		int modifyCount = 0;
 		
-		String sql = "update user_board set post_subject = ?, post_text = ?, post_file = ?";
+		String sql = "update user_board set post_subject = ?, post_text = ?, isAttachFile = ?";
 		sql += " where id = ? AND post_no = ?";
 		
 		try {
@@ -262,7 +263,7 @@ public class User_boardDAO {
 			//쿼리문에서 ?에 대입될 값 지정				
 			pstmt.setString(1, userBoard.getPost_subject());			
 			pstmt.setString(2, userBoard.getPost_text());			
-			pstmt.setString(3, userBoard.getPost_file());
+			pstmt.setString(3, userBoard.getIsAttachFile());
 			pstmt.setString(4, userBoard.getId());
 			pstmt.setInt(5, userBoard.getPost_no());
 			
@@ -310,6 +311,7 @@ public class User_boardDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
+			//향상된 for문으로 쿼리문 값을 변경하며 insert
 			for(AttachFileBean attachFile:attachFiles) {
 				//쿼리문에서 ?에 대입될 값 지정
 				pstmt.setInt(1, attachFile.getBoard_idx());				
@@ -362,7 +364,33 @@ public class User_boardDAO {
 		}
 		return attachFiles;
 	}
-	//게시글에 첨부된 파일정보 삭제
+	
+	//특정 첨부파일의 정보 조회(기본키 = file_idx)
+	public AttachFileBean getAttachFileData(AttachFileBean attachFileBean) {
+		
+		String sql = "select * from attach_tb where file_idx = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, attachFileBean.getFile_idx());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				attachFileBean.setSave_name(rs.getString("save_name"));
+				attachFileBean.setOriginal_name(rs.getString("original_name"));
+				attachFileBean.setBoard_idx(rs.getInt("board_idx"));
+				attachFileBean.setSize(rs.getLong("size"));
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("[User_boardDAO] showAttachFileData() 에러 : "+e);
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return attachFileBean;
+	}
+	
+	//게시글에 첨부된 파일정보 삭제 [파일정보 테이블]
 	public int deleteAttachFileData(User_board userBoard) {
 		int deleteCount = 0;
 		

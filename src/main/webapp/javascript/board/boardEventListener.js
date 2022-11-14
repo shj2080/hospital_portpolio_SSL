@@ -1,19 +1,4 @@
  
- /*
- async function fileDown(file_code) {
-	
-	const fileInitData = await fetch("fileDown.fe",{
-		method: "POST",
-		body: "file_idx="+file_code,
-		headers: {
-			"Content-Type": "application/x-www-form-urlencoded"}
-	});
-	const fileDataBlob = await fileInitData.blob();
-
-	//다운로드 되는 파일이름을 가져옴
-}
-*/
-
 //수정 버튼을 눌렀을 때 특정 게시글 수정하도록 함
 //문서 로드 시 이벤트 리스너 설정
 window.onload = function() {

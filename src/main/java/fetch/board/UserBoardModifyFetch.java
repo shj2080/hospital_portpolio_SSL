@@ -17,6 +17,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import fetch.FetchAction;
 import svc.board.UserBoardModifyService;
+import vo.AttachFileBean;
 import vo.User_board;
 import vo.fetch.FetchForward;
 
@@ -29,6 +30,9 @@ public class UserBoardModifyFetch implements FetchAction<User_board> {
 		User_board userBoard = null;
 		String type = null;
 		String alertMessage = null;
+		
+		//modifyResult 결과 변수
+		int modifyResult = 0;
 		
 		//로그인 상태 체크를 위해 세션의 아이디를 가져옴
 		HttpSession session = request.getSession();
@@ -51,12 +55,13 @@ public class UserBoardModifyFetch implements FetchAction<User_board> {
 	  			return fetch;
 	  		}
 	  		
-	  		
+	  		//서버 파일 저장 경로
 	  		String saveDir = "/board/notice";
 	  		
 	  		ServletContext context = request.getServletContext();
 	  		String uploadPath = context.getRealPath(saveDir);
 	  		
+	  	//파일 용량 제한 (10M)
 	  		int fileLimitSize = 10 * 1024 * 1024;
 	  		
 	  		/*-★★1. upload 폴더 만들기 대신 추가함-----------------------------------------------------------*/
@@ -74,12 +79,16 @@ public class UserBoardModifyFetch implements FetchAction<User_board> {
 	  			}
 	  		/*-----------------------------------------------------------------------------------------*/
 	  		
+	  		//업로드를 위한 MultipartRequest 정의
 	  		MultipartRequest multi = null;
 			try {
 				multi = new MultipartRequest(request, uploadPath, fileLimitSize, "UTF-8", new DefaultFileRenamePolicy());
 			} catch (IOException e) {
-				// TODO 자동 생성된 catch 블록
-				e.printStackTrace();
+				System.out.println("[UserBoardWriteFetch]파일 작업 중 I/O 예외 : " + e);
+				alertMessage = "게시글 등록 실패";
+				type = "I/O Exception";
+				fetch = new FetchForward<User_board>(userBoard, alertMessage, type);
+	  			return fetch;
 			}
 	  		
 	  		//글번호 수정을 위해 필요
@@ -100,43 +109,71 @@ public class UserBoardModifyFetch implements FetchAction<User_board> {
 			String post_subject = multi.getParameter("post_subject");
 			//게시글 내용
 			String post_text = multi.getParameter("post_text");
+
+			//첨부파일 여부
+			String isAttachFile = multi.getParameter("isAttachFile");
 			
-			//추가 : 실제 서버 파일명들이 담긴 ArrayList
-			ArrayList<String> serverFileName = new ArrayList<String>();
-			//업로드 시 사용된 파일명들이 담긴 ArrayList
-			ArrayList<String> origFileName = new ArrayList<String>();
-			
-			Enumeration<?> post_files = multi.getFileNames();//type = "file"인 name들을 얻어와 (filename1, filename2 순으로 가져옴)
-			
-			String uploadFiles;
-			
-			while(post_files.hasMoreElements()) {
-				uploadFiles = (String)post_files.nextElement();
+			if(isAttachFile.equals("Y")) {
+				Enumeration<?> post_files = multi.getFileNames();//type = "file"인 name들을 얻어와 (filename1, filename2 순으로 가져옴)
 				
-				String serverFileNameStr = multi.getFilesystemName(uploadFiles);
-				if(serverFileNameStr == null){
-					continue;//break를 하지 않는 이유는 1=null, 2=null, 3=file, 4=null 처럼 파일을 중간에 넣었을 경우도 고려해야 하기 때문입니다.
+				//----
+				String uploadFiles = null;
+				String serverFileNameStr = null;
+				String origFileNameStr = null;
+				//----
+				
+				//첨부파일 정보 기록을 위한 Bean 객체와 List 생성
+				ArrayList<AttachFileBean> attachFiles = new ArrayList<AttachFileBean>();
+				
+				//객체 내부의 값만 바꿀 경우 List에 넣을 때 문제 발생함
+				//AttachFileBean attachFileBean = new AttachFileBean();
+				AttachFileBean attachFileBean = null;
+				
+				//파일이 있는 동안 계속 반복
+				while(post_files.hasMoreElements()) {
+					uploadFiles = (String)post_files.nextElement();
+					
+					//서버상의 파일이름과 작성자가 첨부한 파일명 구함
+					serverFileNameStr = multi.getFilesystemName(uploadFiles); //input File 타입의 요소에서 이름 받아옴
+					origFileNameStr = multi.getOriginalFileName(uploadFiles);
+					
+					//null값이 온 경우
+					
+					 if(serverFileNameStr == null){
+						 System.out.println("[debug]파일 업로드 작업 중 null 감지됨.");
+						 continue;
+					 }
+					 
+					 
+					//게시글에 첨부파일들의 정보를 받아 삽입
+					//기존값이 덮어씌워지는 문제 해결을 위해 생성자를 사용하여 새로운 객체 만듬
+					attachFileBean = new AttachFileBean(
+							post_no,								//등록될 게시글 번호
+							serverFileNameStr,							//서버상의 파일명
+							origFileNameStr,							//작성자가 올린 파일명
+							multi.getFile(uploadFiles).length());		//업로드한 파일 사이즈(Byte 단위)
+
+					//첨부파일정보 List에 add
+					attachFiles.add(attachFileBean);
 				}
 				
-				serverFileName.add(multi.getFilesystemName(uploadFiles));	//서버상의 파일이름
-				origFileName.add(multi.getOriginalFileName(uploadFiles));	//사용자가 업로드한 파일이름
+				
+				System.out.println("[debug]post_no:" + post_no);
+		  		System.out.println("[debug]id:" + id);
+		  		System.out.println("[debug]post_subject:" + post_subject);
+		  		System.out.println("[debug]post_text:" + post_text);
+		  		System.out.println("[debug]isAttachFile:" + isAttachFile);
+				
+		  		userBoard = new User_board(post_no, post_date, post_subject, post_text, isAttachFile, id);
+			}else {
+			
+				//★★★수정 완료를 위해 임시처리----파일관련 작업중..
+				userBoard = new User_board(post_no, post_date, post_subject, post_text, isAttachFile, id);
+		  				
+		  		//게시글 수정을 위한 서비스(DAO에서 수정작업을 위해 호출됨)
+				UserBoardModifyService userBoardModifyService = new UserBoardModifyService();
+				modifyResult = userBoardModifyService.modifyPost(userBoard);
 			}
-			
-			//첨부파일? (임시처리.. 반드시 수정)
-			String post_file = "N";
-			
-			System.out.println("[debug]post_no:" + post_no);
-	  		System.out.println("[debug]id:" + id);
-	  		System.out.println("[debug]post_subject:" + post_subject);
-	  		System.out.println("[debug]post_text:" + post_text);
-	  		System.out.println("[debug]post_file:" + post_file);
-			
-	  		userBoard = new User_board(post_no, post_date, post_subject, post_text, post_file, id);
-	  				
-	  		//게시글 수정을 위한 서비스(DAO에서 수정작업을 위해 호출됨)
-			UserBoardModifyService userBoardModifyService = new UserBoardModifyService();
-			int modifyResult = userBoardModifyService.modifyPost(userBoard);
-			
 			
 			//게시글 작성 성공 여부 파악
 			if(modifyResult <= 0) {

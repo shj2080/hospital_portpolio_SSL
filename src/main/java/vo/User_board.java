@@ -7,7 +7,7 @@ public class User_board {
 	/* private String post_pwd; */
 	private String post_subject;
 	private String post_text;
-	private String post_file;
+	private String isAttachFile;
 	
 	private String id;
 	
@@ -43,7 +43,7 @@ public class User_board {
 		/* this.post_pwd = post_pwd; */
 		this.post_subject = post_subject;
 		this.post_text = post_text;
-		this.post_file = post_file;
+		this.isAttachFile = post_file;
 		this.id = id;
 	}
 	
@@ -53,7 +53,7 @@ public class User_board {
 		this.post_no = post_no;
 		this.post_subject = post_subject;
 		this.post_text = post_text;
-		this.post_file = post_file;
+		this.isAttachFile = post_file;
 		this.id = id;
 	}
 
@@ -94,12 +94,12 @@ public class User_board {
 		this.post_text = post_text;
 	}
 
-	public String getPost_file() {
-		return post_file;
+	public String getIsAttachFile() {
+		return isAttachFile;
 	}
 
-	public void setPost_file(String post_file) {
-		this.post_file = post_file;
+	public void setIsAttachFile(String post_file) {
+		this.isAttachFile = post_file;
 	}
 
 

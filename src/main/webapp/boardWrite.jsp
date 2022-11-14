@@ -38,6 +38,8 @@
 				
 			<!-- userBoardWriteAction.do로 입력받은 값을 보내줄 테이블 시작 -->
 				<form method="post" action="" id = "boardWriteForm" name = "boardWriteForm" onsubmit="return modifyChk();" enctype="multipart/form-data">
+						<!-- 파일을 첨부했는지 확인하기 위한 플래그 -->
+						<input type ="hidden" id ="isAttachFile" name = "isAttachFile" value = "N">
 						<table class="table table-striped" id = "boardWriteBox">
 						
 						<!-- 헤더 부분 시작 -->
@@ -80,7 +82,7 @@
 									<th class = "fs-4" colspan="2">내용</th>
 								</tr>
 								<tr>
-									<td class = "fs-4" colspan="2"><textarea  class="form-control fs-4" placeholder="글 내용" name="post_text" maxlength="500" style="height:350px;">${board_text}</textarea></td>
+									<td class = "fs-4" colspan="2"><textarea  class="form-control fs-4" placeholder="글 내용" name="post_text" maxlength="500" style="height:350px;" required>${board_text}</textarea></td>
 								</tr>
 							<!-- 글내용 입력 부분 끝 -->
 							
@@ -119,6 +121,6 @@
 	var fileNo = 0;
 	var filesArr = new Array();
 	</script>
-	<script type="text/javascript" src = "javascript/board/FileSetting.js"></script>
+	<script type="text/javascript" src = "javascript/board/fileSetting.js"></script>
 </body>
 </html>

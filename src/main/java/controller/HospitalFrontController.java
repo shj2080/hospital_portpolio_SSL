@@ -193,13 +193,6 @@ public class HospitalFrontController extends HttpServlet {
 				System.out.println("MyTreatmentListAction ActionForward 예외 : " + e);
 			}
 		}
-		//병원 소개
-		else if(command.equals("/introduce.do")) {			
-			//action = new IntroduceViewAction();
-			
-			//request.setAttribute("showPage", "");
-			forward = new ActionForward("introduce/introduceTemplate.jsp", false);
-		}
 		//마이페이지 진료내역 id체크 접근
 		else if(command.equals("/myTratmentListCheck.do")) {
 			action = new MyTreatmentListCheckAction();
@@ -313,6 +306,26 @@ public class HospitalFrontController extends HttpServlet {
 			action = new MemberIdFindAction();
 			try {
 				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}	
+		}
+		//병원소개 - 일반 페이지 이동
+		else if(command.equals("/hospital_introduct.do")) {//'회원 아이디 찾기' 요청이면
+
+			try {
+				request.setAttribute("showPage", "hospital_introduct.jsp");
+				forward = new ActionForward("introduce/introduceTemplate.jsp", false);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}	
+		}
+		//의료진소개 - 일반 페이지 이동
+		else if(command.equals("/medical_staff.do")) {//'회원 아이디 찾기' 요청이면
+
+			try {
+				request.setAttribute("showPage", "medical_staff.jsp");
+				forward = new ActionForward("introduce/introduceTemplate.jsp", false);
 			} catch (Exception e) {				
 				e.printStackTrace();
 			}	

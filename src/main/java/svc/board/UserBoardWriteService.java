@@ -4,6 +4,7 @@ import static db.JdbcUtil.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import dao.User_boardDAO;
 import vo.AttachFileBean;

@@ -33,16 +33,18 @@ public class UserBoardDeleteService {
 			//--서버에 저장된 파일 삭제 구문--//
 			String saveDir = "/board/notice";
 			
+			//-----파일 저장된 경로 처리------//
 			ServletContext context = request.getServletContext();
 	  		String uploadPath = context.getRealPath(saveDir);
 	  		String deleteFilePath = uploadPath + File.separator;
+	  		//-----파일 저장된 경로 처리------//
 	  		
 	  		//파일 접근을 위한 File 객체 선언
 	  		File deleteFile = null;
 			
-	  		
 	  			for(AttachFileBean attachFile:attachFiles) {
-	  				deleteFile = new File(deleteFilePath + attachFile.getSave_name());
+	  				//경로(예) /board/notice/file.jpg
+	  				deleteFile = new File(deleteFilePath + attachFile.getSave_name()); //save_name은 서버상의 실제 파일명
 	  				//파일이 존재하면 삭제
 	  				if(deleteFile.exists()) {
 	  					deleteFile.delete(); //해당 파일을 삭제
@@ -52,6 +54,7 @@ public class UserBoardDeleteService {
 	  			}
 			//--서버에 저장된 파일 삭제 구문--//
 			
+	  		//게시글에 첨부됐던 파일 정보 삭제
 			deleteResult = user_boardDAO.deleteAttachFileData(userBoard);
 		}
 		

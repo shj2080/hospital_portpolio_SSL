@@ -72,7 +72,7 @@ public class UserBoardWriteAction implements Action {
 			//userboard.setPost_pwd(post_pwd);
 			userboard.setPost_subject(post_subject);
 			userboard.setPost_text(post_text);
-			userboard.setPost_file(post_file);
+			userboard.setIsAttachFile(post_file);
 			
 			
 			//게시글 작성 서비스 객체 생성 및 관련 메서드 호출

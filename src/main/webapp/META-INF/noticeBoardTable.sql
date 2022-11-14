@@ -4,10 +4,9 @@ create table user_board(
 	post_no INT NOT NULL,
 	id varchar(20) NOT NULL,
 	post_date datetime NOT NULL,
-	post_pwd NVARCHAR(12),
 	post_subject NVARCHAR(50) NOT NULL,
 	post_text TEXT,
-	post_file CHAR(1) NOT NULL DEFAULT('N') CHECK(post_file IN ('Y','N'),
+	isAttachFile CHAR(1) NOT NULL DEFAULT('N') CHECK(post_file IN ('Y','N'),
 	
 	PRIMARY KEY (post_no),
  	foreign key(id) REFERENCES membertbl(id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -19,9 +18,23 @@ select * from user_board;
 /* Mysql 제약조건 확인(user_board 테이블) */
 select * from information_schema.table_constraints where table_name in ('user_board');
 
-/* 제약조건 삭제 */
+/* 제약조건 삭제 예시 */
 alter table user_board
-drop constraint user_board_chk_1;
+drop constraint chk_user_board_isAttachFile;
+
+/*  */
+alter table user_board
+add constraint chk_user_board_isAttachFile CHECK(post_file IN ('Y','N'));
+
+alter table user_board
+modify isAttachFile CHAR(1) NOT NULL DEFAULT('N');
+
+update user_board
+set isAttachFile = 'N';
+
+/* 컬럼명 변경 */ 
+ALTER table user_board
+change post_file isAttachFile CHAR(1);
 
 /* 게시판 컬럼형식 datetime 변환 */
 alter table user_board

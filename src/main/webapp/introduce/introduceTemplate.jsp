@@ -17,7 +17,7 @@
 <body>
 	<jsp:include page="../header.jsp" />
 	 <!-- 컨텐츠를 묶는 div -->
-	 <div id = "contentWrap">
+	 <div class="container">
      
      <%-- 컨텐츠 표시 영역 시작 --%>
         <section>

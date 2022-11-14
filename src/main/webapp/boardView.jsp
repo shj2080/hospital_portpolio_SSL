@@ -17,7 +17,8 @@
 <link rel="stylesheet" type="text/css" href="style/board.css">
 <!-- <script src="http://code.jquery.com/jquery-latest.js"></script>  -->
 <script>const post_no = "${param.post_no}";</script>
-<script src = "${pageContext.request.contextPath}/javascript/board/boardEventListener.js"></script>
+<script type="text/javascript" src = "${pageContext.request.contextPath}/javascript/board/fileDownload.js"></script>
+<script type = "text/javascript" src = "${pageContext.request.contextPath}/javascript/board/boardEventListener.js"></script>
 </head>
 <body>
 

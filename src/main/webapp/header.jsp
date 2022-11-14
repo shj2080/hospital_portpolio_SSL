@@ -14,11 +14,12 @@
 <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
 
 <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css"> --%>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CURLSearchParams%2Cfetch%2CCSS.supports%2CBlob%2Cdefault"></script>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.10.4/polyfill.min.js"></script>
 <!-- required JavaScript polyfills for IE11 -->
-<script nomodule>window.MSInputMethodContext && document.documentMode && document.write('<link rel="stylesheet" href="bootstrap_ie/css/bootstrap-ie11.min.css"><script src="https://cdn.jsdelivr.net/combine/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js,npm/ie11-custom-properties@4,npm/element-qsa-scope@1"><\/script><script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default%2CNumber.parseInt%2CNumber.parseFloat%2CArray.prototype.find%2CArray.prototype.includes"><\/script>');</script>
+<!-- <script nomodule>window.MSInputMethodContext && document.documentMode && document.write('<script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2C%2Cfetch%2CCSS.supports%2CBlob%2Cdefault"><\/script>');</script> -->
+<script nomodule>window.MSInputMethodContext && document.documentMode && document.write('<link rel="stylesheet" href="bootstrap_ie/css/bootstrap-ie11.min.css"><script src="https://cdn.jsdelivr.net/combine/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js,npm/ie11-custom-properties@4,npm/element-qsa-scope@1"><\/script><script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default%2CNumber.parseInt%2CNumber.parseFloat%2CArray.prototype.find%2CArray.prototype.includes%2CURLSearchParams%2cfetch"><\/script>');</script>
 <script src="${pageContext.request.contextPath}/javascript/polyfill/blob.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/polyfill/formdata.min.js"></script>
 </head>
@@ -47,10 +48,10 @@
 				<a class = "nav-link fs-3" href = "${pageContext.request.contextPath}/treatmentList.do"><span class = "menu">진료대기자명단</span></a>
 			</li>
 			<li class="nav-item">
-				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/introduce.do"><span class = "menu">병원소개</span></a>
+				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/hospital_introduct.do"><span class = "menu">병원소개</span></a>
 			</li>
 			<li class="nav-item">
-				<a class = "nav-link nav-link fs-3" href = "#"><span class = "menu">의료진소개</span></a>
+				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/medical_staff.do"><span class = "menu">의료진소개</span></a>
 			</li>
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/qboardList.qna"><span class = "menu">Q&A게시판</span></a>

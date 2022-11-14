@@ -1,7 +1,5 @@
 package fetch.board;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import fetch.FetchAction;
 import svc.board.PostShowService;
 import svc.board.UserBoardDeleteService;
-import svc.board.UserboardShowService;
 import vo.AttachFileBean;
 import vo.User_board;
 import vo.fetch.FetchForward;
@@ -53,6 +50,7 @@ public class UserBoardDeleteFetch implements FetchAction<Boolean> {
 			UserBoardDeleteService userBoardDeleteService = new UserBoardDeleteService();
 			PostShowService postShowService = new PostShowService();
 			
+			//파일 정보를 가져와서 List에 담음
 			List<AttachFileBean> attachFiles = postShowService.getAttachFileData(post_no);
 			deleteResult = userBoardDeleteService.deletePost(request, userBoard, attachFiles);
 			
