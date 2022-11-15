@@ -532,4 +532,57 @@ public class HospitalDAO {
 		return userInfo;
 	}
 	
+	//이름과 주민번호 ID로 비밀번호 조회
+	public Member select_pwFind(String name, String id_num, String id) {
+		Member userInfo = null;
+		
+		//쿼리문
+		String sql = "select password from membertbl where name = ? AND id_num = ? AND id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, id_num);
+			pstmt.setString(3, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				userInfo = new Member();
+				userInfo.setPassword(rs.getString("password"));
+			} 
+			
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] select_pwFind 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+			close(rs);
+		}
+		
+		return userInfo;
+	}
+	
+	//특정 회원의 비밀번호 수정(비밀번호 찾기)
+    public int MemberPwUpdate(String password, String id) {
+		int result = 0;
+
+		String sql = "";
+		
+			sql = "update membertbl set password = ? where id = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, password);
+			pstmt.setString(2, id);
+
+			result = pstmt.executeUpdate();
+
+		} catch(Exception e) {
+			System.out.println("[HospitalDAO] MemberPwUpdate 에러:"+ e);
+		} finally { //사용 후 커넥션 해제
+			close(pstmt);
+		}
+
+		return result;
+    }
+	
 }
