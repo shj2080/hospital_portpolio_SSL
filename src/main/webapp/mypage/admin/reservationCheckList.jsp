@@ -13,8 +13,8 @@
 <link rel="stylesheet" type="text/css" href = "style/mypage/mypageListTable_style.css">
 <script>
 	window.onload = function () {
-		/* //버튼 이벤트 리스너 설정
-		document.getElementById("searchID").addEventListener("click", memberSearch); */
+		//버튼 이벤트 리스너 설정
+		//document.getElementById("searchID").addEventListener("click", memberSearch);
 		
 		//get 방식으로 넘어온 파라미터 제거함
 		history.replaceState({}, null, location.pathname);
@@ -27,7 +27,7 @@
 	<form action = "reservationMemberSearch.ad" id = "searchForm" name = "searchForm" method="post" class = "row g-2" onsubmit="return memberSearch();">
 		<div class="col-auto p-3">
 			<label>회원ID <input type="text" id = "u_id" name = "u_id" ></label>
-			<button type = "button" id = "searchID" class="btn btn-info fs-4">검색</button>
+			<button type = "submit" id = "searchID" class="btn btn-info fs-4">검색</button>
 		</div>
 	</form>
 	<c:if test="${resCheckList == null }">

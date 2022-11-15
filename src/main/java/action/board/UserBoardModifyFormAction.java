@@ -1,6 +1,7 @@
 package action.board;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import svc.board.PostShowService;
 import vo.ActionForward;
+import vo.AttachFileBean;
 import vo.User_board;
 
 public class UserBoardModifyFormAction implements Action {
@@ -43,8 +45,15 @@ public class UserBoardModifyFormAction implements Action {
 	  		}else {
 	  			int post_no = Integer.parseInt(request.getParameter("post_no"));
 	  			
+	  			//게시글의 정보를 가져오기 위해 DB에 접근하는 서비스 생성 후 정보 가져옴
 	  			PostShowService postShowService = new PostShowService();
 	  			User_board modifyData = postShowService.getPost(post_no);
+	  			
+	  			//첨부파일 정보 가져옴
+	  			List<AttachFileBean> attachFiles = postShowService.getAttachFileData(post_no);
+	  			
+	  			//첨부파일 정보
+	  			request.setAttribute("attachFiles", attachFiles);
 	  			
 	  			request.setAttribute("modifyData", modifyData);
 	  			forward = new ActionForward("boardWrite.jsp", false);

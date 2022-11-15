@@ -33,6 +33,7 @@ public class PostShowService {
 		
 	}
 
+	//특정 게시글 번호의 첨부파일 데이터 모두 가져옴
 	public List<AttachFileBean> getAttachFileData(int post_no) {
 		ArrayList<AttachFileBean> attachFiles = null;
 		
@@ -45,6 +46,29 @@ public class PostShowService {
 		
 		/*----DAO의 해당 메서드를 호출하여 처리-------------------*/		
 		attachFiles = ubDAO.showAttachFileData(post_no);
+		
+		/*-(update,delete,insert)성공하면 commit 실패하면 rollback
+		 * (select제외)----*/	
+		
+		//4.해제
+		close(con);//Connection객체 해제		
+		
+		return attachFiles;
+	}
+
+	//특정 파일 번호배열로 첨부파일들을 가져옴
+	public List<AttachFileBean> getFileIdxAttachFileData(int[] files_idx) {
+		ArrayList<AttachFileBean> attachFiles = null;
+		
+		//1.커넥션 풀에서 Connection객체 얻어와
+		Connection con = getConnection();
+		//2.싱글톤 패턴:MenuDAO객체 생성
+		User_boardDAO ubDAO = User_boardDAO.getInstance();
+		//3.DB작업에 사용될 Connection객체를 MenuDAO의 멤버변수로 삽입하여 DB 연결
+		ubDAO.setConnection(con);
+		
+		/*----DAO의 해당 메서드를 호출하여 처리-------------------*/		
+		attachFiles = ubDAO.showFileIdxAttachFileData(files_idx);
 		
 		/*-(update,delete,insert)성공하면 commit 실패하면 rollback
 		 * (select제외)----*/	

@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import vo.AttachFileBean;
@@ -411,6 +410,67 @@ public class User_boardDAO {
 		}
 		
 		return deleteCount;
+	}
+
+	//특정 게시글번호의 특정 파일번호 첨부된 파일정보 삭제 [파일정보 테이블] - deleteService
+	public int deleteFileIdxAttachFileData(User_board userBoard, List<AttachFileBean> attachFiles) {
+		int deleteCount = 0;
+		
+		String sql = "delete from attach_tb where board_idx = ? AND file_idx = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			//쿼리문에서 ?에 대입될 값 지정
+			pstmt.setInt(1, userBoard.getPost_no());
+			
+			for (int i = 0; i < attachFiles.size(); i++) {
+				pstmt.setInt(2, attachFiles.get(i).getFile_idx());
+				deleteCount = pstmt.executeUpdate();	//업데이트를 성공하면 1을 리턴받음	
+			}
+
+			
+		} catch (Exception e) {			
+			System.out.println("[User_boardDAO] deleteFileIdxAttachFileData 에러:"+ e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return deleteCount;
+	}
+	
+	//특정 파일 번호배열로 첨부파일들을 가져옴
+	public ArrayList<AttachFileBean> showFileIdxAttachFileData(int[] files_idx) {
+		String sql = "select * from attach_tb where file_idx = ?";
+		ArrayList<AttachFileBean> attachFiles = new ArrayList<AttachFileBean>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			for(int i = 0; i < files_idx.length; i++) {
+				pstmt.setInt(1, files_idx[i]);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					AttachFileBean attachFileBean = new AttachFileBean(
+							rs.getInt("file_idx"),
+							rs.getInt("board_idx"),
+							rs.getString("original_name"),
+							rs.getString("save_name"),
+							rs.getInt("size"),
+							rs.getString("insert_time"));
+					attachFiles.add(attachFileBean);
+				}
+			}
+			
+
+		}catch (SQLException e) {
+			System.out.println("[User_boardDAO] showFileIdxAttachFileData() 에러 : "+e);
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return attachFiles;
 	}
 	
 	

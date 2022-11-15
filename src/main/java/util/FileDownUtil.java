@@ -13,6 +13,7 @@ import vo.AttachFileBean;
 
 public class FileDownUtil {
 
+	//파일 다운로드 메서드
 	public void FileWebDownload(HttpServletRequest request, HttpServletResponse response, AttachFileBean attachFileBean) throws Exception {
 		
 		String savePath = "/board/notice"; //서버에 파일이 업로드된 폴더명 지정

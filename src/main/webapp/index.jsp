@@ -78,7 +78,7 @@ section{
 				<fieldset id = "menuBox">
 					<a href = "${pageContext.request.contextPath}/reservationSelectView.treat"><div id = "menu1">진료예약</div></a>
 					<a href = "${pageContext.request.contextPath}/treatmentList.do"><div id = "menu2">대기자명단 보기</div></a>
-					<a href = "#"><div id = "menu3">병원소개</div></a>
+					<a href = "${pageContext.request.contextPath}/hospital_introduct.do"><div id = "menu3">병원소개</div></a>
 					<a href = "${pageContext.request.contextPath}/userBoard.do"><div id = "menu4">공지사항</div></a>
 				</fieldset>
 				<!-- 바로가기 메뉴 끝 -->

@@ -117,7 +117,7 @@ function loginVaildCheck() {
 					<!-- 아이디,비밀번호 찾기 영역 시작 -->
 					<div>
 						<a href = "find_member/idFindForm.do" class="link-primary"><b>아이디 찾기</b></a>
-						<a href = "#" class="link-primary"><b>비밀번호 찾기</b></a>
+						<a href = "find_member/pwFindForm.do" class="link-primary"><b>비밀번호 찾기</b></a>
 					</div>
 					<!-- 아이디,비밀번호 찾기 영역 끝 -->
 				<!-- 로그인 박스 끝 -->

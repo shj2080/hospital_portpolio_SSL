@@ -3,6 +3,7 @@
     
 <%-- JSTL 사용을 위한 선언 부분 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -20,7 +21,13 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	
 	<!-- <script type = "text/javascript"src = "javascript/board/boardFormMove_script.js"></script> -->
-	
+<script>
+//전역변수 - 첨부 파일 번호, 파일 배열
+var fileNo = 0;
+var filesArr = new Array();
+var beingDeleteFileArr = new Array();
+</script>
+<script type="text/javascript" src = "javascript/board/fileSetting.js"></script>
 </head>
 <body>
 <%-- 수정작업을 하는 경우 수정할 게시글 정보를 얻어옴 --%>
@@ -39,7 +46,12 @@
 			<!-- userBoardWriteAction.do로 입력받은 값을 보내줄 테이블 시작 -->
 				<form method="post" action="" id = "boardWriteForm" name = "boardWriteForm" onsubmit="return modifyChk();" enctype="multipart/form-data">
 						<!-- 파일을 첨부했는지 확인하기 위한 플래그 -->
-						<input type ="hidden" id ="isAttachFile" name = "isAttachFile" value = "N">
+						<c:if test="${modifyData == null }">
+							<input type ="hidden" id ="isAttachFile" name = "isAttachFile" value = "N">
+						</c:if>
+						<c:if test="${modifyData != null }">
+							<input type ="hidden" id ="isAttachFile" name = "isAttachFile" value = "${modifyData.isAttachFile}">
+						</c:if>
 						<table class="table table-striped" id = "boardWriteBox">
 						
 						<!-- 헤더 부분 시작 -->
@@ -69,6 +81,7 @@
 								</tr>
 							<!-- id 입력 부분 끝 -->
 							<!-- 파일 첨부 부분 시작 -->
+							<!-- 이 input type file 태그에서 받은 정보를 fileSetting.js 내의 addFile(obj) 함수에서 처리함 -->
 								<tr>
 									<th class = "fs-4"><label for="formFileData" class="form-label">첨부파일</label></th>
 									<td>
@@ -76,6 +89,22 @@
 									</td>
 								</tr>
 							<!-- 파일 첨부 부분 끝 -->
+							<!-- 기존 첨부파일 목록 불러오기 시작 -->
+							<c:if test="${attachFiles != null }">
+								<c:forEach var = "attachFile" items = "${attachFiles }" varStatus="stat">
+								<tr>
+									<td id = "beingFile${stat.index}" class="beingFileList align-middle">
+										<button type="button" class = "btn outline-dark" onclick="deleteBeingFile(this, ${attachFile.file_idx});">
+											<i class="bi bi-file-earmark-x"></i>
+										</button>
+									</td>
+									<td>
+										${attachFile.original_name}
+									</td>
+								</tr>
+								</c:forEach>
+							</c:if>
+							<!-- 기존 첨부파일 목록 불러오기 끝 -->
 							
 							<!-- 글내용 입력 부분 시작 -->
 								<tr>
@@ -103,7 +132,7 @@
 						</c:when>
 						<c:otherwise>
 							<input type="submit" id = "modifyBtn" class="btn btn-secondary fs-4" value="수정">
-							<input type = "hidden" name = "post_no" value = "${post_no}" readonly/>
+							<input type = "hidden" id = "post_no" name = "post_no" value = "${post_no}" readonly/>
 						</c:otherwise>
 					</c:choose>
 					</div>
@@ -111,16 +140,10 @@
 				
 				</form>
 			<!-- userBoardWriteAction.do로 입력받은 값을 보내줄 테이블 끝 -->
-			
 				</div>
 			</section>
 			<%-- 컨텐츠 표시 영역 끝 --%>
 		</div>
 	<jsp:include page="footer.jsp" />
-	<script>
-	var fileNo = 0;
-	var filesArr = new Array();
-	</script>
-	<script type="text/javascript" src = "javascript/board/fileSetting.js"></script>
 </body>
 </html>

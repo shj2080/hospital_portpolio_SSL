@@ -35,7 +35,9 @@ public class TreatmentAddConfirmAction implements Action {
         
         //받아온 예약코드로 예약진료정보를 담은 bean객체 만듬
         ReservationBean reservationInfo = reservationFormService.selectReservationInfo(reservation_code);
-
+    
+        //문제부분---
+        
         //진료확인이 된 예약을 진료테이블에 insert하려 하는 경우
         if(reservationInfo.getTreatment_status().equals("Y")) {
         	response.setContentType("text/html;charset=UTF-8");
@@ -51,6 +53,7 @@ public class TreatmentAddConfirmAction implements Action {
         
         //받아온 예약목록을 진료테이블에 insert함
         int result = treatmentAddService.insertTreatment_Reservation(reservationInfo);
+
         
         if (result > 0) {
         	//진료확인 플래그 "Y"

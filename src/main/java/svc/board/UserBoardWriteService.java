@@ -6,7 +6,10 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import javax.servlet.http.HttpServletRequest;
+
 import dao.User_boardDAO;
+import util.FileDeleteUtil;
 import vo.AttachFileBean;
 import vo.User_board;
 
@@ -63,7 +66,7 @@ public class UserBoardWriteService {
 	}
 
 	//첨부파일이 있는 게시글 작성
-	public boolean writeAction(User_board userboard, ArrayList<AttachFileBean> attachFiles) {
+	public boolean writeAction(HttpServletRequest request, User_board userboard, ArrayList<AttachFileBean> attachFiles) {
 		//1.커넥션 풀에서 Connection객체 얻어와
 		Connection con = getConnection();//바로 호출해서 사용가능(import static db.JdbcUtil.*;)
 		//2.싱글톤 패턴:UserDAO객체 생성
@@ -85,6 +88,8 @@ public class UserBoardWriteService {
 			commit(con);
 		}else {
 			rollback(con);
+			FileDeleteUtil fileDeleteUtil = new FileDeleteUtil();
+			fileDeleteUtil.FailPostFileDeleteProcess(request, userboard, attachFiles);
 		}	
 		
 		//4.해제

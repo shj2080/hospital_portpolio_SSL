@@ -11,6 +11,10 @@ public class ReservationCheckListAction implements Action {
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ActionForward forward = null;
 
+        //-----
+        
+        //-----
+        
         request.setAttribute("showPage", "admin/reservationCheckList.jsp");
         forward = new ActionForward("mypage/mypageTemplate.jsp", false);
 

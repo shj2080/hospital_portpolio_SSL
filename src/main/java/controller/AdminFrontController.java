@@ -89,7 +89,8 @@ public class AdminFrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
-				System.out.println("TreatmentAddConfirmAction ActionForward 예외 : " + e);
+				System.out.println("TreatmentAddConfirmAction ActionForward 예외 => ");
+				e.printStackTrace();
 			}
 		}
 		//전체 회원 정보를 조회하는 액션

@@ -117,12 +117,11 @@ public class UserBoardWriteFetch implements FetchAction<User_board> {
 			userboard.setPost_text(post_text);
 			//userboard.setPost_file(serverFileName);
 			
-			
-			
 			//작성 성공 여부 판별하는 boolean
 			boolean isWriteSuccess = false;
 			
-			Enumeration<?> post_files = multi.getFileNames();//type = "file"인 name들을 얻어와 (filename1, filename2 순으로 가져옴)
+			//type = "file"인 name들을 얻어와 (filename1, filename2 순으로 가져옴)
+			Enumeration<?> post_files = multi.getFileNames();
 			
 			//게시글 작성 서비스 객체 생성
 			UserBoardWriteService userBoardWriteService = new UserBoardWriteService();
@@ -160,7 +159,6 @@ public class UserBoardWriteFetch implements FetchAction<User_board> {
 						 continue;
 					 }
 					 
-					 
 					//게시글에 첨부파일들의 정보를 받아 삽입
 					//기존값이 덮어씌워지는 문제 해결을 위해 생성자를 사용하여 새로운 객체 만듬
 					attachFileBean = new AttachFileBean(
@@ -178,7 +176,7 @@ public class UserBoardWriteFetch implements FetchAction<User_board> {
 				
 				//서비스 메서드 호출(파일첨부시)
 				System.out.println("[debug]첨부파일 있는 게시글 감지");
-				isWriteSuccess = userBoardWriteService.writeAction(userboard, attachFiles);
+				isWriteSuccess = userBoardWriteService.writeAction(request, userboard, attachFiles);
 			}else {
 				
 				//서비스 메서드 호출(첨부파일 없는 게시글)

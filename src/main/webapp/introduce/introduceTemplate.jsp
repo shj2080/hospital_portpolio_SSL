@@ -12,7 +12,6 @@
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
-<link rel = "stylesheet" type="text/css" href="style/introduce/introduce.css">
 </head>
 <body>
 	<jsp:include page="../header.jsp" />

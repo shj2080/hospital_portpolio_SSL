@@ -25,6 +25,9 @@ import action.board.UserboardShowAcrion;
 import action.board.UserboardWriteFormAcrion;
 import action.member_find.MemberIdFindAction;
 import action.member_find.MemberIdFindFormAction;
+import action.member_find.MemberPwFindFormAction;
+import action.member_find.MemberPwUpdateAction;
+import action.member_find.MemberpwFindAction;
 import action.mypage.MemberInfoModifyAction;
 import action.mypage.MemberInfoModifyFormAction;
 import action.mypage.MemberUnregisterAction;
@@ -310,8 +313,39 @@ public class HospitalFrontController extends HttpServlet {
 				e.printStackTrace();
 			}	
 		}
+		
+		//'회원 비밀번호 찾기 폼' 요청이면
+		else if(command.equals("/find_member/pwFindForm.do")) {
+			action = new MemberPwFindFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}	
+		}
+		
+		//회원 비밀번호 찾기 요청
+		else if(command.equals("/find_member/pwFind.do")) {//'회원 비밀번호 찾기' 요청이면
+			action = new MemberpwFindAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {				
+					e.printStackTrace();
+				}	
+		}
+		
+		//회원 비밀번호 찾기 요청
+		else if(command.equals("/find_member/pwUpdate.do")) {//'회원 비밀번호 찾기' 요청이면
+			action = new MemberPwUpdateAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {				
+					e.printStackTrace();
+				}	
+		}
+
 		//병원소개 - 일반 페이지 이동
-		else if(command.equals("/hospital_introduct.do")) {//'회원 아이디 찾기' 요청이면
+		else if(command.equals("/hospital_introduct.do")) {
 
 			try {
 				request.setAttribute("showPage", "hospital_introduct.jsp");
@@ -321,7 +355,7 @@ public class HospitalFrontController extends HttpServlet {
 			}	
 		}
 		//의료진소개 - 일반 페이지 이동
-		else if(command.equals("/medical_staff.do")) {//'회원 아이디 찾기' 요청이면
+		else if(command.equals("/medical_staff.do")) {
 
 			try {
 				request.setAttribute("showPage", "medical_staff.jsp");

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import fetch.FetchAction;
+import svc.board.PostShowService;
+import svc.board.UserBoardDeleteService;
 import svc.board.UserBoardModifyService;
 import vo.AttachFileBean;
 import vo.User_board;
@@ -61,7 +64,7 @@ public class UserBoardModifyFetch implements FetchAction<User_board> {
 	  		ServletContext context = request.getServletContext();
 	  		String uploadPath = context.getRealPath(saveDir);
 	  		
-	  	//파일 용량 제한 (10M)
+	  		//파일 용량 제한 (10M)
 	  		int fileLimitSize = 10 * 1024 * 1024;
 	  		
 	  		/*-★★1. upload 폴더 만들기 대신 추가함-----------------------------------------------------------*/
@@ -90,31 +93,68 @@ public class UserBoardModifyFetch implements FetchAction<User_board> {
 				fetch = new FetchForward<User_board>(userBoard, alertMessage, type);
 	  			return fetch;
 			}
-	  		
-	  		//글번호 수정을 위해 필요
-	  		int post_no = Integer.parseInt(multi.getParameter("post_no"));
-	  		
-	  		//id
-	  		String id = multi.getParameter ("id");
-			
-	  		
+
 			//날짜 형식 지정
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			//현재 날짜와 시간
 			String post_date = simpleDateFormat.format(new Date());
 			
+			//글번호 수정을 위해 필요
+	  		int post_no = Integer.parseInt(multi.getParameter("post_no"));
+	  		
+	  		//id
+	  		String id = multi.getParameter ("id");
+	  		
 			//게시글 비밀번호
 			//String post_pwd =request.getParameter("post_pwd");
 			//게시글 제목
 			String post_subject = multi.getParameter("post_subject");
 			//게시글 내용
 			String post_text = multi.getParameter("post_text");
-
 			//첨부파일 여부
 			String isAttachFile = multi.getParameter("isAttachFile");
 			
-			if(isAttachFile.equals("Y")) {
-				Enumeration<?> post_files = multi.getFileNames();//type = "file"인 name들을 얻어와 (filename1, filename2 순으로 가져옴)
+			//게시판 bean 생성
+			userBoard = new User_board(post_no, post_date, post_subject, post_text, isAttachFile, id);
+			
+			//게시글 수정을 위한 서비스(DAO에서 수정작업을 위해 호출됨)
+			UserBoardModifyService userBoardModifyService = new UserBoardModifyService();
+			
+			//기존 첨부파일 삭제 체크
+			String[] beingDeleteFile_idx_str = multi.getParameterValues("beingDeleteFile_idx");
+			
+			//기존 첨부파일에서 삭제된 idx 번호를 int타입으로 변환★★★★
+			if(beingDeleteFile_idx_str != null && beingDeleteFile_idx_str.length != 0) {
+				//String배열을 int배열로 변경
+				int[] beingDeleteFile_idx = new int[beingDeleteFile_idx_str.length];
+				
+				for(int i = 0; i < beingDeleteFile_idx_str.length; i++) {
+					beingDeleteFile_idx[i] = Integer.parseInt(beingDeleteFile_idx_str[i]);
+				}
+				
+				PostShowService postShowService = new PostShowService();
+					
+				//파일번호로 첨부파일 데이터 검색 bean
+				List<AttachFileBean> postAttachFileData = postShowService.getFileIdxAttachFileData(beingDeleteFile_idx);
+				
+				//기존 첨부파일과 테이블 데이터 삭제 실행
+				UserBoardDeleteService userBoardDeleteService = new UserBoardDeleteService();
+				boolean beingDeleteFile_result = userBoardDeleteService.deleteAttachFileInPost(request, userBoard, postAttachFileData);
+				
+				if(beingDeleteFile_result) {
+					System.out.println("[debug]기존 첨부파일 삭제 성공");
+				}else {
+					System.out.println("[debug]기존 첨부파일 삭제 실패!");
+				}
+			}
+
+			//type = "file"인 name들을 얻어와 (filename1, filename2 순으로 가져옴)
+			Enumeration<?> post_files = multi.getFileNames();
+			
+			//파일이 있다면
+			if(post_files.hasMoreElements()) {
+				//첨부파일이 있다면 
+				userBoard.setIsAttachFile("Y");
 				
 				//----
 				String uploadFiles = null;
@@ -138,12 +178,10 @@ public class UserBoardModifyFetch implements FetchAction<User_board> {
 					origFileNameStr = multi.getOriginalFileName(uploadFiles);
 					
 					//null값이 온 경우
-					
 					 if(serverFileNameStr == null){
 						 System.out.println("[debug]파일 업로드 작업 중 null 감지됨.");
 						 continue;
 					 }
-					 
 					 
 					//게시글에 첨부파일들의 정보를 받아 삽입
 					//기존값이 덮어씌워지는 문제 해결을 위해 생성자를 사용하여 새로운 객체 만듬
@@ -163,15 +201,17 @@ public class UserBoardModifyFetch implements FetchAction<User_board> {
 		  		System.out.println("[debug]post_subject:" + post_subject);
 		  		System.out.println("[debug]post_text:" + post_text);
 		  		System.out.println("[debug]isAttachFile:" + isAttachFile);
+		  		
+		  		//서비스 메서드 호출(파일첨부시)
+				System.out.println("[debug]첨부파일 있는 게시글 감지");
 				
-		  		userBoard = new User_board(post_no, post_date, post_subject, post_text, isAttachFile, id);
+				modifyResult = userBoardModifyService.modifyPost(request, userBoard, attachFiles);
 			}else {
-			
-				//★★★수정 완료를 위해 임시처리----파일관련 작업중..
-				userBoard = new User_board(post_no, post_date, post_subject, post_text, isAttachFile, id);
-		  				
-		  		//게시글 수정을 위한 서비스(DAO에서 수정작업을 위해 호출됨)
-				UserBoardModifyService userBoardModifyService = new UserBoardModifyService();
+				//첨부파일이 없다면 
+				userBoard.setIsAttachFile("N");
+
+				//서비스 메서드 호출(첨부파일 없는 게시글)
+				System.out.println("[debug]첨부파일 없는 게시글 감지");
 				modifyResult = userBoardModifyService.modifyPost(userBoard);
 			}
 			

@@ -9,7 +9,7 @@ aside {
 	width: 100%;
 	float: left;
     background-color: #00B4DB;
-    padding: 2rem;
+    /* padding: 2rem; */ /* =20px */
     /* margin-right: 5rem; */
 }
 
@@ -21,6 +21,7 @@ aside ul {
 aside li {
 	 margin: 0.5rem auto;
 	 transition: all 0.5s;
+	 text-align: center;
 }
 
 aside a {

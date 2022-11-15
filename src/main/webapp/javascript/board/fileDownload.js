@@ -7,7 +7,7 @@
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded"}
 	}).then(function(response) {return response;});
-	-
+	
 	const fileDataBlob = await fileInitData.blob();
 
 	//다운로드 되는 파일이름을 가져옴
@@ -15,6 +15,7 @@
 
 	let fileName = "file";
 	
+	//파일 이름을 헤더에서 가져옴
     if(disposition && disposition.indexOf('attachment') !== -1) {
     //파일 이름 정규식
     	const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
