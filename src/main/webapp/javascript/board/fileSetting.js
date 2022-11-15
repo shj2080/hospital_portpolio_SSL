@@ -37,6 +37,7 @@ function addFile(obj){
                 fileList.id = "file" + fileNo;
                 fileList.className = "fileList align-middle";
                 
+                //취소버튼 생성
                 fileList_delete_cel.innerHTML = '<button type="button" class = "btn outline-dark" onclick="deleteFile(' + fileNo + ');"><i class="bi bi-file-earmark-x"></i></button>';
                 fileList_cel.innerHTML = file.name;
                 

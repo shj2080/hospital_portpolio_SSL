@@ -19,7 +19,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.10.4/polyfill.min.js"></script>
 <!-- required JavaScript polyfills for IE11 -->
 <!-- <script nomodule>window.MSInputMethodContext && document.documentMode && document.write('<script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2C%2Cfetch%2CCSS.supports%2CBlob%2Cdefault"><\/script>');</script> -->
-<script nomodule>window.MSInputMethodContext && document.documentMode && document.write('<link rel="stylesheet" href="bootstrap_ie/css/bootstrap-ie11.min.css"><script src="https://cdn.jsdelivr.net/combine/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js,npm/ie11-custom-properties@4,npm/element-qsa-scope@1"><\/script><script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default%2CNumber.parseInt%2CNumber.parseFloat%2CArray.prototype.find%2CArray.prototype.includes%2CURLSearchParams%2cfetch"><\/script>');</script>
+<script nomodule>window.MSInputMethodContext && document.documentMode && document.write('<link rel="stylesheet" href="bootstrap_ie/css/bootstrap-ie11.min.css"><script src="https://cdn.jsdelivr.net/combine/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js,npm/ie11-custom-properties@4,npm/element-qsa-scope@1"><\/script><script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default%2CNumber.parseInt%2CNumber.parseFloat%2CArray.prototype.find%2CArray.prototype.includes%2CURLSearchParams%2Cfetch"><\/script>');</script>
 <script src="${pageContext.request.contextPath}/javascript/polyfill/blob.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/polyfill/formdata.min.js"></script>
 </head>

@@ -15,13 +15,8 @@
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
 <link rel="stylesheet" type="text/css" href="style/board.css">
-<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>  -->
-<script>const post_no = "${param.post_no}";</script>
-<script type="text/javascript" src = "${pageContext.request.contextPath}/javascript/board/fileDownload.js"></script>
-<script type = "text/javascript" src = "${pageContext.request.contextPath}/javascript/board/boardEventListener.js"></script>
 </head>
 <body>
-
 	<!-- header.jsp 불러오기 -->
 	<jsp:include page="header.jsp" />
 	
@@ -120,5 +115,9 @@
 			<%-- 컨텐츠 표시 영역 끝 --%>
 		</div>
 	<jsp:include page="footer.jsp" />
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>  -->
+<script>const post_no = "${param.post_no}";</script>
+<script type="text/javascript" src = "${pageContext.request.contextPath}/javascript/board/fileDownload.js"></script>
+<script type = "text/javascript" src = "${pageContext.request.contextPath}/javascript/board/boardEventListener.js"></script>
 </body>
 </html>

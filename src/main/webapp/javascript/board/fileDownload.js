@@ -7,7 +7,7 @@
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded"}
 	}).then(function(response) {return response;});
-	
+	-
 	const fileDataBlob = await fileInitData.blob();
 
 	//다운로드 되는 파일이름을 가져옴
