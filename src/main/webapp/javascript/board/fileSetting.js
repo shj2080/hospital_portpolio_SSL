@@ -72,8 +72,12 @@ function addFile(obj){
 
 /* 첨부파일 검증 */
 function validation(obj){
+	//업로드 용량 제한
 	const limitFileSize = 10 * 1024 * 1024;
-    const fileTypes = ['application/pdf', 'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 'application/haansofthwp', 'application/x-hwp'];
+	
+	//허용되는 파일 타입
+	//일부 이미지, hwp, pdf, hwp, ppt, zip, 7z, excel 파일 허용
+    const fileTypes = ['application/pdf', 'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 'application/haansofthwp', 'application/x-hwp', 'text/plain', 'application/vnd.ms-powerpoint', 'application/zip', 'application/x-7z-compressed', 'image/webp', 'application/vnd.ms-excel'];
     if (obj.name.length > 100) {
         alert("파일명이 100자 이상인 파일은 제외되었습니다.");
         return false;
