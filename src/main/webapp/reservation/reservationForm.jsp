@@ -56,7 +56,7 @@
 </style>
 </head>
 <body>
-		<jsp:include page="../header.jsp" />
+		<jsp:include page="/header.jsp" />
 		<div id = "contentWrap">
 		<section>
 			<div>
@@ -171,6 +171,6 @@
 			</form>
 		</section>
 		</div>
-		<jsp:include page="../footer.jsp" />
+		<jsp:include page="/footer.jsp" />
 </body>
 </html>

@@ -20,7 +20,7 @@
 	<div id = "contentWrap">
 	<section>
 		<div class="text-center">
-		회원탈퇴가 완료되었습니다.<br>
+		회원탈퇴가 완료되었습니다. 그동안 저희 병원을 이용해주셔서 감사드립니다.<br>
 		<span id = "time"></span> 초 후 메인페이지로 이동합니다.
 		</div>
 	</section>

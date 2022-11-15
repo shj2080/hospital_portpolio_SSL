@@ -39,7 +39,7 @@ window.onload = () => {
 <body>
 	<div class="text-center">
 		<h2 class = "my-3">회원 탈퇴</h2>
-		<img src = "images/warning.png" class="warningImg">
+		<img src = "${pageContext.request.contextPath}/images/warning.png" class="warningImg">
 		<div class = "unregisterDetail">
 		<p>회원탈퇴를 진행할 경우 일부 정보에 더 이상 접근하지 못할 수도 있습니다.
 		회원탈퇴를 계속 하시려면 현재 비밀번호를 입력 후 '회원탈퇴 진행' 버튼을 눌러주십시오.</p>

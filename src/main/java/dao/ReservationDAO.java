@@ -248,54 +248,50 @@ public class ReservationDAO {
 	}
 	
 	/**************************************************************************************/
-	//예약된 본인의 진료내역 불러오는 DAO 메서드
-		public ArrayList<ReservationListBean> allReservationList(String userID) {
-			ArrayList<ReservationListBean> reservationList = null;
-			ReservationListBean myReservation = null;
-			
-			if(userID.equals("admin") || userID.equals("admin2")) {
-			
-			String sql = "select reservation_code , reservation_date, doctor_name, speciality_name,";
-			sql += " r.doctor_code, r.speciality_code, r.id, m.name, treatment_status";
-			sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
-			sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
-			sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
-			sql += " order by reservation_date asc";
-			
-			try {
-				pstmt = con.prepareStatement(sql);
-				rs = pstmt.executeQuery();
+	//예약된 전체 회원의 진료내역 불러오는 DAO 메서드
+	public ArrayList<ReservationListBean> allReservationList() {
+		ArrayList<ReservationListBean> reservationList = null;
+		ReservationListBean myReservation = null;
+		
+		//전체 예약진료내역을 조회하는 쿼리문
+		String sql = "select reservation_code , reservation_date, doctor_name, speciality_name,";
+		sql += " r.doctor_code, r.speciality_code, r.id, m.name, treatment_status";
+		sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
+		sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
+		sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
+		sql += " order by reservation_date asc";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+					
+			if(rs.next()){
+				reservationList = new ArrayList<ReservationListBean>();
 						
-				if(rs.next()){
-					reservationList = new ArrayList<ReservationListBean>();
-							
-							do {
-								myReservation = new ReservationListBean(rs.getInt("reservation_code"),
-										rs.getString("reservation_date"),
-										rs.getString("doctor_name"),
-										rs.getString("speciality_name"),
-										rs.getInt("doctor_code"),
-										rs.getInt("speciality_code"),
-										rs.getString("id"),
-										rs.getString("name"),
-										rs.getString("treatment_status"));
-								//ArrayList에 추가
-								reservationList.add(myReservation);
-							} while (rs.next());
-							
-						}
+						do {
+							myReservation = new ReservationListBean(rs.getInt("reservation_code"),
+									rs.getString("reservation_date"),
+									rs.getString("doctor_name"),
+									rs.getString("speciality_name"),
+									rs.getInt("doctor_code"),
+									rs.getInt("speciality_code"),
+									rs.getString("id"),
+									rs.getString("name"),
+									rs.getString("treatment_status"));
+							//ArrayList에 추가
+							reservationList.add(myReservation);
+						} while (rs.next());
 						
-					} catch (Exception e) {
-						System.out.println("[ReservationDAO] myReservationList() 메서드 예외 발생 : " + e); //예외종류 + 예외메세지
-					} finally {
-						close(pstmt);
-						close(rs);
 					}
-			
-			}else {
-				
-			}
-			return reservationList;
-		}
+					
+				} catch (Exception e) {
+					System.out.println("[ReservationDAO] allReservationList() 메서드 예외 발생 : " + e); //예외종류 + 예외메세지
+				} finally {
+					close(pstmt);
+					close(rs);
+				}
+		
+		return reservationList;
+	}
 	/**************************************************************************************/
 }

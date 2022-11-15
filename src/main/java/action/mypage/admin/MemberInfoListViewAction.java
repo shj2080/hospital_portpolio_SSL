@@ -48,7 +48,7 @@ public class MemberInfoListViewAction implements Action {
 	  		MemberInfoListViewService memberInfoListViewService = new MemberInfoListViewService();
 	  		List<Member> memberList =  memberInfoListViewService.selectMemberList();
 	  		
-	  		System.out.println("[DEBUG]memberList 0번 인덱스값:"+memberList.get(0).getId());
+	  		//System.out.println("[DEBUG]memberList 0번 인덱스값:"+memberList.get(0).getId());
 	  		
 	  		request.setAttribute("memList", memberList);
 	  		
