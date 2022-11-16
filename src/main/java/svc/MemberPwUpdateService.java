@@ -1,11 +1,8 @@
 package svc;
 
 import dao.HospitalDAO;
-import vo.Member;
 
 import java.sql.Connection;
-
-//import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
 import static db.JdbcUtil.*;
 

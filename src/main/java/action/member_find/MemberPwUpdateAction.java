@@ -5,11 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import svc.MemberInfoModifyService;
 import svc.MemberPwUpdateService;
 import util.SHA256;
 import vo.ActionForward;
-import vo.Member;
 
 import java.io.PrintWriter;
 

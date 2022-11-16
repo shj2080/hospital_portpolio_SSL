@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<%-- contextPath(루트경로 처리) 간략화 --%>
+<c:set var="ctxPath" value = "${pageContext.request.contextPath}"/>
 <head>
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +24,11 @@ section{
 
 </style>
 <!-- 현재 페이지가 Servlet을 거쳤는지 확인 -->
-<script type = "text/javascript" src = "${pageContext.request.contextPath}/javascript/indexCheck.js"></script>
+<script>
+//Javascript에서 ctxPath 사용하기 위해 선언
+const ctxPath = "${ctxPath}";
+</script>
+<script type = "text/javascript" src = "${ctxPath}/javascript/indexCheck.js"></script>
 </head>
 
 
@@ -75,10 +81,10 @@ section{
 				
 				<!-- 바로가기 메뉴 시작 -->
 				<fieldset id = "menuBox">
-					<a href = "${pageContext.request.contextPath}/reservationSelectView.treat"><div id = "menu1">진료예약</div></a>
-					<a href = "${pageContext.request.contextPath}/treatmentList.do"><div id = "menu2">대기자명단 보기</div></a>
-					<a href = "${pageContext.request.contextPath}/hospital_introduct.do"><div id = "menu3">병원소개</div></a>
-					<a href = "${pageContext.request.contextPath}/userBoard.do"><div id = "menu4">공지사항</div></a>
+					<div id = "menu1">진료예약</div>
+					<div id = "menu2">대기자명단 보기</div>
+					<div id = "menu3">병원소개</div>
+					<div id = "menu4">공지사항</div>
 				</fieldset>
 				<!-- 바로가기 메뉴 끝 -->
 				
@@ -89,5 +95,6 @@ section{
 	
 	<!-- footer.jsp 불러오기 -->
 	<jsp:include page="footer.jsp" />
+	<script src = "${ctxPath}/javascript/index.js" ></script>
 </body>
 </html>
