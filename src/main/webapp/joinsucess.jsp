@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>율제병원</title>
 
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
 <!-- Bootstrap CSS -->

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디 찾기</title>
+<title>율제병원 - 아이디 찾기</title>
 <script src="${pageContext.request.contextPath}/javascript/numberOnly.js">
 </script>
 <script type="text/javascript">

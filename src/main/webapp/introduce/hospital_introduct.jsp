@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-<title>병원소개</title>
+<title>율제병원 - 병원소개</title>
 <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/initStyle.css"> --%>
 <%-- 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css">

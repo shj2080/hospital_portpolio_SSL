@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
-<title>게시글 수정</title>
+<title>율제병원 - 게시글 수정</title>
 	<script type="text/javascript">
 	function modifyboard(){
 				

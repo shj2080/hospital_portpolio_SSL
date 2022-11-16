@@ -5,7 +5,7 @@
 <head>
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-<title>병원 회원탈퇴 페이지</title>
+<title>율제병원 - 회원탈퇴 페이지</title>
 <link rel = "stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/init/ul_listStyle_none.css">
 <style>
 

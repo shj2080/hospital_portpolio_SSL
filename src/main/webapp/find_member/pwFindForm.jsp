@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>율제병원 - 비밀번호 찾기</title>
 
 <script src="${pageContext.request.contextPath}/javascript/numberOnly.js">
 </script>

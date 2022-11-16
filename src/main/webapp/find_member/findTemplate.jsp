@@ -5,7 +5,7 @@
 <head>
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-<title>회원정보 찾기 템플릿</title>
+<title>율제병원 - 회원정보 찾기 템플릿</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/initStyle.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css">

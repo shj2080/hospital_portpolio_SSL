@@ -5,7 +5,7 @@ import vo.Member;
 
 import java.sql.Connection;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+//import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
 import static db.JdbcUtil.*;
 

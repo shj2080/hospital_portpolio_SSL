@@ -9,14 +9,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>율제병원 - 회원가입</title>
 
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
 <!-- <link rel="stylesheet" type="text/css" href="style/join.css"> -->
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
 
 </head>
 

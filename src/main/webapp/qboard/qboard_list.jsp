@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
 <link rel="stylesheet" type="text/css" href="style/qnaboard/qnaStyle.css">
-<title>게시판 글목록</title>
+<title>율제병원 문의게시판 글목록</title>
 <script>
 function movePage(page) {
 	location.href = "qboardList.qna?page=" + page;

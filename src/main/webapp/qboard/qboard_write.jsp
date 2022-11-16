@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
-<title>게시판 글쓰기</title>
+<title>율제병원 - 문의게시판 글쓰기</title>
 <style type="text/css">
 
 h4 {

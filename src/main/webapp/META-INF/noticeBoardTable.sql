@@ -1,17 +1,19 @@
 /*notice 게시판 SQL*/
 /*게시판 테이블 작성*/
+/*게시판 테이블 작성*/
 create table user_board(
 	post_no INT NOT NULL,
 	id varchar(20) NOT NULL,
 	post_date datetime NOT NULL,
 	post_subject NVARCHAR(50) NOT NULL,
 	post_text TEXT,
-	isAttachFile CHAR(1) NOT NULL DEFAULT('N') CHECK(post_file IN ('Y','N'),
+	isAttachFile CHAR(1) NOT NULL DEFAULT('N') CHECK(isAttachFile IN ('Y','N')),
 	
 	PRIMARY KEY (post_no),
- 	foreign key(id) REFERENCES membertbl(id) ON DELETE CASCADE ON UPDATE CASCADE
-
+ 	foreign key(id) REFERENCES membertbl(id)
 );
+
+drop table user_board;
 
 select * from user_board;
 

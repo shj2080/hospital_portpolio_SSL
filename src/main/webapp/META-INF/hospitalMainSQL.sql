@@ -12,9 +12,7 @@ create table membertbl(
    user_type char(1) not null default 'N' CHECK (user_type IN('N','M','D'))
 );
 /* 관리자 식별할 컬럼? */
-/* 일반회원 : N */
-/* 관리자 : M */
-/* 탈퇴회원 : D */
+/* 일반회원 : N, 관리자 : M, 탈퇴회원 : D */
 
 /* 관리자 설정 */
 update membertbl
@@ -51,6 +49,7 @@ modify address1 Nvarchar(60);
 
 /* Mysql 제약조건 확인(membertbl 테이블) */
 select * from information_schema.table_constraints where table_name in ('membertbl');
+select * from information_schema.table_constraints;
 
 /* 테스트데이터 업데이트 */
 update membertbl set password = 'eb508df11dd58cf4bb4e8ed2c5629c2d6fcb6455913c1e0e3ce2cd11a9cd7e20' where id = 'test';
@@ -69,7 +68,7 @@ create table speciality(
    speciality_name varchar(20)
 );
 
-/* 진료과 샘플데이터 */
+/* 진료과 초기데이터 */
 insert into speciality(speciality_name) values('내과');
 insert into speciality(speciality_name) values('외과');
 insert into speciality(speciality_name) values('산부인과');
@@ -95,18 +94,22 @@ create table doctor(
 );
 
 /* 테스트를 위한 의료진 테이블 정보 입력 */
+/*
+ * 진료과 코드별 진료과 안내
+ * 1 : 내과, 2 : 외과, 3 : 산부인과, 4 : 영상의학과 5 : 마취통증의학과 
+ */
 insert into doctor(doctor_name,speciality_code)
-values('조용원',1);
+values('김철수',1);
 insert into doctor(doctor_name,speciality_code)
-values('여환영',1);
+values('이재용',1);
 insert into doctor(doctor_name,speciality_code)
-values('이대현',2);
+values('이희망',2);
 insert into doctor(doctor_name,speciality_code)
-values('권은재',2);
+values('오소리',2);
 insert into doctor(doctor_name,speciality_code)
-values('박혜나',3);
+values('김바다',3);
 insert into doctor(doctor_name,speciality_code)
-values('김은경',3);
+values('장보고',3);
 insert into doctor(doctor_name,speciality_code)
 values('전영훈',4);
 insert into doctor(doctor_name,speciality_code)
@@ -114,7 +117,7 @@ values('황보창민',4);
 insert into doctor(doctor_name,speciality_code)
 values('송호진',5);
 insert into doctor(doctor_name,speciality_code)
-values('장혜원',5);
+values('이순신',5);
 
 /*테이블 문제 발생 시 삭제*/
 drop table doctor;
@@ -247,7 +250,7 @@ select * from speciality where speciality_code = ?
 select * from doctor where speciality_code = ?;
 
 /* 특정 날짜로 진료예약 */
-insert into reservation(speciality_code, doctor_code, id, reservation_date, phone) values(?, ?, ?, ?, ?);
+insert into reservation(speciality_code, doctor_code, id, reservation_date, phone, u_name) values(?, ?, ?, ?, ?, ?);
 /***************** 진료예약 ****************************/
 /* 모든 예약 조회 */
 select reservation_date, name, doctor_name, speciality_name
@@ -311,7 +314,8 @@ where reservation_code = 1;
 /**************************************************************************/
 
 /**********************************************************************/
-/* 예약시간이 현재시간보다 높은 전체예약자 명단불러오기 */		  select reservation_date, name, doctor_name, speciality_name
+/* 예약시간이 현재시간보다 높은 전체예약자 명단불러오기 */
+select reservation_date, name, doctor_name, speciality_name
 from reservation r LEFT JOIN membertbl m ON r.id = m.id
 LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code
 LEFT JOIN doctor d ON r.doctor_code = d.doctor_code

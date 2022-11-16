@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
-<title>게시글 보기</title>
+<title>율제병원 - 문의게시글 보기</title>
 <style type="text/css">
 
 

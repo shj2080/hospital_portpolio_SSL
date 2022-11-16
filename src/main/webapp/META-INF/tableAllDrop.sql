@@ -1,0 +1,2 @@
+/* 전체 테이블 완전 삭제 */
+DROP TABLE `ipc22bshj`.`attach_tb`, `ipc22bshj`.`doctor`, `ipc22bshj`.`leaveMemberList`, `ipc22bshj`.`membertbl`, `ipc22bshj`.`qboard`, `ipc22bshj`.`reservation`, `ipc22bshj`.`speciality`, `ipc22bshj`.`treatment`;

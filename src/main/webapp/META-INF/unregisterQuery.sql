@@ -1,8 +1,8 @@
 
 /* 탈퇴한 회원 정보의 일부를 보관하는 테이블 */
 create table leaveMemberList(
-                                leave_id varchar(15) primary key,
-                                leave_date datetime
+	leave_id varchar(15) primary key,
+	leave_date datetime
 );
 
 /* 회원 탈퇴 정보 테이블 */
