@@ -10,6 +10,10 @@
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title></title>
+<!-- favicon 적용 -->
+<link rel="manifest" href="${pageContext.request.contextPath}/images/favicon.json">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicons/favicon.ico" type="image/x-icon">
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicons/favicon.ico" type="image/x-icon">
 <!-- Bootstrap CSS -->
 <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
 

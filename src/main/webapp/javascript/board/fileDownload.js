@@ -26,13 +26,18 @@
     }
     //서버에서 UTF-8로 넘긴 파일명을 디코딩
     fileName =  decodeURI(fileName);
-	    
-	// 가상 링크 DOM 만들어서 다운로드 실행
-	const url = URL.createObjectURL(await fileDataBlob);
-	const a = document.createElement("a");
-	a.href = url;
-	a.download = fileName;
-	document.body.appendChild(a);
-	a.click();
-	window.URL.revokeObjectURL(url);
+	
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+	    //IE에서 blob 다운로드 동작
+	    window.navigator.msSaveBlob(fileDataBlob, fileName);
+    } else {
+		// 가상 링크 DOM 만들어서 다운로드 실행
+		const url = URL.createObjectURL(fileDataBlob);
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = fileName;
+		document.body.appendChild(a);
+		a.click();
+		window.URL.revokeObjectURL(url);
+	}
 }

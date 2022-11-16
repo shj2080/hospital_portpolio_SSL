@@ -71,7 +71,7 @@ function loginVaildCheck() {
 </script>
 
 <%-- 자바스크립트 Fetch 함수로 로그인 처리 --%>
-<script type = "text/babel" src = "${pageContext.request.contextPath}/javascript/fetch/loginChecker.js"></script>
+<script type = "text/babel" data-presets="es2015,stage-2" src = "${pageContext.request.contextPath}/javascript/fetch/loginChecker.js"></script>
 
 </head>
 <body>

@@ -4,19 +4,21 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<%-- contextPath 이름을 줄여서 사용 --%>
+<c:set var = "ctxPath" value="${pageContext.request.contextPath}"/>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-<title>율제병원 - 병원소개</title>
-<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/initStyle.css"> --%>
-<%-- 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/footer.css"> --%>
+<title>병원소개</title>
+<%-- <link rel="stylesheet" type="text/css" href="${ctxPath}/style/initStyle.css"> --%>
+<%-- 	<link rel="stylesheet" type="text/css" href="${ctxPath}/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/style/header.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/style/footer.css"> --%>
 	
 	<!-- 병원소개 css -->
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/introduce/hospital_introduct.css">
-	<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/body.css"> --%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/index.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/style/introduce/hospital_introduct.css">
+	<%-- <link rel="stylesheet" type="text/css" href="${ctxPath}/style/body.css"> --%>
+<link rel="stylesheet" type="text/css" href="${ctxPath}/style/index.css">
 	
 
 <body>
@@ -26,9 +28,8 @@
 	<!-- <div class="container"> -->
 		<section>
 	<div id="side">
-		<div id="side_box"><img src="${pageContext.request.contextPath}/images/introduct/병원장.png" style="width:250px; height:250px;"></div>
-		<!-- 카카오 맵이 담기는 div id = map -->
-		<div id="map"></div>
+		<div id="side_box"><img src="${ctxPath}/images/introduct/병원장.png" style="width:250px; height:250px;"></div>
+		
 	</div>
 	<div id="mid_content">
 		
@@ -68,12 +69,17 @@
 <p>
 감사합니다.
 </p>
+
+<hr size="6" width="50px" align="left" color="blue">
+<h3><strong>찾아오시는 길</strong></h3>
+<div id="map"></div>
+
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b09bcb7ac760f677621481b06167e2d0"></script>
 	</div>
 	
 	</section>
 	<!-- </div> -->
 	<%-- <jsp:include page="/footer.jsp" /> --%>
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b09bcb7ac760f677621481b06167e2d0"></script>
-	<script src = "${pageContext.request.contextPath}/javascript/kakaoMapApiSetting.js"></script>
+	<script src = "${ctxPath}/javascript/kakaoMapApiSetting.js"></script>
 </body>
 </html>

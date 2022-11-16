@@ -50,16 +50,18 @@ public class FileDownUtil {
 		String agent = request.getHeader("User-Agent");
 	
 		//브라우저에 맞게 다운로드 파일을 인코딩
-		String downloadFileName = null;
-		boolean ieBrowser = (agent.indexOf("MSIE") > -1) || (agent.indexOf("Trident") > -1);
+		String downloadFileName = URLEncoder.encode(origFileName, "UTF-8").replaceAll("\\+", "%20");
+		//boolean ieBrowser = (agent.indexOf("MSIE") > -1) || (agent.indexOf("Trident") > -1);
 		
 		//한글 파일명이 깨지지 않도록 "UTF-8"로 처리 후 공백부분이 "+"문자로 변경되므로 다시 공백문자(%20)으로 변경해 줘야 함"
+		/*
 		if (ieBrowser) {
 			downloadFileName = URLEncoder.encode(origFileName, "UTF-8").replaceAll("\\+", "%20");
 		} else {	////MS사의 IE이거나 Trident이 아니면(예, 크롬이면) 한글 파일명이 깨지지 않도록 파일명을 UTF-8 인코딩 형태의 바이트로 받아서 "ISO-8859-1"로 문자열 생성해줘야 함
-			//downloadFileName = new String(origFileName.getBytes("UTF-8"), "ISO-8859-1");
-			downloadFileName = URLEncoder.encode(origFileName, "UTF-8");
+			downloadFileName = new String(origFileName.getBytes("UTF-8"), "ISO-8859-1");
+			//downloadFileName = URLEncoder.encode(origFileName, "UTF-8");
 		}
+		*/
 		
 		//웹 브라우저에서 해석되어 실행되는 파일들(jpg, html 등)도 다운로드 박스가 출력되도록 처리하는 방법
 		//헤더 정보 설정 시 "Content-Disposition"값을 "attachment"로 설정하면 모든 파일에 대해서 다운로드 박스가 실행됨

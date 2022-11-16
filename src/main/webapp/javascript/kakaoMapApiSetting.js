@@ -6,9 +6,11 @@ var marker = new kakao.maps.Marker({
     map: map // 마커를 표시할 지도 객체
 });
 */
+var mapMakerLatLng = new kakao.maps.LatLng(37.56682, 126.97865);
+
 //지도에 마커 생성 표시
 var marker = {
-	position: new kakao.maps.LatLng(37.56682, 126.97865), // 마커의 좌표
+	position: mapMakerLatLng // 마커의 좌표
 }
 
 //지도 설정
@@ -22,6 +24,28 @@ mapOption = {
 
 // 지도를 생성한다 
 var map = new kakao.maps.StaticMap(mapContainer, mapOption); 
+
+// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+var bounds = new kakao.maps.LatLngBounds();    
+
+
+//bounds 객체에 마커가 찍힌 좌표를 추가
+bounds.extend(mapMakerLatLng)
+
+function setBounds() {
+    // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
+    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
+    map.setBounds(bounds);
+}
+
+//지도 영역 레이아웃 재설정 함수
+function relayout() {    
+    
+    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+    map.relayout();
+}
 
 //▼아래 요소는 정적 지도가 아닌 경우 사용▼
 
@@ -76,12 +100,3 @@ kakao.maps.event.addListener(map, 'drag', function () {
 	console.log(message);
 });
 */
-//resize 이벤트 리스너
-window.onresize = function(){
-	//지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-    //크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
-    //window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-	//지도 영역 레이아웃 재설정 함수
-	map.relayout();
-	map.getCenter();
-};

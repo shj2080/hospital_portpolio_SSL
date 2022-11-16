@@ -27,7 +27,7 @@ var fileNo = 0;
 var filesArr = new Array();
 var beingDeleteFileArr = new Array();
 </script>
-<script type="text/javascript" src = "javascript/board/fileSetting.js"></script>
+<script type="text/babel" data-presets="es2015,stage-2" src = "javascript/board/fileSetting.js"></script>
 </head>
 <body>
 <%-- 수정작업을 하는 경우 수정할 게시글 정보를 얻어옴 --%>

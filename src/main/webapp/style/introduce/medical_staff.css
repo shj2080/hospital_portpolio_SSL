@@ -45,7 +45,7 @@ body{
 			
 			.mc{
 			float: left;
-			margin: 5px;
+			margin: 0 auto;
 			display: inline;
 			justify-content: center;
             align-items: center;
@@ -55,28 +55,28 @@ body{
 			.b{
 			display : block;
 			margin: 5px;
-			
 			justify-content: center;
             align-items: center;
-			
 			}
 			
 			.treatTime {
-			width: 100px;
-			height:50px;
-			margin : 15px;
+			width: 120px;
+			height:30px;
+			margin: 0px;
 			border:2px solid #04dcfb;
 			border-radius: 20px;  
 			box-sizing: border-box;
 			display: inline-block; 
+			text-align: center;
 			}
 			
 			.treatment {
 			width:100px;
-			height:50px;
+			height:30px;
 			border:2px solid #04dcfb; 
 			border-radius: 20px;
 			display: inline-block; 
 			box-sizing: border-box;
+			text-align: center;
 			}
 			

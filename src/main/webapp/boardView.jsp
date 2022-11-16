@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
 <link rel="stylesheet" type="text/css" href="style/board.css">
+<script type="text/babel" data-presets="es2015,stage-2" src = "${pageContext.request.contextPath}/javascript/board/fileDownload.js"></script>
 </head>
 <body>
 	<!-- header.jsp 불러오기 -->
@@ -67,9 +68,21 @@
 						<tr class="text-center">
 							<th colspan="3">첨부파일</th>
 						</tr>
-						<c:forEach var = "attachFile" items="${attachFiles}">
+						<c:forEach var = "attachFile" items="${attachFiles}" varStatus = "stat">
 							<tr>
-								<td colspan="3"><a href="javascript:fileDown(${attachFile.file_idx});">${attachFile.original_name}</a></td>
+								<td colspan="3">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+									  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+									  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+									</svg>
+									<span id = "attach${stat.count}" class = "attachDownLoad">${attachFile.original_name}</span>
+								</td>
+								<script>
+								document.getElementById("attach${stat.count}").onclick = function(e) {
+									e.stopPropagation();
+									fileDown(${attachFile.file_idx})
+								};
+								</script>
 							</tr>
 						</c:forEach>
 						<!-- 첨부파일 출력 끝 -->
@@ -117,7 +130,6 @@
 	<jsp:include page="footer.jsp" />
 <!-- <script src="http://code.jquery.com/jquery-latest.js"></script>  -->
 <script>const post_no = "${param.post_no}";</script>
-<script type="text/javascript" src = "${pageContext.request.contextPath}/javascript/board/fileDownload.js"></script>
 <script type = "text/javascript" src = "${pageContext.request.contextPath}/javascript/board/boardEventListener.js"></script>
 </body>
 </html>

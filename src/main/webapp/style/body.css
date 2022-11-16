@@ -18,7 +18,7 @@ body {
 
 /* section 스타일 */
 #contentWrap {
-	flex: 1;
+	flex: 1 1 auto;
 	margin-bottom: 1rem;
 }
 
@@ -32,4 +32,9 @@ body {
 	width: 30%;
     height: 20rem;
     margin-top: 20px;
+}
+
+ /* IE10+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+
 }
