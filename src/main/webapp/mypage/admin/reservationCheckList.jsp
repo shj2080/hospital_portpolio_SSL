@@ -48,7 +48,7 @@
 		<c:forEach var = "resRow" items="${resCheckList }">
 			<tr>
 				<td colspan="2">
-					<input type="button" id = "treatConfirm" name = "treatConfirm" value = "진료확인" class = "btn btn-info fs-4" onclick = "treatmentAdd(${resRow.reservation_code},'${resRow.treatment_status}');"/>
+					<input type="button" id = "treatConfirm" name = "treatConfirm" value = "진료확인" class = "btn btn-success fs-4" onclick = "treatmentAdd(${resRow.reservation_code},'${resRow.treatment_status}');"/>
 					<input type="button" id = "modifyResBtn" name = "modifyReservation" value = "수정" class = "btn btn-info fs-4" onclick = "modifyRes(${resRow.speciality_code},${resRow.reservation_code},'${resRow.treatment_status}');"/>
 					<input type="button" id = "cancelResBtn" name = "cancelReservation" value = "취소" class = "btn btn-danger fs-4" onclick = "cancelRes(${resRow.reservation_code}, '${resRow.id}','${resRow.treatment_status}');"/>
 				</td>

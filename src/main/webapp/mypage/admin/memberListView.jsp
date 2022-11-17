@@ -11,12 +11,14 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>율제대학병원 - 회원정보조회</title>
 <link rel="stylesheet" type="text/css" href = "style/mypage/mypageListTable_style.css">
+<link rel="stylesheet" type="text/css" href = "style/mypage/mypageListTable2_style.css">
 </head>
 <body>
 	<c:choose>
 		<c:when test="${memList != null}">
-		<table class="table mt-5">
+		<table class="memberListTb table mt-5">
 			<tr>
+				<th>권한부여</th>
 				<th>이름</th>
 				<th>회원ID</th>
 				<th>전화번호</th>
@@ -24,6 +26,9 @@
 			</tr>
 			<c:forEach var = "member" items="${memList}">
 			<tr>
+				<td>
+					<button type="button" class="btn btn-success">부여</button>
+				</td>
 				<td>${member.name }</td>
 				<td>${member.id }</td>
 				<td>${member.phone }</td>

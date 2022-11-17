@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+#findFormDiv {
+	width: 40rem;
+	background-color: lightblue;
+	margin: 5rem auto;
+	border-radius: 0.5rem;
+	padding: 2rem;
+}
+
+.textfiled{
+	border: none;
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+	border-radius: 0.5rem;
+	width: 93%;
+}
+
+.idResultBox{
+	margin-top: 20rem;
+}

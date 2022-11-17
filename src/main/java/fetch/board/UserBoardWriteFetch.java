@@ -97,8 +97,6 @@ public class UserBoardWriteFetch implements FetchAction<User_board> {
 			//현재 날짜와 시간
 			String post_date = simpleDateFormat.format(new Date());
 			
-			//게시글 비밀번호
-			//String post_pwd =multi.getParameter("post_pwd");
 			//게시글 제목
 			String post_subject = multi.getParameter("post_subject");
 			//게시글 내용
@@ -112,7 +110,6 @@ public class UserBoardWriteFetch implements FetchAction<User_board> {
 			//각각의 정보 세팅
 			userboard.setId(id);
 			userboard.setPost_date(post_date);
-			//userboard.setPost_pwd(post_pwd);
 			userboard.setPost_subject(post_subject);
 			userboard.setPost_text(post_text);
 			//userboard.setPost_file(serverFileName);
@@ -178,6 +175,9 @@ public class UserBoardWriteFetch implements FetchAction<User_board> {
 				System.out.println("[debug]첨부파일 있는 게시글 감지");
 				isWriteSuccess = userBoardWriteService.writeAction(request, userboard, attachFiles);
 			}else {
+				
+				//첨부파일이 없으므로 N으로 세팅
+				userboard.setIsAttachFile("Y");
 				
 				//서비스 메서드 호출(첨부파일 없는 게시글)
 				System.out.println("[debug]첨부파일 없는 게시글 감지");

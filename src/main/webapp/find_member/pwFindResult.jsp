@@ -7,10 +7,7 @@
 <title>율제병원 - 비밀번호 찾기</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/init/ul_listStyle_none.css">
 <style>
-	#detailID {
-		font-size:2.5rem;
-	}
-	#loginGo {
+/* 	#loginGo {
 		background-color: lightblue;
 		color: black;
 		font-weight: bold;
@@ -31,35 +28,44 @@
 		transform: all 0.5s;
 		background-color: #5D5D5D;
 		color: white;
-	}
+	} */
 	
 	
 </style>
 <script>
 	const contextPath = "${pageContext.request.contextPath}";
-	window.onload = () => {
-		document.getElementById("loginGo").addEventListener("click", () => {
-			location.href = contextPath + "/login.do";
-		});
-		document.getElementById("homeGo").addEventListener("click", () => {
-			location.href = contextPath + "/index.do";
+	window.onload = function() {
+		//뒤로가기 클릭 리스너
+		document.getElementById("BackBtn").addEventListener("click", function() {
+			history.back();
 		});
 	};
 </script>
 </head>
 <body>
-	<div class="text-center my-5">
-		<h1>비밀번호를 변경해 주세요</h1>
+	<div class="my-5">
+		<h1 class="text-center">비밀번호를 변경해 주세요</h1>
 		<div>
 			<form action="${pageContext.request.contextPath}/find_member/pwUpdate.do" method="post">
-				<div class = "col my-3 mx-3">
-					<label>아이디 <input type="text" name = "u_id" required="required"/></label>
-				</div>
-				<div>
-					변경할 비밀번호 : <input type = "password" maxlength="20" size="20" name = "password" required="required"/>
-				</div>
-				<div>
-					<button id = "loginGo" type="submit" class="btn fs-4">변경하기</button>
+				<div id = "findFormDiv" class="d-flex flex-column">
+					<div class = "col mt-3 ml-3 fw-bold">
+						<label for="u_id">아이디</label>
+					</div>
+					<div class = "col">
+						<input type="text" id = "u_id" name = "u_id" class="textfiled" required="required" placeholder="아이디"/>
+					</div>
+					
+					<div class = "col fw-bold">
+						<label for="u_id">변경할 비밀번호</label>
+					</div>
+					<div class = "col">
+						<input type="password" maxlength="20" size="20" id = "password" name = "password" class="textfiled" required="required" placeholder="변경할 비밀번호"/>
+					</div>
+					
+					<div class = "col py-3 text-center">
+						<button id = "loginGo" type="submit" class="btn btn-primary fs-4">변경하기</button>
+						<button type = "button" id = "BackBtn" class="btn btn-light fs-4">뒤로가기</button>
+					</div>
 				</div>
 			</form>
 		</div>

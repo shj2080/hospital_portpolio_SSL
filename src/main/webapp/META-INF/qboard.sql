@@ -14,7 +14,7 @@ CREATE TABLE qboard(
 );
 
 /*
-AUTO_INCREMNET 테이블당 한개밖에 안되서 , QAN_NUM과 QNA_RE_LEV를 DAO에서 함께 증가시켜준다.
+AUTO_INCREMNET 테이블당 한개밖에 안되서 , QNA_NUM과 QNA_RE_LEV를 DAO에서 함께 증가시켜준다.
 따라서 둘다 DAO에서 증가시켜줌
 AUTO_INCREMNET 를 했다면 ALTER TABLE '테이블명' AUTO_INCREMENT=1;
 set SQL_SAFE_UPDATES =0; //SAFE풀고 

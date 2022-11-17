@@ -53,17 +53,18 @@
 		</c:forEach>
 			</c:if>
 				</table>
-		</div>
 				<!-- --진료대기리스트가 비어 있는 경우--- -->
 				<c:if test="${myTreatmentList == null }">
-				<table>
-					<tr id = "treatment" align="center" >
+				<table class = "text-center">
+					<tr id = "treatment" >
 						<th class = "fs-4">
 							진료리스트가 비어있습니다.
 						</th>
 					</tr>
 				</table>
 				</c:if>
+		</div>
+				
 <!-- 		</section>
 		</div> -->
 		<%-- 컨텐츠 표시 영역 끝 --%>

@@ -16,7 +16,8 @@ h4 a{
 
 #listForm{
 	background-color: lightblue;
-	}  
+	
+}  
 
 #tr_top {
 	text-align: center;
@@ -26,13 +27,12 @@ h4 a{
 #pageList {
 	width: 100%;
 	text-align: center;
-	background-color: lightblue;
 	padding: 0.5rem;
 }
 
 #emptyArea {
 	margin: auto;
-	width: 500px;
+	width: 50rem;
 	text-align: center;
 }
 #tr_down{
@@ -45,4 +45,4 @@ h4 a{
 
 #first-table{
 	border-color: #e1e4e1;
-	}
+}

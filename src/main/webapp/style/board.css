@@ -36,25 +36,22 @@ td{
 	font-size:2rem;
 }
 
-.attachDownLoad {
-	font-weight: bold;
-}
-
 .attachDownLoad:hover {
 	cursor: pointer;
+	text-decoration: underline;
 }
 
 @media screen and (max-width:820px) {
 	
 	#boardListBox{
-		width:auto;
+		width:98%;
 	}
 	
 	#boardWriteBox{
-		width:auto;
+		width:98%;
 	}
 	
 	#boardViewBox{
-		width:auto;
+		width:98%;
 	}
 }

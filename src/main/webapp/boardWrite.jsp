@@ -12,22 +12,22 @@
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>율제병원</title>
-	<link rel="stylesheet" type="text/css" href="style/initStyle.css">
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-	<!-- <link rel="stylesheet" type="text/css" href="style/header.css"> -->
-	<link rel="stylesheet" type="text/css" href="style/body.css">
-	<!-- <link rel="stylesheet" type="text/css" href="style/footer.css"> -->
-	<link rel="stylesheet" type="text/css" href="style/board.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-	
-	<!-- <script type = "text/javascript"src = "javascript/board/boardFormMove_script.js"></script> -->
+<!-- 스타일 정의 부분 -->
+<link rel="stylesheet" type="text/css" href="style/initStyle.css">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style/header.css">
+<link rel="stylesheet" type="text/css" href="style/body.css">
+<link rel="stylesheet" type="text/css" href="style/footer.css">
+<link rel="stylesheet" type="text/css" href="style/board.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<!-- 스타일 정의 부분 -->
 <script>
 //전역변수 - 첨부 파일 번호, 파일 배열
 var fileNo = 0;
 var filesArr = new Array();
 var beingDeleteFileArr = new Array();
 </script>
-<script type="text/babel" data-presets="es2015,stage-2" src = "javascript/board/fileSetting.js"></script>
+<script type="text/javascript" src = "javascript/board/fileSetting.js"></script>
 </head>
 <body>
 <%-- 수정작업을 하는 경우 수정할 게시글 정보를 얻어옴 --%>
@@ -67,7 +67,7 @@ var beingDeleteFileArr = new Array();
 								<tr>
 									<th class = "fs-4">제목</th>
 									<td>
-									<input type="text" class="form-control fs-4" placeholder="글제목" name="post_subject" maxlength="50" style="width: 480px;" value = "${subject }" required>
+									<input type="text" class="form-control fs-4" placeholder="글제목" name="post_subject" maxlength="50" value = "${subject }" required>
 									</td>
 								</tr>
 							<!-- 글제목 입력 부분 끝 -->
@@ -76,7 +76,7 @@ var beingDeleteFileArr = new Array();
 								<tr>
 									<th class = "fs-4">ID</th>
 									<td>
-										<input type="text" class="form-control fs-4" name="id" value = "${userID}" style="width: 480px;" readonly>
+										<input type="text" class="form-control fs-4" name="id" value = "${userID}" readonly>
 									</td>
 								</tr>
 							<!-- id 입력 부분 끝 -->
@@ -125,10 +125,10 @@ var beingDeleteFileArr = new Array();
 						</table>
 				<!-- 입력받은 값들을 userBoardWriteAction.do로 보내줄 버튼 시작 -->
 					<div align="center">
-						<a href="userBoard.do" class="btn btn-primary fs-4">목록</a>
+						<a href="userBoard.do" class="btn btn-outline-dark fs-4">목록</a>
 					<c:choose>
 						<c:when test="${modifyData == null }">
-							<input type="submit" class="btn btn-primary pull-right fs-4" value="글쓰기">
+							<input type="submit" class="btn btn-primary fs-4" value="글쓰기">
 						</c:when>
 						<c:otherwise>
 							<input type="submit" id = "modifyBtn" class="btn btn-secondary fs-4" value="수정">

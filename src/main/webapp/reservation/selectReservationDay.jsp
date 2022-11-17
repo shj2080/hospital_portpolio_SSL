@@ -10,6 +10,7 @@
 <!-- 반응형 웹을 위한 기본 태그 부분 -->
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>율제병원 - 진료예약일 선택</title>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
 <link rel="stylesheet" type="text/css" href="style/reservation/selectReservationDay.css">
 <style type="text/css">
@@ -54,21 +55,22 @@
 			return;
 		}
 		
-		opener.console.log(settingDate);
+		//부모 콘솔의 로그에 선택한 날짜를 남김
+		opener.console.info(settingDate);
 		
 		opener.document.getElementById("reservationDay").value = settingDate;
-		self.close();
+		self.close(); // 창 닫음
 	}
 </script>
 </head>
 <body>
 <table>
-	<caption>
-		<button type="button" onclick="location.href='SelectReservationDay.treat?year=${before_year}&month=${before_month}'">◀</button>
+	<caption class="text-center">
+		<button type="button" class="btn btn-info" onclick="location.href='SelectReservationDay.treat?year=${before_year}&month=${before_month}'">◀</button>
 			${year}년 ${month+1}월
-		<button type="button" onclick="location.href='SelectReservationDay.treat?year=${after_year}&month=${after_month}'">▶</button>
+		<button type="button" class="btn btn-info" onclick="location.href='SelectReservationDay.treat?year=${after_year}&month=${after_month}'">▶</button>
 	</caption>
-	<tr>
+	<tr class="text-center">
 		<th style="color:red">일</th>
 		<th>월</th>
 		<th>화</th>
@@ -87,13 +89,8 @@
 	<c:forEach var = "days" begin = "1" end = "${lastday}" step = "1" >
 		<c:set var = "count" value = "${count + 1}"/>
 		
-		<td>
-			<form name="f">
-				<input type="button" value="${days}" onclick="selectTreatmentDay(${year},${month+1},${days});"/>
-			<%-- <input type="hidden" name="${year}">
-			<input type="hidden" name="${month}">
-			<input type="hidden" name="${day}"> --%>
-			</form>
+		<td class="text-center">
+			<input type="button" class="btn btn-light fs-4" value="${days}" onclick="selectTreatmentDay(${year},${month+1},${days});"/>
 		</td>
 		
 		<c:if test="${count % 7 == 0}">

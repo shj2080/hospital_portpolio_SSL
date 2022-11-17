@@ -117,7 +117,7 @@ public class User_boardDAO {
 			close(pstmt);
 		}
 		return writeCount;
-	}//C
+	}
 	
 	//조회 (R)
 	public ArrayList<User_board> showList(){

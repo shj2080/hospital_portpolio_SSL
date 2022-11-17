@@ -37,18 +37,18 @@
 </style>
 <script>
 	const contextPath = "${pageContext.request.contextPath}";
-	window.onload = () => {
-		document.getElementById("loginGo").addEventListener("click", () => {
+	window.onload = function() {
+		document.getElementById("loginGo").addEventListener("click", function() {
 			location.href = contextPath + "/login.do";
 		});
-		document.getElementById("homeGo").addEventListener("click", () => {
+		document.getElementById("homeGo").addEventListener("click", function() {
 			location.href = contextPath + "/index.do";
 		});
 	};
 </script>
 </head>
 <body>
-	<div class="text-center my-5">
+	<div class="idResultBox text-center">
 	<ul>
 		<li><span id = "detailID">회원님의 ID는 <b>'${findID}'</b>입니다.</span></li>
 		<li>

@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="style/body.css">
 	<link rel="stylesheet" type="text/css" href="style/footer.css">
 	<link rel="stylesheet" type="text/css" href="style/board.css">
+	<link rel="stylesheet" type="text/css" href="style/init/a_link_style.css">
 <script>
 function movePage(page) {
 	location.href = "userBoard.do?page=" + page;
@@ -35,11 +36,9 @@ function movePage(page) {
 				
 				<div style="margin: 0 auto;">
 				<%-- 제목 부분 --%>
-				
-				
-				
+
 				<!-- 게시판 테이블 시작 -->
-					<table class="table table-striped" id = "boardListBox">
+					<table class="table table-hover" id = "boardListBox">
 					
 					
 					<!-- 테이블 헤더 부분 -->
@@ -63,7 +62,7 @@ function movePage(page) {
 									<!-- 행 시작  -->
 									<tr>
 										<td>${board.post_no}</td>
-										<td><a href="showPost.do?post_no=${board.post_no}">${board.post_subject }</a></td>
+										<td><a class="linkTextBlackFix" href="showPost.do?post_no=${board.post_no}">${board.post_subject}</a></td>
 										<td>${board.id }</td>
 										<td>${board.post_date }</td>
 									</tr>

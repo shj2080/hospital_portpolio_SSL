@@ -13,8 +13,10 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/index.css">
+<link rel="stylesheet" type="text/css" href="style/init/a_link_style.css">
 
 <style type="text/css">
 
@@ -32,7 +34,7 @@ const ctxPath = "${ctxPath}";
 </head>
 
 
-<body class="d-flex flex-column min-vh-100">
+<body class="">
 	<!-- header.jsp불러오기 -->
 	<jsp:include page="header.jsp" />
 	
@@ -48,8 +50,8 @@ const ctxPath = "${ctxPath}";
 			<!-- 홈페이지 공지사항 시작 -->
 			<div id = "flexBox">
 				<fieldset id = "boardBox">
-				<legend align="center">공지사항</legend>
-					<table class="table table-striped" id = "boardListBox">
+				<legend class="text-center fs-3"><a class = "linkTextBlackFix" href="${ctxPath}/userBoard.do">공지사항</a></legend>
+					<table class="table table-hover" id = "boardListBox">
 						<thead>
 							<tr>
 								<th style="background-color: #eeeeee; text-align: center;">제목</th>
@@ -62,8 +64,8 @@ const ctxPath = "${ctxPath}";
 								<!-- 1.board 메뉴목록이 있으면 -->
 								<c:forEach var="board" items="${boardList}" varStatus="status">
 									<!-- 행 시작  -->
-									<tr align="center">
-										<td><a href="showPost.do?post_no=${board.post_no}">${board.post_subject }</a></td>
+									<tr class="text-center">
+										<td><a class="linkTextBlackFix" href="showPost.do?post_no=${board.post_no}">${board.post_subject }</a></td>
 										<td>${board.id }</td>
 										<td>${board.post_date }</td>
 									</tr>

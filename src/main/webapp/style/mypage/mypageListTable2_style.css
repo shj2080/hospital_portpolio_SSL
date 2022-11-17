@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.btn {
+	font-size: 1.6rem;
+}
+
+/* .table .memberListTb {
+	font-size: 1.8rem;
+} */
+
+/* 최대 크기 425px */
+@media screen and (max-width: 425px) {
+		
+	.memberListTb, .btn {
+		font-size: 0.8rem;
+	}
+}

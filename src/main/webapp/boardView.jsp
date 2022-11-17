@@ -27,7 +27,7 @@
 				<div class="row">
 				
 				<!-- 게시판 글보기 테이블 시작 -->
-					<table class="table table-striped"  id = "boardViewBox">
+					<table class="table"  id = "boardViewBox">
 					
 					<!-- 헤더 부분 시작 -->
 						<thead>
@@ -43,21 +43,21 @@
 						
 						<!-- 글제목 출력 시작 -->
 							<tr>
-								<td style="width: 20%;">글 제목</td>
+								<th style="width: 20%;">글 제목</th>
 								<td colspan="2">${showPost.post_subject}</td>
 							</tr>
 						<!-- 글제목 출력 끝 -->
 						
 						<!-- 작성자 출력 시작 -->
 							<tr>
-								<td>작성자</td>
+								<th>작성자</th>
 								<td colspan="2">${showPost.id }</td>
 							</tr>
 						<!-- 작성자 출력 끝 -->
 						
 						<!-- 작성일자 출력 시작 -->
 							<tr>
-								<td>작성일자</td>
+								<th>작성일자</th>
 								<td colspan="2">${showPost.post_date }</td>
 							</tr>
 						<!-- 작성일자 출력 끝 -->
@@ -66,7 +66,7 @@
 						<c:if test="${attachFiles != null }">
 						<!-- 첨부파일 출력 시작 -->
 						<tr class="text-center">
-							<th colspan="3">첨부파일</th>
+							<th>첨부파일</th>
 						</tr>
 						<c:forEach var = "attachFile" items="${attachFiles}" varStatus = "stat">
 							<tr>
@@ -76,20 +76,20 @@
 									  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
 									</svg>
 									<span id = "attach${stat.count}" class = "attachDownLoad">${attachFile.original_name}</span>
-								</td>
 								<script>
 								document.getElementById("attach${stat.count}").onclick = function(e) {
 									e.stopPropagation();
 									fileDown(${attachFile.file_idx})
 								};
 								</script>
+								</td>
 							</tr>
 						</c:forEach>
 						<!-- 첨부파일 출력 끝 -->
 						</c:if>
 						<!-- 게시글 내용 출력 시작 -->
-							<tr class = "text-center">
-								<td colspan="3">내용</td>
+							<tr>
+								<th>내용</th>
 							</tr>
 							<tr>
 							
@@ -117,7 +117,7 @@
 			<!-- 게시판 글보기 테이블 끝 -->
 				
 			<div align="center">
-				<a href="userBoard.do" class="btn btn-primary fs-4">목록</a>
+				<a href="userBoard.do" class="btn btn-outline-dark fs-4">목록</a>
 				<c:if test="${userID == showPost.id}">
 				<button type="button" id = "modifyPostBtn" class = "btn btn-secondary fs-4">수정</button>
 				<button type="button" id = "deletePostBtn" class = "btn btn-danger fs-4">삭제</button>

@@ -45,9 +45,12 @@
 		<ul class="navbar-nav">
 
 			<!-- 로그인 여부에 관계없이 항상 출력되는 메뉴 -->
+			<!-- 로그인한 회원이 관리자라면 진료예약하기 버튼 안 나오게 처리(로그인 안했거나 일반회원이면 출력) -->
+			<c:if test="${userID == null or userType == 'N'}">
 			<li class="nav-item">
 				<a class = "nav-link nav-link fs-3" href = "${pageContext.request.contextPath}/reservationSelectView.treat"><span class = "menu">진료예약하기</span></a>
 			</li>
+			</c:if>
 			<li class="nav-item">
 				<a class = "nav-link fs-3" href = "${pageContext.request.contextPath}/treatmentList.do"><span class = "menu">진료대기자명단</span></a>
 			</li>

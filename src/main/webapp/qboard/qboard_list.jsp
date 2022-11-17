@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://code.jquery.com/jquery-latest.js"></script> 
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>  -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
 <link rel="stylesheet" type="text/css" href="style/qnaboard/qnaStyle.css">
+<link rel="stylesheet" type="text/css" href="style/init/a_link_style.css">
 <title>율제병원 문의게시판 글목록</title>
 <script>
 function movePage(page) {
@@ -65,7 +66,7 @@ function movePage(page) {
 							 ▶
 						</c:otherwise>
 					</c:choose>
-					<a href="qboardDetail.qna?qboard_num=${boardList.QBOARD_NUM}&page=${nowPage}">
+					<a class="linkTextBlackFix" href="qboardDetail.qna?qboard_num=${boardList.QBOARD_NUM}&page=${nowPage}">
 						${boardList.QBOARD_SUBJECT} <%-- 게시글 제목 클릭 시 글번호와 현재 페이지 전달 --%>
 					</a>
 				    

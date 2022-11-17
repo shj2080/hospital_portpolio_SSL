@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* 링크 방문 전, 방문 후 색상 흰색 고정  */
+.linkTextWhiteFix:link, .linkTextWhiteFix:visited {
+	color:white;
+	text-decoration: none;
+}
+
+/* 링크에 손을 올렸을 때 활성화*/
+.linkTextWhiteFix:hover {
+	text-decoration: underline;
+}
+
+/* 링크 방문 전, 방문 후 색상 검은색 고정  */
+.linkTextBlackFix:link,.linkTextBlackFix:visited {
+	color:black;
+	text-decoration: none;
+}
+
+/* 링크에 손을 올렸을 때 활성화*/
+.linkTextBlackFix:hover {
+	text-decoration: underline;
+}

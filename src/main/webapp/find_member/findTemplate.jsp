@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/body.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/footer.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/findMemberStyle.css">
 </head>
 <body>
 <jsp:include page="../header.jsp"/>

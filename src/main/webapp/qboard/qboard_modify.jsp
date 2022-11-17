@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://code.jquery.com/jquery-latest.js"></script> 
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>  -->
 <meta charset="UTF-8"> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="style/initStyle.css">
@@ -15,39 +15,8 @@
 <link rel="stylesheet" type="text/css" href="style/header.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/footer.css">
+<link rel="stylesheet" type="text/css" href="style/qnaboard/qboardModify.css">
 <title>율제병원 - 게시글 수정</title>
-	<script type="text/javascript">
-	function modifyboard(){
-				
-		modifyform.submit();
-	}
-	</script>
-	<style type="text/css">
-   #registForm{
-      width: 500px;
-      height: 600px;
-      margin:auto; 
-   }   
-h4 {
-	text-align: center;
-	margin-top: 1rem;
-	padding: 1rem;
-	font-size: 2.5rem;
-	}
-   table{
-      margin:auto;
-      width: 600px;
-      }
-   #td_left{
-      text-align: center;
-   }
-    
-   #commandCell{
-      text-align: center;
-      
-   }
-   #table-first{ margin:0 auto; width: 60%; border-color: black;  font-size: 12px; border-color: #e1e4e1;}
-</style>
 </head>
 <body>
 <jsp:include page="../header.jsp" />
@@ -60,7 +29,7 @@ h4 {
 	<form action="qboardModifyPro.qna" method="post" name = "modifyform">
 	<input type = "hidden" name = "QBOARD_NUM" value = "${article.QBOARD_NUM}"/>
 	
-	<h4>게시판글수정</h4>
+	<span class="tableTitle">게시판글수정</span><br>
 	<table border="1" id="table-first" class="table table-bordered fs-4">
 		<tr>
 			<td id="td_left">
@@ -76,7 +45,7 @@ h4 {
 				<label for = "QBOARD_SUBJECT" >제 목</label>
 			</td>
 			<td>
-				<input name="QBOARD_SUBJECT" type="text" id = "QBOARD_SUBJECT" value = "${article.QBOARD_SUBJECT}"  class="form-control fs-4"/>
+				<input name="QBOARD_SUBJECT" type="text" id = "QBOARD_SUBJECT" value = "${article.QBOARD_SUBJECT}"  class="form-control fs-4" required="required"/>
 			</td>
 		</tr>	
 		<tr>
@@ -84,7 +53,7 @@ h4 {
 				<label for = "QBOARD_CONTENT">내 용</label>
 			</td>
 			<td>
-				<textarea id = "QBOARD_CONTENT" name="QBOARD_CONTENT" cols="60" rows="12"  class="form-control fs-4">${article.QBOARD_CONTENT}</textarea>
+				<textarea id = "QBOARD_CONTENT" name="QBOARD_CONTENT" cols="60" rows="12"  class="form-control fs-4" required="required">${article.QBOARD_CONTENT}</textarea>
 			</td>
 		</tr>
 	
@@ -93,7 +62,7 @@ h4 {
 		         <%--로그인 한 사람의 본인의 작성글만 수정할 수 있는 조건문 --%>
 		         <c:choose>
 		         	<c:when test="${userID == article.MEM_ID }">
-		         		<button type = "button" onclick = "modifyboard()" class="btn btn-outline-dark fs-4">수정</button>&nbsp;&nbsp;
+		         		<button type = "submit" class="btn btn-outline-dark fs-4">수정</button>&nbsp;&nbsp;
 		         	</c:when>
 		         	<c:otherwise>
 		         		<button type = "button" onclick="" class="btn btn-outline-dark fs-4" disabled>수정</button>&nbsp;&nbsp;
