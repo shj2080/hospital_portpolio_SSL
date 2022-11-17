@@ -164,7 +164,7 @@
 		*/
 	</script> -->
 	
-	<div id="daumRoughmapContainer1668669992573" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+	<div id="daumRoughmapContainer1668669992573" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%"></div>
 
 <!--
 	2. 설치 스크립트
@@ -177,7 +177,6 @@
 	new daum.roughmap.Lander({
 		"timestamp" : "1668669992573",
 		"key" : "2cm5s",
-		"mapWidth" : "500",
 		"mapHeight" : "250"
 	}).render();
 </script>

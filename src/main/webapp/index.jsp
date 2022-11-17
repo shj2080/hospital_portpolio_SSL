@@ -13,7 +13,7 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-
+<link rel="stylesheet" type="text/css" href="style/initStyle.css">
 <link rel="stylesheet" type="text/css" href="style/body.css">
 <link rel="stylesheet" type="text/css" href="style/index.css">
 <link rel="stylesheet" type="text/css" href="style/init/a_link_style.css">
@@ -33,8 +33,7 @@ const ctxPath = "${ctxPath}";
 <script type = "text/javascript" src = "${ctxPath}/javascript/indexCheck.js"></script>
 </head>
 
-
-<body class="">
+<body>
 	<!-- header.jsp불러오기 -->
 	<jsp:include page="header.jsp" />
 	

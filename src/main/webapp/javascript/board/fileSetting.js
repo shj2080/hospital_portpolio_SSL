@@ -110,9 +110,7 @@ function deleteBeingFile(delBeingElement, file_idx) {
     delBeingElement.closest('tr').remove();
     
     beingDeleteFileArr.push(file_idx);
-    console.info(beingDeleteFileArr);
-    
-    beingFileCnt--;
+
     //oldFilesArr[num].is_delete = true;
 }
 

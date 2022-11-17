@@ -7,6 +7,12 @@ html, body {
 	height: 100%;
 }
 
+ /* IE10+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	
+
+}
+
 /* flex 방식 */
 body {
     font-size:1.6rem;
@@ -18,7 +24,7 @@ body {
 
 /* section 스타일 */
 #contentWrap {
-	flex: 1 1 auto;
+	flex: 1 0 auto;
 	margin-bottom: 1rem;
 }
 
@@ -32,9 +38,4 @@ body {
 	width: 30%;
     height: 20rem;
     margin-top: 20px;
-}
-
- /* IE10+ */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-
 }

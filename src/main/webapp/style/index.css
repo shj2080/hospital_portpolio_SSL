@@ -28,6 +28,12 @@
     font-weight: bold;
 }
 
+/* IE10+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	#menuBox {
+		justify-content: flex-start;
+	}
+}
 
 #menu1,#menu2,#menu3,#menu4{
 	border: 1px solid lightblue;

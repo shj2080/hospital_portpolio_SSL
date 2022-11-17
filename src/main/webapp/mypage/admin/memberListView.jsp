@@ -27,7 +27,7 @@
 			<c:forEach var = "member" items="${memList}">
 			<tr>
 				<td>
-					<button type="button" class="btn btn-success">부여</button>
+					<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#msgModal">부여</button>
 				</td>
 				<td>${member.name }</td>
 				<td>${member.id }</td>
@@ -41,5 +41,23 @@
 			등록된 회원이 없습니다.
 		</c:otherwise>
 	</c:choose>
+	<!-- 모달 컴포넌트 -->
+	<div id = "msgModal" class="modal fade" tabindex="-1">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">향후 업데이트 예정</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        <p>준비중인 기능입니다.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- 모달 컴포넌트 -->
 </body>
 </html>
