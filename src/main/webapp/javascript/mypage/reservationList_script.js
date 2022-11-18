@@ -90,7 +90,16 @@ function modifyRes(specCode,resCode, treatStatus) {
 }
 
 //취소 버튼 함수
-function cancelRes(resCode, cancel_id, treatStatus) {
+function cancelRes(thisRow) {
+
+	//------버튼을 클릭한 같은 행의 정보를 가져오는 방법
+	let currentRow = thisRow.closest("tr");
+	
+	let resCode = currentRow.children[1].innerText;
+	let cancel_id = currentRow.children[3].innerText;
+	let treatStatus = currentRow.children[7].innerText;
+	//------버튼을 클릭한 같은 행의 정보를 가져오는 방법
+
 	if(confirm("해당 진료예약을 취소하시겠습니까?")) {		
 		if(treatStatusChecking(treatStatus)) {
 			return false;

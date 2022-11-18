@@ -7,12 +7,6 @@ html, body {
 	height: 100%;
 }
 
- /* IE10+ */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-	
-
-}
-
 /* flex 방식 */
 body {
     font-size:1.6rem;
