@@ -30,6 +30,7 @@ section{
 //Javascript에서 ctxPath 사용하기 위해 선언
 const ctxPath = "${ctxPath}";
 </script>
+<script type = "text/javascript" src = "${ctxPath}/javascript/edgeMoveScript.js"></script>
 <script type = "text/javascript" src = "${ctxPath}/javascript/indexCheck.js"></script>
 </head>
 

@@ -18,7 +18,6 @@
 <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
 
 <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css"> --%>
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.10.4/polyfill.min.js"></script>
 <!-- required JavaScript polyfills for IE11 -->
