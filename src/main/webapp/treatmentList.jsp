@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -96,7 +97,7 @@
 					</tr>
 					<!-- 테이블 헤드 끝 -->
 				
-				<!-- 불어온 대기자 명단을 출력 시작 -->
+				<!-- 불러온 대기자 명단을 출력 시작 -->
 				<c:if test="${treatmentList != null }">
 				<c:forEach var = "treatment" items="${treatmentList }">
 					<tr align="center" >
@@ -104,7 +105,10 @@
 							${treatment.treatment_date}
 						</th>
 						<th class = "fs-4">
-							${treatment.name}
+							${fn:substring(treatment.name,0,1)}
+							<c:forEach var = "maskName" begin="1" end="${fn:length(treatment.name) - 1}">
+								*
+							</c:forEach>
 						</th>
 						<th class = "fs-4">
 							${treatment.speciality_name}
