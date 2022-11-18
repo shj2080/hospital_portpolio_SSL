@@ -139,4 +139,4 @@ webapps/docs/jdbc-pool.xml
 out
 
 #DB 설정파일 github 제외
-webapp/META-INF/context.xml
+src/main/webapp/META-INF/context.xml
