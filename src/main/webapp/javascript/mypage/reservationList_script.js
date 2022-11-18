@@ -91,8 +91,7 @@ function modifyRes(specCode,resCode, treatStatus) {
 
 //취소 버튼 함수
 function cancelRes(resCode, cancel_id, treatStatus) {
-	if(confirm("해당 진료예약을 취소하시겠습니까?")) {
-	
+	if(confirm("해당 진료예약을 취소하시겠습니까?")) {		
 		if(treatStatusChecking(treatStatus)) {
 			return false;
 		}
