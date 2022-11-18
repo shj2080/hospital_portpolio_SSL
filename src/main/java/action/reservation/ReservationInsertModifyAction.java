@@ -131,7 +131,9 @@ public class ReservationInsertModifyAction implements Action {
 				isReservation = reservationModifyService.modifyReservationTreatment(reservationBean);
 				
 				//이동 위치 지정
-				moveLocation = "reservationMemberSearch.ad?u_id=" + resUserID; //예약 진료 내역(수정했던 회원ID로 검색)
+				//moveLocation = "reservationMemberSearch.ad?u_id=" + resUserID; //예약 진료 내역(수정했던 회원ID로 검색)
+				moveLocation = "reservationCheckList.ad"; //예약 진료 내역
+				
 			}else { //insert 일 경우
 				reservationBean = new ReservationBean(speciality_code, doctor_code, viewId, reservation_date, phone, u_name);
 				System.out.println("[DEBUG]ReservationInsertModifyAction (insert) 구문 실행됨.");
@@ -140,7 +142,6 @@ public class ReservationInsertModifyAction implements Action {
 				
 				moveLocation = "treatmentList.do"; //진료 대기자 리스트
 			}
-			
 			
 			//진료예약 insert 또는 modify(update) 성공시
 			if(isReservation > 0) {

@@ -26,7 +26,8 @@
 <body>
 	<form action = "reservationMemberSearch.ad" id = "searchForm" name = "searchForm" method="post" class = "row g-2" onsubmit="return memberSearch();">
 		<div class="col-auto p-3">
-			<label>회원ID <input type="text" id = "u_id" name = "u_id" ></label>
+			<!-- <label>회원ID <input type="text" id = "u_id" name = "u_id" ></label> -->
+			<label>회원이름 <input type="text" id = "u_name" name = "u_name" ></label>
 			<button type = "submit" id = "searchID" class="btn btn-info fs-4">검색</button>
 		</div>
 	</form>

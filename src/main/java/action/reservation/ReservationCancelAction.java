@@ -44,7 +44,7 @@ public class ReservationCancelAction implements Action {
 
 				out.println("<script>");
 				out.println("alert('선택한 진료예약을 취소했습니다.');");
-				out.println("location.replace('reservationMemberSearch.ad?u_id="+ cancelID +"')");
+				out.println("location.replace('reservationCheckList.ad')");
 				out.println("</script>");
 				
 	  			//forward = new ActionForward("reservationMemberSearch.ad?u_id=" + cancelID, true);

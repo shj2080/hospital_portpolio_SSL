@@ -68,7 +68,52 @@ public class ReservationDAO {
 		return insertResult;
 	}
 
-	//예약된 본인의 진료내역 불러오는 DAO 메서드
+	//예약된 본인의 진료내역 불러오는 DAO 메서드 - 이름으로 조회하는 메서드
+	public ArrayList<ReservationListBean> myReservationNameSelectList(String userName) {
+		ArrayList<ReservationListBean> reservationList = null;
+		ReservationListBean myReservation = null;
+		
+		String sql = "select reservation_code , reservation_date, doctor_name, speciality_name,";
+		sql += " r.doctor_code, r.speciality_code, r.id, m.name, treatment_status";
+		sql += " from reservation r LEFT JOIN membertbl m ON r.id = m.id";
+		sql += " LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code";
+		sql += " LEFT JOIN doctor d ON r.doctor_code = d.doctor_code";
+		sql += " WHERE r.u_name = ? order by reservation_date asc";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userName);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				reservationList = new ArrayList<ReservationListBean>();
+				
+				do {
+					myReservation = new ReservationListBean(rs.getInt("reservation_code"),
+							rs.getString("reservation_date"),
+							rs.getString("doctor_name"),
+							rs.getString("speciality_name"),
+							rs.getInt("doctor_code"),
+							rs.getInt("speciality_code"),
+							rs.getString("id"),
+							rs.getString("name"),
+							rs.getString("treatment_status"));
+					//ArrayList에 추가
+					reservationList.add(myReservation);
+				} while (rs.next());
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("[ReservationDAO] myReservationNameSelectList() 메서드 예외 발생 : " + e); //예외종류 + 예외메세지
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return reservationList;
+	}
+	
+	//예약된 본인의 진료내역 불러오는 DAO 메서드 - id로 조회
 	public ArrayList<ReservationListBean> myReservationList(String userID) {
 		ArrayList<ReservationListBean> reservationList = null;
 		ReservationListBean myReservation = null;
@@ -112,6 +157,7 @@ public class ReservationDAO {
 				}
 		return reservationList;
 	}
+	
 	//진료예약 수정 DAO 메서드
 	public int modifyReservationTreatment(ReservationBean reservationBean) {
 		int updateResult = 0;

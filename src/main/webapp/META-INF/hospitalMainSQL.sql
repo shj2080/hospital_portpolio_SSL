@@ -340,3 +340,11 @@ where id = 'test2' AND reservation_code = 2;
 
 /* 예약 테이블 */
 select * from reservation;
+
+/* 예약 내역 출력 - 이름 검색 쿼리 DAO - myReservationNameSelectList */
+select reservation_code , reservation_date, doctor_name, speciality_name,
+r.doctor_code, r.speciality_code, r.id, m.name, treatment_status
+from reservation r LEFT JOIN membertbl m ON r.id = m.id
+LEFT JOIN speciality spec ON r.speciality_code = spec.speciality_code
+LEFT JOIN doctor d ON r.doctor_code = d.doctor_code
+WHERE r.u_name = '송호진' order by reservation_date asc;

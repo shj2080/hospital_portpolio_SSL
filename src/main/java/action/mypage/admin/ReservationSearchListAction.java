@@ -34,8 +34,9 @@ public class ReservationSearchListAction implements Action {
 			//로그인 상태라면
 		}else {
 
-			String searchID = request.getParameter("u_id");
-
+			//String searchID = request.getParameter("u_id");
+			String searchName = request.getParameter("u_name");
+			
 			if(!userType.equals("M")) {
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();
@@ -48,7 +49,11 @@ public class ReservationSearchListAction implements Action {
 
 			//예약목록을 불러오는 서비스 객체 생성
 			ReservationListService reservationListService = new ReservationListService();
-			List<ReservationListBean> reservationList = reservationListService.getReservationList(searchID);
+			//ID로 검색시
+			//List<ReservationListBean> reservationList = reservationListService.getReservationList(searchID);
+			
+			//이름으로 검색시
+			List<ReservationListBean> reservationList = reservationListService.getReservationNameList(searchName);
 
 			//System.out.println("[DEBUG]reservionList Search 호출 결과 :"+reservationList.toString());
 
