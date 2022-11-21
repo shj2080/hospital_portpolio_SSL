@@ -9,21 +9,33 @@ section div:nth-child(1) {
 	margin: 3rem auto;
 	text-align: center;
 	border: 1px solid #dddddd;
+<<<<<<< HEAD
 	width: 60rem;
+=======
+	width: 60%;
+>>>>>>> 3da05b3c79a8608d52dd411c814d2cfa66ea29d5
 }
 
 #boardWriteBox{
 	margin: 3rem auto;
 	text-align: center;
 	border: 1px solid #dddddd;
+<<<<<<< HEAD
 	width: 60rem;
+=======
+	width: 60%;
+>>>>>>> 3da05b3c79a8608d52dd411c814d2cfa66ea29d5
 }
 
 #boardViewBox{
 	margin: 3rem auto;
 	text-align: center;
 	border: 1px solid #dddddd;
+<<<<<<< HEAD
 	width: 60rem;
+=======
+	width: 60%;
+>>>>>>> 3da05b3c79a8608d52dd411c814d2cfa66ea29d5
 }
 
 td{
@@ -31,6 +43,13 @@ td{
 	border-top: 1px solid #dddddd;
 }
 
+<<<<<<< HEAD
+=======
+textarea {
+	resize: none;
+}
+
+>>>>>>> 3da05b3c79a8608d52dd411c814d2cfa66ea29d5
 /* 삭제 아이콘 사이즈 */
 .bi-file-earmark-x {
 	font-size:2rem;

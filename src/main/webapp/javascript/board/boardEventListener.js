@@ -16,6 +16,7 @@ window.onload = function() {
 	if(deletePostBtn) {
 		deletePostBtn.addEventListener("click", function() {
 			//location.href = "userBoardDelete.do?post_no=" + post_no;
+<<<<<<< HEAD
 			
 			//fetch 방식으로 삭제
 			fetch("userBoardDelete.fe",{
@@ -41,6 +42,37 @@ window.onload = function() {
 				alert("네트워크 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.\n" + err);
 			});
 		
+=======
+			if(confirm("이 게시글을 정말 삭제하시겠습니까?")) {
+				//fetch 방식으로 삭제
+				fetch("userBoardDelete.fe",{
+					method: "POST",
+					body: "post_no="+post_no,
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded"}
+				})
+				.then(function(response) {
+					return response.json();
+					})
+				.then(function(data) {
+					if(data.result === true) {
+						alert(data.message);
+						location.replace("userBoard.do");
+					}
+					//응답은 받았으나 실패
+					else {
+						alert(data.message);
+						location.replace("userBoard.do");
+					}
+				}).catch(function(err) {
+					alert("네트워크 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.\n" + err);
+				});
+
+			}else {
+				return false;
+			}
+
+>>>>>>> 3da05b3c79a8608d52dd411c814d2cfa66ea29d5
 		});
 	}
 };
