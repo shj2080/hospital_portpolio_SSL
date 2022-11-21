@@ -9,26 +9,30 @@ section div:nth-child(1) {
 	margin: 3rem auto;
 	text-align: center;
 	border: 1px solid #dddddd;
-	width: 60rem;
+	width: 60%;
 }
 
 #boardWriteBox{
 	margin: 3rem auto;
 	text-align: center;
 	border: 1px solid #dddddd;
-	width: 60rem;
+	width: 60%;
 }
 
 #boardViewBox{
 	margin: 3rem auto;
 	text-align: center;
 	border: 1px solid #dddddd;
-	width: 60rem;
+	width: 60%;
 }
 
 td{
 	border-bottom: 1px solid #dddddd;
 	border-top: 1px solid #dddddd;
+}
+
+textarea {
+	resize: none;
 }
 
 /* 삭제 아이콘 사이즈 */

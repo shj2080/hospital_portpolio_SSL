@@ -119,17 +119,11 @@ function movePage(page) {
 						
 					<!-- 페이지 처리 부분 끝 -->
 						
-						<!-- 유저 타입이 관리자(M)이라면 출력 시작 -->
+					<!-- 유저 타입이 관리자(M)이라면 출력 시작 -->
 					<c:if test="${userType == 'M' }">
 					<button type = "button" onclick="location.href='userBoardWrite.do'" class="btn btn-primary fs-4">글쓰기</button>
 					</c:if>
 					<!-- 유저 타입이 관리자(M)이라면 출력 끝 -->
-					
-					<!-- 유저 타입이 일반유저(N)이라면 출력 시작 -->
-					<c:if test="${userType == 'N' }">
-					<button type = "button" class="btn btn-primary fs-4" disabled>글쓰기</button>
-					</c:if>
-					<!-- 유저 타입이 일반유저(N)이라면 출력 끝 -->
 					
 					</div>
 					<!-- 각종버튼 부분 끝 -->
