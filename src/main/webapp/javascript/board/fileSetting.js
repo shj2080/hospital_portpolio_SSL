@@ -122,8 +122,6 @@ function modifyChk() {
 	
 	//기본 폼액션 (글쓰기)
 	let formAction = "userBoardWriteAction.fe";
-	
-	
 
 	let modifyBtn = document.getElementById("modifyBtn");
 	
