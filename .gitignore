@@ -136,11 +136,7 @@ modules/jdbc-pool/includes
 modules/openssl-java17/target
 modules/openssl-panama-foreign/target
 webapps/docs/jdbc-pool.xml
-<<<<<<< HEAD
-out
-=======
 out
 
 #DB 설정파일 github 제외
 src/main/webapp/META-INF/context.xml
->>>>>>> 3da05b3c79a8608d52dd411c814d2cfa66ea29d5

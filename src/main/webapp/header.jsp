@@ -18,10 +18,7 @@
 <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
 
 <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css"> --%>
-<<<<<<< HEAD
 
-=======
->>>>>>> 3da05b3c79a8608d52dd411c814d2cfa66ea29d5
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.10.4/polyfill.min.js"></script>
 <!-- required JavaScript polyfills for IE11 -->
