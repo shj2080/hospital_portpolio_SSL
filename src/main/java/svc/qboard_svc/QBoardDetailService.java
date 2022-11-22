@@ -16,7 +16,7 @@ public class QBoardDetailService {
 		Connection con = getConnection();
 		QBoardDAO boardDAO = QBoardDAO.getInstance();
 		boardDAO.setConnection(con);
-		int updateCount = boardDAO.updateReadCount(qboard_num);
+		int updateCount = boardDAO.updateReadCount(qboard_num); //조회수 업데이트
 		
 		if(updateCount > 0){
 			commit(con);

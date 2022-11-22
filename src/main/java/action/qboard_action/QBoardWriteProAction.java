@@ -25,9 +25,6 @@ public class QBoardWriteProAction implements Action {
 		boardBean.setQBOARD_SUBJECT(request.getParameter("QBOARD_SUBJECT"));
 		boardBean.setQBOARD_CONTENT(request.getParameter("QBOARD_CONTENT"));
 
-
-		
-   
 		//게시판 작성 서비스
 		QBoardWriteProService boardWriteProService = new QBoardWriteProService();
 		boolean isWriteSuccess = boardWriteProService.registArticle(boardBean);

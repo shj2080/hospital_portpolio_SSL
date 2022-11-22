@@ -12,14 +12,15 @@ import vo.QBoardBean;
 
 public class QBoardDAO {
 
-	DataSource ds;
-	Connection con;
-	private static QBoardDAO boardDAO;
+	//DataSource ds;
+	private Connection con = null;
+	private static QBoardDAO boardDAO; //DAO 객체가 담길 멤버변수
 
-	private QBoardDAO() {
-		// TODO Auto-generated constructor stub
-	}
+	//DAO 객체 싱글톤 패턴 처리
+	//기본 생성자
+	private QBoardDAO() {}
 
+	//DAO객체가 없는 경우에만 생성
 	public static QBoardDAO getInstance(){
 		if(boardDAO == null){
 			boardDAO = new QBoardDAO(); //기본 생성자로 객체를 생성하여 boardDAO를 참조 
@@ -27,6 +28,7 @@ public class QBoardDAO {
 		return boardDAO;
 	}
 
+	//커넥션 설정
 	public void setConnection(Connection con){
 		this.con = con;
 	}
@@ -64,7 +66,7 @@ public class QBoardDAO {
 		String board_list_sql="select * from qboard order by QBOARD_RE_REF desc,QBOARD_RE_SEQ asc limit ?,10";
 		ArrayList<QBoardBean> articleList = new ArrayList<QBoardBean>();
 		QBoardBean board = null;
-		int startrow=(page-1)*10; //읽기 시작할 row 번호..	
+		int startrow = (page - 1) * 10; //읽기 시작할 row 번호..	
 
 		try{
 			pstmt = con.prepareStatement(board_list_sql);
@@ -111,15 +113,15 @@ public class QBoardDAO {
 
 			if(rs.next()){
 				boardBean = new QBoardBean();
-				boardBean.setMEM_ID(rs.getString("MEM_ID"));
-				boardBean.setQBOARD_NUM(rs.getInt("qboard_num"));
-				boardBean.setQBOARD_SUBJECT(rs.getString("QBOARD_SUBJECT"));
-				boardBean.setQBOARD_CONTENT(rs.getString("QBOARD_CONTENT"));
-				boardBean.setQBOARD_RE_REF(rs.getInt("QBOARD_RE_REF"));
-				boardBean.setQBOARD_RE_LEV(rs.getInt("QBOARD_RE_LEV"));
-				boardBean.setQBOARD_RE_SEQ(rs.getInt("QBOARD_RE_SEQ"));
-				boardBean.setQBOARD_READCOUNT(rs.getInt("QBOARD_READCOUNT"));
-				boardBean.setQBOARD_DATE(rs.getString("QBOARD_DATE"));
+				boardBean.setMEM_ID(rs.getString("MEM_ID")); 		/* 회원ID */
+				boardBean.setQBOARD_NUM(rs.getInt("qboard_num"));	/* 게시글번호 */
+				boardBean.setQBOARD_SUBJECT(rs.getString("QBOARD_SUBJECT")); /* 게시글 제목 */
+				boardBean.setQBOARD_CONTENT(rs.getString("QBOARD_CONTENT")); /* 게시글 내용 */
+				boardBean.setQBOARD_RE_REF(rs.getInt("QBOARD_RE_REF")); /* 답글에서 참조하는 게시글 번호 */
+				boardBean.setQBOARD_RE_LEV(rs.getInt("QBOARD_RE_LEV")); /* 답글 깊이 */
+				boardBean.setQBOARD_RE_SEQ(rs.getInt("QBOARD_RE_SEQ")); /* 답글 순서 */
+				boardBean.setQBOARD_READCOUNT(rs.getInt("QBOARD_READCOUNT")); /* 조회수 */
+				boardBean.setQBOARD_DATE(rs.getString("QBOARD_DATE")); /* 게시글 작성일 */
 			}
 		}catch(Exception ex){
 			System.out.println("getDetail 에러 : " + ex);
@@ -127,47 +129,50 @@ public class QBoardDAO {
 			close(rs);
 			close(pstmt);
 		}
-
 		return boardBean;
-
 	}
 
 	//글 등록.
 	public int insertArticle(QBoardBean article){
 
+		//---변수 초기화 ---//
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int num =0;
-		String sql="";
-		int insertCount=0;
-
+		int num = 0;
+		String sql = "";
+		int insertCount = 0;
+		//---변수 초기화 ---//
+		
 		try{
+			//마지막 게시글 번호를 가져옴
 			pstmt=con.prepareStatement("select max(qboard_num) from qboard");
 			rs = pstmt.executeQuery();
 
 			if(rs.next())
-				num =rs.getInt(1)+1;  //인설트 할때마다 보드 넘버 1증가
+				num =rs.getInt(1)+1;  //insert 진행 시 게시글 번호 +1
 			else
 				num=1;
-
+			
+			close(pstmt); //다음 쿼리 진행 전 close(리소스 누수 방지)
+			
+			//쿼리문
 			sql="insert into qboard (qboard_num,MEM_ID,QBOARD_SUBJECT,";
 			sql+= " QBOARD_CONTENT, QBOARD_RE_REF,"+
 					"QBOARD_RE_LEV,QBOARD_RE_SEQ,QBOARD_READCOUNT,"+
 					"QBOARD_DATE) values(?,?,?,?,?,?,?,?,now())";
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			
+			//?값 설정
+			pstmt.setInt(1, num);		//등록될 게시글 번호
 			pstmt.setString(2, article.getMEM_ID());
 			pstmt.setString(3, article.getQBOARD_SUBJECT());
 			pstmt.setString(4, article.getQBOARD_CONTENT());
-			pstmt.setInt(5, num);
-			pstmt.setInt(6, 0);
-			pstmt.setInt(7, 0);
-			pstmt.setInt(8, 0);
-			
-			
+			pstmt.setInt(5, num);		//답글이 달릴 부모 게시글 번호(일반적인 게시글 작성은 등록될 게시글번호와 동일)
+			pstmt.setInt(6, 0);		//게시판 답글 깊이(초기값 0)
+			pstmt.setInt(7, 0);		//게시판 답글 순서(초기값 0)
+			pstmt.setInt(8, 0);		//게시판 조회수 (초기값 0)
 
-			
 			insertCount=pstmt.executeUpdate(); //성공시 1 실패시 0
 
 		}catch(Exception e){
@@ -181,24 +186,29 @@ public class QBoardDAO {
 
 	}
 
-	//글 답변.
+	//글 답변 DAO
 	public int insertReplyArticle(QBoardBean article){
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String board_max_sql="select max(qboard_num) from qboard";
 		String sql="";
-		int num=0;
-		int insertCount=0;
-		int re_ref=article.getQBOARD_RE_REF();
-		int re_lev=article.getQBOARD_RE_LEV();
-		int re_seq=article.getQBOARD_RE_SEQ();
+		int qboard_num = 0;
+		int insertCount = 0;
+		int re_ref=article.getQBOARD_RE_REF(); //부모 게시글 번호
+		int re_lev=article.getQBOARD_RE_LEV(); //답글 깊이
+		int re_seq=article.getQBOARD_RE_SEQ(); //답글 순서
 
 		try{
 			pstmt=con.prepareStatement(board_max_sql);
 			rs = pstmt.executeQuery();
-			if(rs.next())num =rs.getInt(1)+1;
-			else num=1;
+			
+			if(rs.next())
+				qboard_num =rs.getInt(1)+1;
+			else
+				qboard_num=1;
+			close(pstmt); //메모리 누수 방지
+			
 			sql="update qboard set QBOARD_RE_SEQ=QBOARD_RE_SEQ+1 where QBOARD_RE_REF=? ";
 			sql+="and QBOARD_RE_SEQ>?";
 			pstmt = con.prepareStatement(sql);
@@ -216,7 +226,7 @@ public class QBoardDAO {
 			sql+="QBOARD_CONTENT,QBOARD_RE_REF,QBOARD_RE_LEV,QBOARD_RE_SEQ,";
 			sql+="QBOARD_READCOUNT,QBOARD_DATE) values(?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, qboard_num);
 			pstmt.setString(2, article.getMEM_ID());
 			pstmt.setString(3, article.getQBOARD_SUBJECT());
 			pstmt.setString(4, article.getQBOARD_CONTENT());

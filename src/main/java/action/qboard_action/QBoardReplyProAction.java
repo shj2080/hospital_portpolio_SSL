@@ -20,21 +20,19 @@ public class QBoardReplyProAction implements Action {
 		 	
 		 	//작성자 ID 받아옴
 		 	article.setMEM_ID(request.getParameter("loginID"));
-		 	article.setQBOARD_NUM(Integer.parseInt(request.getParameter("qboard_num")));
-		 	article.setQBOARD_SUBJECT(request.getParameter("QBOARD_SUBJECT"));
-		 	article.setQBOARD_CONTENT(request.getParameter("QBOARD_CONTENT"));
+		 	//article.setQBOARD_NUM(Integer.parseInt(request.getParameter("qboard_num"))); //게시글 번호
+		 	article.setQBOARD_SUBJECT(request.getParameter("QBOARD_SUBJECT"));	//제목
+		 	article.setQBOARD_CONTENT(request.getParameter("QBOARD_CONTENT"));	//내용
 
-		 	article.setQBOARD_RE_REF(Integer.parseInt(request.getParameter("QBOARD_RE_REF")));
-		 	article.setQBOARD_RE_LEV(Integer.parseInt(request.getParameter("QBOARD_RE_LEV")));
-		 	article.setQBOARD_RE_SEQ(Integer.parseInt(request.getParameter("QBOARD_RE_SEQ")));	   		
+		 	article.setQBOARD_RE_REF(Integer.parseInt(request.getParameter("QBOARD_RE_REF")));	//답글 달릴 부모글
+		 	article.setQBOARD_RE_LEV(Integer.parseInt(request.getParameter("QBOARD_RE_LEV")));	//답글 깊이
+		 	article.setQBOARD_RE_SEQ(Integer.parseInt(request.getParameter("QBOARD_RE_SEQ")));	//답글 순서
 		 	QBoardReplyProService boardReplyProService = new QBoardReplyProService();
-		 	boolean isReplySuccess = boardReplyProService.replyArticle(article);
+		 	boolean isReplySuccess = boardReplyProService.replyArticle(article); //답글 작성 서비스에서 DAO접근 메서드 호출
 		 	
-		 	
+		 	//답글 작성 성공 여부 판단
 	   		if(isReplySuccess){
-	   			forward = new ActionForward();
-	   			forward.setRedirect(true);
-	   			forward.setPath("qboardList.qna?page=" + nowPage);
+	   			forward = new ActionForward("qboardList.qna?page=" + nowPage, true);
 	   		}
 	   		else{
 	   			response.setContentType("text/html;charset=UTF-8");

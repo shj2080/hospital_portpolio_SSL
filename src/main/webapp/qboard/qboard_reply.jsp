@@ -22,7 +22,7 @@
 		<span class="tableTitle">답글</span><br>
 		<form action="qboardReplyPro.qna" method="post" name="boardform">
 			<input type="hidden" name="page"          value="${page}" /> 
-			<input type="hidden" name="qboard_num"    value="${article.QBOARD_NUM}">
+			<%-- <input type="hidden" name="qboard_num"    value="${article.QBOARD_NUM}"> --%>
 			<input type="hidden" name="QBOARD_RE_REF" value="${article.QBOARD_RE_REF}"> 
 			<input type="hidden" name="QBOARD_RE_LEV" value="${article.QBOARD_RE_LEV}"> 
 			<input type="hidden" name="QBOARD_RE_SEQ" value="${article.QBOARD_RE_SEQ}">
@@ -30,24 +30,24 @@
 			<table border="1" id="table-first" class="table table-bordered">
 		   		<tr>
 					<td id="td_left">회원ID</td>
-					<td class="td_right">${userID}</td>
+					<td class="td_right fs-4">${userID}</td>
 				</tr>
 				<tr>
 					<td id="td_left"><label for="QBOARD_SUBJECT">제 목</label></td>
 					<td class="td_right"><input name="QBOARD_SUBJECT" type="text"
-						id="QBOARD_SUBJECT" size="35" class="form-control" required="required"/></td>
+						id="QBOARD_SUBJECT" size="35" class="form-control fs-4" required="required"/></td>
 				</tr>
 				<tr>
 					<td id="td_left"><label for="QBOARD_CONTENT">내 용</label></td>
 					<td><textarea id="QBOARD_CONTENT" name="QBOARD_CONTENT"
-							cols="40" rows="10" class="form-control" style="resize: none;" required="required"></textarea></td>
+							cols="40" rows="10" class="form-control fs-4" style="resize: none;" required="required"></textarea></td>
 				</tr>
 			</table>
-			<section id="commandCell">
-				<input type="submit" value="답변 등록" class="btn btn-primary" style="font-size:12px;"/>&nbsp;&nbsp;
-				<input type="reset" value="다시 작성" class="btn btn-outline-dark" style="font-size:12px;"/>&nbsp;&nbsp;
-				<a href="javascript:history.go(-1)" class="btn btn-outline-dark" style="font-size:12px;">뒤로</a>
-			</section>
+			<div id="commandCell">
+				<input type="submit" value="답변 등록" class="btn btn-primary fs-4"/>&nbsp;&nbsp;
+				<input type="reset" value="다시 작성" class="btn btn-outline-dark fs-4"/>&nbsp;&nbsp;
+				<a href="javascript:history.go(-1)" class="btn btn-outline-dark fs-4">뒤로</a>
+			</div>
 		</form>
 	</section>
 	</div>

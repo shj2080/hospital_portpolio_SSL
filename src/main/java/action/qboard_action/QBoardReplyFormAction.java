@@ -44,7 +44,7 @@ public class QBoardReplyFormAction implements Action {
 	  		
 	  		//현재 게시판 페이지 수 받아옴
 	   		String nowPage = request.getParameter("page");
-	   		int qboard_num=Integer.parseInt(request.getParameter("qboard_num")); //해당하는 글의 borad_num값을 받아서 borad_num에 담음
+	   		int qboard_num=Integer.parseInt(request.getParameter("qboard_num")); //답글을 달려는 글의 borad_num값을 받아서 borad_num에 담음
 	   		   		
 	   		QBoardDetailService boardDetailService = new QBoardDetailService();
 	   		QBoardBean article=boardDetailService.getArticle(qboard_num);
