@@ -67,7 +67,7 @@ public class TreatmentAddConfirmAction implements Action {
     			
     			out.println("<script>");
     			out.println("alert('예약된 진료 이행 확인이 완료되었습니다.');");
-    			out.println("location.replace('reservationMemberSearch.ad?u_id="+ reservationInfo.getId() +"')");
+    			out.println("location.replace('reservationCheckList.ad')");
     			out.println("</script>");
         		System.out.println("treatment_status 갱신 성공");
         	}else {
