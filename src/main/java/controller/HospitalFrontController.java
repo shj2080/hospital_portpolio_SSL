@@ -16,6 +16,7 @@ import action.LogoutAction;
 import action.MyTreatmentListAction;
 import action.TreatmentListAction;
 import action.TreatmentListSearchAction;
+import action.privacyPolicyViewAction;
 import action.board.PostShowAcrion;
 import action.board.UserBoardDeleteAction;
 import action.board.UserBoardModifyAction;
@@ -327,21 +328,21 @@ public class HospitalFrontController extends HttpServlet {
 		//회원 비밀번호 찾기 요청
 		else if(command.equals("/find_member/pwFind.do")) {//'회원 비밀번호 찾기' 요청이면
 			action = new MemberpwFindAction();
-				try {
-					forward = action.execute(request, response);
-				} catch (Exception e) {				
-					e.printStackTrace();
-				}	
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}	
 		}
 		
 		//회원 비밀번호 찾기 요청
 		else if(command.equals("/find_member/pwUpdate.do")) {//'회원 비밀번호 찾기' 요청이면
 			action = new MemberPwUpdateAction();
-				try {
-					forward = action.execute(request, response);
-				} catch (Exception e) {				
-					e.printStackTrace();
-				}	
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}	
 		}
 
 		//병원소개 - 일반 페이지 이동
@@ -364,7 +365,6 @@ public class HospitalFrontController extends HttpServlet {
 				e.printStackTrace();
 			}	
 		}
-		
 		
 		/****************************************************************************
 		 * 포워딩
