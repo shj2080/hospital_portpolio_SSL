@@ -16,10 +16,10 @@ public class FileDownUtil {
 	//파일 다운로드 메서드
 	public void FileWebDownload(HttpServletRequest request, HttpServletResponse response, AttachFileBean attachFileBean) throws Exception {
 		
-		String savePath = "/board/notice"; //서버에 파일이 업로드된 폴더명 지정
+		//String savePath = "/board/notice"; //서버에 파일이 업로드된 폴더명 지정
 		//이 때, 절대경로 기준의 진짜 경로를 얻어와야 한다.
 		ServletContext context = request.getServletContext();
-		String sDownloadPath = context.getRealPath(savePath); //예)C:\\board\\notice
+		String sDownloadPath = context.getInitParameter("board_uploadFiles"); //예)C:\\board\\notice
 		
 		//서버에 저장된 파일이름
 		String serverFileName = attachFileBean.getSave_name();

@@ -54,10 +54,10 @@ public class UserBoardWriteFetch implements FetchAction<User_board> {
 	  		
 	  		
 	  		//서버 파일 저장 경로
-	  		String saveDir = "/board/notice";
+	  		//String saveDir = "/board/notice";
 	  		
 	  		ServletContext context = request.getServletContext();
-	  		String uploadPath = context.getRealPath(saveDir);
+	  		String uploadPath = context.getInitParameter("board_uploadFiles");
 	  		
 	  		//파일 용량 제한 (10M)
 	  		int fileLimitSize = 10 * 1024 * 1024;

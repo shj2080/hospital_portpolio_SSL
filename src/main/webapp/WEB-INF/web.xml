@@ -15,6 +15,14 @@
   	<location>/errorPage/404error.jsp</location>
   </error-page>
   
+  <context-param>
+  	<description>board uploaded files</description>
+  	<param-name>board_uploadFiles</param-name>
+  	<param-value>
+  		/usr/local/webUpload/board_uploadFiles
+  	</param-value>
+  </context-param>
+  
   <security-constraint>
     <web-resource-collection>
         <web-resource-name>HTTPS redirect</web-resource-name>

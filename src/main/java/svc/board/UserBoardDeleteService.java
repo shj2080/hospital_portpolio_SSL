@@ -32,11 +32,11 @@ public class UserBoardDeleteService {
 		//첨부파일이 있는 경우에만 삭제 실행
 		if(attachFiles != null) {
 			//--서버에 저장된 파일 삭제 구문--//
-			String saveDir = "/board/notice";
+			//String saveDir = "/board/notice";
 			
 			//-----파일 저장된 경로 처리------//
 			ServletContext context = request.getServletContext();
-	  		String uploadPath = context.getRealPath(saveDir);
+	  		String uploadPath = context.getInitParameter("board_uploadFiles");
 	  		String deleteFilePath = uploadPath + File.separator;
 	  		//-----파일 저장된 경로 처리------//
 	  		
@@ -95,11 +95,11 @@ public class UserBoardDeleteService {
 		//첨부파일이 있는 경우에만 삭제 실행
 		if(attachFiles != null) {
 			//--서버에 저장된 파일 삭제 구문--//
-			String saveDir = "/board/notice";
+			///String saveDir = "/board/notice";
 			
 			//-----파일 저장된 경로 처리------//
 			ServletContext context = request.getServletContext();
-			String uploadPath = context.getRealPath(saveDir);
+			String uploadPath = context.getInitParameter("board_uploadFiles");
 			String deleteFilePath = uploadPath + File.separator;
 			//-----파일 저장된 경로 처리------//
 			
