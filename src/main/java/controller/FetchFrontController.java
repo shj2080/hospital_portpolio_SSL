@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,18 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.mysql.cj.xdevapi.JsonString;
 
-import action.board.UserBoardModifyAction;
-import action.board.UserBoardWriteAction;
 import fetch.FetchAction;
 import fetch.LoginCheckingAction;
 import fetch.board.UserBoardDeleteFetch;
 import fetch.board.UserBoardModifyFetch;
 import fetch.board.UserBoardWriteFetch;
 import fetch.board.getAttachFileFetch;
-import util.FileDownUtil;
 import vo.AttachFileBean;
 import vo.User_board;
 import vo.fetch.FetchForward;

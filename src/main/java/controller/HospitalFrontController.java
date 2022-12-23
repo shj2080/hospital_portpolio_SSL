@@ -10,18 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.IndexPageAction;
 import action.JoinAction;
-import action.LoginAction;
 import action.LoginFormAction;
 import action.LogoutAction;
 import action.MyTreatmentListAction;
 import action.TreatmentListAction;
 import action.TreatmentListSearchAction;
-import action.privacyPolicyViewAction;
 import action.board.PostShowAcrion;
-import action.board.UserBoardDeleteAction;
-import action.board.UserBoardModifyAction;
 import action.board.UserBoardModifyFormAction;
-import action.board.UserBoardWriteAction;
 import action.board.UserboardShowAcrion;
 import action.board.UserboardWriteFormAcrion;
 import action.member_find.MemberIdFindAction;
@@ -107,19 +102,6 @@ public class HospitalFrontController extends HttpServlet {
 			}
 	
 		}
-		/*
-		 * 로그인 처리 변경 -> Fetch 함수 처리(FetchFrontController)
-		//로그인 프로세스
-		else if(command.equals("/loginProcess.do")) {
-			action = new LoginAction();
-			
-			try {
-				forward = action.execute(request, response);
-			}catch (Exception e) {
-				System.out.println("login ActionForward 예외 : " + e);
-			}
-		}
-		*/
 		//로그아웃 요청
 		else if(command.equals("/logout.do")) {
 			action = new LogoutAction();
@@ -230,16 +212,6 @@ public class HospitalFrontController extends HttpServlet {
 			//forward = new ActionForward("userBoard.jsp", false);	//반드시 디스패치 방식으로 포워딩					
 		}
 		
-		/* Fetch 함수 처리(FetchFrontController)
-		else if(command.equals("/userBoardWriteAction.do")) {//'글쓰기 처리' 요청이면
-			action  = new UserBoardWriteAction();			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {				
-				e.printStackTrace();
-			}
-		}
-		*/
 		//'글수정 폼' 요청이면
 		else if(command.equals("/userBoardModifyFormAction.do")) {
 			action  = new UserBoardModifyFormAction();			
@@ -249,26 +221,6 @@ public class HospitalFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		//'글수정' 요청이면
-		/* 사용되지 않는 코드 -> Fetch 함수 처리(FetchFrontController)
-		else if(command.equals("/userBoardModify.do")) {
-			action  = new UserBoardModifyAction();			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {				
-				e.printStackTrace();
-			}
-		}
-		//'글 삭제' 요청이면
-		else if(command.equals("/userBoardDelete.do")) {
-			action  = new UserBoardDeleteAction();			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {				
-				e.printStackTrace();
-			}
-		}
-		*/
 
 		else if(command.equals("/showPost.do")) {//'게시글 보기' 요청이면
 			action = new PostShowAcrion();//게시판 글 목록 불러오는 Action
